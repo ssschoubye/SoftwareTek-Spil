@@ -27,7 +27,9 @@ public class Board {
     }
 
 
-    public int[][] legalSpots(int playerTurn){
+    public void legalSpots(int playerTurn){
+
+
         for (int i = 0; i<x_axis;i++){
             for (int j = 0; j<y_axis;j++){
                 if(map[i][j]==0){
@@ -35,7 +37,6 @@ public class Board {
                 }else;
             }
         }
-        return map;
     }
 
 
