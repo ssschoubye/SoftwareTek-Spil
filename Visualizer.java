@@ -63,6 +63,8 @@ public class Visualizer extends Application {
                                 //Save value for ending game
                             } else{
                                 System.out.println("\n" + turn + " has no possible moves");
+                                turn = Board.turnSwitch(turn);
+
                                 //no move possible for current player
                             }
 
