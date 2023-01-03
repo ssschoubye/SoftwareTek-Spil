@@ -31,13 +31,23 @@ public class Menu extends Application {
     @FXML
     Button button1;
     @FXML
-    private void startGame(){
+    private void startGame() throws IOException {
         System.out.println("Start Game");
         //BoardTestMain.gameRun();
         Stage stage = (Stage) button1.getScene().getWindow();
         stage.close();
-        System.out.println("Here we go");
-        Visualizer.gameStart();
+        int [] dim = DimensionPrompt.start1();
+        if (dim[0] == 0 || dim[1] == 0){
+            dim[0] = 8;
+            dim[1] = 8;
+            System.out.println("Here we go");
+            Visualizer.gameStart();
+        }else if(dim[0] > 0 || dim[1] > 0){
+            System.out.println(dim[0] + " " + dim[1]);
+            System.out.println("Here we go");
+            Visualizer.gameStart();
+        }
+
     }
 
     @FXML
