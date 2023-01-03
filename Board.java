@@ -310,22 +310,22 @@ public class Board {
     public String toString() {
         System.out.print("    ");
         for (int x=0;x<x_axis;x++){
-            System.out.print(x+" ");
+            System.out.print(x+"  ");
         }
         System.out.print("\n   _");
         for (int x=0;x<x_axis;x++){
-            System.out.print(" _");
+            System.out.print("___");
         }
         System.out.println();
         for (int i = 0; i < y_axis; i++) {
             System.out.print(i+" | ");
             for (int j = 0; j < x_axis; j++) {
                 if (map[j][i]==0){
-                    System.out.print("- ");
+                    System.out.print("-  ");
                 } else if (map[j][i]==3) {
-                    System.out.print("* ");
+                    System.out.print("*  ");
                 } else {
-                    System.out.print(map[j][i] + " ");
+                    System.out.print(map[j][i] + "  ");
                 }
             }
             System.out.println();

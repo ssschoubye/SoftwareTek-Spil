@@ -68,6 +68,7 @@ public class BoardTestMain {
                 System.out.println("\n"+turn+" has no possible moves");
                 continue;
             }
+            System.out.println();
             game.toString();
 
             System.out.println("\n"+turn+"'s turn to place a piece");
