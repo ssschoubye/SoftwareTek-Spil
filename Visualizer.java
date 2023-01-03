@@ -42,6 +42,7 @@ public class Visualizer extends Application {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 cells[i][j] = new Button();
+
                 board.add(cells[i][j], i, j);
 
                 final int ii = i;
@@ -79,11 +80,13 @@ public class Visualizer extends Application {
 
                 if ((i + j) % 2 == 0) {
                     cells[i][j].setStyle("-fx-background-color: BURLYWOOD; -fx-border-color: TAN");
+
                 } else {
                     cells[i][j].setStyle("-fx-background-color: BLANCHEDALMOND; -fx-border-color: TAN");
                 }
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                 cells[i][j].prefWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+
             }
             board.setAlignment(Pos.CENTER);
         }
@@ -97,30 +100,28 @@ public class Visualizer extends Application {
     }
 
     private void updateGridpane(Stage primaryStage, Board game, GridPane board) {
-        //ImageView blackPiece = new ImageView("blackPiece.png");
-        //ImageView whitePiece = new ImageView("whitePiece.png");
-        //ImageView marker = new ImageView("marker.png");
 
         board.getChildren().removeIf(node -> node instanceof ImageView);
 
         for (int x =0 ; x<width;x++){
             for(int y = 0; y<height;y++){
 
-
-
                 if(game.map[x][y]==1){
-                    ImageView whitePiece = new ImageView("whiteMogus.png");
+                    ImageView whitePiece = new ImageView("whitePiece.png");
                     board.add(whitePiece, x, y);
+                    whitePiece.setMouseTransparent(true);
                     whitePiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                     whitePiece.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                 } else if (game.map[x][y]==2) {
-                    ImageView blackPiece = new ImageView("redMogus.png");
+                    ImageView blackPiece = new ImageView("blackPiece.png");
                     board.add(blackPiece, x, y);
+                    blackPiece.setMouseTransparent(true);
                     blackPiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                     blackPiece.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                 } else if (game.map[x][y]==3){
                     ImageView marker = new ImageView("marker.png");
                     board.add(marker, x, y);
+                    marker.setMouseTransparent(true);
                     marker.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                     marker.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                 }
