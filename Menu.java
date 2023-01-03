@@ -21,7 +21,7 @@ public class Menu extends Application {
 
     @FXML
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("visual.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("menuvis.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -33,9 +33,9 @@ public class Menu extends Application {
 
     @FXML
     private void startGame(){
-
-
         System.out.println("Start Game");
+        BoardTestMain.gameRun();
+        Visualizer.st
     }
 
     @FXML

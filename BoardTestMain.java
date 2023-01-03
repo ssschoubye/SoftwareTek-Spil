@@ -13,37 +13,8 @@ public class BoardTestMain {
         }
     }
 
-    public static void main(String[] args) {
-        /*
-        Board testGame = new Board(8,8);
+    public static void gameRun() {
 
-        testGame.initialize();
-        testGame.legalSpots(2);
-        testGame.toString();
-
-        System.out.println("\n____________________________________");
-
-        testGame.placePiece(3,2,2);
-        testGame.legalSpots(1);
-        testGame.toString();
-
-        System.out.println("\n____________________________________");
-
-        testGame.placePiece(2,4,1);
-        testGame.legalSpots(2);
-        testGame.toString();
-
-        System.out.println("\n____________________________________");
-
-        testGame.placePiece(2,4,1);
-        testGame.legalSpots(2);
-        testGame.toString();
-
-        System.out.println("\n____________________________________");
-        System.out.println("Test over");
-        System.out.println("Now starting game");
-        System.out.println("\n____________________________________");
-        */
 
         Scanner size = new Scanner(System.in);
         System.out.print("Enter the size of the x-axis: ");
