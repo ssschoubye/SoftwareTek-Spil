@@ -109,12 +109,12 @@ public class Visualizer extends Application {
 
 
                 if(game.map[x][y]==1){
-                    ImageView whitePiece = new ImageView("whitePiece.png");
+                    ImageView whitePiece = new ImageView("whiteMogus.png");
                     board.add(whitePiece, x, y);
                     whitePiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                     whitePiece.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                 } else if (game.map[x][y]==2) {
-                    ImageView blackPiece = new ImageView("blackPiece.png");
+                    ImageView blackPiece = new ImageView("redMogus.png");
                     board.add(blackPiece, x, y);
                     blackPiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                     blackPiece.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
