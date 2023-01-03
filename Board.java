@@ -22,14 +22,6 @@ public class Board {
     }
 
     public void initialize() {
-        //Test
-        /*
-        map[0][0] = 1;
-        map[1][0] = 2;
-        map[0][1] = 2;
-        map[1][1] = 2;
-         */
-
         map[x_axis / 2 - 1][y_axis / 2 - 1] = 1;
         map[x_axis / 2][y_axis / 2 - 1] = 2;
         map[x_axis / 2][y_axis / 2] = 1;
