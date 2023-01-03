@@ -186,15 +186,7 @@ public class Board {
                 if (map[x][y] != 0) continue;
                 for (int dx = -1; dx <= 1; dx++) {
                     for (int dy = -1; dy <= 1; dy++) {
-                        if (dx == 0 && dy == 0) {
-                            continue;
-                        }
-                        if (!isOnBoard(x + dx, y + dy)) {
-                            continue;
-                        }
-                        if (map[x + dx][y + dy] != 3 - playerTurn) {
-                            continue;
-                        }
+                        if (checkXDxYDy(x, y, playerTurn, dx, dy)) continue;
 
                         int l = 0;
 
@@ -218,11 +210,10 @@ public class Board {
         return anyLegalSpots;
     }
 
-
     public boolean isOnBoard(int x, int y) {
         return x >= 0 && y >= 0 && x < x_axis && y < y_axis;
-
     }
+
 
 
     public boolean placePiece(int x, int y, int playerTurn) {
@@ -241,15 +232,7 @@ public class Board {
         //Checking which pieces to flip
         for (int dx = -1; dx <= 1; dx++) {
             for (int dy = -1; dy <= 1; dy++) {
-                if (dx == 0 && dy == 0) {
-                    continue;
-                }
-                if (!isOnBoard(x + dx, y + dy)) {
-                    continue;
-                }
-                if (map[x + dx][y + dy] != 3 - playerTurn) {
-                    continue;
-                }
+                if (checkXDxYDy(x, y, playerTurn, dx, dy)) continue;
                 boolean flipDirection = false;
                 int l = 0;
 
@@ -265,7 +248,7 @@ public class Board {
                         break;
                     }
                 }
-                if (flipDirection){
+                if (flipDirection) {
                     while (l > 0) {
                         l--;
                         map[x + dx * l][y + dy * l] = playerTurn;
@@ -274,12 +257,21 @@ public class Board {
                 }
 
 
-
             }
         }
 
 
         return true;
+    }
+
+    private boolean checkXDxYDy(int x, int y, int playerTurn, int dx, int dy) {
+        if (dx == 0 && dy == 0) {
+            return true;
+        }
+        if (!isOnBoard(x + dx, y + dy)) {
+            return true;
+        }
+        return map[x + dx][y + dy] != 3 - playerTurn;
     }
 
     //Set a value for a given spot (ONLY FOR TESTING)
@@ -292,37 +284,38 @@ public class Board {
 
     }
 
-    public int[] getScore(){
-        int[] score = {0,0};
-        for (int x = 0; x<x_axis;x++){
-            for (int y = 0; y<y_axis;y++){
-                if (map[x][y]==1){
+    public int[] getScore() {
+        int[] score = {0, 0};
+        for (int x = 0; x < x_axis; x++) {
+            for (int y = 0; y < y_axis; y++) {
+                if (map[x][y] == 1) {
                     score[0]++;
-                } else if (map[x][y]==2){
+                } else if (map[x][y] == 2) {
                     score[1]++;
                 }
             }
         }
         return score;
     }
+
     //print the whole board using toString (ONLY FOR TESTING)
     @Override
     public String toString() {
         System.out.print("    ");
-        for (int x=0;x<x_axis;x++){
-            System.out.print(x+"  ");
+        for (int x = 0; x < x_axis; x++) {
+            System.out.print(x + "  ");
         }
         System.out.print("\n   _");
-        for (int x=0;x<x_axis;x++){
+        for (int x = 0; x < x_axis; x++) {
             System.out.print("___");
         }
         System.out.println();
         for (int i = 0; i < y_axis; i++) {
-            System.out.print(i+" | ");
+            System.out.print(i + " | ");
             for (int j = 0; j < x_axis; j++) {
-                if (map[j][i]==0){
+                if (map[j][i] == 0) {
                     System.out.print("-  ");
-                } else if (map[j][i]==3) {
+                } else if (map[j][i] == 3) {
                     System.out.print("*  ");
                 } else {
                     System.out.print(map[j][i] + "  ");
