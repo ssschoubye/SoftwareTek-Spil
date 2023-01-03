@@ -5,13 +5,19 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class Visualizer {
+import static javafx.application.Application.launch;
+
+public class Visualizer{
     private static int width = 12;
     private static int height = 12;
 
 
-    
-    public void start(Stage primaryStage) {
+    public static void gameStart(){
+        Stage stage = new Stage();
+        start(stage);
+
+    }
+    public static void start(Stage gameStage) {
         GridPane board = new GridPane();
         Button[][] cells = new Button[width][height];
 
@@ -25,15 +31,15 @@ public class Visualizer {
                     cells[i][j].setStyle("-fx-background-color: BLANCHEDALMOND; -fx-border-color: TAN");
                 }
 
-                cells[i][j].prefHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
-                cells[i][j].prefWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+                cells[i][j].prefHeightProperty().bind(Bindings.divide(gameStage.widthProperty(), 10.0));
+                cells[i][j].prefWidthProperty().bind(Bindings.divide(gameStage.widthProperty(), 10.0));
             }
 
             board.setAlignment(Pos.CENTER);
         }
 
-        Scene scene = new Scene(board, 600.0, 600.0);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        Scene scene1 = new Scene(board, 600.0, 600.0);
+        gameStage.setScene(scene1);
+        gameStage.show();
     }
 }

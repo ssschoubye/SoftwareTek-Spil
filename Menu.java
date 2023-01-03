@@ -30,12 +30,14 @@ public class Menu extends Application {
 
     @FXML
     Button button1;
-
     @FXML
     private void startGame(){
         System.out.println("Start Game");
-        BoardTestMain.gameRun();
-        Visualizer.st
+        //BoardTestMain.gameRun();
+        Stage stage = (Stage) button1.getScene().getWindow();
+        stage.close();
+        System.out.println("Here we go");
+        Visualizer.gameStart();
     }
 
     @FXML
