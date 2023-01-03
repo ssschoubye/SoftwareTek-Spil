@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,16 +16,24 @@ import java.awt.*;
 
 public class Visualizer extends Application {
 
-    int width = 8;
-    int height = 8;
+    static int width = 8;
+    static int height = 8;
 
+    static int turn = 1;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    final ImageView blackPiece = new ImageView("blackPiece.png");
+    final ImageView whitePiece = new ImageView("whitePiece.png");
+    final ImageView marker = new ImageView("marker.png");
+    public static void main(String[] args) {launch(args);}
 
     @Override
     public void start(Stage primaryStage) {
+
+        Board game = new Board(width,height);
+        game.initialize();
+        game.legalSpots(1);
+
+
         // Create GridPane, which will function as the playing board
         GridPane board = new GridPane();
 
@@ -38,15 +47,32 @@ public class Visualizer extends Application {
                 final int ii = i;
                 final int jj = j;
 
+                updateGridpane(primaryStage, game, board);
+
+
                 // Tilføj en event handler for "on action"
                 cells[i][j].setOnAction(event -> {
-                    // Opret en ny ImageView og tilføj den til brættet
-                    ImageView imageView = new ImageView("7575white.png");
-                    board.add(imageView, ii, jj);
+                    if (game.placePiece(ii,jj,turn)){
+                        //Switches player turn
+                        turn = Board.turnSwitch(turn);
 
-                    // Skaler billedet med brættet
-                    imageView.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
-                    imageView.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+                        //Checks for legal spots
+                        if (!game.legalSpots(turn)) {
+                            if(!game.legalSpots(Board.turnSwitch(turn))){
+                                System.out.println("No more possible moves \n    game over");
+                                //Save value for ending game
+                            } else{
+                                System.out.println("\n" + turn + " has no possible moves");
+                                //no move possible for current player
+                            }
+
+                        }
+                        updateGridpane(primaryStage, game, board);
+
+
+
+                    }
+
                 });
 
                 if ((i + j) % 2 == 0) {
@@ -68,5 +94,37 @@ public class Visualizer extends Application {
 
     }
 
+    private void updateGridpane(Stage primaryStage, Board game, GridPane board) {
+        //ImageView blackPiece = new ImageView("blackPiece.png");
+        //ImageView whitePiece = new ImageView("whitePiece.png");
+        //ImageView marker = new ImageView("marker.png");
 
+        board.getChildren().removeIf(node -> node instanceof ImageView);
+
+        for (int x =0 ; x<width;x++){
+            for(int y = 0; y<height;y++){
+
+
+
+                if(game.map[x][y]==1){
+                    ImageView whitePiece = new ImageView("whitePiece.png");
+                    board.add(whitePiece, x, y);
+                    whitePiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+                    whitePiece.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+                } else if (game.map[x][y]==2) {
+                    ImageView blackPiece = new ImageView("blackPiece.png");
+                    board.add(blackPiece, x, y);
+                    blackPiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+                    blackPiece.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+                } else if (game.map[x][y]==3){
+                    ImageView marker = new ImageView("marker.png");
+                    board.add(marker, x, y);
+                    marker.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+                    marker.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+                }
+            }
+        }
     }
+
+
+}
