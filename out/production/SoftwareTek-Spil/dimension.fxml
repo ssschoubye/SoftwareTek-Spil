@@ -8,17 +8,28 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DimensionPrompt">
    <children>
-      <TitledPane animated="false" layoutX="199.0" layoutY="75.0" text="Choose Dimensions">
+      <TitledPane animated="false" expanded="false" layoutX="199.0" layoutY="75.0" text="Choose Dimensions">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <TextField fx:id="textfield1" layoutX="14.0" layoutY="34.0" promptText="x axis" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="34.0" />
                   <Label layoutX="8.0" layoutY="14.0" text="Choose dimensions for your board" />
                   <TextField fx:id="textfield2" layoutX="24.0" layoutY="90.0" promptText="y axis" />
-                  <Button fx:id="button1" layoutX="72.0" layoutY="130.0" mnemonicParsing="false" onAction="#closeApp" text="Submit" />
                </children>
             </AnchorPane>
         </content>
       </TitledPane>
+      <TitledPane animated="false" expanded="false" layoutX="199.0" layoutY="126.0" text="Choose Player Name">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="textfield3" layoutX="25.0" layoutY="64.0" promptText="Player 1" />
+                  <TextField fx:id="textfield4" layoutX="25.0" layoutY="116.0" promptText="Player 2" />
+                  <Label layoutX="42.0" layoutY="14.0" text="Choose Player Names" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <Button fx:id="button1" layoutX="273.0" layoutY="324.0" mnemonicParsing="false" onAction="#closeApp" text="Submit" />
    </children>
 </AnchorPane>

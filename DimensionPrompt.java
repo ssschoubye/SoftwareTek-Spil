@@ -73,8 +73,27 @@ return x;
             System.out.println("Not a number");
             return 0;
         }
-
     }
+
+    @FXML
+    private static TextField textfield3;
+
+    @FXML
+    public static String getPlayer1() {
+        String text = textfield3.getText();
+        return text;
+    }
+
+    @FXML
+    private static TextField textfield4;
+
+    @FXML
+    public static String getPlayer2(){
+        String text = textfield4.getText();
+        return text;
+    }
+
+
 
     @FXML
 
