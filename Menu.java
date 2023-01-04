@@ -30,12 +30,26 @@ public class Menu extends Application {
 
     @FXML
     Button button1;
-
     @FXML
-    private void startGame(){
+    private void startGame()  {
         System.out.println("Start Game");
         //BoardTestMain.gameRun();
-        //Visualizer.gameStart();
+        Stage stage = (Stage) button1.getScene().getWindow();
+        stage.close();
+        System.out.println("Started at the bottom now we are here");
+        int [] dim = DimensionPrompt.start1();
+        Visualizer game = new Visualizer();
+        if (dim[0] == 0 || dim[1] == 0){
+            dim[0] = 8;
+            dim[1] = 8;
+            System.out.println(dim[0]);
+            game.gameStart(dim[0],dim[1]);
+        }else if(dim[0] > 0 || dim[1] > 0){
+            System.out.println(dim[0] + " " + dim[1]);
+            System.out.println("Here we go");
+            game.gameStart(dim[0],dim[1]);
+        }
+
     }
 
     @FXML
