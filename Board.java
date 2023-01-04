@@ -1,5 +1,3 @@
-import static java.lang.Math.min;
-
 public class Board {
 
 
@@ -66,7 +64,6 @@ public class Board {
     public boolean isOnBoard(int x, int y) {
         return x >= 0 && y >= 0 && x < x_axis && y < y_axis;
     }
-
 
 
     public boolean placePiece(int x, int y, int playerTurn) {
@@ -193,5 +190,6 @@ public class Board {
     }
 
 
-
 }
+
+

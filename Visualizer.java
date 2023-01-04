@@ -2,28 +2,20 @@ import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import java.awt.*;
 
 
 public class Visualizer extends Application {
 
-    static int width = 8;
-    static int height = 8;
-
+    static int width;
+    static int height;
     static int turn = 1;
-
     String whiteImage = "Images/whitePiece.png";
     String blackImage = "Images/blackPiece.png";
     String markerImage = "Images/marker.png";
@@ -31,24 +23,25 @@ public class Visualizer extends Application {
     String backImage2 = "Images/backgroundSkins/chess2.png";
 
 
-    public static void main(String[] args) {
-        launch(args);
+
+
+    public void gameStart(int inwidth, int inheight){
+        width = inwidth;
+        height = inheight;
+        Stage stage = new Stage();
+        start(stage);
     }
 
     @Override
     public void start(Stage primaryStage) {
 
-
-        Board game = new Board(width, height);
+        Board game = new Board(width,height);
         game.initialize();
         game.legalSpots(1);
 
 
         // Create GridPane, which will function as the playing board
         GridPane board = new GridPane();
-
-
-        Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
 
         // Create 2D array of buttons, which functions as the individual cells on the playing board
         Button[][] cells = new Button[width][height];
@@ -57,9 +50,6 @@ public class Visualizer extends Application {
                 cells[i][j] = new Button();
 
                 board.add(cells[i][j], i, j);
-                cells[i][j].minWidth(-1);
-
-
 
                 final int ii = i;
                 final int jj = j;
@@ -67,18 +57,19 @@ public class Visualizer extends Application {
                 updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
 
 
+
                 // Tilføj en event handler for "on action"
                 cells[i][j].setOnAction(event -> {
-                    if (game.placePiece(ii, jj, turn)) {
+                    if (game.placePiece(ii,jj,turn)){
                         //Switches player turn
                         turn = Board.turnSwitch(turn);
 
                         //Checks for legal spots
                         if (!game.legalSpots(turn)) {
-                            if (!game.legalSpots(Board.turnSwitch(turn))) {
+                            if(!game.legalSpots(Board.turnSwitch(turn))){
                                 System.out.println("No more possible moves \n    game over");
                                 //Save value for ending game
-                            } else {
+                            } else{
                                 System.out.println("\n" + turn + " has no possible moves");
                                 turn = Board.turnSwitch(turn);
 
@@ -89,14 +80,14 @@ public class Visualizer extends Application {
                         updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
 
 
+
+
                     }
 
                 });
 
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                 cells[i][j].prefWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
-
-
 
             }
             board.setAlignment(Pos.CENTER);
@@ -105,7 +96,6 @@ public class Visualizer extends Application {
 
         Scene scene = new Scene(board, 600, 600);
         board.setPadding(new Insets(10,10,10,10));
-
         primaryStage.setMinWidth(250);
         primaryStage.setScene(scene);
         //primaryStage.setResizable(false);
