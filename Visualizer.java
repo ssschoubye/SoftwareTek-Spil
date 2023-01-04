@@ -21,9 +21,8 @@ public class Visualizer extends Application {
 
     static int turn = 1;
 
-    final ImageView blackPiece = new ImageView("blackPiece.png");
-    final ImageView whitePiece = new ImageView("whitePiece.png");
-    final ImageView marker = new ImageView("marker.png");
+
+
     public static void main(String[] args) {launch(args);}
 
     @Override
@@ -107,19 +106,19 @@ public class Visualizer extends Application {
             for(int y = 0; y<height;y++){
 
                 if(game.map[x][y]==1){
-                    ImageView whitePiece = new ImageView("whitePiece.png");
+                    ImageView whitePiece = new ImageView("Images/whitePiece.png");
                     board.add(whitePiece, x, y);
                     whitePiece.setMouseTransparent(true);
                     whitePiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                     whitePiece.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                 } else if (game.map[x][y]==2) {
-                    ImageView blackPiece = new ImageView("blackPiece.png");
+                    ImageView blackPiece = new ImageView("Images/blackPiece.png");
                     board.add(blackPiece, x, y);
                     blackPiece.setMouseTransparent(true);
                     blackPiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                     blackPiece.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
                 } else if (game.map[x][y]==3){
-                    ImageView marker = new ImageView("marker.png");
+                    ImageView marker = new ImageView("Images/marker.png");
                     board.add(marker, x, y);
                     marker.setMouseTransparent(true);
                     marker.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
