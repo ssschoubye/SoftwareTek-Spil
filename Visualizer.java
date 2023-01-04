@@ -7,8 +7,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-
+import javafx.scene.media.Media;
 
 
 public class Visualizer extends Application {
@@ -18,9 +19,10 @@ public class Visualizer extends Application {
     static int turn = 1;
     String whiteImage = "Images/whitePiece.png";
     String blackImage = "Images/blackPiece.png";
-    String markerImage = "Images/marker.png";
+    String markerImage = "Images/markerDark.png";
     String backImage1 = "Images/backgroundSkins/chess1.png";
     String backImage2 = "Images/backgroundSkins/chess2.png";
+
 
 
 
@@ -48,7 +50,6 @@ public class Visualizer extends Application {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 cells[i][j] = new Button();
-
                 board.add(cells[i][j], i, j);
 
                 final int ii = i;
@@ -61,6 +62,8 @@ public class Visualizer extends Application {
                 // Tilføj en event handler for "on action"
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii,jj,turn)){
+
+
                         //Switches player turn
                         turn = Board.turnSwitch(turn);
 
@@ -68,6 +71,10 @@ public class Visualizer extends Application {
                         if (!game.legalSpots(turn)) {
                             if(!game.legalSpots(Board.turnSwitch(turn))){
                                 System.out.println("No more possible moves \n    game over");
+
+
+
+
                                 //Save value for ending game
                             } else{
                                 System.out.println("\n" + turn + " has no possible moves");
@@ -93,9 +100,14 @@ public class Visualizer extends Application {
             board.setAlignment(Pos.CENTER);
         }
 
-
+        /*
+        board.maxHeight(10);
+        HBox hbox = new HBox();
+        Button button = new Button("Hej");
+        hbox.getChildren().addAll(button,board);
+        */
         Scene scene = new Scene(board, 600, 600);
-        board.setPadding(new Insets(10,10,10,10));
+        board.setPadding(new Insets(50,50,50,50));
         primaryStage.setMinWidth(250);
         primaryStage.setScene(scene);
         //primaryStage.setResizable(false);
