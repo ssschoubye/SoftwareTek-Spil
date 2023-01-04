@@ -13,18 +13,11 @@ public class DimensionPrompt {
     private static int x;
     private static int y;
     public static int[] start1()  {
-        int i = 0;
-            System.out.println("Test1");
             Stage stage = new Stage();
             start(stage);
-            System.out.println("Test2");
             x = getDimx();
-            System.out.println("Test3");
             y = getDimy();
-            System.out.println("Test4");
             int[] dim = {x, y};
-            System.out.println(dim);
-            System.out.println("Test5");
             System.out.println(dim);
             return dim;
 
@@ -71,7 +64,6 @@ return x;
 
     @FXML
     public static int getDimy() {
-        System.out.println("Test6");
         String text = textfield2.getText();
         try {
             int y = Integer.parseInt(text);

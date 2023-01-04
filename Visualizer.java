@@ -9,6 +9,7 @@ import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 
 
 public class Visualizer extends Application {
@@ -66,9 +67,16 @@ public class Visualizer extends Application {
 
                         //Checks for legal spots
                         if (!game.legalSpots(turn)) {
+
                             if(!game.legalSpots(Board.turnSwitch(turn))){
                                 System.out.println("No more possible moves \n    game over");
+                                WinPage win = new WinPage();
                                 //Save value for ending game
+                                try {
+                                    win.winStart(game);
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
                             } else{
                                 System.out.println("\n" + turn + " has no possible moves");
                                 turn = Board.turnSwitch(turn);
