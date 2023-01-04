@@ -13,8 +13,7 @@ public class BoardTestMain {
         }
     }
 
-    public static void gameRun() {
-
+    public static void main(String[] args) {
 
         Scanner size = new Scanner(System.in);
         System.out.print("Enter the size of the x-axis: ");

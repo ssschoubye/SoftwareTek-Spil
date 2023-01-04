@@ -34,8 +34,8 @@ public class Menu extends Application {
     @FXML
     private void startGame(){
         System.out.println("Start Game");
-        BoardTestMain.gameRun();
-        Visualizer.st
+        //BoardTestMain.gameRun();
+        //Visualizer.gameStart();
     }
 
     @FXML
