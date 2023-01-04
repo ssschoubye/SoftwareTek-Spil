@@ -1,5 +1,3 @@
-import static java.lang.Math.min;
-
 public class Board {
 
 
@@ -26,155 +24,8 @@ public class Board {
         map[x_axis / 2][y_axis / 2 - 1] = 2;
         map[x_axis / 2][y_axis / 2] = 1;
         map[x_axis / 2 - 1][y_axis / 2] = 2;
+
     }
-
-    /*
-    public boolean legalSpots(int playerTurn) {
-        boolean anyLegalSpots = false;
-        for (int x = 0; x < x_axis; x++) {
-            for (int y = 0; y < y_axis; y++) {
-                boolean legalSpot = false;
-                if (map[x][y] == 3) {
-                    map[x][y] = 0;
-                }
-                if (map[x][y] == 0) {
-
-                    //Compare up left
-                    if ((x > 0 && y > 0) && map[x - 1][y - 1] == 3 - playerTurn) {
-                        int checks = min(x - 1, y - 1);
-                        for (int l = 1; l <= checks; l++) {
-                            if (map[x - 1 - l][y - 1 - l] == playerTurn) {
-                                map[x][y] = 3;
-                                anyLegalSpots = true;
-                                legalSpot = true;
-                                break;
-
-                            } else if (map[x - 1 - l][y - 1 - l] != 3 - playerTurn) {
-                                break;
-                            }
-                        }
-                    }
-                    if (legalSpot) continue;
-                    //Compare up
-                    if ((y > 0) && map[x][y - 1] == 3 - playerTurn) {
-                        int checks = y - 1;
-                        for (int l = 1; l <= checks; l++) {
-                            if (map[x][y - 1 - l] == playerTurn) {
-                                map[x][y] = 3;
-                                anyLegalSpots = true;
-                                legalSpot = true;
-                                break;
-                            } else if (map[x][y - 1 - l] != 3 - playerTurn) {
-                                break;
-                            }
-                        }
-                    }
-
-                    if (legalSpot) continue;
-
-                    //Compare up right
-                    if ((x < x_axis - 1 && y > 0) && map[x + 1][y - 1] == 3 - playerTurn) {
-                        int checks = min(x_axis - x - 2, y - 1);
-                        for (int l = 1; l <= checks; l++) {
-                            if (map[x + 1 + l][y - 1 - l] == playerTurn) {
-                                map[x][y] = 3;
-                                anyLegalSpots = true;
-                                legalSpot = true;
-                                break;
-                            } else if (map[x + 1 + l][y - 1 - l] != 3 - playerTurn) {
-                                break;
-                            }
-
-                        }
-                    }
-
-                    if (legalSpot) continue;
-                    //Compare left
-                    if (x > 0 && map[x - 1][y] == 3 - playerTurn) {
-                        int checks = x - 1;
-                        for (int l = 1; l <= checks; l++) {
-                            if (map[x - 1 - l][y] == playerTurn) {
-                                map[x][y] = 3;
-                                anyLegalSpots = true;
-                                legalSpot = true;
-                                break;
-                            } else if (map[x - 1 - l][y] != 3 - playerTurn) {
-                                break;
-                            }
-                        }
-                    }
-
-                    if (legalSpot) continue;
-                    //Compare right
-                    if (x < x_axis - 1 && map[x + 1][y] == 3 - playerTurn) {
-                        int checks = x_axis - x - 2;
-                        for (int l = 1; l <= checks; l++) {
-                            if (map[x + 1 + l][y] == playerTurn) {
-                                map[x][y] = 3;
-                                anyLegalSpots = true;
-                                legalSpot = true;
-                                break;
-                            } else if (map[x + 1 + l][y] != 3 - playerTurn) {
-                                break;
-                            }
-                        }
-                    }
-
-                    if (legalSpot) continue;
-                    //Compare down left
-                    if ((x > 0 && y < y_axis - 1) && map[x - 1][y + 1] == 3 - playerTurn) {
-                        int checks = min(x - 1, y_axis - y - 2);
-                        for (int l = 1; l <= checks; l++) {
-                            if (map[x - 1 - l][y + 1 + l] == playerTurn) {
-                                map[x][y] = 3;
-                                anyLegalSpots = true;
-                                legalSpot = true;
-                                break;
-                            } else if (map[x - 1 - l][y + 1 + l] != 3 - playerTurn) {
-                                break;
-                            }
-                        }
-
-                    }
-
-                    if (legalSpot) continue;
-                    //Compare down
-                    if (y < y_axis - 1 && map[x][y + 1] == 3 - playerTurn) {
-                        int checks = y_axis - y - 2;
-                        for (int l = 0; l <= checks; l++) {
-                            if (map[x][y + 1 + l] == playerTurn) {
-                                map[x][y] = 3;
-                                anyLegalSpots = true;
-                                legalSpot = true;
-                                break;
-                            } else if (map[x][y + 1 + l] != 3 - playerTurn) {
-                                break;
-                            }
-                        }
-                    }
-
-                    if (legalSpot) continue;
-                    //Compare down left
-                    if ((x < x_axis - 1 && y < y_axis - 1) && map[x + 1][y + 1] == 3 - playerTurn) {
-                        int checks = min(x_axis - x - 2, y_axis - y - 2);
-                        for (int l = 1; l <= checks; l++) {
-                            if (map[x + 1 + l][y + 1 + l] == playerTurn) {
-                                map[x][y] = 3;
-                                anyLegalSpots = true;
-                                break;
-                            } else if (map[x + 1 + l][y + 1 + l] != 3 - playerTurn) {
-                                break;
-                            }
-                        }
-                    }
-
-
-                }
-            }
-        }
-        return anyLegalSpots;
-    }
-    */
 
     public boolean legalSpots(int playerTurn) {
         boolean anyLegalSpots = false;
@@ -213,7 +64,6 @@ public class Board {
     public boolean isOnBoard(int x, int y) {
         return x >= 0 && y >= 0 && x < x_axis && y < y_axis;
     }
-
 
 
     public boolean placePiece(int x, int y, int playerTurn) {
@@ -328,5 +178,18 @@ public class Board {
         return null;
     }
 
+    public static int turnSwitch(int currentTurn) {
+        if (currentTurn == 1) {
+            return 2;
+        } else if (currentTurn == 2) {
+            return 1;
+        } else {
+            System.out.println("Wrong current turn");
+            return 0;
+        }
+    }
+
 
 }
+
+
