@@ -13,6 +13,7 @@ import javafx.scene.text.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 
+import java.awt.*;
 import java.io.IOException;
 
 
@@ -33,7 +34,6 @@ public class Visualizer extends Application {
         width = inwidth;
         height = inheight;
         Stage stage = new Stage();
-        Button button = new Button("hello world");
 
 
         start(stage);
@@ -45,6 +45,7 @@ public class Visualizer extends Application {
         Board game = new Board(width,height);
         game.initialize();
         game.legalSpots(1);
+
 
 
 
@@ -108,8 +109,8 @@ public class Visualizer extends Application {
             board.setAlignment(Pos.CENTER);
         }
 
-        HBox surface = hbox(vbox(toText("Player 1"),toText("p1: 20 points"),toText("p2: 18 points"),toText("4"),new Button("restart"),new Button("settings")),board);
-        Scene scene = new Scene(surface, 600, 600);
+        HBox surface = hbox(vbox(currentplayer(),toText("p1: 20 points"),toText("p2: 18 points"),toText("4"),new Button("restart"),new Button("settings")),board);
+        Scene scene = new Scene(surface, 800, 800);
         board.setPadding(new Insets(10,10,10,10));
         primaryStage.setMinWidth(250);
         primaryStage.setScene(scene);
@@ -148,6 +149,7 @@ public class Visualizer extends Application {
                 back.setMouseTransparent(true);
                 back.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
                 back.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+
 
 
                 if (game.map[x][y] == 1) {
@@ -206,5 +208,18 @@ public class Visualizer extends Application {
         text.setFont(new Font(font,size));
     }
 
+   public Text currentplayer() {
+       String s = "";
+           if (turn == 1) {
+               s = "player 1";
+           }
+           if (turn == 2) {
+               s = "player 2";
+           }
 
+
+           Text t = new Text(s);
+
+       return t;
+   }
 }
