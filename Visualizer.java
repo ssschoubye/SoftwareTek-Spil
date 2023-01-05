@@ -2,12 +2,16 @@ import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.text.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 
 import java.io.IOException;
 
@@ -25,11 +29,13 @@ public class Visualizer extends Application {
 
 
 
-
     public void gameStart(int inwidth, int inheight){
         width = inwidth;
         height = inheight;
         Stage stage = new Stage();
+        Button button = new Button("hello world");
+
+
         start(stage);
     }
 
@@ -39,6 +45,7 @@ public class Visualizer extends Application {
         Board game = new Board(width,height);
         game.initialize();
         game.legalSpots(1);
+
 
 
         // Create GridPane, which will function as the playing board
@@ -101,8 +108,8 @@ public class Visualizer extends Application {
             board.setAlignment(Pos.CENTER);
         }
 
-
-        Scene scene = new Scene(board, 600, 600);
+        HBox surface = hbox(vbox(toText("Player 1"),toText("p1: 20 points"),toText("p2: 18 points"),toText("4"),new Button("restart"),new Button("settings")),board);
+        Scene scene = new Scene(surface, 600, 600);
         board.setPadding(new Insets(10,10,10,10));
         primaryStage.setMinWidth(250);
         primaryStage.setScene(scene);
@@ -136,6 +143,8 @@ public class Visualizer extends Application {
 
 
                 board.add(back, x, y);
+
+
                 back.setMouseTransparent(true);
                 back.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
                 back.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
@@ -162,6 +171,39 @@ public class Visualizer extends Application {
                 }
             }
         }
+    }
+    public Text playertext (String s) {
+        Text text = new Text("s");
+
+        return text;
+    }
+
+    public HBox hbox (VBox vbox, GridPane board) {
+        HBox hbox = new HBox();
+        hbox.getChildren().addAll(vbox,board);
+        return hbox;
+    }
+
+    public VBox vbox (Text text1, Text text2, Text text3, Text text4, Button button, Button settings) {
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(text1,text2,text3,text4,button,settings);
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setPadding(new Insets(-20,0,20,20));
+        vbox.setSpacing(40.0);
+        button.setMinWidth(60);
+        settings.setMinWidth(60);
+
+        return vbox;
+    }
+
+    public Text toText(String string) {
+        Text text = new Text(string);
+        font(text,"Comic Sans MS",20);
+        return text;
+    }
+
+    public void font(Text text,String font, int size) {
+        text.setFont(new Font(font,size));
     }
 
 
