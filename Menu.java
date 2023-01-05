@@ -8,8 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
-
 
 
 
@@ -21,6 +21,11 @@ public class Menu extends Application {
 
     @FXML
     public void start(Stage primaryStage) throws IOException {
+
+
+
+
+
         Parent root = FXMLLoader.load(getClass().getResource("menuvis.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

@@ -3,26 +3,30 @@ import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.io.IOException;
+import javafx.scene.media.Media;
 
 
 public class Visualizer extends Application {
 
     static int width;
     static int height;
-    static int turn = 1;
+    static int turn = (int)(Math.random() * 2) + 1;
+    static int turnCounter = 1;
     String whiteImage = "Images/whitePiece.png";
     String blackImage = "Images/blackPiece.png";
-    String markerImage = "Images/marker.png";
+    String markerImage = "Images/markerDark.png";
     String backImage1 = "Images/backgroundSkins/chess1.png";
     String backImage2 = "Images/backgroundSkins/chess2.png";
-
+    AudioClip buzzer = new AudioClip(getClass().getResource("/Sounds/sound1.mp3").toExternalForm());
 
 
 
@@ -38,7 +42,6 @@ public class Visualizer extends Application {
 
         Board game = new Board(width,height);
         game.initialize();
-        game.legalSpots(1);
 
 
         // Create GridPane, which will function as the playing board
@@ -50,10 +53,13 @@ public class Visualizer extends Application {
             for (int j = 0; j < width; j++) {
                 cells[i][j] = new Button();
 
+                cells[i][j].getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
                 board.add(cells[i][j], i, j);
 
                 final int ii = i;
                 final int jj = j;
+
 
                 updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
 
@@ -62,29 +68,33 @@ public class Visualizer extends Application {
                 // Tilføj en event handler for "on action"
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii,jj,turn)){
+                        turnCounter++;
+                        buzzer.play();
+
+
                         //Switches player turn
                         turn = Board.turnSwitch(turn);
 
-                        //Checks for legal spots
-                        if (!game.legalSpots(turn)) {
+                        //Checks for legal spots after first 4 turns
+                        if (turnCounter>4){
+                            if (!game.legalSpots(turn)) {
+                                if(!game.legalSpots(Board.turnSwitch(turn))){
+                                    System.out.println("No more possible moves \n    game over");
 
-                            if(!game.legalSpots(Board.turnSwitch(turn))){
-                                System.out.println("No more possible moves \n    game over");
-                                WinPage win = new WinPage();
-                                //Save value for ending game
-                                try {
-                                    win.winStart(game);
-                                } catch (IOException e) {
-                                    throw new RuntimeException(e);
+
+
+
+                                    //Save value for ending game
+                                } else{
+                                    System.out.println("\n" + turn + " has no possible moves");
+                                    turn = Board.turnSwitch(turn);
+
+                                    //no move possible for current player
                                 }
-                            } else{
-                                System.out.println("\n" + turn + " has no possible moves");
-                                turn = Board.turnSwitch(turn);
 
-                                //no move possible for current player
                             }
-
                         }
+
                         updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
 
 
@@ -102,8 +112,29 @@ public class Visualizer extends Application {
         }
 
 
-        Scene scene = new Scene(board, 600, 600);
-        board.setPadding(new Insets(10,10,10,10));
+        //board.maxHeight(10);
+
+
+        VBox vbox = new VBox();
+        Button button1 = new Button("button1");
+        Button button2 = new Button("button2");
+        Button button3 = new Button("button3");
+        Text text = new Text("'s turn");
+
+
+        vbox.getChildren().addAll(button1,button2,button3);
+        vbox.setSpacing(50);
+        vbox.setPadding(new Insets(50,50,50,50));
+        VBox vbox2 = new VBox();
+        vbox2.getChildren().addAll(board,text);
+
+        HBox hbox = new HBox();
+        hbox.getChildren().addAll(vbox,vbox2);
+        hbox.setSpacing(100);
+
+        Scene scene = new Scene(hbox, 600, 600);
+
+        //
         primaryStage.setMinWidth(250);
         primaryStage.setScene(scene);
         //primaryStage.setResizable(false);
@@ -153,7 +184,7 @@ public class Visualizer extends Application {
                     blackPiece.setMouseTransparent(true);
                     blackPiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
                     blackPiece.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
-                } else if (game.map[x][y] == 3) {
+                } else if (game.map[x][y] == 3 || game.map[x][y] == 4) {
                     ImageView marker = new ImageView(markingImage);
                     board.add(marker, x, y);
                     marker.setMouseTransparent(true);

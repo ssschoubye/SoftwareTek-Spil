@@ -13,7 +13,8 @@ public class BoardTestMain {
         }
     }
 
-   public static void main(String[] args) {
+    public static void gameRun() {
+
 
         Scanner size = new Scanner(System.in);
         System.out.print("Enter the size of the x-axis: ");
@@ -24,8 +25,6 @@ public class BoardTestMain {
         Board game = new Board(xSize, ySize);
 
         game.initialize();
-
-
         //Game starts with 1 (White) having the first turn
         int turn = 2;
         System.out.println("\n____________________________________");
