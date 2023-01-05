@@ -11,6 +11,7 @@ import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
@@ -121,11 +122,14 @@ public class Visualizer extends Application {
 
 
         //board.maxHeight(10);
+        ///////////////////////////////////////////////////////////////////////////////////////
+        ///                            Skin choices on left                                 ///
+        ///////////////////////////////////////////////////////////////////////////////////////
 
 
         GridPane whiteSkins = new GridPane();
 
-        //whiteSkins.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        whiteSkins.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         Button whiteSkin1 = new Button();
         whiteSkins.add(whiteSkin1, 0, 0);
 
@@ -133,7 +137,6 @@ public class Visualizer extends Application {
         whiteSkin1.prefWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
 
         whiteSkin1.setOnAction(actionEvent -> {
-            System.out.println("1");
             whiteImage = "Images/whitePiece.png";
             updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
         });
@@ -145,7 +148,6 @@ public class Visualizer extends Application {
         whiteSkin2.prefWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
 
         whiteSkin2.setOnAction(actionEvent -> {
-            System.out.println("2");
             whiteImage = "Images/whitePiece2.png";
             updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
         });
@@ -157,19 +159,26 @@ public class Visualizer extends Application {
         whiteSkin3.prefWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
 
         whiteSkin3.setOnAction(actionEvent -> {
-            System.out.println("3");
             whiteImage = "Images/whitePiece3.png";
             updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
         });
 
-        Image skinsBackGroundImage = new Image(skinBackground);
+        Image backGround1 = new Image(backImage1);
+        Image backGround2 = new Image(backImage2);
 
         for (int i = 0; i<3;i++){
-            ImageView backGround = new ImageView(skinsBackGroundImage);
-            whiteSkins.add(backGround, i, 0);
-            backGround.setMouseTransparent(true);
-            backGround.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
-            backGround.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+            ImageView back;
+
+            if ( i%2==1){
+                back = new ImageView(backGround1);
+            } else  {
+                back = new ImageView(backGround2);
+            }
+            whiteSkins.add(back, i, 0);
+            back.setMouseTransparent(true);
+            back.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+            back.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+
         }
 
         ImageView whiteSkin1Image = new ImageView("Images/whitePiece.png");
@@ -205,14 +214,6 @@ public class Visualizer extends Application {
         blackSkins.add(blackSkin3,0,2);
 
 
-
-
-
-
-
-
-
-
         VBox vbox = new VBox();
 
         vbox.getChildren().addAll(whiteSkins,blackSkins);
@@ -229,7 +230,7 @@ public class Visualizer extends Application {
         hbox.setSpacing(100);
 
         Scene scene = new Scene(hbox, 600, 600);
-
+        scene.setFill(Color.ORANGE);
         //
         primaryStage.setMinWidth(250);
         primaryStage.setScene(scene);
