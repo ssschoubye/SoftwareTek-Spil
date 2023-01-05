@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
@@ -22,6 +23,8 @@ public class Visualizer extends Application {
     String markerImage = "Images/markerDark.png";
     String backImage1 = "Images/backgroundSkins/chess1.png";
     String backImage2 = "Images/backgroundSkins/chess2.png";
+
+    AudioClip buzzer = new AudioClip(getClass().getResource("/Sounds/sound1.mp3").toExternalForm());
 
 
 
@@ -66,6 +69,7 @@ public class Visualizer extends Application {
                 // Tilføj en event handler for "on action"
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii,jj,turn)){
+                        buzzer.play();
 
 
                         //Switches player turn
