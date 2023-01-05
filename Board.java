@@ -22,10 +22,10 @@ public class Board {
     }
 
     public void initialize() {
-        map[x_axis / 2 - 1][y_axis / 2 - 1] = 1;
-        map[x_axis / 2][y_axis / 2 - 1] = 2;
-        map[x_axis / 2][y_axis / 2] = 1;
-        map[x_axis / 2 - 1][y_axis / 2] = 2;
+        map[x_axis / 2 - 1][y_axis / 2 - 1] = 4;
+        map[x_axis / 2][y_axis / 2 - 1] = 4;
+        map[x_axis / 2][y_axis / 2] = 4;
+        map[x_axis / 2 - 1][y_axis / 2] = 4;
 
     }
 
@@ -76,7 +76,7 @@ public class Board {
             System.out.println("Value has to be 1 or 2");
             return false;
         }
-        if (x < 0 || x >= x_axis || y < 0 || y >= y_axis || map[x][y] != 3) {
+        if (x < 0 || x >= x_axis || y < 0 || y >= y_axis || (map[x][y] != 3 && map[x][y] != 4)) {
             System.out.println("Not possible placement");
             return false;
         }
