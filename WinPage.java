@@ -4,6 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,8 +19,6 @@ public class WinPage {
         dim = game.getDim();
 
         int[] score = game.getScore();
-        score[0] = 1;
-        score[1] = 1;
         System.out.println(score[0] + " " + score[1]);
         if (score[0] > score[1]) {
             Stage stage = new Stage();
@@ -47,6 +46,10 @@ public class WinPage {
         int[] dim1 = dim;
         Parent root = FXMLLoader.load(getClass().getResource("Winpage.fxml"));
         Scene scene = new Scene(root);
+        String appIcon = "Images/reversiIcon.png";
+        Image icon = new Image(appIcon);
+        primaryStage.getIcons().add(icon);
+        primaryStage.setTitle("Reversi");
 
         restart = (Button) scene.lookup("#restart");
         restart.setUserData(dim1);
@@ -62,6 +65,10 @@ public class WinPage {
         Parent root = FXMLLoader.load(getClass().getResource("Draw.fxml"));
 
         Scene scene = new Scene(root);
+        String appIcon = "Images/reversiIcon.png";
+        Image icon = new Image(appIcon);
+        primaryStage.getIcons().add(icon);
+        primaryStage.setTitle("Reversi");
         restart = (Button) scene.lookup("#restart");
         restart.setUserData(dim1);
         primaryStage.setScene(scene);

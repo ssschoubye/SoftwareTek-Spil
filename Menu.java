@@ -9,11 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
+import javafx.scene.image.Image;
 
 
 
 public class Menu extends Application {
+    String appIcon = "Images/reversiIcon.png";
+    Image icon = new Image(appIcon);
 private int [] dim;
 
     public static void Menu(String[]args){
@@ -22,8 +24,11 @@ private int [] dim;
 
     @FXML
     public void start(Stage primaryStage) throws IOException {
+
         Parent root = FXMLLoader.load(getClass().getResource("menuvis.fxml"));
         Scene scene = new Scene(root);
+        primaryStage.getIcons().add(icon);
+        primaryStage.setTitle("Reversi");
         primaryStage.setScene(scene);
         primaryStage.show();
 
