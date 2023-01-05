@@ -44,7 +44,6 @@ public class DimensionPrompt {
 
 
     public static int getDimx() {
-        System.out.println("Test5");
         String text = textfield1.getText();
         while (x == 0) {
             try {
