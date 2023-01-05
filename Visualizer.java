@@ -50,10 +50,14 @@ public class Visualizer extends Application {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 cells[i][j] = new Button();
+
+                cells[i][j].getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
                 board.add(cells[i][j], i, j);
 
                 final int ii = i;
                 final int jj = j;
+
 
                 updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
 
@@ -107,6 +111,7 @@ public class Visualizer extends Application {
         hbox.getChildren().addAll(button,board);
         */
         Scene scene = new Scene(board, 600, 600);
+
         board.setPadding(new Insets(50,50,50,50));
         primaryStage.setMinWidth(250);
         primaryStage.setScene(scene);
