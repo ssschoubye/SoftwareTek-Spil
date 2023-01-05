@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Board {
 
 
@@ -26,6 +28,8 @@ public class Board {
         map[x_axis / 2 - 1][y_axis / 2] = 2;
 
     }
+
+
 
     public boolean legalSpots(int playerTurn) {
         boolean anyLegalSpots = false;
