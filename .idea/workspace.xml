@@ -11,7 +11,6 @@
       <change beforePath="$PROJECT_DIR$/BoardTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/BoardTestMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DimensionPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimensionPrompt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TextTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/TextTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Visualizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WinPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WinPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Winpage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Winpage.fxml" afterDir="false" />
@@ -103,6 +102,7 @@
       <workItem from="1672749843147" duration="10572000" />
       <workItem from="1672854829840" duration="5631000" />
       <workItem from="1672925530497" duration="103000" />
+      <workItem from="1672926353695" duration="525000" />
     </task>
     <servers />
   </component>

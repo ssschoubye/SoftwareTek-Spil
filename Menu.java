@@ -15,8 +15,7 @@ import javafx.stage.Stage;
 
 public class Menu extends Application {
 
-    public static void Menu (String[]args){
-        launch(args);
+    public static void Menu (String[]args){launch(args);
     }
 
     @FXML
@@ -25,6 +24,7 @@ public class Menu extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 
     @FXML
