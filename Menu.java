@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class Menu extends Application {
 
-    public static void Menu(String[]args){
+    public static void Menu (String[]args){
         launch(args);
     }
 
