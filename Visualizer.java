@@ -2,18 +2,16 @@ import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.text.*;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
-
-import java.awt.*;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 import java.io.IOException;
 
 
@@ -21,12 +19,21 @@ public class Visualizer extends Application {
 
     static int width;
     static int height;
-    static int turn = 1;
+    static int turn = (int)(Math.random()*2)+1;
+
+    static int firstStartingPlayer = (int)(Math.random()*2)+1;
+
+    static int gameNumber = 1;
+
+    static int turnCounter =1;
     String whiteImage = "Images/whitePiece.png";
     String blackImage = "Images/blackPiece.png";
     String markerImage = "Images/marker.png";
     String backImage1 = "Images/backgroundSkins/chess1.png";
     String backImage2 = "Images/backgroundSkins/chess2.png";
+
+    String appIcon = "Images/reversiIcon.png";
+    Label showTurn = new Label(turnColor(turn)+"'s turn");
 
 
 
@@ -34,30 +41,34 @@ public class Visualizer extends Application {
         width = inwidth;
         height = inheight;
         Stage stage = new Stage();
-
-
         start(stage);
     }
+
+
 
     @Override
     public void start(Stage primaryStage) {
 
         Board game = new Board(width,height);
         game.initialize();
-        game.legalSpots(1);
+        turn = game.startingPlayer(gameNumber,firstStartingPlayer);
+        showTurn.setText(turnColor(turn%2+1)+"'s turn");
 
 
 
+        // Create two GridPanes, which will function as the playing board and as the overall current
+        // status of the game (score, time, player turn, announcements...)
+        // and adds them to a VBox
 
-        // Create GridPane, which will function as the playing board
         GridPane board = new GridPane();
+
 
         // Create 2D array of buttons, which functions as the individual cells on the playing board
         Button[][] cells = new Button[width][height];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 cells[i][j] = new Button();
-
+                cells[i][j].getStylesheets().add(getClass().getResource("boardButtons.css").toExternalForm());
                 board.add(cells[i][j], i, j);
 
                 final int ii = i;
@@ -67,33 +78,46 @@ public class Visualizer extends Application {
 
 
 
-                // Tilføj en event handler for "on action"
+                // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii,jj,turn)){
+                        turnCounter++;
                         //Switches player turn
-                        turn = Board.turnSwitch(turn);
-
-                        //Checks for legal spots
-                        if (!game.legalSpots(turn)) {
-
-                            if(!game.legalSpots(Board.turnSwitch(turn))){
-                                System.out.println("No more possible moves \n    game over");
-                                WinPage win = new WinPage();
-                                //Save value for ending game
-                                try {
-                                    win.winStart(game);
-                                    primaryStage.close();
-                                } catch (IOException e) {
-                                    throw new RuntimeException(e);
-                                }
-                            } else{
-                                System.out.println("\n" + turn + " has no possible moves");
-                                turn = Board.turnSwitch(turn);
-
-                                //no move possible for current player
-                            }
-
+                        if(turnCounter==3){
+                            showTurn.setText(turnColor(turn)+"'s turn");
+                            turn = Board.turnSwitch(turn);
                         }
+
+                        if (turnCounter>4){
+                            showTurn.setText(turnColor(turn)+"'s turn");
+                            turn = Board.turnSwitch(turn);
+
+                            //Checks for legal spots
+                            if (!game.legalSpots(turn)) {
+                                if(!game.legalSpots(Board.turnSwitch(turn))){
+                                    System.out.println("No more possible moves \n    game over");
+                                    //Save value for ending game
+                                    WinPage win = new WinPage();
+                                    turnCounter = 1;
+                                    gameNumber++;
+                                    try{
+                                        primaryStage.close();
+                                        win.winStart(game);
+                                    } catch (IOException e) {
+                                        throw new RuntimeException(e);
+                                    }
+
+                                } else{
+                                    showTurn.setText(turnColor(turn)+"'s turn");
+                                    System.out.println("\n" + turn + " has no possible moves");
+                                    turn = Board.turnSwitch(turn);
+
+                                    //no move possible for current player
+                                }
+
+                            }
+                        }
+
                         updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
 
 
@@ -110,13 +134,22 @@ public class Visualizer extends Application {
             board.setAlignment(Pos.CENTER);
         }
 
-        HBox surface = hbox(vbox(currentplayer(),toText("p1: 20 points"),toText("p2: 18 points"),toText("4"),new Button("restart"),new Button("settings")),board);
-        Scene scene = new Scene(surface, 800, 800);
+        Image icon = new Image(appIcon);
+        showTurn.setFont(Font.font("Comic Sans", 24));
+        VBox vbox = new VBox();
+        primaryStage.setTitle("Reversi");
+        vbox.getChildren().addAll(board,showTurn);
+        vbox.setAlignment(Pos.CENTER);
+        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+        Scene scene = new Scene(vbox, screenBounds.getHeight()/2, screenBounds.getHeight()/2);
         board.setPadding(new Insets(10,10,10,10));
         primaryStage.setMinWidth(250);
         primaryStage.setScene(scene);
-        //primaryStage.setResizable(false);
+        primaryStage.getIcons().add(icon);
+        primaryStage.setResizable(false);
         primaryStage.show();
+
+
 
 
     }
@@ -145,12 +178,9 @@ public class Visualizer extends Application {
 
 
                 board.add(back, x, y);
-
-
                 back.setMouseTransparent(true);
                 back.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
                 back.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
-
 
 
                 if (game.map[x][y] == 1) {
@@ -165,7 +195,7 @@ public class Visualizer extends Application {
                     blackPiece.setMouseTransparent(true);
                     blackPiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
                     blackPiece.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
-                } else if (game.map[x][y] == 3) {
+                } else if (game.map[x][y] == 3 || game.map[x][y] == 4) {
                     ImageView marker = new ImageView(markingImage);
                     board.add(marker, x, y);
                     marker.setMouseTransparent(true);
@@ -175,52 +205,13 @@ public class Visualizer extends Application {
             }
         }
     }
-    public Text playertext (String s) {
-        Text text = new Text("s");
 
-        return text;
+    public String turnColor(int turn){
+        if(turn==1){
+            return "White";
+        } else if(turn==2){
+            return "Black";
+        }else return null;
     }
 
-    public HBox hbox (VBox vbox, GridPane board) {
-        HBox hbox = new HBox();
-        hbox.getChildren().addAll(vbox,board);
-        return hbox;
-    }
-
-    public VBox vbox (Text text1, Text text2, Text text3, Text text4, Button button, Button settings) {
-        VBox vbox = new VBox();
-        vbox.getChildren().addAll(text1,text2,text3,text4,button,settings);
-        vbox.setAlignment(Pos.CENTER);
-        vbox.setPadding(new Insets(-20,0,20,20));
-        vbox.setSpacing(40.0);
-        button.setMinWidth(60);
-        settings.setMinWidth(60);
-
-        return vbox;
-    }
-
-    public Text toText(String string) {
-        Text text = new Text(string);
-        font(text,"Comic Sans MS",20);
-        return text;
-    }
-
-    public void font(Text text,String font, int size) {
-        text.setFont(new Font(font,size));
-    }
-
-   public Text currentplayer() {
-       String s = "";
-           if (turn == 1) {
-               s = "player 1";
-           }
-           if (turn == 2) {
-               s = "player 2";
-           }
-
-
-           Text t = new Text(s);
-
-       return t;
-   }
 }

@@ -18,6 +18,8 @@ public class WinPage {
         dim = game.getDim();
 
         int[] score = game.getScore();
+        score[0] = 1;
+        score[1] = 1;
         System.out.println(score[0] + " " + score[1]);
         if (score[0] > score[1]) {
             Stage stage = new Stage();
