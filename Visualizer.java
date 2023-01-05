@@ -30,6 +30,8 @@ public class Visualizer extends Application {
 
     Label showTurn = new Label(turn+"'s turn");
 
+    VBox vbox = new VBox();
+
 
     public void gameStart(int inwidth, int inheight){
         width = inwidth;
@@ -65,6 +67,7 @@ public class Visualizer extends Application {
                 final int jj = j;
 
                 updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
+                updatevbox(turn);
 
 
 
@@ -73,6 +76,7 @@ public class Visualizer extends Application {
                 cells[i][j].setOnAction(event -> {
 
                     if (game.placePiece(ii,jj,turn)){
+
 
 
                         //Switches player turn
@@ -113,10 +117,11 @@ public class Visualizer extends Application {
                 cells[i][j].prefWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
 
             }
+
             board.setAlignment(Pos.CENTER);
         }
 
-        HBox surface = hbox(vbox(currentplayer(),toText("p1: 20 points"),toText("p2: 18 points"),toText("4"),new Button("restart"),new Button("settings")),board);
+        HBox surface = hbox(vbox,board);
         Scene scene = new Scene(surface, 800, 800);
         board.setPadding(new Insets(10,10,10,10));
         primaryStage.setMinWidth(250);
@@ -136,6 +141,7 @@ public class Visualizer extends Application {
 
         Image backGround1 = new Image(backImage1);
         Image backGround2 = new Image(backImage2);
+        updatevbox(turn);
 
 
         for (int x = 0; x < width; x++) {
@@ -181,11 +187,6 @@ public class Visualizer extends Application {
             }
         }
     }
-    public Text playertext (String s) {
-        Text text = new Text("s");
-
-        return text;
-    }
 
     public HBox hbox (VBox vbox, GridPane board) {
         HBox hbox = new HBox();
@@ -193,7 +194,7 @@ public class Visualizer extends Application {
         return hbox;
     }
 
-    public VBox vbox (Text text1, Text text2, Text text3, Text text4, Button button, Button settings) {
+    public VBox sidepanel (Text text1, Text text2, Text text3, Text text4, Button button, Button settings) {
         VBox vbox = new VBox();
         vbox.getChildren().addAll(text1,text2,text3,text4,button,settings);
         vbox.setAlignment(Pos.CENTER);
@@ -215,19 +216,10 @@ public class Visualizer extends Application {
         text.setFont(new Font(font,size));
     }
 
-   public Text currentplayer() {
-       String s = "";
-           if (turn == 1) {
-               s = "player 1";
-           }
-           if (turn == 2) {
-               s = "player 2";
-           }
-
-
-           Text t = new Text(s);
-
-       return t;
+   public void updatevbox (int turn)  {
+        String s = "player "+ turn + "'s turn";
+        vbox = sidepanel(toText(s),toText("2"),toText("3"),toText("4"),new Button("restart"),new Button("settings"));
+        System.out.println(turn);
    }
 
 }

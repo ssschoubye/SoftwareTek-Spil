@@ -100,6 +100,7 @@
       <updated>1672655505797</updated>
       <workItem from="1672749843147" duration="10572000" />
       <workItem from="1672928138007" duration="11324000" />
+      <workItem from="1672939595125" duration="1826000" />
     </task>
     <servers />
   </component>
@@ -116,6 +117,17 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Visualizer.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
