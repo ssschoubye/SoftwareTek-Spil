@@ -6,12 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Visualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/application.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/application.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +100,7 @@
       <workItem from="1672913814707" duration="311000" />
       <workItem from="1672914277400" duration="1007000" />
       <workItem from="1672917330659" duration="2814000" />
+      <workItem from="1672921253534" duration="4691000" />
     </task>
     <servers />
   </component>
