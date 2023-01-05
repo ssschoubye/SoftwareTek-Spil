@@ -28,6 +28,7 @@ public class Visualizer extends Application {
     String backImage1 = "Images/backgroundSkins/chess1.png";
     String backImage2 = "Images/backgroundSkins/chess2.png";
 
+    Label showTurn = new Label(turn+"'s turn");
 
 
     public void gameStart(int inwidth, int inheight){
@@ -67,12 +68,17 @@ public class Visualizer extends Application {
 
 
 
+
                 // Tilføj en event handler for "on action"
                 cells[i][j].setOnAction(event -> {
+
                     if (game.placePiece(ii,jj,turn)){
+
+
                         //Switches player turn
                         turn = Board.turnSwitch(turn);
 
+                        showTurn.setText(turn + "'s turn");
                         //Checks for legal spots
                         if (!game.legalSpots(turn)) {
 
@@ -94,6 +100,7 @@ public class Visualizer extends Application {
 
                         }
                         updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
+
 
 
 
@@ -222,4 +229,5 @@ public class Visualizer extends Application {
 
        return t;
    }
+
 }
