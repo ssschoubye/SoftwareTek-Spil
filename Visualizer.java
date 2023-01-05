@@ -3,6 +3,7 @@ import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,9 +27,12 @@ public class Visualizer extends Application {
     String markerImage = "Images/markerDark.png";
     String backImage1 = "Images/backgroundSkins/chess1.png";
     String backImage2 = "Images/backgroundSkins/chess2.png";
+    String skinBackground = "Images/skinBackground.png";
+
+
     AudioClip buzzer = new AudioClip(getClass().getResource("/Sounds/sound1.mp3").toExternalForm());
 
-
+    Label text = new Label(turn+"'s turn");
 
     public void gameStart(int inwidth, int inheight){
         width = inwidth;
@@ -61,6 +65,7 @@ public class Visualizer extends Application {
                 final int jj = j;
 
 
+
                 updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
 
 
@@ -69,11 +74,14 @@ public class Visualizer extends Application {
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii,jj,turn)){
                         turnCounter++;
+
+
                         buzzer.play();
 
 
                         //Switches player turn
                         turn = Board.turnSwitch(turn);
+                        text.setText(turn+"'s turn");
 
                         //Checks for legal spots after first 4 turns
                         if (turnCounter>4){
@@ -115,18 +123,106 @@ public class Visualizer extends Application {
         //board.maxHeight(10);
 
 
+        GridPane whiteSkins = new GridPane();
+
+        //whiteSkins.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        Button whiteSkin1 = new Button();
+        whiteSkins.add(whiteSkin1, 0, 0);
+
+        whiteSkin1.prefHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+        whiteSkin1.prefWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+
+        whiteSkin1.setOnAction(actionEvent -> {
+            System.out.println("1");
+            whiteImage = "Images/whitePiece.png";
+            updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
+        });
+
+        Button whiteSkin2 = new Button();
+        whiteSkins.add(whiteSkin2, 1, 0);
+
+        whiteSkin2.prefHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+        whiteSkin2.prefWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+
+        whiteSkin2.setOnAction(actionEvent -> {
+            System.out.println("2");
+            whiteImage = "Images/whitePiece2.png";
+            updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
+        });
+
+        Button whiteSkin3 = new Button();
+        whiteSkins.add(whiteSkin3, 2, 0);
+
+        whiteSkin3.prefHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+        whiteSkin3.prefWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+
+        whiteSkin3.setOnAction(actionEvent -> {
+            System.out.println("3");
+            whiteImage = "Images/whitePiece3.png";
+            updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
+        });
+
+        Image skinsBackGroundImage = new Image(skinBackground);
+
+        for (int i = 0; i<3;i++){
+            ImageView backGround = new ImageView(skinsBackGroundImage);
+            whiteSkins.add(backGround, i, 0);
+            backGround.setMouseTransparent(true);
+            backGround.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+            backGround.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+        }
+
+        ImageView whiteSkin1Image = new ImageView("Images/whitePiece.png");
+        whiteSkins.add(whiteSkin1Image, 0, 0);
+        whiteSkin1Image.setMouseTransparent(true);
+        whiteSkin1Image.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+        whiteSkin1Image.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+
+        ImageView whiteSkin2Image = new ImageView("Images/whitePiece2.png");
+        whiteSkins.add(whiteSkin2Image, 1, 0);
+        whiteSkin2Image.setMouseTransparent(true);
+        whiteSkin2Image.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+        whiteSkin2Image.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+
+        ImageView whiteSkin3Image = new ImageView("Images/whitePiece3.png");
+        whiteSkins.add(whiteSkin3Image, 2, 0);
+        whiteSkin3Image.setMouseTransparent(true);
+        whiteSkin3Image.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+        whiteSkin3Image.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+
+
+
+
+
+        GridPane blackSkins = new GridPane();
+        blackSkins.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        Button blackSkin1 = new Button();
+        Button blackSkin2 = new Button();
+        Button blackSkin3 = new Button();
+
+        blackSkins.add(blackSkin1,0,0);
+        blackSkins.add(blackSkin2,0,1);
+        blackSkins.add(blackSkin3,0,2);
+
+
+
+
+
+
+
+
+
+
         VBox vbox = new VBox();
-        Button button1 = new Button("button1");
-        Button button2 = new Button("button2");
-        Button button3 = new Button("button3");
-        Text text = new Text("'s turn");
 
-
-        vbox.getChildren().addAll(button1,button2,button3);
+        vbox.getChildren().addAll(whiteSkins,blackSkins);
         vbox.setSpacing(50);
         vbox.setPadding(new Insets(50,50,50,50));
+
+
         VBox vbox2 = new VBox();
         vbox2.getChildren().addAll(board,text);
+        vbox2.setAlignment(Pos.CENTER);
 
         HBox hbox = new HBox();
         hbox.getChildren().addAll(vbox,vbox2);
@@ -139,6 +235,7 @@ public class Visualizer extends Application {
         primaryStage.setScene(scene);
         //primaryStage.setResizable(false);
         primaryStage.show();
+
 
 
     }
