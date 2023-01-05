@@ -82,6 +82,7 @@ public class Visualizer extends Application {
                                 //Save value for ending game
                                 try {
                                     win.winStart(game);
+                                    primaryStage.close();
                                 } catch (IOException e) {
                                     throw new RuntimeException(e);
                                 }

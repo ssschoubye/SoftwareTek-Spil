@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 
 public class Menu extends Application {
+private int [] dim;
 
     public static void Menu(String[]args){
         launch(args);
@@ -35,7 +36,8 @@ public class Menu extends Application {
         System.out.println("Start Game");
         Stage stage = (Stage) button1.getScene().getWindow();
         stage.close();
-        int [] dim = DimensionPrompt.start1();
+        dim = DimensionPrompt.start1();
+        setDim(dim);
         Visualizer game = new Visualizer();
         if (dim[0] == 0 || dim[1] == 0){
             dim[0] = 8;
@@ -47,6 +49,13 @@ public class Menu extends Application {
             game.gameStart(dim[0],dim[1]);
         }
 
+    }
+    public void setDim(int[] dim){
+        this.dim = dim;
+    }
+    public int[] getDim(){
+        int[] dim1 = dim;
+        return dim1;
     }
 
     @FXML

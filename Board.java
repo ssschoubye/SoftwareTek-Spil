@@ -190,6 +190,10 @@ public class Board {
     }
 
 
+    public int[] getDim() {
+        int[] dim = {x_axis, y_axis};
+        return dim;
+    }
 }
 
 
