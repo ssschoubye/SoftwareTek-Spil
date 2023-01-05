@@ -37,7 +37,7 @@ public class WinPage {
             setLoser(loser);
         }else{
             Stage stage = new Stage();
-            draw(stage);
+            draw(stage, dim);
         }
 
     }
@@ -57,9 +57,13 @@ public class WinPage {
 
     }
     @FXML
-    public void draw(Stage primaryStage) throws IOException {
+    public void draw(Stage primaryStage, int[] dim) throws IOException {
+        int[] dim1 = dim;
         Parent root = FXMLLoader.load(getClass().getResource("Draw.fxml"));
+
         Scene scene = new Scene(root);
+        restart = (Button) scene.lookup("#restart");
+        restart.setUserData(dim1);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
