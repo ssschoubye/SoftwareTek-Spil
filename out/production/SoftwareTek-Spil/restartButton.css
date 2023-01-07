@@ -1,0 +1,14 @@
+.button{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: #779556;
+}
+
+.button:focused {
+    -fx-border-color: transparent;
+}
+
+.button:pressed {
+    -fx-background-color: transparent;
+}

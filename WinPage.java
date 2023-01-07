@@ -18,6 +18,8 @@ public class WinPage {
         dim = game.getDim();
 
         int[] score = game.getScore();
+        score[0] = 1;
+        score[1] = 1;
         System.out.println(score[0] + " " + score[1]);
         if (score[0] > score[1]) {
             Stage stage = new Stage();
@@ -35,7 +37,7 @@ public class WinPage {
             setLoser(loser);
         }else{
             Stage stage = new Stage();
-            draw(stage);
+            draw(stage, dim);
         }
 
     }
@@ -55,9 +57,13 @@ public class WinPage {
 
     }
     @FXML
-    public void draw(Stage primaryStage) throws IOException {
+    public void draw(Stage primaryStage, int[] dim) throws IOException {
+        int[] dim1 = dim;
         Parent root = FXMLLoader.load(getClass().getResource("Draw.fxml"));
+
         Scene scene = new Scene(root);
+        restart = (Button) scene.lookup("#restart");
+        restart.setUserData(dim1);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
