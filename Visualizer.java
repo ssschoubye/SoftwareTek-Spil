@@ -226,14 +226,16 @@ public class Visualizer extends Application {
         vbox2.setAlignment(Pos.CENTER);
 
         HBox hbox = new HBox();
-        hbox.getChildren().addAll(vbox,vbox2);
+        hbox.getChildren().addAll(vbox2,vbox);
         hbox.setSpacing(100);
 
         Scene scene = new Scene(hbox, 600, 600);
-        scene.setFill(Color.ORANGE);
-        //
+        scene.getStylesheets().add("defaultStyle.css");
+
+
         primaryStage.setMinWidth(250);
         primaryStage.setScene(scene);
+        primaryStage.setAlwaysOnTop(true);
         //primaryStage.setResizable(false);
         primaryStage.show();
 
