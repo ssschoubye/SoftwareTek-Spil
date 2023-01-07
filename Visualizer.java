@@ -76,7 +76,7 @@ public class Visualizer extends Application {
             for (int j = 0; j < width; j++) {
                 cells[i][j] = new Button();
                 cells[i][j].getStylesheets().add(getClass().getResource("boardButtons.css").toExternalForm());
-                board.add(i,j,1,1);
+                board.add(cells[i][j],i,j,1,1);
 
                 final int ii = i;
                 final int jj = j;
@@ -138,7 +138,6 @@ public class Visualizer extends Application {
                 cells[i][j].prefWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
 
             }
-            board.setAlignment(Pos.CENTER);
         }
 
         Image icon = new Image(appIcon);
