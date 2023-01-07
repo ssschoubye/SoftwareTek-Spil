@@ -1,0 +1,28 @@
+.root {
+    -fx-background-color: #312e2b;
+}
+
+
+
+
+
+.button{
+     -fx-border-color: #272522;
+     -fx-border-width: 0;
+     -fx-background-radius: 0;
+     -fx-background-color: #272522;
+     -fx-text-fill: #ffffff;
+
+ }
+
+.button:hover {
+    -fx-border-color: #22201f;
+    -fx-background-color: #22201f;
+}
+
+.button:pressed {
+    -fx-background-color: transparent;
+}
+.titleBar{
+    -fx-background-color: #272522;
+}

@@ -1,21 +1,24 @@
-import java.awt.*;
-import java.io.IOException;
-
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+
+import javafx.scene.input.MouseEvent;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
 
 
 
 public class Menu extends Application {
-    String appIcon = "Images/reversiIcon.png";
-    Image icon = new Image(appIcon);
+
 private int [] dim;
 
     public static void Menu(String[]args){
@@ -27,8 +30,7 @@ private int [] dim;
 
         Parent root = FXMLLoader.load(getClass().getResource("menuvis.fxml"));
         Scene scene = new Scene(root);
-        primaryStage.getIcons().add(icon);
-        primaryStage.setTitle("Reversi");
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(scene);
         primaryStage.show();
 
@@ -75,5 +77,43 @@ private int [] dim;
     private void options(){
         System.out.println("Options");
     }
+
+
+
+
+
+
+    @FXML
+    HBox titlebar;
+    private double windowX = 0;
+    private double windowY = 0;
+
+    @FXML
+    private void titleBarDragged(MouseEvent event){
+        Stage stage = (Stage) titlebar.getScene().getWindow();
+        stage.setY(event.getScreenY()-windowY);
+        stage.setX(event.getScreenX()-windowX);
+
+    }
+    @FXML
+    private void titleBarPressed(MouseEvent event){
+        windowX = event.getSceneX();
+        windowY = event.getSceneY();
+
+    }
+
+
+    @FXML
+    private void onExitButtonClick(){
+        Platform.exit();
+    }
+    @FXML
+    Button minimize;
+    @FXML
+    public void OnMinimizeButtonClick(){
+        Stage stage = (Stage)minimize.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
 }
 
