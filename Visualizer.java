@@ -13,7 +13,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
 
@@ -54,8 +53,8 @@ public class Visualizer extends Application {
         Board game = new Board(width,height);
         game.initialize();
         turn = game.startingPlayer(gameNumber,firstStartingPlayer);
+        showTurn.setText(turnColor(turn)+"'s turn");
         ReversiRndBot botRnd = new ReversiRndBot(game);
-        Timer timer = new Timer();
 
 
 
@@ -88,12 +87,33 @@ public class Visualizer extends Application {
                         turnCounter++;
                         //Switches player turn
                         if(turnCounter==3){
-                            //turn = turn%2+1;
                             showTurn.setText(turnColor(turn)+"'s turn");
                             turn = Board.turnSwitch(turn);
+
+                            updateGridpane(primaryStage, game, board,whiteImage, blackImage, markerImage);
+
+
                             ReversiRndBot.rndBotMakeMove(turn);
+
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             turnCounter++;
+
+
                             ReversiRndBot.rndBotMakeMove(turn);
+
+
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            updateGridpane(primaryStage, game, board,whiteImage, blackImage, markerImage);
+
+
                             turn = Board.turnSwitch(turn);
                             game.legalSpots(turn);
                         }
@@ -129,6 +149,14 @@ public class Visualizer extends Application {
                             }else {
 
                                 while (true){
+
+                                    updateGridpane(primaryStage, game, board,whiteImage, blackImage, markerImage);
+                                    try {
+                                        Thread.sleep(500);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+
                                     ReversiRndBot.rndBotMakeMove(turn);
                                     if(!game.legalSpots(Board.turnSwitch(turn))){
                                         if(!game.legalSpots(turn)){
@@ -193,6 +221,9 @@ public class Visualizer extends Application {
 
     }
 
+    private void timeDelay() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
+    }
     private void updateGridpane(Stage primaryStage, Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
 
         board.getChildren().removeIf(node -> node instanceof ImageView);
