@@ -13,6 +13,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 
 
 public class Visualizer extends Application {
@@ -52,13 +54,15 @@ public class Visualizer extends Application {
         Board game = new Board(width,height);
         game.initialize();
         turn = game.startingPlayer(gameNumber,firstStartingPlayer);
-        showTurn.setText(turnColor(turn%2+1)+"'s turn");
+        ReversiRndBot botRnd = new ReversiRndBot(game);
+        Timer timer = new Timer();
 
 
 
         // Create two GridPanes, which will function as the playing board and as the overall current
         // status of the game (score, time, player turn, announcements...)
         // and adds them to a VBox
+
 
         GridPane board = new GridPane();
 
@@ -74,7 +78,7 @@ public class Visualizer extends Application {
                 final int ii = i;
                 final int jj = j;
 
-                updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
+                updateGridpane(primaryStage, game, board,whiteImage, blackImage, markerImage);
 
 
 
@@ -84,12 +88,17 @@ public class Visualizer extends Application {
                         turnCounter++;
                         //Switches player turn
                         if(turnCounter==3){
+                            //turn = turn%2+1;
                             showTurn.setText(turnColor(turn)+"'s turn");
                             turn = Board.turnSwitch(turn);
+                            ReversiRndBot.rndBotMakeMove(turn);
+                            turnCounter++;
+                            ReversiRndBot.rndBotMakeMove(turn);
+                            turn = Board.turnSwitch(turn);
+                            game.legalSpots(turn);
                         }
 
                         if (turnCounter>4){
-                            showTurn.setText(turnColor(turn)+"'s turn");
                             turn = Board.turnSwitch(turn);
 
                             //Checks for legal spots
@@ -108,17 +117,47 @@ public class Visualizer extends Application {
                                     }
 
                                 } else{
-                                    showTurn.setText(turnColor(turn)+"'s turn");
                                     System.out.println("\n" + turn + " has no possible moves");
                                     turn = Board.turnSwitch(turn);
+                                    game.legalSpots(turn);
 
                                     //no move possible for current player
+
+
                                 }
 
-                            }
-                        }
+                            }else {
 
-                        updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
+                                while (true){
+                                    ReversiRndBot.rndBotMakeMove(turn);
+                                    if(!game.legalSpots(Board.turnSwitch(turn))){
+                                        if(!game.legalSpots(turn)){
+                                            System.out.println("No more possible moves \n    game over");
+                                            //Save value for ending game
+                                            WinPage win = new WinPage();
+                                            turnCounter = 1;
+                                            gameNumber++;
+                                            try{
+                                                primaryStage.close();
+                                                win.winStart(game);
+                                            } catch (IOException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        } else continue;
+                                    }
+                                    turn = Board.turnSwitch(turn);
+
+                                    break;
+
+                                }
+
+
+                            }
+
+                        }
+                        showTurn.setText(turnColor(turn)+"'s turn");
+
+                        updateGridpane(primaryStage, game, board, whiteImage, blackImage, markerImage);
 
 
 
@@ -206,7 +245,7 @@ public class Visualizer extends Application {
         }
     }
 
-    public String turnColor(int turn){
+    public static String turnColor(int turn){
         if(turn==1){
             return "White";
         } else if(turn==2){

@@ -71,6 +71,7 @@ public class Board {
 
     public boolean placePiece(int x, int y, int playerTurn) {
         // Place the piece on the board
+        System.out.println(playerTurn);
         if (playerTurn != 1 && playerTurn != 2) {
             System.out.println("Value has to be 1 or 2");
             return false;
@@ -157,14 +158,7 @@ public class Board {
     }
 
     public static int turnSwitch(int currentTurn) {
-        if (currentTurn == 1) {
-            return 2;
-        } else if (currentTurn == 2) {
-            return 1;
-        } else {
-            System.out.println("Wrong current turn");
-            return 0;
-        }
+        return currentTurn%2+1;
     }
     public void flipCapturedPieces(int x, int y, int dx, int dy, int playerTurn) {
         // Check if there are any captured pieces in the specified direction
