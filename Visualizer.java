@@ -10,9 +10,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
+import javafx.scene.layout.GridPane;
+
 
 
 public class Visualizer extends Application {
@@ -34,6 +37,9 @@ public class Visualizer extends Application {
 
     String appIcon = "Images/reversiIcon.png";
     Label showTurn = new Label(turnColor(turn)+"'s turn");
+
+    Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+
 
 
 
@@ -132,21 +138,35 @@ public class Visualizer extends Application {
 
             }
             board.setAlignment(Pos.CENTER);
+            board.setPrefSize(100,100);
         }
 
         Image icon = new Image(appIcon);
-        showTurn.setFont(Font.font("Comic Sans", 24));
-        VBox vbox = new VBox();
+        showTurn.setFont(Font.font("Comic Sans MS", 24));
         primaryStage.setTitle("Reversi");
-        vbox.getChildren().addAll(board,showTurn);
-        vbox.setAlignment(Pos.CENTER);
-        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-        Scene scene = new Scene(vbox, screenBounds.getHeight()/2, screenBounds.getHeight()/2);
-        board.setPadding(new Insets(10,10,10,10));
-        primaryStage.setMinWidth(250);
+
+        // Forsøg på at lave et sidepanel med nødvendige knapper og tekst:
+        Label p1_points = playerpoints(1);
+        Label p2_points = playerpoints(2);
+        Button skins = new Button("skins");
+        Button restart = new Button("restart");
+        Button settings = new Button("settings");
+
+
+        VBox sidepanel = new VBox();
+        sidepanel.getChildren().addAll(showTurn,p1_points,p2_points,skins,restart,settings);
+        sidepanel.setSpacing(100);
+        sidepanel.setPadding(new Insets(50));
+
+        HBox hbox = new HBox();
+        hbox.getChildren().addAll(sidepanel,board);
+
+
+        Scene scene = new Scene(hbox, screenBounds.getWidth()/2, screenBounds.getHeight()/2);
+
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(icon);
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         primaryStage.show();
 
 
@@ -212,6 +232,14 @@ public class Visualizer extends Application {
         } else if(turn==2){
             return "Black";
         }else return null;
+    }
+    public Label playerpoints (int player) {
+        String color;
+        if (player == 1) {
+            color = "white";
+        } else color = "black";
+        Label label = new Label(color + " x points");
+        return label;
     }
 
 }
