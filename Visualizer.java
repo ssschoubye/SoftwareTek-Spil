@@ -64,9 +64,10 @@ public class Visualizer extends Application {
 
         // Create two GridPanes, which will function as the playing board and as the overall current
         // status of the game (score, time, player turn, announcements...)
-        // and adds them to a VBox
+        // and adds them to a HBox
 
         GridPane board = new GridPane();
+        board.setPrefSize(100,100);
 
 
         // Create 2D array of buttons, which functions as the individual cells on the playing board
@@ -138,7 +139,6 @@ public class Visualizer extends Application {
 
             }
             board.setAlignment(Pos.CENTER);
-            board.setPrefSize(100,100);
         }
 
         Image icon = new Image(appIcon);
@@ -158,8 +158,11 @@ public class Visualizer extends Application {
         sidepanel.setSpacing(100);
         sidepanel.setPadding(new Insets(50));
 
+
         HBox hbox = new HBox();
         hbox.getChildren().addAll(sidepanel,board);
+
+
 
 
         Scene scene = new Scene(hbox, screenBounds.getWidth()/2, screenBounds.getHeight()/2);
@@ -168,6 +171,8 @@ public class Visualizer extends Application {
         primaryStage.getIcons().add(icon);
         primaryStage.setResizable(true);
         primaryStage.show();
+
+
 
 
 
@@ -183,6 +188,7 @@ public class Visualizer extends Application {
 
         Image backGround1 = new Image(backImage1);
         Image backGround2 = new Image(backImage2);
+
 
 
         for (int x = 0; x < width; x++) {
