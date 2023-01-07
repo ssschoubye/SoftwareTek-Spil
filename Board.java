@@ -1,4 +1,5 @@
-import static java.lang.Math.min;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Board {
 
@@ -22,10 +23,10 @@ public class Board {
     }
 
     public void initialize() {
-        map[x_axis / 2 - 1][y_axis / 2 - 1] = 1;
-        map[x_axis / 2][y_axis / 2 - 1] = 2;
-        map[x_axis / 2][y_axis / 2] = 1;
-        map[x_axis / 2 - 1][y_axis / 2] = 2;
+        map[x_axis / 2 - 1][y_axis / 2 - 1] = 4;
+        map[x_axis / 2][y_axis / 2 - 1] = 4;
+        map[x_axis / 2][y_axis / 2] = 4;
+        map[x_axis / 2 - 1][y_axis / 2] = 4;
 
     }
 
@@ -68,52 +69,26 @@ public class Board {
     }
 
 
-
     public boolean placePiece(int x, int y, int playerTurn) {
-
+        // Place the piece on the board
         if (playerTurn != 1 && playerTurn != 2) {
             System.out.println("Value has to be 1 or 2");
             return false;
         }
-        if (x < 0 || x >= x_axis || y < 0 || y >= y_axis || map[x][y] != 3) {
+        if (x < 0 || x >= x_axis || y < 0 || y >= y_axis || (map[x][y] != 3 && map[x][y] != 4)) {
             System.out.println("Not possible placement");
             return false;
         }
-
         map[x][y] = playerTurn;
 
-        //Checking which pieces to flip
+        // Check for captured pieces in each direction and allow the player to manually flip them
         for (int dx = -1; dx <= 1; dx++) {
             for (int dy = -1; dy <= 1; dy++) {
                 if (checkXDxYDy(x, y, playerTurn, dx, dy)) continue;
-                boolean flipDirection = false;
-                int l = 0;
-
-                while (true) {
-                    l++;
-                    if (!isOnBoard(x + dx * l, y + dy * l)) {
-                        break;
-                    }
-                    if (map[x + dx * l][y + dy * l] == playerTurn) {
-                        flipDirection = true;
-                        break;
-                    } else if (map[x + dx * l][y + dy * l] != 3 - playerTurn) {
-                        break;
-                    }
-                }
-                if (flipDirection) {
-                    while (l > 0) {
-                        l--;
-                        map[x + dx * l][y + dy * l] = playerTurn;
-
-                    }
-                }
-
-
+                flipCapturedPieces(x, y, dx, dy, playerTurn);
+                //manualFlip(playerTurn);
             }
         }
-
-
         return true;
     }
 
@@ -191,7 +166,88 @@ public class Board {
             return 0;
         }
     }
+    public void flipCapturedPieces(int x, int y, int dx, int dy, int playerTurn) {
+        // Check if there are any captured pieces in the specified direction
+        boolean flipDirection = false;
+        int l = 0;
+        while (true) {
+            l++;
+            if (!isOnBoard(x + dx * l, y + dy * l)) {
+                break;
+            }
+            if (map[x + dx * l][y + dy * l] == playerTurn) {
+                flipDirection = true;
+                break;
+            } else if (map[x + dx * l][y + dy * l] != 3 - playerTurn) {
+                break;
+            }
+        }
+        if (flipDirection) {
+            // Flip the captured pieces
+            while (l > 0) {
+                l--;
+                map[x + dx * l][y + dy * l] = playerTurn;
+            }
+        }
+    }
 
+    public int startingPlayer(int gameNumber,int firstStartingPlayer){
 
+        if(gameNumber == 1){
+            return (int)(Math.random() * 2) + 1;
+        } else if(gameNumber > 1){
+            if(gameNumber % 2 == 0){
+                return turnSwitch(firstStartingPlayer);
+            }else if(gameNumber % 2 == 1){
+                return firstStartingPlayer;
+            }
+        } return 0;
+    }
 
+    /*
+   public void manualFlip(int playerTurn) {
+        toString();
+        // Create a scanner to read input from the command line
+        Scanner scanner = new Scanner(System.in);
+        // Continue prompting the player for coordinates until all captured pieces have been flipped
+        while (true) {
+            // Prompt the player for the coordinates of a captured piece
+
+            System.out.print("Player " + playerTurn + ", enter the first coordinate of a captured piece to flip it: ");
+            int x = scanner.nextInt();
+            System.out.print("Player " + playerTurn + ", enter the second coordinate of a captured piece to flip it: ");
+            int y = scanner.nextInt();
+            // Flip the piece if it is a captured piece
+            if (map[x][y] == 4) {
+                map[x][y] = playerTurn;
+            } else {
+                System.out.println("Not a captured piece. Try again.");
+            }
+            // Check if there are any more captured pieces on the board
+            boolean moreCapturedPieces = false;
+            for (int i = 0; i < x_axis; i++) {
+                for (int j = 0; j < y_axis; j++) {
+                    if (map[i][j] == 4) {
+                        moreCapturedPieces = true;
+                        break;
+                    }
+                }
+            }
+            if (!moreCapturedPieces) {
+                // If there are no more captured pieces, exit the loop
+                break;
+            }
+        }
+    }
+
+     */
+    public int[] getDim(){
+        int[] dim ={x_axis,y_axis};
+                return dim;
+
+    }
 }
+
+
+
+
