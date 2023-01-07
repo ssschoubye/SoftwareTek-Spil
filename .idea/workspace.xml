@@ -20,7 +20,6 @@
       <change beforePath="$PROJECT_DIR$/menuvis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/menuvis.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Draw.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Draw.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Winpage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Winpage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/boardButtons.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/boardButtons.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/dimension.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/dimension.fxml" afterDir="false" />
@@ -109,6 +108,7 @@
       <workItem from="1672749843147" duration="10572000" />
       <workItem from="1672928138007" duration="7935000" />
       <workItem from="1673095686571" duration="12750000" />
+      <workItem from="1673114039480" duration="82000" />
     </task>
     <servers />
   </component>

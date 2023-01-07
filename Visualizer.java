@@ -76,7 +76,7 @@ public class Visualizer extends Application {
             for (int j = 0; j < width; j++) {
                 cells[i][j] = new Button();
                 cells[i][j].getStylesheets().add(getClass().getResource("boardButtons.css").toExternalForm());
-                board.add(cells[i][j], i, j);
+                board.add(i,j,1,1);
 
                 final int ii = i;
                 final int jj = j;
