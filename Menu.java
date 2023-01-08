@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.HBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -90,6 +91,7 @@ private int [] dim;
     //////////////////////////////////////////////////////////////
     Rectangle2D screenBounds = Screen.getPrimary().getBounds();
 
+    @FXML
     double windowSize = screenBounds.getHeight()/2;
 
 
@@ -101,6 +103,7 @@ private int [] dim;
     //////////////////////////////////////////////////////////////
     @FXML
     HBox titlebar;
+
 
     private double windowX = 0;
     private double windowY = 0;
