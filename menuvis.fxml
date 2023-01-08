@@ -27,7 +27,7 @@
          <children>
             <HBox fx:id="titlebar" alignment="TOP_RIGHT" onMouseDragged="#titleBarDragged" onMousePressed="#titleBarPressed" prefHeight="35.0" prefWidth="600.0" spacing="5.0">
                <children>
-                  <Button fx:id="minimize" mnemonicParsing="false" onAction="#OnMinimizeButtonClick" text="_" textFill="#9e9696">
+                  <Button fx:id="minimize" mnemonicParsing="false" onAction="#OnMinimizeButtonClick" text="─" textFill="#9e9696">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
