@@ -14,6 +14,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Objects;
+
 import javafx.scene.layout.GridPane;
 
 
@@ -68,6 +70,8 @@ public class Visualizer extends Application {
 
         GridPane board = new GridPane();
         board.setPrefSize(100,100);
+        board.setMaxWidth(200);
+        board.setMinWidth(200);
 
 
         // Create 2D array of buttons, which functions as the individual cells on the playing board
@@ -75,11 +79,13 @@ public class Visualizer extends Application {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 cells[i][j] = new Button();
-                cells[i][j].getStylesheets().add(getClass().getResource("boardButtons.css").toExternalForm());
+                cells[i][j].getStylesheets().add(Objects.requireNonNull(getClass().getResource("boardButtons.css")).toExternalForm());
                 board.add(cells[i][j],i,j,1,1);
 
                 final int ii = i;
                 final int jj = j;
+
+
 
                 updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
 
@@ -154,12 +160,15 @@ public class Visualizer extends Application {
 
         VBox sidepanel = new VBox();
         sidepanel.getChildren().addAll(showTurn,p1_points,p2_points,skins,restart,settings);
-        sidepanel.setSpacing(100);
+        sidepanel.setSpacing(50);
         sidepanel.setPadding(new Insets(50));
 
 
         HBox hbox = new HBox();
         hbox.getChildren().addAll(sidepanel,board);
+
+
+
 
 
 
