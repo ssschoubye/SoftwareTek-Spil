@@ -27,12 +27,12 @@
          <children>
             <HBox fx:id="titlebar" alignment="TOP_RIGHT" onMouseDragged="#titleBarDragged" onMousePressed="#titleBarPressed" prefHeight="35.0" prefWidth="600.0" spacing="5.0">
                <children>
-                  <Button fx:id="minimize" mnemonicParsing="false" onAction="#OnMinimizeButtonClick" text="─" textFill="#9e9696">
+                  <Button fx:id="minimize" mnemonicParsing="false" onAction="#OnMinimizeButtonClick" prefHeight="25.0" prefWidth="40.0" text="─" textFill="#9e9696">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonClick" text="X" textFill="#9e9696">
+                  <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonClick" prefHeight="25.0" prefWidth="40.0" text="✕" textFill="#9e9696">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
