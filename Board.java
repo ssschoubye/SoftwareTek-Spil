@@ -126,23 +126,35 @@ public class Board {
         return score;
     }
 
-    public static int getScoreDif(Board board){
-        int x_axis = board.x_axis;
-        int y_axis = board.y_axis;
+    public static int evaluateScore(Board board, int playerTurn) {
+        int score = 0;
 
-
-        int[] score = {0, 0};
-        for (int x = 0; x < x_axis; x++) {
-            for (int y = 0; y < y_axis; y++) {
+        // Count the number of pieces for each player
+        int numWhitePieces = 0;
+        int numBlackPieces = 0;
+        for (int x = 0; x < board.x_axis; x++) {
+            for (int y = 0; y < board.y_axis; y++) {
                 if (board.map[x][y] == 1) {
-                    score[0]++;
+                    numWhitePieces++;
                 } else if (board.map[x][y] == 2) {
-                    score[1]++;
+                    numBlackPieces++;
                 }
             }
         }
-        return score[0]- score[1];
+
+        // Calculate the score based on the number of pieces
+        if (playerTurn == 1) {
+            // If it is white's turn, a higher number of white pieces is better
+            score = numWhitePieces - numBlackPieces;
+        } else {
+            // If it is black's turn, a higher number of black pieces is better
+            score = numBlackPieces - numWhitePieces;
+        }
+        return score;
     }
+
+
+
 
     //print the whole board using toString (ONLY FOR TESTING)
     @Override

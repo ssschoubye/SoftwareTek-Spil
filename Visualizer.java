@@ -54,7 +54,7 @@ public class Visualizer extends Application {
         game.initialize();
         turn = game.startingPlayer(gameNumber,firstStartingPlayer);
         showTurn.setText(turnColor(turn)+" is starting");
-        ReversiAI klogAI = new ReversiAI(game, 3);
+        ReversiAI klogAI = new ReversiAI(game, 9);
 
 
 

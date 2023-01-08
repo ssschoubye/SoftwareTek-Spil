@@ -7,6 +7,7 @@ public class ReversiAI {
         public ReversiAI(Board board, int maxDepth){
 
             this.board = board;
+            this.maxDepth=maxDepth;
         }
 
 
@@ -14,8 +15,8 @@ public class ReversiAI {
 
             int bestX = 0;
             int bestY = 0;
-            int alpha = -64;
-            int beta = 64;
+            int alpha = Integer.MIN_VALUE;
+            int beta = Integer.MAX_VALUE;
             int score = 0;
             for (int x = 0; x < board.x_axis; x++) {
                 for (int y = 0; y < board.y_axis; y++) {
@@ -37,7 +38,7 @@ public class ReversiAI {
 
     private static int maxValue(Board board, int playerTurn, int depth, int alpha, int beta) {
         if (depth == maxDepth || !board.legalSpots(playerTurn)) {
-            return Board.getScoreDif(board);
+            return Board.evaluateScore(board,Visualizer.turn);
         }
         int value = Integer.MIN_VALUE;
         for (int x = 0; x < board.x_axis; x++) {
@@ -57,7 +58,7 @@ public class ReversiAI {
 
     private static int minValue(Board board, int playerTurn, int depth, int alpha, int beta) {
         if (depth == maxDepth || !board.legalSpots(playerTurn)) {
-            return Board.getScoreDif(board);
+            return Board.evaluateScore(board,Visualizer.turn);
         }
         int value = Integer.MAX_VALUE;
         for (int x = 0; x < board.x_axis; x++) {
