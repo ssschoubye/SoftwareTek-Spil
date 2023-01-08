@@ -27,7 +27,7 @@
          <children>
             <HBox fx:id="titlebar" alignment="TOP_RIGHT" onMouseDragged="#titleBarDragged" onMousePressed="#titleBarPressed" prefHeight="35.0" prefWidth="600.0" spacing="5.0">
                <children>
-                  <Button fx:id="minimize" mnemonicParsing="false" onAction="#OnMinimizeButtonClick" text="_" textFill="#9e9696">
+                  <Button fx:id="minimize" mnemonicParsing="false" onAction="#OnMinimizeButtonClick" text="─" textFill="#9e9696">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -55,17 +55,17 @@
          </font></Label>
       <ImageView fitHeight="40.0" fitWidth="44.0" layoutX="541.0" layoutY="333.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@out/production/SoftwareTek-Spil/Images/G13.png" />
+            <Image url="@Images/G13.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="55.0" fitWidth="25.0" layoutX="5.0" layoutY="5.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@out/production/SoftwareTek-Spil/Images/reversiIcon.png" />
+            <Image url="@Images/reversiIcon.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="158.0" fitWidth="141.0" layoutX="54.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true" rotate="33.7">
          <image>
-            <Image url="@out/production/SoftwareTek-Spil/Images/reversiGraphic.png" />
+            <Image url="@Images/reversiGraphic.png" />
          </image>
       </ImageView>
     </children>
