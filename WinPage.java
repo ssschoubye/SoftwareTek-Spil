@@ -23,15 +23,15 @@ public class WinPage {
         if (score[0] > score[1]) {
             Stage stage = new Stage();
             start(stage, dim);
-            String winner = "Player 1";
-            String loser  = "Player 2";
+            String winner = "White";
+            String loser  = "Black";
             setLoser(loser);
             setWinner(winner);
         }else if (score[0] < score[1]) {
             Stage stage = new Stage();
             start(stage, dim);
-            String winner = "Player 2";
-            String loser  = "Player 1";
+            String winner = "Black";
+            String loser  = "White";
             setWinner(winner);
             setLoser(loser);
         }else{

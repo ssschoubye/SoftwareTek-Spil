@@ -71,7 +71,6 @@ public class Board {
 
     public boolean placePiece(int x, int y, int playerTurn) {
         // Place the piece on the board
-        System.out.println(playerTurn);
         if (playerTurn != 1 && playerTurn != 2) {
             System.out.println("Value has to be 1 or 2");
             return false;
@@ -125,6 +124,24 @@ public class Board {
             }
         }
         return score;
+    }
+
+    public static int getScoreDif(Board board){
+        int x_axis = board.x_axis;
+        int y_axis = board.y_axis;
+
+
+        int[] score = {0, 0};
+        for (int x = 0; x < x_axis; x++) {
+            for (int y = 0; y < y_axis; y++) {
+                if (board.map[x][y] == 1) {
+                    score[0]++;
+                } else if (board.map[x][y] == 2) {
+                    score[1]++;
+                }
+            }
+        }
+        return score[0]- score[1];
     }
 
     //print the whole board using toString (ONLY FOR TESTING)
@@ -240,6 +257,17 @@ public class Board {
                 return dim;
 
     }
+
+    public Board copy() {
+        Board copy = new Board(x_axis, y_axis);
+        for (int x = 0; x < x_axis; x++) {
+            for (int y = 0; y < y_axis; y++) {
+                copy.map[x][y] = map[x][y];
+            }
+        }
+        return copy;
+    }
+
 }
 
 

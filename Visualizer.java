@@ -53,20 +53,14 @@ public class Visualizer extends Application {
         Board game = new Board(width,height);
         game.initialize();
         turn = game.startingPlayer(gameNumber,firstStartingPlayer);
-        showTurn.setText(turnColor(turn)+"'s turn");
-        ReversiRndBot botRnd = new ReversiRndBot(game);
+        showTurn.setText(turnColor(turn)+" is starting");
+        ReversiAI klogAI = new ReversiAI(game, 3);
 
-
-
-        // Create two GridPanes, which will function as the playing board and as the overall current
-        // status of the game (score, time, player turn, announcements...)
-        // and adds them to a VBox
 
 
         GridPane board = new GridPane();
 
 
-        // Create 2D array of buttons, which functions as the individual cells on the playing board
         Button[][] cells = new Button[width][height];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -80,52 +74,31 @@ public class Visualizer extends Application {
                 updateGridpane(primaryStage, game, board,whiteImage, blackImage, markerImage);
 
 
-
-                // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii,jj,turn)){
                         turnCounter++;
-                        //Switches player turn
+
                         if(turnCounter==3){
                             showTurn.setText(turnColor(turn)+"'s turn");
                             turn = Board.turnSwitch(turn);
 
                             updateGridpane(primaryStage, game, board,whiteImage, blackImage, markerImage);
 
-
-                            ReversiRndBot.rndBotMakeMove(turn);
-
-                            try {
-                                Thread.sleep(500);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                            ReversiAI.AIMakeMove(turn);
                             turnCounter++;
 
-
-                            ReversiRndBot.rndBotMakeMove(turn);
-
-
-                            try {
-                                Thread.sleep(500);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            updateGridpane(primaryStage, game, board,whiteImage, blackImage, markerImage);
-
-
+                            ReversiAI.AIMakeMove(turn);
                             turn = Board.turnSwitch(turn);
                             game.legalSpots(turn);
                         }
-
                         if (turnCounter>4){
                             turn = Board.turnSwitch(turn);
 
-                            //Checks for legal spots
+
                             if (!game.legalSpots(turn)) {
                                 if(!game.legalSpots(Board.turnSwitch(turn))){
                                     System.out.println("No more possible moves \n    game over");
-                                    //Save value for ending game
+
                                     WinPage win = new WinPage();
                                     turnCounter = 1;
                                     gameNumber++;
@@ -141,7 +114,7 @@ public class Visualizer extends Application {
                                     turn = Board.turnSwitch(turn);
                                     game.legalSpots(turn);
 
-                                    //no move possible for current player
+
 
 
                                 }
@@ -150,18 +123,11 @@ public class Visualizer extends Application {
 
                                 while (true){
 
-                                    updateGridpane(primaryStage, game, board,whiteImage, blackImage, markerImage);
-                                    try {
-                                        Thread.sleep(500);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
 
-                                    ReversiRndBot.rndBotMakeMove(turn);
+                                    ReversiAI.AIMakeMove(turn);
                                     if(!game.legalSpots(Board.turnSwitch(turn))){
                                         if(!game.legalSpots(turn)){
                                             System.out.println("No more possible moves \n    game over");
-                                            //Save value for ending game
                                             WinPage win = new WinPage();
                                             turnCounter = 1;
                                             gameNumber++;
@@ -224,6 +190,8 @@ public class Visualizer extends Application {
     private void timeDelay() throws InterruptedException {
         TimeUnit.SECONDS.sleep(1);
     }
+
+
     private void updateGridpane(Stage primaryStage, Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
 
         board.getChildren().removeIf(node -> node instanceof ImageView);
