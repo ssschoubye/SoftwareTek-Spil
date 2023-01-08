@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class Menu extends Application {
 private int [] dim;
 
-    public static void Menu(String[]args){
+    public static void main (String[]args){
         launch(args);
     }
 

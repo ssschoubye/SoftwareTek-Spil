@@ -69,9 +69,7 @@ public class Visualizer extends Application {
         // and adds them to a HBox
 
         GridPane board = new GridPane();
-        board.setPrefSize(100,100);
-        board.setMaxWidth(200);
-        board.setMinWidth(200);
+
 
 
         // Create 2D array of buttons, which functions as the individual cells on the playing board
@@ -214,7 +212,9 @@ public class Visualizer extends Application {
                 board.add(back, x, y);
                 back.setMouseTransparent(true);
                 back.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
-                back.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+                back.fitHeightProperty().bind(Bindings.divide(primaryStage.heightProperty(), 10));
+
+
 
 
                 if (game.map[x][y] == 1) {
