@@ -17,7 +17,7 @@
 
 .button:hover {
     -fx-border-color: #22201f;
-    -fx-background-color: #1e1b1b;
+    -fx-background-color: #22201f;
 }
 
 .button:pressed {

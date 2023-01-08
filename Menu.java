@@ -92,7 +92,9 @@ private int [] dim;
     Rectangle2D screenBounds = Screen.getPrimary().getBounds();
 
     @FXML
-    double windowSize = screenBounds.getHeight()/2;
+    int windowHeight = (int)screenBounds.getHeight()/2;
+    @FXML
+    double windowWidth = screenBounds.getHeight()*3/4;
 
 
 
