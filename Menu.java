@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import javafx.scene.input.MouseEvent;
@@ -83,6 +85,12 @@ private int [] dim;
         System.out.println("Options");
     }
 
+    //////////////////////////////////////////////////////////////
+    ///                    Size of window                      ///
+    //////////////////////////////////////////////////////////////
+    Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+
+    double windowSize = screenBounds.getHeight()/2;
 
 
 

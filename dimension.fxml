@@ -5,20 +5,50 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DimensionPrompt">
-   <children>
-      <TitledPane animated="false" layoutX="199.0" layoutY="75.0" text="Choose Dimensions">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TextField fx:id="textfield1" layoutX="14.0" layoutY="34.0" promptText="x axis" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="34.0" />
-                  <Label layoutX="8.0" layoutY="14.0" text="Choose dimensions for your board" />
-                  <TextField fx:id="textfield2" layoutX="24.0" layoutY="90.0" promptText="y axis" />
-                  <Button fx:id="button1" layoutX="72.0" layoutY="130.0" mnemonicParsing="false" onAction="#closeApp" text="Submit" />
-               </children>
-            </AnchorPane>
-        </content>
-      </TitledPane>
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@defaultStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DimensionPrompt">
+    <children>
+        <TitledPane animated="false" layoutX="199.0" layoutY="86.0" text="Choose Dimensions">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <TextField fx:id="textfield1" layoutX="14.0" layoutY="34.0" promptText="x axis" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="34.0" />
+                        <Label layoutX="8.0" layoutY="6.0" text="Choose dimensions for your board" />
+                        <TextField fx:id="textfield2" layoutX="24.0" layoutY="90.0" promptText="y axis" />
+                        <Button fx:id="button1" layoutX="72.0" layoutY="130.0" mnemonicParsing="false" onAction="#closeApp" text="Submit" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </TitledPane>
+        <AnchorPane prefHeight="35.0" prefWidth="600.0" styleClass="titleBar">
+            <children>
+                <HBox fx:id="titlebar" alignment="TOP_RIGHT" onMouseDragged="#titleBarDragged" onMousePressed="#titleBarPressed" prefHeight="35.0" prefWidth="600.0" spacing="5.0">
+                    <children>
+                        <Button fx:id="minimize" mnemonicParsing="false" onAction="#OnMinimizeButtonClick" prefHeight="25.0" prefWidth="40.0" text="─" textFill="#9e9696">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonClick" prefHeight="25.0" prefWidth="40.0" text="✕" textFill="#9e9696">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </AnchorPane>
+        <ImageView fitHeight="45.0" fitWidth="25.0" layoutX="5.0" layoutY="5.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@Images/reversiIcon.png" />
+            </image>
+        </ImageView>
+    </children>
 </AnchorPane>
