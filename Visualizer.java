@@ -26,9 +26,9 @@ public class Visualizer extends Application {
     static int gameNumber = 1;
 
     static int turnCounter =1;
-    String whiteImage = "Images/whitePiece.png";
-    String blackImage = "Images/blackPiece.png";
-    String markerImage = "Images/marker.png";
+    String whiteImage = "Images/whitePiece2.png";
+    String blackImage = "Images/blackPiece3.png";
+    String markerImage = "Images/markerDark.png";
     String backImage1 = "Images/backgroundSkins/chess1.png";
     String backImage2 = "Images/backgroundSkins/chess2.png";
 

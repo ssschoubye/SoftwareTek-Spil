@@ -35,7 +35,7 @@
                   <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonClick" prefHeight="25.0" prefWidth="40.0" text="✕" textFill="#9e9696">
                      <font>
                         <Font name="System Bold" size="12.0" />
-                     </font>
+                     </font>s
                   </Button>
                </children>
                <padding>
@@ -44,7 +44,7 @@
             </HBox>
          </children>
       </AnchorPane>
-      <Label layoutX="436.0" layoutY="369.0" opacity="0.5" text="A Group 13 Production" textFill="WHITE">
+      <Label layoutX="472.0" layoutY="368.0" opacity="0.5" text="A Group 13 game" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>

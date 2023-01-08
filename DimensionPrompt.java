@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -5,7 +6,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -38,6 +42,7 @@ public class DimensionPrompt {
         Image icon = new Image(appIcon);
         dimStage.getIcons().add(icon);
         dimStage.setTitle("Reversi");
+        dimStage.initStyle(StageStyle.UNDECORATED);
         dimStage.setScene(scene);
         dimStage.showAndWait();
         textfield1 = (TextField) scene.lookup("#textfield1");
@@ -92,5 +97,52 @@ return x;
         stage.close();
 
     }
+
+
+    //////////////////////////////////////////////////////////////
+    ///                    Title bar layout                    ///
+    //////////////////////////////////////////////////////////////
+    @FXML
+    HBox titlebar;
+
+    private double windowX = 0;
+    private double windowY = 0;
+
+    @FXML
+    private void titleBarDragged(MouseEvent event){
+        Stage stage = (Stage) titlebar.getScene().getWindow();
+        stage.setY(event.getScreenY()-windowY);
+        stage.setX(event.getScreenX()-windowX);
+
+    }
+    @FXML
+    private void titleBarPressed(MouseEvent event){
+        windowX = event.getSceneX();
+        windowY = event.getSceneY();
+
+    }
+
+
+    @FXML
+    private void onExitButtonClick(){
+        Platform.exit();
+    }
+    @FXML
+    Button minimize;
+    @FXML
+    public void OnMinimizeButtonClick(){
+        Stage stage = (Stage)minimize.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+
+
+
+
+
+
+
+
+
 
 }
