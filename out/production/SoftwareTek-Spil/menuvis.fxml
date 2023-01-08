@@ -6,26 +6,54 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.5" stylesheets="@defaultStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Menu">
+<AnchorPane prefHeight="400.0" prefWidth="600" stylesheets="@defaultStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Menu">
     <children>
-        <Button fx:id="button1" layoutX="250.0" layoutY="138.0" mnemonicParsing="false" onAction="#startGame" prefHeight="40.0" prefWidth="100.0" text="Start Game" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Button>
-        <Button fx:id="button2" layoutX="250.0" layoutY="223.0" mnemonicParsing="false" onAction="#loadGame" prefHeight="40.0" prefWidth="100.0" text="Load Game" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Button>
-        <Button fx:id="button3" layoutX="250.0" layoutY="306.0" mnemonicParsing="false" onAction="#options" prefHeight="40.0" prefWidth="100.0" text="Options">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Button>
-      <AnchorPane prefHeight="35.0" prefWidth="600.0" styleClass="titleBar">
+      <GridPane alignment="CENTER" layoutX="18.0" layoutY="186.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <VBox alignment="CENTER" layoutX="77.0" layoutY="79.0" prefHeight="250.0" prefWidth="600.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox fx:id="titlebar" alignment="TOP_RIGHT" onMouseDragged="#titleBarDragged" onMousePressed="#titleBarPressed" prefHeight="35.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label text="Reversi Advanced" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="37.0" />
+               </font>
+            </Label>
+              <Button fx:id="button1" mnemonicParsing="false" onAction="#startGame" prefHeight="40.0" prefWidth="100.0" text="Start Game" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+              <Button fx:id="button2" mnemonicParsing="false" onAction="#loadGame" prefHeight="40.0" prefWidth="100.0" text="Load Game" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+              <Button fx:id="button3" mnemonicParsing="false" onAction="#options" prefHeight="40.0" prefWidth="100.0" text="Options">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <AnchorPane prefHeight="35.0" prefWidth="600.0" styleClass="titleBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox fx:id="titlebar" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" onMouseDragged="#titleBarDragged" onMousePressed="#titleBarPressed" prefHeight="35.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button fx:id="minimize" mnemonicParsing="false" onAction="#OnMinimizeButtonClick" prefHeight="25.0" prefWidth="40.0" text="─" textFill="#9e9696">
                      <font>
@@ -44,16 +72,12 @@
             </HBox>
          </children>
       </AnchorPane>
-      <Label layoutX="472.0" layoutY="368.0" opacity="0.5" text="A Group 13 game" textFill="WHITE">
+      <Label layoutX="472.0" layoutY="368.0" opacity="0.5" text="A Group 13 game" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="118.0" layoutY="61.0" text="Reversi Advanced" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="Arial Black" size="37.0" />
-         </font></Label>
-      <ImageView fitHeight="40.0" fitWidth="44.0" layoutX="541.0" layoutY="333.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="40.0" fitWidth="44.0" layoutX="541.0" layoutY="333.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="15.0">
          <image>
             <Image url="@Images/G13.png" />
          </image>
@@ -63,7 +87,7 @@
             <Image url="@Images/reversiIcon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="158.0" fitWidth="141.0" layoutX="54.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true" rotate="33.7">
+      <ImageView fitHeight="158.0" fitWidth="141.0" layoutX="54.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true" rotate="33.7" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0">
          <image>
             <Image url="@Images/reversiGraphic.png" />
          </image>

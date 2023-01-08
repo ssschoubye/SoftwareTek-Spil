@@ -127,12 +127,14 @@ public class Visualizer extends Application {
 
                 });
 
-                cells[i][j].prefHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
-                cells[i][j].prefWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10.0));
+                cells[i][j].prefHeightProperty().bind(Bindings.divide(primaryStage.heightProperty(), width+2));
+                cells[i][j].prefWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), width+2));
 
             }
             board.setAlignment(Pos.CENTER);
+
         }
+
 
         Image icon = new Image(appIcon);
         showTurn.setFont(Font.font("Comic Sans", 24));
@@ -141,12 +143,13 @@ public class Visualizer extends Application {
         vbox.getChildren().addAll(board,showTurn);
         vbox.setAlignment(Pos.CENTER);
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-        Scene scene = new Scene(vbox, screenBounds.getHeight()/2, screenBounds.getHeight()/2);
+        double halfScreen = screenBounds.getHeight()/2;
+        Scene scene = new Scene(vbox,1000,1000);
         board.setPadding(new Insets(10,10,10,10));
         primaryStage.setMinWidth(250);
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(icon);
-        primaryStage.setResizable(false);
+        //primaryStage.setResizable(false);
         primaryStage.show();
 
 
@@ -179,28 +182,32 @@ public class Visualizer extends Application {
 
                 board.add(back, x, y);
                 back.setMouseTransparent(true);
-                back.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
-                back.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+                back.setPreserveRatio(true);
+                back.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), width+2));
+                back.fitHeightProperty().bind(Bindings.divide(primaryStage.heightProperty(), width+2));
 
 
                 if (game.map[x][y] == 1) {
                     ImageView whitePiece = new ImageView(whitePieceImage);
                     board.add(whitePiece, x, y);
+                    whitePiece.setPreserveRatio(true);
                     whitePiece.setMouseTransparent(true);
-                    whitePiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
-                    whitePiece.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+                    whitePiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), width+2));
+                    whitePiece.fitHeightProperty().bind(Bindings.divide(primaryStage.heightProperty(), width+2));
                 } else if (game.map[x][y] == 2) {
                     ImageView blackPiece = new ImageView(blackPieceImage);
                     board.add(blackPiece, x, y);
+                    blackPiece.setPreserveRatio(true);
                     blackPiece.setMouseTransparent(true);
-                    blackPiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
-                    blackPiece.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+                    blackPiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), width+2));
+                    blackPiece.fitHeightProperty().bind(Bindings.divide(primaryStage.heightProperty(), width+2));
                 } else if (game.map[x][y] == 3 || game.map[x][y] == 4) {
                     ImageView marker = new ImageView(markingImage);
                     board.add(marker, x, y);
+                    marker.setPreserveRatio(true);
                     marker.setMouseTransparent(true);
-                    marker.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
-                    marker.fitHeightProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
+                    marker.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), width+2));
+                    marker.fitHeightProperty().bind(Bindings.divide(primaryStage.heightProperty(), width+2));
                 }
             }
         }

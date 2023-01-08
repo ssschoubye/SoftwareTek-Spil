@@ -94,7 +94,7 @@ private int [] dim;
     @FXML
     int windowHeight = (int)screenBounds.getHeight()/2;
     @FXML
-    double windowWidth = screenBounds.getHeight()*3/4;
+    double windowWidth = (screenBounds.getHeight()/2)*3/2;
 
 
 
