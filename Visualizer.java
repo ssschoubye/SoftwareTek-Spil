@@ -12,6 +12,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -44,6 +46,7 @@ public class Visualizer extends Application {
             scene = new Scene(FXMLLoader.load(Objects.requireNonNull(Visualizer.class.getResource("game.fxml"))));
         } catch (IOException e) {
             System.out.println("Could not load FXML-file");
+
         }
     }
 
@@ -135,9 +138,9 @@ public class Visualizer extends Application {
                     }
 
                 });
-
-                cells[i][j].prefHeightProperty().bind(Bindings.divide(primaryStage.heightProperty(), width+2));
-                cells[i][j].prefWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), width+2));
+                Pane gamePane = (Pane)scene.lookup("#gamePane");
+                cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
+                cells[i][j].prefWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
 
             }
             board.setAlignment(Pos.CENTER);
@@ -149,6 +152,7 @@ public class Visualizer extends Application {
         primaryStage.setTitle("Reversi");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(icon);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
 
 
@@ -156,10 +160,12 @@ public class Visualizer extends Application {
 
     }
     @FXML
-    Pane gamePane = (Pane)scene.lookup("#gamePane");
+    Pane testPane = (Pane)null;
+
+
 
     private void updateGridpane(Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
-
+        Pane gamePane = (Pane)scene.lookup("#gamePane");
         board.getChildren().removeIf(node -> node instanceof ImageView);
         gamePane.getChildren().remove(board);
         Image whitePieceImage = new Image(whiteImage);
@@ -241,26 +247,18 @@ public class Visualizer extends Application {
         Stage stage = (Stage) titlebar.getScene().getWindow();
         stage.setY(event.getScreenY() - windowY);
         stage.setX(event.getScreenX() - windowX);
-
     }
-
     @FXML
     private void titleBarPressed(MouseEvent event) {
         windowX = event.getSceneX();
         windowY = event.getSceneY();
-
     }
-
     @FXML
     private void onExitButtonClick() {
         Platform.exit();
     }
-
     @FXML
     Button minimize;
-
-
-
     @FXML
     public void OnMinimizeButtonClick() {
         Stage stage = (Stage) minimize.getScene().getWindow();
