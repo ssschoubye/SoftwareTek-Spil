@@ -16,7 +16,8 @@ import javafx.scene.image.Image;
 public class Menu extends Application {
     String appIcon = "Images/reversiIcon.png";
     Image icon = new Image(appIcon);
-private int [] dim;
+    //private int [] dim;
+
 
     public static void Menu(String[]args){
         launch(args);
@@ -38,13 +39,14 @@ private int [] dim;
     Button button1;
     @FXML
     private void startGame()  {
+        DimensionPrompt dim = new DimensionPrompt();
         System.out.println("Start Game");
         Stage stage = (Stage) button1.getScene().getWindow();
         stage.close();
         dim = DimensionPrompt.start1();
         setDim(dim);
         Visualizer game = new Visualizer();
-        if (dim[0] == 0 || dim[1] == 0){
+        if (dim.x == 0 || dim.y == 0){
             dim[0] = 8;
             dim[1] = 8;
             System.out.println(dim[0]);

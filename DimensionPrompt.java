@@ -12,15 +12,28 @@ import java.util.Objects;
 
 public class DimensionPrompt {
 
-    private static int x;
-    private static int y;
-    public static int[] start1()  {
+    public static int x;
+    public static int y;
+    public static String player1;
+    public static String player2;
+
+    public DimensionPrompt(){
+        x = 0;
+        y = 0;
+        player1 = "Player 1";
+        player2 = "Player 2";
+    }
+    public static DimensionPrompt start1()  {
             Stage stage = new Stage();
             start(stage);
-            x = getDimx();
-            y = getDimy();
-            int[] dim = {x, y};
-            System.out.println(dim);
+            DimensionPrompt dim = new DimensionPrompt();
+
+            dim.x = getDimx();
+            dim.y = getDimy();
+            dim.player1 = getPlayer1();
+            dim.player2 = getPlayer2();
+            //int[] dim = {x, y};
+            //System.out.println(dim);
             return dim;
 
     }
