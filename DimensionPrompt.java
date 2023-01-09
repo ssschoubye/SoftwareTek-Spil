@@ -25,8 +25,8 @@ public class DimensionPrompt {
     static String backImage1 = "Images/Background/green1.png";
     static String backImage2 = "Images/Background/green2.png";
 
-    static String whiteImage = "Images/whitePieceRing.png";
-    static String blackImage = "Images/blackPieceRing.png";
+    static String whiteImage = "Images/WhitePieces/whitePiece1.png";
+    static String blackImage = "Images/BlackPieces/blackPiece1.png";
 
 
     private static int x;
@@ -197,11 +197,15 @@ public class DimensionPrompt {
     }
 
     //---------------------white skins-------------------------
+    public void white1(){
 
+    }
 
 
     //---------------------black skins-------------------------
-    
+    public void black1(){
+
+    }
 
 
 
