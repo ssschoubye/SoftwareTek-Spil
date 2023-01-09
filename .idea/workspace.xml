@@ -7,11 +7,6 @@
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DimensionPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimensionPrompt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WinPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WinPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/WinPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/WinPage.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +20,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="JavaScript File" />
         <option value="Class" />
       </list>
     </option>
@@ -49,31 +43,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/sssch/OneDrive/Dokumenter/GitHub/SoftwareTek-Spil/.idea/libraries/ws",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Emil Wille Andersen/OneDrive - Danmarks Tekniske Universitet/Dokumenter/GitHub/SoftwareTek-Spil/out/production/SoftwareTek-Spil/Images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images" />
+      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
       <recent name="C:\Users\fsvan\OneDrive\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images" />
       <recent name="C:\Users\fsvan\OneDrive\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images\backgroundSkins" />
-      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\fsvan\OneDrive\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
+      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images" />
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
+      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil" />
+      <recent name="C:\Users\fsvan\OneDrive\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
     </key>
   </component>
   <component name="RunManager">
@@ -95,6 +93,21 @@
       <updated>1672655505797</updated>
       <workItem from="1672749843147" duration="10572000" />
       <workItem from="1672928138007" duration="7935000" />
+      <workItem from="1673121175321" duration="9839000" />
+      <workItem from="1673135959474" duration="2160000" />
+      <workItem from="1673138462813" duration="260000" />
+      <workItem from="1673138755201" duration="436000" />
+      <workItem from="1673139241964" duration="282000" />
+      <workItem from="1673180864410" duration="4244000" />
+      <workItem from="1673185496813" duration="833000" />
+      <workItem from="1673186368524" duration="1528000" />
+      <workItem from="1673188426354" duration="1987000" />
+      <workItem from="1673191677946" duration="9721000" />
+      <workItem from="1673259930179" duration="2210000" />
+      <workItem from="1673262258515" duration="4622000" />
+      <workItem from="1673267218049" duration="11088000" />
+      <workItem from="1673279371157" duration="1052000" />
+      <workItem from="1673280489792" duration="88000" />
     </task>
     <servers />
   </component>
