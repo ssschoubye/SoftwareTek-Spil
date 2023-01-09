@@ -159,6 +159,10 @@ public class DimensionPrompt {
     //////////////////////////////////////////////////////////////
     ///                          Skins                         ///
     //////////////////////////////////////////////////////////////
+
+
+
+    //------------------Background skins-------------------------
     public void woodChoice(){
         backImage1 = "Images/Background/wood1.png";
         backImage2 = "Images/Background/wood2.png";
@@ -192,6 +196,12 @@ public class DimensionPrompt {
 
     }
 
+    //---------------------white skins-------------------------
+
+
+
+    //---------------------black skins-------------------------
+    
 
 
 
