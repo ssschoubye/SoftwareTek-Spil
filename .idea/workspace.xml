@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Clever AI version 2">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeepAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoardTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/BoardTestMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReversiAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/MiniMaxAlphaBetaAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReversiRndBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/RndBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Visualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/BoardTestMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/BoardTestMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/ReversiAI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/ReversiRndBot.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" afterDir="false" />
-    </list>
+    <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Clever AI version 3" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,7 +103,7 @@
       <workItem from="1673098028710" duration="13580000" />
       <workItem from="1673117358442" duration="180000" />
       <workItem from="1673183681734" duration="11853000" />
-      <workItem from="1673272722192" duration="20344000" />
+      <workItem from="1673272722192" duration="21281000" />
     </task>
     <task id="LOCAL-00001" summary="Stupid AI version 1">
       <created>1673111229707</created>
@@ -140,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673190541314</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Clever AI version 3">
+      <created>1673297106191</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1673297106191</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,7 +154,8 @@
     <MESSAGE value="Stupid AI version 1" />
     <MESSAGE value="Clever AI version 1" />
     <MESSAGE value="Clever AI version 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clever AI version 2" />
+    <MESSAGE value="Clever AI version 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clever AI version 3" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
