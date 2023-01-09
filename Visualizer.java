@@ -22,13 +22,13 @@ public class Visualizer extends Application {
 
     static int width;
     static int height;
-    static int turn = (int)(Math.random()*2)+1;
+    static int turn = (int) (Math.random() * 2) + 1;
 
-    static int firstStartingPlayer = (int)(Math.random()*2)+1;
+    static int firstStartingPlayer = (int) (Math.random() * 2) + 1;
 
     static int gameNumber = 1;
 
-    static int turnCounter =1;
+    static int turnCounter = 1;
     String whiteImage;
     String blackImage;
     String markerImage = "Images/markerDark.png";
@@ -36,8 +36,7 @@ public class Visualizer extends Application {
     String backImage2;
 
     String appIcon = "Images/reversiIcon.png";
-    @FXML
-    Label showTurn = new Label(turnColor(turn)+"'s turn");
+
 
     static Scene scene;
 
@@ -51,7 +50,7 @@ public class Visualizer extends Application {
     }
 
 
-    public void gameStart(int inwidth, int inheight){
+    public void gameStart(int inwidth, int inheight) {
         DimensionPrompt dimPrompt = new DimensionPrompt();
         width = inwidth;
         height = inheight;
@@ -63,15 +62,16 @@ public class Visualizer extends Application {
         start(stage);
     }
 
-
-
     @Override
     public void start(Stage primaryStage) {
 
-        Board game = new Board(width,height);
+        Label showTurn = (Label)scene.lookup("#showTurn");
+
+
+        Board game = new Board(width, height);
         game.initialize();
-        turn = game.startingPlayer(gameNumber,firstStartingPlayer);
-        showTurn.setText(turnColor(turn%2+1)+"'s turn");
+        turn = game.startingPlayer(gameNumber, firstStartingPlayer);
+        showTurn.setText(turnColor(turn) + "'s turn");
 
         GridPane board = new GridPane();
 
@@ -86,59 +86,57 @@ public class Visualizer extends Application {
                 final int ii = i;
                 final int jj = j;
 
-                updateGridpane(game, board, blackImage, whiteImage, markerImage);
-
+                updateGridpane(game, board, whiteImage, blackImage, markerImage);
 
 
                 // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
-                    if (game.placePiece(ii,jj,turn)){
+                    if (game.placePiece(ii, jj, turn)) {
                         turnCounter++;
                         //Switches player turn
-                        if(turnCounter==3){
-                            showTurn.setText(turnColor(turn)+"'s turn");
+                        if (turnCounter == 3) {
                             turn = Board.turnSwitch(turn);
+                            showTurn.setText(turnColor(turn) + "'s turn");
                         }
 
-                        if (turnCounter>4){
-                            showTurn.setText(turnColor(turn)+"'s turn");
+                        if (turnCounter > 4) {
                             turn = Board.turnSwitch(turn);
+                            showTurn.setText(turnColor(turn) + "'s turn");
+
 
                             //Checks for legal spots
                             if (!game.legalSpots(turn)) {
-                                if(!game.legalSpots(Board.turnSwitch(turn))){
+                                if (!game.legalSpots(Board.turnSwitch(turn))) {
                                     System.out.println("No more possible moves \n    game over");
                                     //Save value for ending game
                                     WinPage win = new WinPage();
                                     turnCounter = 1;
                                     gameNumber++;
-                                    try{
+                                    try {
                                         primaryStage.close();
                                         win.winStart(game);
                                     } catch (IOException e) {
                                         throw new RuntimeException(e);
                                     }
 
-                                } else{
-                                    showTurn.setText(turnColor(turn)+"'s turn");
+                                } else {
+
                                     System.out.println("\n" + turn + " has no possible moves");
                                     turn = Board.turnSwitch(turn);
-
+                                    showTurn.setText(turnColor(turn) + "'s turn");
                                     //no move possible for current player
                                 }
 
                             }
                         }
 
-                        updateGridpane(game, board, blackImage, whiteImage, markerImage);
-
-
+                        updateGridpane(game, board, whiteImage, blackImage, markerImage);
 
 
                     }
 
                 });
-                Pane gamePane = (Pane)scene.lookup("#gamePane");
+                Pane gamePane = (Pane) scene.lookup("#gamePane");
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
                 cells[i][j].prefWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
 
@@ -146,7 +144,6 @@ public class Visualizer extends Application {
             board.setAlignment(Pos.CENTER);
 
         }
-
 
         Image icon = new Image(appIcon);
         primaryStage.setTitle("Reversi");
@@ -156,16 +153,12 @@ public class Visualizer extends Application {
         primaryStage.show();
 
 
-
-
     }
-    @FXML
-    Pane testPane = (Pane)null;
 
 
 
     private void updateGridpane(Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
-        Pane gamePane = (Pane)scene.lookup("#gamePane");
+        Pane gamePane = (Pane) scene.lookup("#gamePane");
         board.getChildren().removeIf(node -> node instanceof ImageView);
         gamePane.getChildren().remove(board);
         Image whitePieceImage = new Image(whiteImage);
@@ -181,9 +174,9 @@ public class Visualizer extends Application {
 
                 ImageView back;
 
-                if ( (x+y)%2==1){
+                if ((x + y) % 2 == 1) {
                     back = new ImageView(backGround1);
-                } else  {
+                } else {
                     back = new ImageView(backGround2);
                 }
 
@@ -223,14 +216,13 @@ public class Visualizer extends Application {
         gamePane.getChildren().add(board);
     }
 
-    public String turnColor(int turn){
-        if(turn==1){
+    public String turnColor(int turn) {
+        if (turn == 1) {
             return "White";
-        } else if(turn==2){
+        } else if (turn == 2) {
             return "Black";
-        }else return null;
+        } else return null;
     }
-
 
 
     //////////////////////////////////////////////////////////////
@@ -248,23 +240,26 @@ public class Visualizer extends Application {
         stage.setY(event.getScreenY() - windowY);
         stage.setX(event.getScreenX() - windowX);
     }
+
     @FXML
     private void titleBarPressed(MouseEvent event) {
         windowX = event.getSceneX();
         windowY = event.getSceneY();
     }
+
     @FXML
     private void onExitButtonClick() {
         Platform.exit();
     }
+
     @FXML
     Button minimize;
+
     @FXML
     public void OnMinimizeButtonClick() {
         Stage stage = (Stage) minimize.getScene().getWindow();
         stage.setIconified(true);
     }
-
 
 
 }
