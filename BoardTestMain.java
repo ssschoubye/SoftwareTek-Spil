@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class BoardTestMain {
 
+
     public static int turnSwitch(int currentTurn) {
         if (currentTurn == 1) {
             return 2;
@@ -15,13 +16,21 @@ public class BoardTestMain {
 
     public static void main(String[] args) {
 
+        /*
         Scanner size = new Scanner(System.in);
         System.out.print("Enter the size of the x-axis: ");
         int xSize = size.nextInt();
         System.out.print("Enter the size of the y-axis: ");
         int ySize = size.nextInt();
 
-        Board game = new Board(xSize, ySize);
+         */
+
+        Board game = new Board(8,8);
+
+        RndBot rndBot1 = new RndBot(game);
+
+        RndBot rndBot2 = new RndBot(game);
+
 
         game.initialize();
         //Game starts with 1 (White) having the first turn
@@ -30,7 +39,7 @@ public class BoardTestMain {
         while (true) {
             turn = turnSwitch(turn);
 
-            if (!game.legalSpots(turn)) {
+            if (!game.legalSpots(turn) || map[game.x_axis/2][game.y_axis/2]==4) {
                 if(!game.legalSpots(turnSwitch(turn))){
                     System.out.println("No more possible moves \n    game over");
                     break;
@@ -45,6 +54,9 @@ public class BoardTestMain {
 
             System.out.println("\n" + turn + "'s turn to place a piece");
 
+            RndBot.rndBotMakeMove(turn);
+
+            /*
             Scanner coord = new Scanner(System.in);
 
             int x = 0;
@@ -56,7 +68,10 @@ public class BoardTestMain {
                 System.out.print("Enter the second coordinate: ");
                 y = coord.nextInt();
 
+
             } while (!game.placePiece(x, y, turn));
+
+             */
 
             System.out.println("\n____________________________________");
 

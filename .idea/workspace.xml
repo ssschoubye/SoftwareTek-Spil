@@ -5,10 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Clever AI version 2">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DeepAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReversiAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReversiAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoardTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/BoardTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReversiAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/MiniMaxAlphaBetaAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReversiRndBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/RndBot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Visualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/ReversiAI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/ReversiAI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/BoardTestMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/BoardTestMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/ReversiAI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/ReversiRndBot.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,22 +54,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/fsvan/OneDrive/Dokumenter/GitHub/SoftwareTek-Spil/out/production/SoftwareTek-Spil/Images&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/fsvan/OneDrive/Dokumenter/GitHub/SoftwareTek-Spil/out/production/SoftwareTek-Spil/Images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Language Defaults",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\fsvan\OneDrive\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images" />
@@ -74,7 +83,14 @@
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.BoardTestMain">
+    <configuration name="BoardTestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="BoardTestMain" />
+      <module name="SoftwareTek-Spil" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Menu" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Menu" />
       <module name="SoftwareTek-Spil" />
@@ -82,6 +98,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BoardTestMain" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -96,6 +117,7 @@
       <workItem from="1673098028710" duration="13580000" />
       <workItem from="1673117358442" duration="180000" />
       <workItem from="1673183681734" duration="11853000" />
+      <workItem from="1673272722192" duration="20344000" />
     </task>
     <task id="LOCAL-00001" summary="Stupid AI version 1">
       <created>1673111229707</created>

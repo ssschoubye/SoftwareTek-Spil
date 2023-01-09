@@ -54,7 +54,7 @@ public class Visualizer extends Application {
         game.initialize();
         turn = game.startingPlayer(gameNumber,firstStartingPlayer);
         showTurn.setText(turnColor(turn)+" is starting");
-        ReversiAI klogAI = new ReversiAI(game, 10);
+        MiniMaxAlphaBetaAI klogAI = new MiniMaxAlphaBetaAI(game, 6);
 
 
 
@@ -84,10 +84,10 @@ public class Visualizer extends Application {
 
                             updateGridpane(primaryStage, game, board,whiteImage, blackImage, markerImage);
 
-                            ReversiAI.AIMakeMove(turn);
+                            MiniMaxAlphaBetaAI.AIMakeMove(turn);
                             turnCounter++;
 
-                            ReversiAI.AIMakeMove(turn);
+                            MiniMaxAlphaBetaAI.AIMakeMove(turn);
                             turn = Board.turnSwitch(turn);
                             game.legalSpots(turn);
                         }
@@ -124,7 +124,7 @@ public class Visualizer extends Application {
                                 while (true){
 
 
-                                    ReversiAI.AIMakeMove(turn);
+                                    MiniMaxAlphaBetaAI.AIMakeMove(turn);
                                     if(!game.legalSpots(Board.turnSwitch(turn))){
                                         if(!game.legalSpots(turn)){
                                             System.out.println("No more possible moves \n    game over");

@@ -1,9 +1,8 @@
-import java.util.Scanner;
-public class ReversiRndBot {
+public class RndBot {
 
     private static Board board;
 
-    public ReversiRndBot(Board board){
+    public RndBot(Board board){
         this.board = board;
     }
 
