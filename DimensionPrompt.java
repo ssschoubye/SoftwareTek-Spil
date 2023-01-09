@@ -2,11 +2,9 @@ import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -47,8 +45,8 @@ public class DimensionPrompt {
     public DimensionPrompt(){
         x= 0;
         y = 0;
-        white = "Player1";
-        black = "Player2";
+        white = whiteImage;
+        black = blackImage;
         back1 = backImage1;
         back2 = backImage2;
 
@@ -65,7 +63,7 @@ public class DimensionPrompt {
     }
 
 
-    public static DimensionPrompt start1() {
+    public static void start1() {
         Stage stage = new Stage();
         start(stage);
 
@@ -76,7 +74,6 @@ public class DimensionPrompt {
         dim.back1 = backImage1;
         dim.back2 = backImage2;
         System.out.println(dim);
-        return dim;
 
     }
 

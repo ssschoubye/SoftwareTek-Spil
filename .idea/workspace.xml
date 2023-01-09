@@ -5,34 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
-      <change afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoardPiece.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DimensionPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimensionPrompt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Visualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dimension.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/dimension.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/BoardPiece.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/4x4Preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/8x8Preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/blackPiece.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/blackPiece2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/blackPieceRing.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/marker.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/whitePiece.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/whitePieceRing.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/blackPiece.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/dimension.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/dimension.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/marker.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/whitePiece.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Menu.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,6 +113,7 @@
       <workItem from="1673280598083" duration="915000" />
       <workItem from="1673281546157" duration="1919000" />
       <workItem from="1673287234956" duration="53000" />
+      <workItem from="1673287420019" duration="402000" />
     </task>
     <servers />
   </component>
