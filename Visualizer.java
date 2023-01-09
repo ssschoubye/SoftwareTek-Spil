@@ -211,8 +211,9 @@ public class Visualizer extends Application {
 
                 board.add(back, x, y);
                 back.setMouseTransparent(true);
-                back.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), 10));
-                back.fitHeightProperty().bind(Bindings.divide(primaryStage.heightProperty(), 10));
+                back.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), width +2));
+                back.fitHeightProperty().bind(Bindings.divide(primaryStage.heightProperty(), height + 2));
+                back.setPreserveRatio(true);
 
 
 
