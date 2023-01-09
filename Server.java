@@ -2,24 +2,19 @@ import java.io.*;
 import java.net.*;
 
 public class Server {
+    public static void main(String[] args) throws IOException {
+        // Create a server socket that listens on port 8080
+        ServerSocket serverSocket = new ServerSocket(8080);
 
+        while (true) {
+            // Accept an incoming client connection
+            Socket clientSocket = serverSocket.accept();
 
-    public class ServerController {
-
-        public void host() throws IOException {
-            // Create a server socket that listens on port 8080
-            ServerSocket serverSocket = new ServerSocket(8080);
-
-            while (true) {
-                // Accept an incoming client connection
-                Socket clientSocket = serverSocket.accept();
-
-                // Create a new thread to handle the client
-                new ClientHandler(clientSocket).start();
-            }
+            // Create a new thread to handle the client
+            new ClientHandler(clientSocket).start();
         }
     }
-
+}
     class ClientHandler extends Thread {
         private Socket socket;
 
@@ -58,6 +53,3 @@ public class Server {
             }
         }
     }
-
-
-}
