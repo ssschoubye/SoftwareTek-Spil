@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -144,7 +145,10 @@ public class Visualizer extends Application {
         vbox.setAlignment(Pos.CENTER);
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         double halfScreen = screenBounds.getHeight()/2;
-        Scene scene = new Scene(vbox,1000,1000);
+        board.setPrefHeight(1000);
+        board.setPrefWidth(1000);
+        Scene scene = new Scene(vbox,1200,1200);
+        //scene.getStylesheets().add()
         board.setPadding(new Insets(10,10,10,10));
         primaryStage.setMinWidth(250);
         primaryStage.setScene(scene);
