@@ -35,13 +35,6 @@ public class DimensionPrompt {
     public String back2;
 
     private static int size=8;
-    /*
-    Parent root = null;
-        try {
-        root = FXMLLoader.load(Objects.requireNonNull(DimensionPrompt.class.getResource("dimension.fxml")));
-    } catch (IOException e) {
-        throw new RuntimeException(e);
-    }*/
     public DimensionPrompt(){
         x= 0;
         y = 0;
@@ -117,10 +110,6 @@ public class DimensionPrompt {
 
         Image backGround1 = new Image(backImage1);
         Image backGround2 = new Image(backImage2);
-
-
-
-
 
 
         for (int i = 0; i < size; i++) {
@@ -266,9 +255,6 @@ public class DimensionPrompt {
     private double windowX = 0;
     private double windowY = 0;
 
-    public static void setSize(int size) {
-        DimensionPrompt.size = size;
-    }
 
     @FXML
     private void titleBarDragged(MouseEvent event) {
@@ -339,7 +325,6 @@ public class DimensionPrompt {
     private void closeApp(){
         Stage stage = (Stage) button1.getScene().getWindow();
         stage.close();
-
         Visualizer game = new Visualizer();
         if (dim.x == 0 || dim.y == 0){
             int newx = 8;

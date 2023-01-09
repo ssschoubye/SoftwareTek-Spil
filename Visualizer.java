@@ -1,19 +1,19 @@
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
-import javafx.geometry.Insets;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class Visualizer extends Application {
@@ -34,8 +34,18 @@ public class Visualizer extends Application {
     String backImage2;
 
     String appIcon = "Images/reversiIcon.png";
+    @FXML
     Label showTurn = new Label(turnColor(turn)+"'s turn");
 
+    static Scene scene;
+
+    static {
+        try {
+            scene = new Scene(FXMLLoader.load(Objects.requireNonNull(Visualizer.class.getResource("game.fxml"))));
+        } catch (IOException e) {
+            System.out.println("Could not load FXML-file");
+        }
+    }
 
 
     public void gameStart(int inwidth, int inheight){
@@ -60,16 +70,9 @@ public class Visualizer extends Application {
         turn = game.startingPlayer(gameNumber,firstStartingPlayer);
         showTurn.setText(turnColor(turn%2+1)+"'s turn");
 
-
-
-        // Create two GridPanes, which will function as the playing board and as the overall current
-        // status of the game (score, time, player turn, announcements...)
-        // and adds them to a VBox
-
         GridPane board = new GridPane();
 
 
-        // Create 2D array of buttons, which functions as the individual cells on the playing board
         Button[][] cells = new Button[width][height];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -80,7 +83,7 @@ public class Visualizer extends Application {
                 final int ii = i;
                 final int jj = j;
 
-                updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
+                updateGridpane(game, board, blackImage, whiteImage, markerImage);
 
 
 
@@ -124,7 +127,7 @@ public class Visualizer extends Application {
                             }
                         }
 
-                        updateGridpane(primaryStage, game, board, blackImage, whiteImage, markerImage);
+                        updateGridpane(game, board, blackImage, whiteImage, markerImage);
 
 
 
@@ -143,33 +146,22 @@ public class Visualizer extends Application {
 
 
         Image icon = new Image(appIcon);
-        showTurn.setFont(Font.font("Comic Sans", 24));
-        VBox vbox = new VBox();
         primaryStage.setTitle("Reversi");
-        vbox.getChildren().addAll(board,showTurn);
-        vbox.setAlignment(Pos.CENTER);
-        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-        double halfScreen = screenBounds.getHeight()/2;
-        board.setPrefHeight(1000);
-        board.setPrefWidth(1000);
-        Scene scene = new Scene(vbox,1200,1200);
-        //scene.getStylesheets().add()
-        board.setStyle("-fx-background-color: #312e2b");
-        board.setPadding(new Insets(10,10,10,10));
-        primaryStage.setMinWidth(250);
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(icon);
-        //primaryStage.setResizable(false);
         primaryStage.show();
 
 
 
 
     }
+    @FXML
+    Pane gamePane = (Pane)scene.lookup("#gamePane");
 
-    private void updateGridpane(Stage primaryStage, Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
+    private void updateGridpane(Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
 
         board.getChildren().removeIf(node -> node instanceof ImageView);
+        gamePane.getChildren().remove(board);
         Image whitePieceImage = new Image(whiteImage);
         Image blackPieceImage = new Image(blackImage);
         Image markingImage = new Image(markerImage);
@@ -193,8 +185,8 @@ public class Visualizer extends Application {
                 board.add(back, x, y);
                 back.setMouseTransparent(true);
                 back.setPreserveRatio(true);
-                back.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), width+2));
-                back.fitHeightProperty().bind(Bindings.divide(primaryStage.heightProperty(), width+2));
+                back.fitWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
+                back.fitHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
 
 
                 if (game.map[x][y] == 1) {
@@ -202,25 +194,27 @@ public class Visualizer extends Application {
                     board.add(whitePiece, x, y);
                     whitePiece.setPreserveRatio(true);
                     whitePiece.setMouseTransparent(true);
-                    whitePiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), width+2));
-                    whitePiece.fitHeightProperty().bind(Bindings.divide(primaryStage.heightProperty(), width+2));
+                    whitePiece.fitWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
+                    whitePiece.fitHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
                 } else if (game.map[x][y] == 2) {
                     ImageView blackPiece = new ImageView(blackPieceImage);
                     board.add(blackPiece, x, y);
                     blackPiece.setPreserveRatio(true);
                     blackPiece.setMouseTransparent(true);
-                    blackPiece.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), width+2));
-                    blackPiece.fitHeightProperty().bind(Bindings.divide(primaryStage.heightProperty(), width+2));
+                    blackPiece.fitWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
+                    blackPiece.fitHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
                 } else if (game.map[x][y] == 3 || game.map[x][y] == 4) {
                     ImageView marker = new ImageView(markingImage);
                     board.add(marker, x, y);
                     marker.setPreserveRatio(true);
                     marker.setMouseTransparent(true);
-                    marker.fitWidthProperty().bind(Bindings.divide(primaryStage.widthProperty(), width+2));
-                    marker.fitHeightProperty().bind(Bindings.divide(primaryStage.heightProperty(), width+2));
+                    marker.fitWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
+                    marker.fitHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
                 }
             }
         }
+
+        gamePane.getChildren().add(board);
     }
 
     public String turnColor(int turn){
@@ -231,4 +225,49 @@ public class Visualizer extends Application {
         }else return null;
     }
 
+
+
+    //////////////////////////////////////////////////////////////
+    ///                    Title bar layout                    ///
+    //////////////////////////////////////////////////////////////
+    @FXML
+    HBox titlebar;
+
+    private double windowX = 0;
+    private double windowY = 0;
+
+    @FXML
+    private void titleBarDragged(MouseEvent event) {
+        Stage stage = (Stage) titlebar.getScene().getWindow();
+        stage.setY(event.getScreenY() - windowY);
+        stage.setX(event.getScreenX() - windowX);
+
+    }
+
+    @FXML
+    private void titleBarPressed(MouseEvent event) {
+        windowX = event.getSceneX();
+        windowY = event.getSceneY();
+
+    }
+
+    @FXML
+    private void onExitButtonClick() {
+        Platform.exit();
+    }
+
+    @FXML
+    Button minimize;
+
+
+
+    @FXML
+    public void OnMinimizeButtonClick() {
+        Stage stage = (Stage) minimize.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+
+
 }
+

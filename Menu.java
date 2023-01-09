@@ -51,20 +51,6 @@ public class Menu extends Application {
         Stage stage = (Stage) button1.getScene().getWindow();
         stage.close();
         DimensionPrompt.start1();
-        /*
-        DimensionPrompt dimPrompt = new DimensionPrompt();
-        dimPrompt = DimensionPrompt.start1();
-        Visualizer game = new Visualizer();
-        if (dimPrompt.x == 0 || dimPrompt.y == 0){
-            int newx = 8;
-            int newy = 8;
-            System.out.println(newx);
-            game.gameStart(newx, newy);
-        }else if(dimPrompt.x > 0 || dimPrompt.y > 0){
-            System.out.println(dimPrompt.x + " " + dimPrompt.y);
-            game.gameStart(dimPrompt.x, dimPrompt.y);
-        }
-*/
     }
 
 
