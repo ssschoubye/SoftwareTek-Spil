@@ -4,10 +4,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -15,6 +18,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class DimensionPrompt {
+
+
+    String backImage1 = "Images/backgroundSkins/chess1.png";
+    String backImage2 = "Images/backgroundSkins/chess2.png";
+
 
     private static int x;
     private static int y;
@@ -37,6 +45,8 @@ public class DimensionPrompt {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
         Scene scene = new Scene(root);
         String appIcon = "Images/reversiIcon.png";
         Image icon = new Image(appIcon);
@@ -95,6 +105,16 @@ return x;
     private void closeApp(){
         Stage stage = (Stage) button1.getScene().getWindow();
         stage.close();
+
+    }
+
+    @FXML
+    static
+    GridPane previewPane;
+    @FXML
+    Label previewPaneLabel;
+
+    private void fillPreviewPane(int size){
 
     }
 

@@ -149,6 +149,7 @@ public class Visualizer extends Application {
         board.setPrefWidth(1000);
         Scene scene = new Scene(vbox,1200,1200);
         //scene.getStylesheets().add()
+        board.setStyle("-fx-background-color: #312e2b");
         board.setPadding(new Insets(10,10,10,10));
         primaryStage.setMinWidth(250);
         primaryStage.setScene(scene);
