@@ -198,13 +198,47 @@ public class DimensionPrompt {
 
     //---------------------white skins-------------------------
     public void white1(){
-
+        whiteImage = "Images/WhitePieces/whitePiece1.png";
+        fillPreviewPane(size);
+    }
+    public void white2(){
+        whiteImage = "Images/WhitePieces/whitePiece2.png";
+        fillPreviewPane(size);
+    }
+    public void white3(){
+        whiteImage = "Images/WhitePieces/whitePiece3.png";
+        fillPreviewPane(size);
+    }
+    public void white4(){
+        whiteImage = "Images/WhitePieces/whitePiece4.png";
+        fillPreviewPane(size);
+    }
+    public void white5(){
+        whiteImage = "Images/WhitePieces/whitePiece5.png";
+        fillPreviewPane(size);
     }
 
 
     //---------------------black skins-------------------------
     public void black1(){
-
+        blackImage = "Images/BlackPieces/blackPiece1.png";
+        fillPreviewPane(size);
+    }
+    public void black2(){
+        blackImage = "Images/BlackPieces/blackPiece2.png";
+        fillPreviewPane(size);
+    }
+    public void black3(){
+        blackImage = "Images/BlackPieces/blackPiece3.png";
+        fillPreviewPane(size);
+    }
+    public void black4(){
+        blackImage = "Images/BlackPieces/blackPiece4.png";
+        fillPreviewPane(size);
+    }
+    public void black5(){
+        blackImage = "Images/BlackPieces/blackPiece5.png";
+        fillPreviewPane(size);
     }
 
 
