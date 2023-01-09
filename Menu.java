@@ -50,6 +50,8 @@ public class Menu extends Application {
         System.out.println("Start Game");
         Stage stage = (Stage) button1.getScene().getWindow();
         stage.close();
+        DimensionPrompt.start1();
+        /*
         DimensionPrompt dimPrompt = new DimensionPrompt();
         dimPrompt = DimensionPrompt.start1();
         Visualizer game = new Visualizer();
@@ -62,7 +64,7 @@ public class Menu extends Application {
             System.out.println(dimPrompt.x + " " + dimPrompt.y);
             game.gameStart(dimPrompt.x, dimPrompt.y);
         }
-
+*/
     }
 
 

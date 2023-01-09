@@ -53,6 +53,7 @@ public class DimensionPrompt {
         back2 = backImage2;
 
     }
+    static DimensionPrompt dim = new DimensionPrompt();
     static Scene scene;
 
     static {
@@ -67,7 +68,7 @@ public class DimensionPrompt {
     public static DimensionPrompt start1() {
         Stage stage = new Stage();
         start(stage);
-        DimensionPrompt dim = new DimensionPrompt();
+
         dim.x = size;
         dim.y = size;
         dim.white = whiteImage;
@@ -102,24 +103,25 @@ public class DimensionPrompt {
 
     @FXML
     static
-    Pane previewPane;
+    Pane previewPane=(Pane)scene.lookup("#previewPane");
     @FXML
     static
-    Label previewPaneLabel;
+    Label previewPaneLabel= (Label)scene.lookup("#previewPaneLabel");
+    static
+    GridPane previewGrid = new GridPane();
 
     private static void fillPreviewPane(int size) {
-        previewPane = (Pane)scene.lookup("#previewPane");
-        previewPaneLabel = (Label)scene.lookup("#previewPaneLabel");
         previewPaneLabel.setText(size+"x"+size);
         Image whitePieceImage = new Image(whiteImage);
         Image blackPieceImage = new Image(blackImage);
-
+        previewGrid.getChildren().removeIf(node -> node instanceof ImageView);
+        previewPane.getChildren().remove(previewGrid);
 
 
         Image backGround1 = new Image(backImage1);
         Image backGround2 = new Image(backImage2);
 
-        GridPane previewGrid = new GridPane();
+
 
 
 
@@ -159,14 +161,8 @@ public class DimensionPrompt {
                     blackPiece.fitHeightProperty().bind(Bindings.divide(previewPane.heightProperty(), size));
                 }
 
-
-
-
             }
         }
-
-
-
 
         previewPane.getChildren().add(previewGrid);
 
@@ -217,7 +213,7 @@ public class DimensionPrompt {
 
 
     //---------------------black skins-------------------------
-    
+
 
 
 
@@ -267,5 +263,56 @@ public class DimensionPrompt {
         stage.setIconified(true);
     }
 
+    //////////////////////////////////////////////////////////////
+    ///                     Dimension buttons                  ///
+    //////////////////////////////////////////////////////////////
+    public void setDimensions4(){
+
+        dim.x = 4;
+        dim.y = 4;
+        size = 4;
+        fillPreviewPane(size);
+    }
+    public void setDimensions8(){
+
+        dim.x = 8;
+        dim.y = 8;
+        size = 8;
+        fillPreviewPane(size);
+    }
+    public void setDimensions12(){
+
+        dim.x = 12;
+        dim.y = 12;
+        size = 12;
+        fillPreviewPane(size);
+    }
+
+
+
+
+    //////////////////////////////////////////////////////////////
+    ///                 Play Alone initialising                ///
+    //////////////////////////////////////////////////////////////
+
+    @FXML
+    private Button button1;
+
+    @FXML
+    private void closeApp(){
+        Stage stage = (Stage) button1.getScene().getWindow();
+        stage.close();
+
+        Visualizer game = new Visualizer();
+        if (dim.x == 0 || dim.y == 0){
+            int newx = 8;
+            int newy = 8;
+            System.out.println(newx);
+            game.gameStart(newx, newy);
+        }else if(dim.x > 0 || dim.y > 0){
+            System.out.println(dim.x + " " + dim.y);
+            game.gameStart(dim.x, dim.y);
+        }
+    }
 
 }

@@ -46,17 +46,17 @@
          <children>
             <HBox layoutY="210.0" prefHeight="130.0" prefWidth="400.0" spacing="30.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="90.0" text="4x4">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#setDimensions4" prefHeight="80.0" prefWidth="90.0" text="4x4">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="85.0" prefWidth="96.0" text="8x8">
+                  <Button mnemonicParsing="false" onAction="#setDimensions8" prefHeight="85.0" prefWidth="96.0" text="8x8">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="96.0" prefWidth="97.0" text="12x12">
+                  <Button mnemonicParsing="false" onAction="#setDimensions12" prefHeight="96.0" prefWidth="97.0" text="12x12">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
@@ -68,7 +68,7 @@
             </HBox>
             <HBox layoutY="328.0" prefHeight="130.0" prefWidth="400.0" spacing="30.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="116.0" prefWidth="93.0" styleClass="orangeButton" text="Play&#10;Online&#10;" textAlignment="CENTER">
+                  <Button fx:id="button1" mnemonicParsing="false" onAction="#closeApp" prefHeight="116.0" prefWidth="93.0" styleClass="orangeButton" text="Play&#10;Alone" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
