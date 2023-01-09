@@ -27,11 +27,11 @@ public class Visualizer extends Application {
     static int gameNumber = 1;
 
     static int turnCounter =1;
-    String whiteImage = "Images/whitePieceRing.png";
-    String blackImage = "Images/blackPieceRing.png";
+    String whiteImage = "Images/WhitePieces/whitePiece1.png";
+    String blackImage = "Images/BlackPieces/blackPiece1.png";
     String markerImage = "Images/markerDark.png";
-    String backImage1 = "Images/backgroundSkins/chess1.png";
-    String backImage2 = "Images/backgroundSkins/chess2.png";
+    String backImage1 = "Images/Background/green1.png";
+    String backImage2 = "Images/Background/green2.png";
 
     String appIcon = "Images/reversiIcon.png";
     Label showTurn = new Label(turnColor(turn)+"'s turn");
