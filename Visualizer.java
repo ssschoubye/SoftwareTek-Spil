@@ -39,8 +39,13 @@ public class Visualizer extends Application {
 
 
     public void gameStart(int inwidth, int inheight){
+        DimensionPrompt dimPrompt = new DimensionPrompt();
         width = inwidth;
         height = inheight;
+        whiteImage = dimPrompt.whiteImage;
+        blackImage = dimPrompt.blackImage;
+        backImage1 = dimPrompt.back1;
+        backImage2 = dimPrompt.back2;
         Stage stage = new Stage();
         start(stage);
     }

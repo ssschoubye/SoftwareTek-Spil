@@ -29,8 +29,12 @@ public class DimensionPrompt {
     static String blackImage = "Images/blackPieceRing.png";
 
 
-    private static int x;
-    private static int y;
+    public int x;
+    public int y;
+    public String white;
+    public String black;
+    public String back1;
+    public String back2;
 
     private static int size=8;
     /*
@@ -40,7 +44,15 @@ public class DimensionPrompt {
     } catch (IOException e) {
         throw new RuntimeException(e);
     }*/
+    public DimensionPrompt(){
+        x= 0;
+        y = 0;
+        white = "Player1";
+        black = "Player2";
+        back1 = backImage1;
+        back2 = backImage2;
 
+    }
     static Scene scene;
 
     static {
@@ -52,12 +64,16 @@ public class DimensionPrompt {
     }
 
 
-    public static int[] start1() {
+    public static DimensionPrompt start1() {
         Stage stage = new Stage();
         start(stage);
-        x = size;
-        y = size;
-        int[] dim = {x, y};
+        DimensionPrompt dim = new DimensionPrompt();
+        dim.x = size;
+        dim.y = size;
+        dim.white = whiteImage;
+        dim.black = blackImage;
+        dim.back1 = backImage1;
+        dim.back2 = backImage2;
         System.out.println(dim);
         return dim;
 

@@ -23,7 +23,6 @@ import java.io.IOException;
 
 public class Menu extends Application {
 
-private int [] dim;
 
     public static void Menu(String[]args){
         launch(args);
@@ -51,27 +50,21 @@ private int [] dim;
         System.out.println("Start Game");
         Stage stage = (Stage) button1.getScene().getWindow();
         stage.close();
-        dim = DimensionPrompt.start1();
-        setDim(dim);
+        DimensionPrompt dimPrompt = new DimensionPrompt();
+        dimPrompt = DimensionPrompt.start1();
         Visualizer game = new Visualizer();
-        if (dim[0] == 0 || dim[1] == 0){
-            dim[0] = 8;
-            dim[1] = 8;
-            System.out.println(dim[0]);
-            game.gameStart(dim[0],dim[1]);
-        }else if(dim[0] > 0 || dim[1] > 0){
-            System.out.println(dim[0] + " " + dim[1]);
-            game.gameStart(dim[0],dim[1]);
+        if (dimPrompt.x == 0 || dimPrompt.y == 0){
+            int newx = 8;
+            int newy = 8;
+            System.out.println(newx);
+            game.gameStart(newx, newy);
+        }else if(dimPrompt.x > 0 || dimPrompt.y > 0){
+            System.out.println(dimPrompt.x + " " + dimPrompt.y);
+            game.gameStart(dimPrompt.x, dimPrompt.y);
         }
 
     }
-    public void setDim(int[] dim){
-        this.dim = dim;
-    }
-    public int[] getDim(){
-        int[] dim1 = dim;
-        return dim1;
-    }
+
 
     @FXML
     Button button2;
