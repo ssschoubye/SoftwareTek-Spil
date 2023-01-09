@@ -10,13 +10,12 @@
       <change beforePath="$PROJECT_DIR$/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Visualizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/defaultStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/defaultStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dimension.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/dimension.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/menuvis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/menuvis.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/blackPiece3.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/blackPieceRing.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/whitePiece2.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/whitePieceRing.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/application.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/defaultStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/defaultStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/dimension.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/dimension.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/menuvis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/menuvis.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,6 +114,7 @@
       <workItem from="1673191677946" duration="9721000" />
       <workItem from="1673259930179" duration="2210000" />
       <workItem from="1673262258515" duration="4622000" />
+      <workItem from="1673267218049" duration="11088000" />
     </task>
     <servers />
   </component>
