@@ -4,12 +4,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class DimensionPrompt {
+
     private static int x;
     private static int y;
     public static int[] start1()  {
@@ -32,6 +34,10 @@ public class DimensionPrompt {
             throw new RuntimeException(e);
         }
         Scene scene = new Scene(root);
+        String appIcon = "Images/reversiIcon.png";
+        Image icon = new Image(appIcon);
+        dimStage.getIcons().add(icon);
+        dimStage.setTitle("Reversi");
         dimStage.setScene(scene);
         dimStage.showAndWait();
         textfield1 = (TextField) scene.lookup("#textfield1");

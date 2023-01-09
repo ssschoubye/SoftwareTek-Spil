@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Visualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/blackPiece.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/marker.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/whitePiece.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimensionPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimensionPrompt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WinPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WinPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/WinPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/WinPage.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +53,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Emil Wille Andersen/OneDrive - Danmarks Tekniske Universitet/Dokumenter/GitHub/SoftwareTek-Spil/out/production/SoftwareTek-Spil/Images/backgroundSkins",
+    "last_opened_file_path": "C:/Users/fsvan/OneDrive/Dokumenter/GitHub/SoftwareTek-Spil/out/production/SoftwareTek-Spil/Images",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -66,10 +65,13 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\fsvan\OneDrive\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images" />
+      <recent name="C:\Users\fsvan\OneDrive\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images\backgroundSkins" />
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\fsvan\OneDrive\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
     </key>
   </component>
@@ -91,6 +93,7 @@
       <option name="presentableId" value="Default" />
       <updated>1672655505797</updated>
       <workItem from="1672749843147" duration="10572000" />
+      <workItem from="1672928138007" duration="7935000" />
     </task>
     <servers />
   </component>
