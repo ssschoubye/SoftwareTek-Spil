@@ -71,7 +71,7 @@
       <recent name="C:\Users\fsvan\OneDrive\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Application.ServerClient">
     <configuration name="Menu" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Menu" />
       <module name="SoftwareTek-Spil" />
@@ -95,8 +95,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Server" />
         <item itemvalue="Application.ServerClient" />
+        <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
   </component>
@@ -129,7 +129,7 @@
       <workItem from="1673281546157" duration="1919000" />
       <workItem from="1673287234956" duration="53000" />
       <workItem from="1673287420019" duration="402000" />
-      <workItem from="1673308653859" duration="6530000" />
+      <workItem from="1673308653859" duration="17867000" />
     </task>
     <servers />
   </component>
