@@ -35,12 +35,12 @@ public class Server {
                     if (message == null) {
                         break;
                     }
-
+                    System.out.println(message);
                     // Process the message
                     // ...
 
                     // Send a response to the client
-                    out.println("ACK");
+                    out.println("My god!");
                 }
             } catch (IOException e) {
                 e.printStackTrace();

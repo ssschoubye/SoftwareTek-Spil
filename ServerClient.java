@@ -6,7 +6,7 @@ public class ServerClient {
 
         public static void main(String[] args) throws IOException {
             // Connect to the server
-            Socket socket = new Socket("localhost", 8080);
+            Socket socket = new Socket("192.168.3.5", 8080);
 
             // Get the input and output streams
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
