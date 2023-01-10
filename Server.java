@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.Scanner;
 
 public class Server {
     public static void main(String[] args) throws IOException {
@@ -36,12 +37,16 @@ public class Server {
                     if (message == null) {
                         break;
                     }
+
+                    Scanner scan = new Scanner(System.in);
+                    String message1 = scan.nextLine();
+
                     System.out.println(message);
                     // Process the message
                     // ...
 
                     // Send a response to the client
-                    out.println("My god!");
+                    out.println(message1);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
