@@ -1,24 +1,281 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DimensionPrompt">
-   <children>
-      <TitledPane animated="false" layoutX="199.0" layoutY="75.0" text="Choose Dimensions">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" stylesheets="@defaultStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DimensionPrompt">
+    <children>
+        <AnchorPane prefHeight="35.0" prefWidth="600.0" styleClass="titleBar">
+            <children>
+                <HBox fx:id="titlebar" alignment="TOP_RIGHT" onMouseDragged="#titleBarDragged" onMousePressed="#titleBarPressed" prefHeight="35.0" prefWidth="800.0" spacing="5.0">
+                    <children>
+                        <Button fx:id="minimize" mnemonicParsing="false" onAction="#OnMinimizeButtonClick" prefHeight="25.0" prefWidth="40.0" text="─" textFill="#9e9696">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonClick" prefHeight="25.0" prefWidth="40.0" text="✕" textFill="#9e9696">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </AnchorPane>
+        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="5.0" layoutY="5.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@Images/reversiIcon.png" />
+            </image>
+        </ImageView>
+      <Pane layoutX="5.0" layoutY="35.0" prefHeight="465.0" prefWidth="376.0" styleClass="sidePanel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="35.0">
+         <children>
+            <HBox layoutY="210.0" prefHeight="130.0" prefWidth="400.0" spacing="30.0">
                <children>
-                  <TextField fx:id="textfield1" layoutX="14.0" layoutY="34.0" promptText="x axis" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="34.0" />
-                  <Label layoutX="8.0" layoutY="14.0" text="Choose dimensions for your board" />
-                  <TextField fx:id="textfield2" layoutX="24.0" layoutY="90.0" promptText="y axis" />
-                  <Button fx:id="button1" layoutX="72.0" layoutY="130.0" mnemonicParsing="false" onAction="#closeApp" text="Submit" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#setDimensions4" prefHeight="80.0" prefWidth="90.0" text="4x4">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#setDimensions8" prefHeight="85.0" prefWidth="96.0" text="8x8">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#setDimensions12" prefHeight="96.0" prefWidth="97.0" text="12x12">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Button>
                </children>
-            </AnchorPane>
-        </content>
-      </TitledPane>
-   </children>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+            </HBox>
+            <HBox layoutY="328.0" prefHeight="130.0" prefWidth="400.0" spacing="30.0">
+               <children>
+                  <Button fx:id="button1" mnemonicParsing="false" onAction="#closeApp" prefHeight="116.0" prefWidth="93.0" styleClass="orangeButton" text="Play&#10;Alone" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="107.0" prefWidth="96.0" styleClass="orangeButton" text="Play bot&#10;(Only 8x8)" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="97.0" styleClass="orangeButton" text="Play&#10;Online" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="210.0" prefWidth="400.0" spacing="25.0">
+               <children>
+                  <GridPane alignment="CENTER" gridLinesVisible="true" prefHeight="150.0" prefWidth="100.0" styleClass="titleBar">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#woodChoice" prefHeight="124.0" prefWidth="136.0" />
+                        <Button mnemonicParsing="false" onAction="#greenChoice" prefHeight="124.0" prefWidth="136.0" GridPane.columnIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#blueChoice" prefHeight="124.0" prefWidth="136.0" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#brownChoice" prefHeight="124.0" prefWidth="136.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#bubbleGumChoice" prefHeight="124.0" prefWidth="136.0" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#glassChoice" prefHeight="124.0" prefWidth="136.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/Background/woodChoice.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                           <image>
+                              <Image url="@Images/Background/greenChoice.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                           <image>
+                              <Image url="@Images/Background/blueChoice.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <image>
+                              <Image url="@Images/Background/brownChoice.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                           <image>
+                              <Image url="@Images/Background/bubblegumChoice.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <image>
+                              <Image url="@Images/Background/glassChoice.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+                  <GridPane gridLinesVisible="true" prefHeight="150.0" prefWidth="100.0" styleClass="titleBar">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#white1" prefHeight="86.0" prefWidth="110.0" />
+                        <Button mnemonicParsing="false" onAction="#white2" prefHeight="86.0" prefWidth="110.0" GridPane.columnIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#white3" prefHeight="86.0" prefWidth="110.0" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#white4" prefHeight="86.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#white5" prefHeight="86.0" prefWidth="110.0" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" prefHeight="86.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/WhitePieces/whitePiece1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/WhitePieces/whitePiece1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                           <image>
+                              <Image url="@Images/WhitePieces/whitePiece2.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                           <image>
+                              <Image url="@Images/WhitePieces/whitePiece3.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <image>
+                              <Image url="@Images/WhitePieces/whitePiece4.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                           <image>
+                              <Image url="@Images/WhitePieces/whitePiece5.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+                  <GridPane gridLinesVisible="true" prefHeight="150.0" prefWidth="100.0" styleClass="titleBar">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#black1" prefHeight="86.0" prefWidth="110.0" />
+                        <Button mnemonicParsing="false" onAction="#black2" prefHeight="86.0" prefWidth="110.0" GridPane.columnIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#black3" prefHeight="86.0" prefWidth="110.0" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#black4" prefHeight="86.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#black5" prefHeight="86.0" prefWidth="110.0" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" prefHeight="86.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/BlackPieces/blackPiece1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                           <image>
+                              <Image url="@Images/BlackPieces/blackPiece2.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <image>
+                              <Image url="@Images/BlackPieces/blackPiece4.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                           <image>
+                              <Image url="@Images/BlackPieces/blackPiece3.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                           <image>
+                              <Image url="@Images/BlackPieces/blackPiece5.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+               </children>
+               <padding>
+                  <Insets bottom="30.0" left="25.0" right="25.0" top="30.0" />
+               </padding>
+            </HBox>
+         </children>
+      </Pane>
+      <VBox alignment="CENTER" layoutX="400.0" layoutY="35.0" prefHeight="465.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+         <children>
+            <Label fx:id="previewPaneLabel" alignment="CENTER" prefHeight="45.0" prefWidth="100.0" text="8x8" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <Pane fx:id="previewPane" prefHeight="300.0" prefWidth="300.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Pane>
+         </children>
+         <opaqueInsets>
+            <Insets right="125.0" />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="40.0" left="50.0" right="50.0" />
+         </padding>
+      </VBox>
+    </children>
 </AnchorPane>
