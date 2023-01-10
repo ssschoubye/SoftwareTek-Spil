@@ -325,7 +325,7 @@ public class DimensionPrompt {
     private void closeApp(){
         Stage stage = (Stage) button1.getScene().getWindow();
         stage.close();
-        Visualizer game = new Visualizer();
+        PlayAlone game = new PlayAlone();
         if (dim.x == 0 || dim.y == 0){
             int newx = 8;
             int newy = 8;

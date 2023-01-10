@@ -110,8 +110,8 @@ public class WinPage {
         Stage stage = (Stage) restart.getScene().getWindow();
         stage.close();
 
-        Visualizer visualizer = new Visualizer();
-        visualizer.gameStart(dim[0], dim[1]);
+        PlayAlone playAlone = new PlayAlone();
+        playAlone.gameStart(dim[0], dim[1]);
     }
 
 

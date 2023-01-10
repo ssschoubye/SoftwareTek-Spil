@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 
-public class Visualizer extends Application {
+public class PlayAlone extends Application {
 
     static int width;
     static int height;
@@ -44,7 +44,7 @@ public class Visualizer extends Application {
 
     static {
         try {
-            scene = new Scene(FXMLLoader.load(Objects.requireNonNull(Visualizer.class.getResource("game.fxml"))));
+            scene = new Scene(FXMLLoader.load(Objects.requireNonNull(PlayAlone.class.getResource("playAlone.fxml"))));
         } catch (IOException e) {
             System.out.println("Could not load FXML-file");
 

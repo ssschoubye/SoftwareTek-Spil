@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="900.0" stylesheets="@defaultStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Visualizer">
+<AnchorPane prefHeight="800.0" prefWidth="900.0" stylesheets="@defaultStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PlayAlone">
     <children>
         <AnchorPane prefHeight="35.0" prefWidth="600.0" styleClass="titleBar">
             <children>
@@ -106,7 +106,7 @@
       </VBox>
         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
             <image>
-                <Image url="@Images/reversiIcon.png" />
+                <Image url="@out/production/SoftwareTek-Spil/Images/reversiIcon.png" />
             </image>
         </ImageView>
     </children>
