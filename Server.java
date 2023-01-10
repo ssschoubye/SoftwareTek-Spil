@@ -37,11 +37,11 @@ public class Server {
                     if (message == null) {
                         break;
                     }
+                    System.out.println(message);
 
                     Scanner scan = new Scanner(System.in);
                     String message1 = scan.nextLine();
 
-                    System.out.println(message);
                     // Process the message
                     // ...
 
