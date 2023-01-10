@@ -39,7 +39,7 @@ public class BoardTestMain {
         while (true) {
             turn = turnSwitch(turn);
 
-            if (!game.legalSpots(turn) || map[game.x_axis/2][game.y_axis/2]==4) {
+            if (!game.legalSpots(turn)) {
                 if(!game.legalSpots(turnSwitch(turn))){
                     System.out.println("No more possible moves \n    game over");
                     break;

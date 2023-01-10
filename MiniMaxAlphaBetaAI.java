@@ -3,6 +3,8 @@ public class MiniMaxAlphaBetaAI {
 
     private static Board board;
     private static int maxDepth;
+    //static int exploredChildren = 0;
+    private static boolean has4 = true;
 
     public MiniMaxAlphaBetaAI(Board board, int maxDepth) {
 
@@ -17,15 +19,29 @@ public class MiniMaxAlphaBetaAI {
         int bestY = 0;
         int alpha = Integer.MIN_VALUE;
         int beta = Integer.MAX_VALUE;
-        int score = 0;
 
+        if(has4){
+            has4=false;
+            for (int x = 0; x < board.x_axis && !has4; x++) {
+                for (int y = 0; y < board.y_axis&& !has4; y++) {
+                    if (board.map[x][y] == 4) {
+                        has4 = true;
+                    }
+                }
+            }
+        }
+
+        if(!has4){
+            board.legalSpots(playerTurn);
+        }
 
         for (int x = 0; x < board.x_axis; x++) {
             for (int y = 0; y < board.y_axis; y++) {
                 if (board.map[x][y] != 3 && board.map[x][y] != 4) continue;
                 Board copy = board.copy();
+                copy.legalSpots(playerTurn);
                 copy.placePiece(x, y, playerTurn);
-                int value = minValue(copy, playerTurn, 1, alpha, beta);
+                int value = minValue(copy, playerTurn,1, alpha, beta);
                 if (value > alpha) {
                     alpha = value;
                     bestX = x;
@@ -35,17 +51,19 @@ public class MiniMaxAlphaBetaAI {
         }
 
         board.placePiece(bestX, bestY, playerTurn);
-        //Board.tooString(board);
+        //System.out.println(exploredChildren);
+        Board.tooString(board);
     }
 
 
     private static int maxValue(Board board, int playerTurn, int depth, int alpha, int beta) {
+        //exploredChildren++;
         if (depth == maxDepth || !board.legalSpots(playerTurn)) {
             //System.out.println("" + depth + " lag nede i træet er den højeste score for " + Visualizer.turnColor(playerTurn) +", hvis " + Visualizer.turnColor(Board.turnSwitch(playerTurn)) + " spiller perfekt, =" +Board.evaluateScore(board,playerTurn));
             return Board.weigthedScore(board, playerTurn);
 
         }
-        int maxEval = Integer.MIN_VALUE;
+        int bestScore = Integer.MIN_VALUE;
         Board copy = board.copy();
         copy.legalSpots(playerTurn);
 
@@ -53,14 +71,15 @@ public class MiniMaxAlphaBetaAI {
             for (int y = 0; y < copy.y_axis; y++) {
                 if (copy.map[x][y] != 3 && copy.map[x][y] != 4) continue;
                 copy.placePiece(x, y, playerTurn);
-                maxEval = Math.max(maxEval, minValue(copy, Board.turnSwitch(playerTurn), depth + 1, alpha, beta));
-                if (maxEval >= beta) {
-                    return maxEval;
+                bestScore = Math.max(bestScore, minValue(copy, Board.turnSwitch(playerTurn),depth + 1, alpha, beta));
+                alpha = Math.max(alpha, bestScore);
+                if (alpha >= beta) {
+                    System.out.println("Beta cutoff performed");
+                    break; //beta cutoff
                 }
-                alpha = Math.max(alpha, maxEval);
             }
         }
-        return maxEval;
+        return bestScore;
     }
 
     private static int minValue(Board board, int playerTurn, int depth, int alpha, int beta) {
@@ -68,7 +87,7 @@ public class MiniMaxAlphaBetaAI {
             //System.out.println("" + depth + " lag nede i træet er den laveste score for " + Visualizer.turnColor(playerTurn) +", hvis " + Visualizer.turnColor(Board.turnSwitch(playerTurn)) + " spiller perfekt, =" +Board.evaluateScore(board,playerTurn));
             return Board.weigthedScore(board, playerTurn);
         }
-        int minEval = Integer.MAX_VALUE;
+        int bestScore = Integer.MAX_VALUE;
         Board copy = board.copy();
         copy.legalSpots(playerTurn);
 
@@ -76,14 +95,15 @@ public class MiniMaxAlphaBetaAI {
             for (int y = 0; y < copy.y_axis; y++) {
                 if (copy.map[x][y] != 3 && copy.map[x][y] != 4) continue;
                 copy.placePiece(x, y, playerTurn);
-                minEval = Math.min(minEval, maxValue(copy, Board.turnSwitch(playerTurn), depth + 1, alpha, beta));
-                if (minEval <= alpha) {
-                    return minEval;
+                bestScore = Math.min(bestScore, maxValue(copy, Board.turnSwitch(playerTurn),depth + 1, alpha, beta)); //max og max??
+                beta = Math.min(beta, bestScore);
+                if (beta <= alpha) {
+                    System.out.println("Alpha cutoff performed");
+                    break; //alpha cutoff
                 }
-                beta = Math.min(beta, minEval);
             }
         }
-        return minEval;
+        return bestScore;
     }
 
 }

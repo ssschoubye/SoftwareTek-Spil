@@ -128,9 +128,11 @@ public class Board {
         int score = 0;
 
 
-            // Add points for each piece on the board +1
+            //Runs through all squares on the playing board
             for (int x = 0; x < board.x_axis; x++) {
                 for (int y = 0; y < board.y_axis; y++) {
+
+                    // Add points for each piece on the board +1
                     if (board.map[x][y] == playerTurn) {
                         score++;
                     }else if(board.map[x][y] == turnSwitch(playerTurn)){
