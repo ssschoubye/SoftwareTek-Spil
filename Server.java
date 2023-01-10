@@ -32,10 +32,11 @@ public class Server {
                 // Read and process client messages
                 while (true) {
                     String message = in.readLine();
+
                     if (message == null) {
                         break;
                     }
-
+                    System.out.println(message);
                     // Process the message
                     // ...
 
