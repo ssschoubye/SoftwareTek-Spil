@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -34,6 +35,7 @@ public class Visualizer extends Application {
     String markerImage = "Images/markerDark.png";
     String backImage1;
     String backImage2;
+    String placeSoundFile = "Sounds/placeSound1.mp3";
 
     String appIcon = "Images/reversiIcon.png";
 
@@ -64,14 +66,21 @@ public class Visualizer extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
+        AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label)scene.lookup("#showTurn");
-
 
         Board game = new Board(width, height);
         game.initialize();
         turn = game.startingPlayer(gameNumber, firstStartingPlayer);
         showTurn.setText(turnColor(turn) + "'s turn");
+
+
+        Label whiteScore = (Label)scene.lookup("#whiteScore");
+        whiteScore.setText("x"+game.getScore()[0]);
+
+        Label blackScore = (Label)scene.lookup("#blackScore");
+        blackScore.setText("x"+game.getScore()[1]);
+
 
         GridPane board = new GridPane();
 
@@ -92,6 +101,8 @@ public class Visualizer extends Application {
                 // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii, jj, turn)) {
+                        placeSound.play();
+
                         turnCounter++;
                         //Switches player turn
                         if (turnCounter == 3) {
@@ -130,6 +141,8 @@ public class Visualizer extends Application {
                             }
                         }
 
+                        whiteScore.setText("x"+game.getScore()[0]);
+                        blackScore.setText("x"+game.getScore()[1]);
                         updateGridpane(game, board, whiteImage, blackImage, markerImage);
 
 
@@ -167,6 +180,18 @@ public class Visualizer extends Application {
 
         Image backGround1 = new Image(backImage1);
         Image backGround2 = new Image(backImage2);
+
+        Pane whiteScoreSkin = (Pane) scene.lookup("#whiteScoreSkin");
+        ImageView whitePieceScoreImage = new ImageView(whitePieceImage);
+        whiteScoreSkin.getChildren().add(whitePieceScoreImage);
+        whitePieceScoreImage.setPreserveRatio(true);
+        whitePieceScoreImage.fitWidthProperty().bind(whiteScoreSkin.widthProperty());
+
+        Pane blackScoreSkin = (Pane) scene.lookup("#blackScoreSkin");
+        ImageView blackPieceScoreImage = new ImageView(blackPieceImage);
+        blackScoreSkin.getChildren().add(blackPieceScoreImage);
+        blackPieceScoreImage.setPreserveRatio(true);
+        blackPieceScoreImage.fitWidthProperty().bind(blackScoreSkin.widthProperty());
 
 
         for (int x = 0; x < width; x++) {
