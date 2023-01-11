@@ -4,9 +4,7 @@ import javafx.beans.binding.Bindings;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -15,16 +13,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.scene.media.AudioClip;
-import javafx.scene.text.Font;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 
 public class PlayAI extends Application {
@@ -124,7 +116,6 @@ public class PlayAI extends Application {
                             turnCounter++;
 
                             MiniMaxAlphaBetaAI.AIMakeMove(turn);
-                            game.toString();
                             turn = Board.turnSwitch(turn);
                             game.legalSpots(turn);
                         }
@@ -356,7 +347,20 @@ public class PlayAI extends Application {
         Stage stage = (Stage) minimize.getScene().getWindow();
         stage.setIconified(true);
     }
+    //////////////////////////////////////////////////////////////
+    ///                 Back to Menu button                    ///
+    //////////////////////////////////////////////////////////////
 
+    @FXML
+    public void backToMenu() throws IOException {
+        Stage stage = (Stage) minimize.getScene().getWindow();
+        stage.close();
+
+        Stage primaryStage = new Stage();
+        Menu menu = new Menu();
+        menu.start(primaryStage);
+
+    }
 
 }
 

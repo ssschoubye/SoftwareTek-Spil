@@ -42,6 +42,7 @@ public class PlayAlone extends Application {
     String appIcon = "Images/reversiIcon.png";
 
 
+
     static Scene scene;
 
     static {
@@ -308,7 +309,22 @@ public class PlayAlone extends Application {
         Stage stage = (Stage) minimize.getScene().getWindow();
         stage.setIconified(true);
     }
+    //////////////////////////////////////////////////////////////
+    ///                 Back to Menu button                    ///
+    //////////////////////////////////////////////////////////////
+    @FXML
+    private Button backMenu;
 
+    @FXML
+    public void backToMenu() throws IOException {
+        Stage stage = (Stage) backMenu.getScene().getWindow();
+        stage.close();
+
+        Stage primaryStage = new Stage();
+        Menu menu = new Menu();
+        menu.start(primaryStage);
+
+    }
 
 }
 
