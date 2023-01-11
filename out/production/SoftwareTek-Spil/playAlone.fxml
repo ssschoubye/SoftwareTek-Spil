@@ -106,7 +106,7 @@
       </VBox>
         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
             <image>
-                <Image url="@Images/reversiIcon.png" />
+                <Image url="@out/production/SoftwareTek-Spil/Images/reversiIcon.png" />
             </image>
         </ImageView>
     </children>
