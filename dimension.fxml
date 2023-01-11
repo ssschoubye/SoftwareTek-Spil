@@ -250,7 +250,7 @@
                   <Insets bottom="30.0" left="25.0" right="25.0" top="30.0" />
                </padding>
             </HBox>
-            <Button alignment="CENTER" contentDisplay="CENTER" depthTest="DISABLE" layoutX="25.0" layoutY="10.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="68.0" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="backMenu" alignment="CENTER" contentDisplay="CENTER" depthTest="DISABLE" layoutX="25.0" layoutY="10.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="35.0" prefWidth="68.0" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="4.0" />
                </font>

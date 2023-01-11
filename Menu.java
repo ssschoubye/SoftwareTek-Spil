@@ -28,9 +28,10 @@ public class Menu extends Application {
         launch(args);
     }
 
-    @FXML
-    public void start(Stage primaryStage) throws IOException {
+    //public static void backMenu(){launch();}
 
+
+    public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("menuvis.fxml"));
         Scene scene = new Scene(root);
         String appIcon = "Images/reversiIcon.png";

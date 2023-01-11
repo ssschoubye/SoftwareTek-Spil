@@ -383,6 +383,20 @@ public class DimensionPrompt {
         }
     }
 
+    //////////////////////////////////////////////////////////////
+    ///                 Back to Menu button                    ///
+    //////////////////////////////////////////////////////////////
+    @FXML
+    private Button backMenu;
 
+    @FXML
+    public void backToMenu() throws IOException {
+        Stage stage = (Stage) backMenu.getScene().getWindow();
+        stage.close();
 
+        Stage primaryStage = new Stage();
+        Menu menu = new Menu();
+        menu.start(primaryStage);
+
+    }
 }
