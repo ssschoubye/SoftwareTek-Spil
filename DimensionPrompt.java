@@ -367,7 +367,7 @@ public class DimensionPrompt {
     private Button playOnline;
     @FXML
     private void playOnlineAction() throws IOException {
-        gamemode=3;
+        gamemode = 3;
         Stage stage = (Stage) playOnline.getScene().getWindow();
         stage.close();
         HostPrompt game = new HostPrompt();
@@ -382,6 +382,20 @@ public class DimensionPrompt {
         }
     }
 
+    //////////////////////////////////////////////////////////////
+    ///                 Back to Menu button                    ///
+    //////////////////////////////////////////////////////////////
+    @FXML
+    private Button backMenu;
 
+    @FXML
+    public void backToMenu() throws IOException {
+        Stage stage = (Stage) backMenu.getScene().getWindow();
+        stage.close();
 
+        Stage primaryStage = new Stage();
+        Menu menu = new Menu();
+        menu.start(primaryStage);
+
+    }
 }
