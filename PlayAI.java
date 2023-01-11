@@ -60,6 +60,7 @@ public class PlayAI extends Application {
 
     public void gameStart(int inwidth, int inheight) {
         DimensionPrompt dimPrompt = new DimensionPrompt();
+
         width = inwidth;
         height = inheight;
         whiteImage = dimPrompt.whiteImage;
@@ -77,6 +78,7 @@ public class PlayAI extends Application {
         Label showTurn = (Label)scene.lookup("#showTurn");
         Board game = new Board(width, height);
         game.initialize();
+
         turn = game.startingPlayer(gameNumber, firstStartingPlayer);
         showTurn.setText(turnColor(turn) + "'s turn");
 
@@ -88,8 +90,9 @@ public class PlayAI extends Application {
         blackScore.setText("x"+game.getScore()[1]);
 
         MiniMaxAlphaBetaAI klogAI = new MiniMaxAlphaBetaAI(game, 5);
+        MiniMaxAlphaBetaAI.has4=true;
 
-
+        turnCounter=1;
         GridPane board = new GridPane();
 
 
@@ -112,16 +115,16 @@ public class PlayAI extends Application {
                         turnCounter++;
 
                         if (turnCounter == 3) {
+                            System.out.println(turnCounter);
+
                             showTurn.setText(turnColor(turn) + "'s turn");
                             turn = Board.turnSwitch(turn);
 
-                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
                             MiniMaxAlphaBetaAI.AIMakeMove(turn);
                             turnCounter++;
 
-
-
                             MiniMaxAlphaBetaAI.AIMakeMove(turn);
+                            game.toString();
                             turn = Board.turnSwitch(turn);
                             game.legalSpots(turn);
                         }
