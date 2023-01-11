@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Server {
-    public static void main(String[] args) throws IOException {
+    public static void serverStart() throws IOException {
         // Create a server socket that listens on port 8080
         ServerSocket serverSocket = new ServerSocket(8080);
 
@@ -20,7 +20,7 @@ public class Server {
     class ClientHandler extends Thread {
         private Socket socket;
         public String hostip;
-        public int turnCounter = 1;
+        public static int turnCounter = 1;
 
         public ClientHandler(Socket socket) {
             this.socket = socket;
@@ -82,5 +82,8 @@ public class Server {
 
 
             }
+        }
+        public static void stopServer(){
+            turnCounter = 4;
         }
     }

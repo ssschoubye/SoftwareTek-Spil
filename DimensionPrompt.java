@@ -382,6 +382,25 @@ public class DimensionPrompt {
         }
     }
 
+    @FXML
+    private Button playOnline;
+
+    @FXML
+    private void playOnlineAction() throws IOException {
+        Stage stage = (Stage) playOnline.getScene().getWindow();
+        stage.close();
+        HostPrompt game = new HostPrompt();
+        if (dim.x == 0 || dim.y == 0){
+            int newx = 8;
+            int newy = 8;
+            System.out.println(newx);
+            game.runHostPrompt(newx, newy);
+        }else if(dim.x > 0 || dim.y > 0){
+            System.out.println(dim.x + " " + dim.y);
+            game.runHostPrompt(dim.x, dim.y);
+        }
+    }
+
 
 
 }
