@@ -27,10 +27,6 @@ public class BoardTestMain {
 
         Board game = new Board(8,8);
 
-        RndBot rndBot1 = new RndBot(game);
-
-        RndBot rndBot2 = new RndBot(game);
-
 
         game.initialize();
         //Game starts with 1 (White) having the first turn
@@ -50,13 +46,10 @@ public class BoardTestMain {
 
             }
             System.out.println();
-            game.toString();
 
             System.out.println("\n" + turn + "'s turn to place a piece");
 
-            RndBot.rndBotMakeMove(turn);
 
-            /*
             Scanner coord = new Scanner(System.in);
 
             int x = 0;
@@ -71,7 +64,7 @@ public class BoardTestMain {
 
             } while (!game.placePiece(x, y, turn));
 
-             */
+
 
             System.out.println("\n____________________________________");
 

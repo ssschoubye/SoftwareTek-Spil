@@ -1,6 +1,3 @@
-import java.util.Random;
-import java.util.Scanner;
-
 public class Board {
 
 
@@ -124,7 +121,7 @@ public class Board {
         return score;
     }
 
-    public static int weigthedScore(Board board, int playerTurn) {
+    public static int weigthedScore(Board board) {
         int score = 0;
 
 
@@ -133,17 +130,17 @@ public class Board {
                 for (int y = 0; y < board.y_axis; y++) {
 
                     // Add points for each piece on the board +1
-                    if (board.map[x][y] == playerTurn) {
+                    if (board.map[x][y] == 1) {
                         score++;
-                    }else if(board.map[x][y] == turnSwitch(playerTurn)){
+                    }else if(board.map[x][y] == 2){
                         score--;
                     }
 
                     // Check if the current square is a corner +1000
                     if ((x == 0 || x == board.x_axis - 1) && (y == 0 || y == board.y_axis - 1)) {
-                        if (board.map[x][y] == playerTurn) {
+                        if (board.map[x][y] == 1) {
                             score += 1000;
-                        }else if(board.map[x][y] == turnSwitch(playerTurn)){
+                        }else if(board.map[x][y] == 2){
                             score -= 1000;
                     }
                     }
@@ -151,9 +148,9 @@ public class Board {
                     // Check if the current square is adjacent to a corner -10
                     if ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
                             (x == 1 || x == board.x_axis - 2 || y == 1 || y == board.y_axis - 2)) {
-                        if (board.map[x][y] == playerTurn) {
+                        if (board.map[x][y] == 1) {
                             score -= 10;
-                        }else if(board.map[x][y] == turnSwitch(playerTurn)){
+                        }else if(board.map[x][y] == 2){
                             score += 10;
                         }
                     }
@@ -162,15 +159,15 @@ public class Board {
                     if ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
                             ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
                                     (x == 1 || x == board.x_axis - 2 || y == 1 || y == board.y_axis - 2))) {
-                        if (board.map[x][y] == playerTurn) {
+                        if (board.map[x][y] == 1) {
                             score += 10;
-                        }else if(board.map[x][y] == turnSwitch(playerTurn)){
+                        }else if(board.map[x][y] == 2){
                             score -= 10;
                         }
                     }
                 }
             }
-        return score;
+            return score;
     }
 
 
