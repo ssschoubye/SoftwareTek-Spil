@@ -9,6 +9,8 @@ public class Board {
 
     int[][] map;
 
+    static int gamemode;
+
 
     public Board(int x_axis, int y_axis) {
         this.y_axis = y_axis;

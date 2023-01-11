@@ -17,6 +17,8 @@ import java.io.IOException;
 public class WinPage {
 
 
+
+
     private int[] dim;
 
     public void winStart(Board game) throws IOException {
@@ -68,22 +70,6 @@ public class WinPage {
         primaryStage.show();
 
     }
-    @FXML
-    public void draw(Stage primaryStage, int[] dim) throws IOException {
-        int[] dim1 = dim;
-        Parent root = FXMLLoader.load(getClass().getResource("Draw.fxml"));
-
-        Scene scene = new Scene(root);
-        String appIcon = "Images/reversiIcon.png";
-        Image icon = new Image(appIcon);
-        primaryStage.getIcons().add(icon);
-        primaryStage.setTitle("Reversi");
-        restart = (Button) scene.lookup("#restart");
-        restart.setUserData(dim1);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
 
     @FXML
     Label label1;
@@ -110,8 +96,17 @@ public class WinPage {
         Stage stage = (Stage) restart.getScene().getWindow();
         stage.close();
 
-        PlayAlone playAlone = new PlayAlone();
-        playAlone.gameStart(dim[0], dim[1]);
+        if (DimensionPrompt.gamemode==1){
+            PlayAlone playAlone = new PlayAlone();
+            playAlone.gameStart(dim[0], dim[1]);
+        }else if (DimensionPrompt.gamemode==2){
+            PlayAI playAI = new PlayAI();
+            playAI.gameStart(dim[0], dim[1]);
+        }
+
+
+
+
     }
 
 

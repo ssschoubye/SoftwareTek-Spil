@@ -22,6 +22,8 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 
@@ -114,9 +116,10 @@ public class PlayAI extends Application {
                             turn = Board.turnSwitch(turn);
 
                             updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
                             MiniMaxAlphaBetaAI.AIMakeMove(turn);
                             turnCounter++;
+
+
 
                             MiniMaxAlphaBetaAI.AIMakeMove(turn);
                             turn = Board.turnSwitch(turn);

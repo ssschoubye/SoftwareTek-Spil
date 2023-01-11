@@ -33,6 +33,8 @@ public class DimensionPrompt {
     public String black;
     public String back1;
     public String back2;
+    public static int gamemode=0;
+    //public int gamemode2;
 
     private static int size=8;
     public DimensionPrompt(){
@@ -42,6 +44,7 @@ public class DimensionPrompt {
         black = blackImage;
         back1 = backImage1;
         back2 = backImage2;
+        //gamemode = gamemode2;
 
     }
     static DimensionPrompt dim = new DimensionPrompt();
@@ -66,7 +69,7 @@ public class DimensionPrompt {
         dim.black = blackImage;
         dim.back1 = backImage1;
         dim.back2 = backImage2;
-        System.out.println(dim);
+
 
     }
 
@@ -323,6 +326,7 @@ public class DimensionPrompt {
 
     @FXML
     private void playAloneAction(){
+        gamemode = 1;
         Stage stage = (Stage) playAlone.getScene().getWindow();
         stage.close();
         PlayAlone game = new PlayAlone();
@@ -336,12 +340,34 @@ public class DimensionPrompt {
             game.gameStart(dim.x, dim.y);
         }
     }
+    @FXML
+    private Button playOnline;
+    /*
+    @FXML
+    private void playOnlineAction(){
+        gamemode = 3;
+        Stage stage = (Stage) playOnline.getScene().getWindow();
+        stage.close();
+        HostPrompt game = new HostPrompt();
+        if (dim.x == 0 || dim.y == 0){
+            int newx = 8;
+            int newy = 8;
+            System.out.println(newx);
+            game.runHostPrompt(newx, newy);
+        }else if(dim.x > 0 || dim.y > 0){
+            System.out.println(dim.x + " " + dim.y);
+            game.runHostPrompt(dim.x, dim.y);
+        }
+    }*/
+
+
 
     @FXML
     private Button playAI;
 
     @FXML
     private void playAIAction(){
+        gamemode=2;
         Stage stage = (Stage) playAI.getScene().getWindow();
         stage.close();
         PlayAI game = new PlayAI();
