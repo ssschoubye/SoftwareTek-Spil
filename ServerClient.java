@@ -7,10 +7,9 @@ import java.util.Scanner;
 
 
 public class ServerClient {
-        public static void runServerClient(String host) throws IOException, ClassNotFoundException {
+        public static void runServerClient(String host, int dim) throws IOException, ClassNotFoundException {
             InetAddress localHost = InetAddress.getLocalHost();
             String client = localHost.getHostAddress();
-
             Socket socket = new Socket(host, 8080);
             // Get the input and output streams
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
