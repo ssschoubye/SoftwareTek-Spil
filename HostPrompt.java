@@ -30,7 +30,7 @@ public class HostPrompt {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
-        Server.serverStart();
+
     }
 
 
@@ -53,6 +53,8 @@ public class HostPrompt {
     @FXML
     private void setIP(String hostip){IPhost.setText(hostip);}
 
+    @FXML
+    private void startHost() throws IOException {Server.serverStart();}
     
 
 }
