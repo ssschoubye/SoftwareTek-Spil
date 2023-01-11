@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -7,7 +8,7 @@ public class Board {
     public int x_axis;
     public int y_axis;
 
-    int[][] map;
+    public int[][] map;
 
 
     public Board(int x_axis, int y_axis) {
@@ -21,6 +22,7 @@ public class Board {
         this.x_axis = size;
         map = new int[size][size];
     }
+
 
     public void initialize() {
         map[x_axis / 2 - 1][y_axis / 2 - 1] = 4;
@@ -166,6 +168,7 @@ public class Board {
             return 0;
         }
     }
+
     public void flipCapturedPieces(int x, int y, int dx, int dy, int playerTurn) {
         // Check if there are any captured pieces in the specified direction
         boolean flipDirection = false;
@@ -191,17 +194,18 @@ public class Board {
         }
     }
 
-    public int startingPlayer(int gameNumber,int firstStartingPlayer){
+    public int startingPlayer(int gameNumber, int firstStartingPlayer) {
 
-        if(gameNumber == 1){
-            return (int)(Math.random() * 2) + 1;
-        } else if(gameNumber > 1){
-            if(gameNumber % 2 == 0){
+        if (gameNumber == 1) {
+            return (int) (Math.random() * 2) + 1;
+        } else if (gameNumber > 1) {
+            if (gameNumber % 2 == 0) {
                 return turnSwitch(firstStartingPlayer);
-            }else if(gameNumber % 2 == 1){
+            } else if (gameNumber % 2 == 1) {
                 return firstStartingPlayer;
             }
-        } return 0;
+        }
+        return 0;
     }
 
     /*
@@ -241,12 +245,23 @@ public class Board {
     }
 
      */
-    public int[] getDim(){
-        int[] dim ={x_axis,y_axis};
-                return dim;
+    public int[] getDim() {
+        int[] dim = {x_axis, y_axis};
+        return dim;
 
     }
+
+    public String boardtransfer() {
+        String boardstring = "";
+        for (int i = 0; i < y_axis; i++) {
+            for (int j = 0; j < x_axis; j++) {
+                boardstring += (map[j][i]);
+            }
+        }
+        return boardstring;
+    }
 }
+
 
 
 

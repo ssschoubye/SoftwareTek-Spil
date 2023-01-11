@@ -34,7 +34,7 @@ public class DimensionPrompt {
     public String back1;
     public String back2;
 
-    private static int size=8;
+    public static int size=8;
     public DimensionPrompt(){
         x= 0;
         y = 0;
@@ -335,6 +335,14 @@ public class DimensionPrompt {
             System.out.println(dim.x + " " + dim.y);
             game.gameStart(dim.x, dim.y);
         }
+    }
+
+    public String getWhite() {
+        return whiteImage;
+    }
+
+    public String getBlack() {
+        return blackImage;
     }
 
 }

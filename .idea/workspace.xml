@@ -5,7 +5,101 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
+      <change beforePath="$PROJECT_DIR$/.idea/SoftwareTek-Spil.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SoftwareTek-Spil.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/buffer-util.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/buffer-util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/event-target.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/event-target.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/extension.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/extension.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/limiter.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/limiter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/permessage-deflate.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/permessage-deflate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/receiver.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/receiver.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/sender.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/sender.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/stream.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/stream.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/subprotocol.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/subprotocol.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/websocket-server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/websocket-server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/websocket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoardTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/BoardTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimensionPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimensionPrompt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Draw.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Draw.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServerClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Visualizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WinPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WinPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Winpage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Winpage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/defaultStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/defaultStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dimension.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/dimension.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/game.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/menuvis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/menuvis.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/SoftwareTek-Spil.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/SoftwareTek-Spil.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/buffer-util.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/buffer-util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/event-target.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/event-target.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/extension.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/extension.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/limiter.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/limiter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/permessage-deflate.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/permessage-deflate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/receiver.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/receiver.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/sender.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/sender.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/stream.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/stream.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/subprotocol.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/subprotocol.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/websocket-server.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/websocket-server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/websocket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Draw.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Draw.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/blue1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/blue2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/blueChoice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/brown1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/brown2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/brownChoice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/bubblegum1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/bubblegum2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/bubblegumChoice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/glass1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/glass2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/glassChoice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/green1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/green2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/greenChoice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/wood1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/wood2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/Background/woodChoice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/G13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/backgroundSkins/chess1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/backgroundSkins/chess2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/markerDark.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/reversiGraphic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/reversiIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Winpage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Winpage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/boardButtons.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/defaultStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/defaultStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/dimension.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/dimension.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/game.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/menuvis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/menuvis.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/restartButton.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,6 +209,7 @@
       <workItem from="1673299298146" duration="803000" />
       <workItem from="1673300649360" duration="3061000" />
       <workItem from="1673303784630" duration="78000" />
+      <workItem from="1673399880909" duration="31105000" />
     </task>
     <servers />
   </component>
