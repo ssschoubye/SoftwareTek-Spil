@@ -43,12 +43,15 @@ public class Server {
                                 break;
                             }else{
                                 Board board = new Board();
-                                int[][] initialmap = board.getArray();
+                                //int[][] initialmap = board.getArray();
+                                int[][] initialmap = {{1, 2, 3, 4},{1, 2, 3, 4}};
                                 ObjectOutputStream objectOut = new ObjectOutputStream(socket.getOutputStream());
                                 System.out.println(initialmap);
                                 objectOut.writeObject(initialmap);
                                 out.println(hostip);
                                 turnCounter = 3;
+                                objectOut.flush();
+                                socket.close();
                                 break;
                             }
                             //System.out.println(hostip);
