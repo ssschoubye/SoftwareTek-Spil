@@ -204,43 +204,6 @@ public class Board {
         } return 0;
     }
 
-    /*
-   public void manualFlip(int playerTurn) {
-        toString();
-        // Create a scanner to read input from the command line
-        Scanner scanner = new Scanner(System.in);
-        // Continue prompting the player for coordinates until all captured pieces have been flipped
-        while (true) {
-            // Prompt the player for the coordinates of a captured piece
-
-            System.out.print("Player " + playerTurn + ", enter the first coordinate of a captured piece to flip it: ");
-            int x = scanner.nextInt();
-            System.out.print("Player " + playerTurn + ", enter the second coordinate of a captured piece to flip it: ");
-            int y = scanner.nextInt();
-            // Flip the piece if it is a captured piece
-            if (map[x][y] == 4) {
-                map[x][y] = playerTurn;
-            } else {
-                System.out.println("Not a captured piece. Try again.");
-            }
-            // Check if there are any more captured pieces on the board
-            boolean moreCapturedPieces = false;
-            for (int i = 0; i < x_axis; i++) {
-                for (int j = 0; j < y_axis; j++) {
-                    if (map[i][j] == 4) {
-                        moreCapturedPieces = true;
-                        break;
-                    }
-                }
-            }
-            if (!moreCapturedPieces) {
-                // If there are no more captured pieces, exit the loop
-                break;
-            }
-        }
-    }
-
-     */
     public int[] getDim(){
         int[] dim ={x_axis,y_axis};
                 return dim;

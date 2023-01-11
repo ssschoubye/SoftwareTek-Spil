@@ -17,6 +17,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 
 public class PlayAlone extends Application {
@@ -119,16 +120,24 @@ public class PlayAlone extends Application {
                             if (!game.legalSpots(turn)) {
                                 if (!game.legalSpots(Board.turnSwitch(turn))) {
                                     System.out.println("No more possible moves \n    game over");
+
+                                    updateGridpane(game, board, whiteImage, blackImage, markerImage);
+
+
+
                                     //Save value for ending game
                                     WinPage win = new WinPage();
                                     turnCounter = 1;
                                     gameNumber++;
+
                                     try {
                                         primaryStage.close();
                                         win.winStart(game);
                                     } catch (IOException e) {
                                         throw new RuntimeException(e);
                                     }
+
+
 
                                 } else {
 
