@@ -319,11 +319,11 @@ public class DimensionPrompt {
     //////////////////////////////////////////////////////////////
 
     @FXML
-    private Button button1;
+    private Button playAlone;
 
     @FXML
-    private void closeApp(){
-        Stage stage = (Stage) button1.getScene().getWindow();
+    private void playAloneAction(){
+        Stage stage = (Stage) playAlone.getScene().getWindow();
         stage.close();
         PlayAlone game = new PlayAlone();
         if (dim.x == 0 || dim.y == 0){
@@ -336,5 +336,26 @@ public class DimensionPrompt {
             game.gameStart(dim.x, dim.y);
         }
     }
+
+    @FXML
+    private Button playAI;
+
+    @FXML
+    private void playAIAction(){
+        Stage stage = (Stage) playAI.getScene().getWindow();
+        stage.close();
+        PlayAI game = new PlayAI();
+        if (dim.x == 0 || dim.y == 0){
+            int newx = 8;
+            int newy = 8;
+            System.out.println(newx);
+            game.gameStart(newx, newy);
+        }else if(dim.x > 0 || dim.y > 0){
+            System.out.println(dim.x + " " + dim.y);
+            game.gameStart(dim.x, dim.y);
+        }
+    }
+
+
 
 }

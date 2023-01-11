@@ -4,7 +4,9 @@ import javafx.beans.binding.Bindings;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -13,6 +15,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.scene.media.AudioClip;
+import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -21,7 +25,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 
-public class PlayAlone extends Application {
+public class PlayAI extends Application {
 
     static int width;
     static int height;
@@ -38,9 +42,7 @@ public class PlayAlone extends Application {
     String backImage1;
     String backImage2;
     String placeSoundFile = "Sounds/placeSound1.mp3";
-
     String appIcon = "Images/reversiIcon.png";
-
 
     static Scene scene;
 
@@ -66,11 +68,11 @@ public class PlayAlone extends Application {
         start(stage);
     }
 
+
     @Override
     public void start(Stage primaryStage) {
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label)scene.lookup("#showTurn");
-
         Board game = new Board(width, height);
         game.initialize();
         turn = game.startingPlayer(gameNumber, firstStartingPlayer);
@@ -82,6 +84,8 @@ public class PlayAlone extends Application {
 
         Label blackScore = (Label)scene.lookup("#blackScore");
         blackScore.setText("x"+game.getScore()[1]);
+
+        MiniMaxAlphaBetaAI klogAI = new MiniMaxAlphaBetaAI(game, 5);
 
 
         GridPane board = new GridPane();
@@ -97,23 +101,29 @@ public class PlayAlone extends Application {
                 final int ii = i;
                 final int jj = j;
 
-                updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                updateGridpane( game, board, whiteImage, blackImage, markerImage);
 
 
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii, jj, turn)) {
                         placeSound.play();
-
                         turnCounter++;
 
                         if (turnCounter == 3) {
-                            turn = Board.turnSwitch(turn);
                             showTurn.setText(turnColor(turn) + "'s turn");
-                        }
+                            turn = Board.turnSwitch(turn);
 
+                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
+
+                            MiniMaxAlphaBetaAI.AIMakeMove(turn);
+                            turnCounter++;
+
+                            MiniMaxAlphaBetaAI.AIMakeMove(turn);
+                            turn = Board.turnSwitch(turn);
+                            game.legalSpots(turn);
+                        }
                         if (turnCounter > 4) {
                             turn = Board.turnSwitch(turn);
-                            showTurn.setText(turnColor(turn) + "'s turn");
 
 
                             if (!game.legalSpots(turn)) {
@@ -135,18 +145,56 @@ public class PlayAlone extends Application {
                                         }
                                     });
 
-
                                 } else {
-
                                     System.out.println("\n" + turn + " has no possible moves");
                                     turn = Board.turnSwitch(turn);
                                     showTurn.setText(turnColor(turn) + "'s turn");
-                                    //no move possible for current player
+                                    game.legalSpots(turn);
+
+
                                 }
 
-                            }
-                        }
+                            } else {
 
+                                while (true) {
+                                    //updateGridpane(game, board, whiteImage, blackImage, markerImage);
+
+                                    MiniMaxAlphaBetaAI.AIMakeMove(turn);
+                                    //updateGridpane(game, board, whiteImage, blackImage, markerImage);
+
+
+
+                                    if (!game.legalSpots(Board.turnSwitch(turn))) {
+                                        if (!game.legalSpots(turn)) {
+                                            System.out.println("No more possible moves \n    game over");
+
+                                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
+
+                                            delay(500,() ->{
+                                                WinPage win = new WinPage();
+                                                turnCounter = 1;
+                                                gameNumber++;
+
+                                                try {
+                                                    primaryStage.close();
+                                                    win.winStart(game);
+                                                } catch (IOException e) {
+                                                    throw new RuntimeException(e);
+                                                }
+                                            });
+                                        } else continue;
+                                    }
+                                    turn = Board.turnSwitch(turn);
+
+                                    break;
+
+                                }
+
+
+                            }
+
+                        }
+                        showTurn.setText(turnColor(turn) + "'s turn");
                         whiteScore.setText("x"+game.getScore()[0]);
                         blackScore.setText("x"+game.getScore()[1]);
                         updateGridpane(game, board, whiteImage, blackImage, markerImage);
@@ -161,7 +209,6 @@ public class PlayAlone extends Application {
 
             }
             board.setAlignment(Pos.CENTER);
-
         }
 
         Image icon = new Image(appIcon);
@@ -188,9 +235,6 @@ public class PlayAlone extends Application {
         sleeper.setOnSucceeded(event -> continuation.run());
         new Thread(sleeper).start();
     }
-
-
-
 
 
     private void updateGridpane(Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
@@ -264,15 +308,13 @@ public class PlayAlone extends Application {
         gamePane.getChildren().add(board);
     }
 
-    public String turnColor(int turn) {
+    public static String turnColor(int turn) {
         if (turn == 1) {
             return "White";
         } else if (turn == 2) {
             return "Black";
         } else return null;
     }
-
-
     //////////////////////////////////////////////////////////////
     ///                    Title bar layout                    ///
     //////////////////////////////////////////////////////////////

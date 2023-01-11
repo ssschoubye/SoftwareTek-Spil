@@ -68,12 +68,12 @@
             </HBox>
             <HBox layoutY="342.0" prefHeight="117.0" prefWidth="400.0" spacing="30.0">
                <children>
-                  <Button fx:id="button1" mnemonicParsing="false" onAction="#closeApp" prefHeight="116.0" prefWidth="93.0" styleClass="orangeButton" text="Play&#10;Alone" textAlignment="CENTER">
+                  <Button fx:id="playAlone" mnemonicParsing="false" onAction="#playAloneAction" prefHeight="116.0" prefWidth="93.0" styleClass="orangeButton" text="Play&#10;Alone" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="107.0" prefWidth="96.0" styleClass="orangeButton" text="Play bot&#10;(Only 8x8)" textAlignment="CENTER">
+                  <Button fx:id="playAI" mnemonicParsing="false" onAction="#playAIAction" prefHeight="107.0" prefWidth="96.0" styleClass="orangeButton" text="Play AI&#10;" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

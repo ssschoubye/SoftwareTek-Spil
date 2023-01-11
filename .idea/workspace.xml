@@ -5,10 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
+      <change afterPath="$PROJECT_DIR$/MiniMaxAlphaBetaAI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PlayAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimensionPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimensionPrompt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlayAlone.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayAlone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/BoardTestMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/BoardTestMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dimension.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/dimension.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/dimension.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/dimension.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +29,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -126,6 +134,8 @@
       <workItem from="1673387379933" duration="1491000" />
       <workItem from="1673433456558" duration="8268000" />
       <workItem from="1673449767694" duration="1909000" />
+      <workItem from="1673452464851" duration="9000" />
+      <workItem from="1673452558384" duration="5147000" />
     </task>
     <servers />
   </component>

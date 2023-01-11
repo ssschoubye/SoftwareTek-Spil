@@ -157,14 +157,7 @@ public class Board {
     }
 
     public static int turnSwitch(int currentTurn) {
-        if (currentTurn == 1) {
-            return 2;
-        } else if (currentTurn == 2) {
-            return 1;
-        } else {
-            System.out.println("Wrong current turn");
-            return 0;
-        }
+        return currentTurn%2+1;
     }
     public void flipCapturedPieces(int x, int y, int dx, int dy, int playerTurn) {
         // Check if there are any captured pieces in the specified direction
@@ -209,6 +202,73 @@ public class Board {
                 return dim;
 
     }
+
+    public Board copy() {
+        Board copy = new Board(x_axis, y_axis);
+        for (int x = 0; x < x_axis; x++) {
+            for (int y = 0; y < y_axis; y++) {
+                copy.map[x][y] = map[x][y];
+            }
+        }
+        return copy;
+    }
+
+
+
+    public static int weigthedScore(Board board) {
+        int score = 0;
+
+
+        //Runs through all squares on the playing board
+        for (int x = 0; x < board.x_axis; x++) {
+            for (int y = 0; y < board.y_axis; y++) {
+
+                // Add points for each piece on the board +1
+                if (board.map[x][y] == 1) {
+                    score++;
+                }else if(board.map[x][y] == 2){
+                    score--;
+                }
+
+                // Check if the current square is a corner +1000
+                if ((x == 0 || x == board.x_axis - 1) && (y == 0 || y == board.y_axis - 1)) {
+                    if (board.map[x][y] == 1) {
+                        score += 1000;
+                    }else if(board.map[x][y] == 2){
+                        score -= 1000;
+                    }
+                }
+
+                // Check if the current square is adjacent to a corner -10
+                if ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
+                        (x == 1 || x == board.x_axis - 2 || y == 1 || y == board.y_axis - 2)) {
+                    if (board.map[x][y] == 1) {
+                        score -= 10;
+                    }else if(board.map[x][y] == 2){
+                        score += 10;
+                    }
+                }
+
+                // Check if the current square is on the wall but not adjacent to a corner +10
+                if ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
+                        ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
+                                (x == 1 || x == board.x_axis - 2 || y == 1 || y == board.y_axis - 2))) {
+                    if (board.map[x][y] == 1) {
+                        score += 10;
+                    }else if(board.map[x][y] == 2){
+                        score -= 10;
+                    }
+                }
+            }
+        }
+        return score;
+    }
+
+
+
+
+
+
 }
 
 
