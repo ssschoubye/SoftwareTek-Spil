@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.*;
 import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -50,8 +51,6 @@ public class ServerClient {
              */
             host = "192.168.1.10";
             Socket socket = new Socket(host, 8080);
-
-
             // Get the input and output streams
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
@@ -61,13 +60,13 @@ public class ServerClient {
 
                 ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
                 int[][] inputMap = boardRec.getArray();
-                System.out.println(inputMap);
+                //System.out.println(inputMap);
+                System.out.println(Arrays.deepToString(inputMap));
 
                 // Send a message to the server
                 System.out.println("What is your message?");
                 Scanner scan = new Scanner(System.in);
                 String message = scan.nextLine();
-
                 out.println(message);
 
                 String response = in.readLine();

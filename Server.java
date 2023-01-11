@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Server {
@@ -47,7 +48,7 @@ public class Server {
                                 int[][] initialmap = {{1, 2, 3, 4},{1, 2, 3, 4}};
                                 ArrayReturn arrayReturn = new ArrayReturn(initialmap);
                                 ObjectOutputStream objectOut = new ObjectOutputStream(socket.getOutputStream());
-                                System.out.println(initialmap);
+                                System.out.println(Arrays.deepToString(initialmap));
                                 objectOut.writeObject(arrayReturn);
                                 //out.println(hostip);
                                 turnCounter = 3;
