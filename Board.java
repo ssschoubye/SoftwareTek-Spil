@@ -1,4 +1,5 @@
-import java.awt.*;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Board {
 
@@ -20,6 +21,10 @@ public class Board {
         this.x_axis = size;
         map = new int[size][size];
     }
+    public Board(){
+        //Constructor der bliver benyttet i Server.
+        int[][] map;
+    }
 
     public void initialize() {
         map[x_axis / 2 - 1][y_axis / 2 - 1] = 4;
@@ -28,8 +33,6 @@ public class Board {
         map[x_axis / 2 - 1][y_axis / 2] = 4;
 
     }
-
-
 
     public boolean legalSpots(int playerTurn) {
         boolean anyLegalSpots = false;
@@ -71,7 +74,7 @@ public class Board {
 
 
     public boolean placePiece(int x, int y, int playerTurn) {
-
+        // Place the piece on the board
         if (playerTurn != 1 && playerTurn != 2) {
             System.out.println("Value has to be 1 or 2");
             return false;
@@ -80,41 +83,16 @@ public class Board {
             System.out.println("Not possible placement");
             return false;
         }
-
         map[x][y] = playerTurn;
 
-        //Checking which pieces to flip
+        // Check for captured pieces in each direction and allow the player to manually flip them
         for (int dx = -1; dx <= 1; dx++) {
             for (int dy = -1; dy <= 1; dy++) {
                 if (checkXDxYDy(x, y, playerTurn, dx, dy)) continue;
-                boolean flipDirection = false;
-                int l = 0;
-
-                while (true) {
-                    l++;
-                    if (!isOnBoard(x + dx * l, y + dy * l)) {
-                        break;
-                    }
-                    if (map[x + dx * l][y + dy * l] == playerTurn) {
-                        flipDirection = true;
-                        break;
-                    } else if (map[x + dx * l][y + dy * l] != 3 - playerTurn) {
-                        break;
-                    }
-                }
-                if (flipDirection) {
-                    while (l > 0) {
-                        l--;
-                        map[x + dx * l][y + dy * l] = playerTurn;
-
-                    }
-                }
-
-
+                flipCapturedPieces(x, y, dx, dy, playerTurn);
+                //manualFlip(playerTurn);
             }
         }
-
-
         return true;
     }
 
@@ -183,17 +161,120 @@ public class Board {
     }
 
     public static int turnSwitch(int currentTurn) {
-        if (currentTurn == 1) {
-            return 2;
-        } else if (currentTurn == 2) {
-            return 1;
-        } else {
-            System.out.println("Wrong current turn");
-            return 0;
+        return currentTurn%2+1;
+    }
+    public void flipCapturedPieces(int x, int y, int dx, int dy, int playerTurn) {
+        // Check if there are any captured pieces in the specified direction
+        boolean flipDirection = false;
+        int l = 0;
+        while (true) {
+            l++;
+            if (!isOnBoard(x + dx * l, y + dy * l)) {
+                break;
+            }
+            if (map[x + dx * l][y + dy * l] == playerTurn) {
+                flipDirection = true;
+                break;
+            } else if (map[x + dx * l][y + dy * l] != 3 - playerTurn) {
+                break;
+            }
+        }
+        if (flipDirection) {
+            // Flip the captured pieces
+            while (l > 0) {
+                l--;
+                map[x + dx * l][y + dy * l] = playerTurn;
+            }
         }
     }
 
+    public int startingPlayer(int gameNumber,int firstStartingPlayer){
 
+        if(gameNumber == 1){
+            return (int)(Math.random() * 2) + 1;
+        } else if(gameNumber > 1){
+            if(gameNumber % 2 == 0){
+                return turnSwitch(firstStartingPlayer);
+            }else if(gameNumber % 2 == 1){
+                return firstStartingPlayer;
+            }
+        } return 0;
+    }
+
+    public int[] getDim(){
+        int[] dim ={x_axis,y_axis};
+                return dim;
+
+    }
+
+    public Board copy() {
+        Board copy = new Board(x_axis, y_axis);
+        for (int x = 0; x < x_axis; x++) {
+            for (int y = 0; y < y_axis; y++) {
+                copy.map[x][y] = map[x][y];
+            }
+        }
+        return copy;
+    }
+
+
+
+    public static int weigthedScore(Board board) {
+        int score = 0;
+
+
+        //Runs through all squares on the playing board
+        for (int x = 0; x < board.x_axis; x++) {
+            for (int y = 0; y < board.y_axis; y++) {
+
+                // Add points for each piece on the board +1
+                if (board.map[x][y] == 1) {
+                    score++;
+                }else if(board.map[x][y] == 2){
+                    score--;
+                }
+
+                // Check if the current square is a corner +1000
+                if ((x == 0 || x == board.x_axis - 1) && (y == 0 || y == board.y_axis - 1)) {
+                    if (board.map[x][y] == 1) {
+                        score += 1000;
+                    }else if(board.map[x][y] == 2){
+                        score -= 1000;
+                    }
+                }
+
+                // Check if the current square is adjacent to a corner -10
+                if ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
+                        (x == 1 || x == board.x_axis - 2 || y == 1 || y == board.y_axis - 2)) {
+                    if (board.map[x][y] == 1) {
+                        score -= 10;
+                    }else if(board.map[x][y] == 2){
+                        score += 10;
+                    }
+                }
+
+                // Check if the current square is on the wall but not adjacent to a corner +10
+                if ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
+                        ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
+                                (x == 1 || x == board.x_axis - 2 || y == 1 || y == board.y_axis - 2))) {
+                    if (board.map[x][y] == 1) {
+                        score += 10;
+                    }else if(board.map[x][y] == 2){
+                        score -= 10;
+                    }
+                }
+            }
+        }
+        return score;
+    }
+
+
+
+    public int[][] getArray(){
+        return map;
+    }
 }
+
+
 
 

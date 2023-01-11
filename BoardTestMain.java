@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public class BoardTestMain {
 
@@ -16,18 +15,13 @@ public class BoardTestMain {
     public static void gameRun() {
 
 
-        Scanner size = new Scanner(System.in);
-        System.out.print("Enter the size of the x-axis: ");
-        int xSize = size.nextInt();
-        System.out.print("Enter the size of the y-axis: ");
-        int ySize = size.nextInt();
-
+        int xSize = 8;
+        int ySize = 8;
         Board game = new Board(xSize, ySize);
-
         game.initialize();
+
         //Game starts with 1 (White) having the first turn
         int turn = 2;
-        System.out.println("\n____________________________________");
         while (true) {
             turn = turnSwitch(turn);
 
@@ -46,18 +40,8 @@ public class BoardTestMain {
 
             System.out.println("\n" + turn + "'s turn to place a piece");
 
-            Scanner coord = new Scanner(System.in);
 
-            int x = 0;
-            int y = 0;
 
-            do {
-                System.out.print("Enter the first coordinate: ");
-                x = coord.nextInt();
-                System.out.print("Enter the second coordinate: ");
-                y = coord.nextInt();
-
-            } while (!game.placePiece(x, y, turn));
 
             System.out.println("\n____________________________________");
 

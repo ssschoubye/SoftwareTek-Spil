@@ -1,0 +1,45 @@
+.root {
+    -fx-background-color: #312e2b;
+}
+
+.sidePanel{
+    -fx-background-color: #2c2926;
+}
+
+
+
+.button{
+     -fx-border-color: #272522;
+     -fx-border-width: 0;
+     -fx-background-radius: 0;
+     -fx-background-color: #272522;
+     -fx-text-fill: #ffffff;
+
+ }
+
+.button:hover {
+    -fx-border-color: #22201f;
+    -fx-background-color: #22201f;
+}
+
+.button:pressed {
+    -fx-background-color: transparent;
+}
+.titleBar{
+    -fx-background-color: #272522;
+}
+
+
+
+.orangeButton{
+    -fx-border-color: #e38b1d;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: #e49635;
+    -fx-text-fill: #ffffff;
+
+}
+.orangeButton:hover {
+    -fx-border-color: #22201f;
+    -fx-background-color: #d98515;
+}
