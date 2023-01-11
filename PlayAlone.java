@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -123,19 +124,21 @@ public class PlayAlone extends Application {
 
                                     updateGridpane(game, board, whiteImage, blackImage, markerImage);
 
+                                    delay(500,() ->{
+                                        WinPage win = new WinPage();
+                                        turnCounter = 1;
+                                        gameNumber++;
 
+                                        try {
+                                            primaryStage.close();
+                                            win.winStart(game);
+                                        } catch (IOException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                    });
 
                                     //Save value for ending game
-                                    WinPage win = new WinPage();
-                                    turnCounter = 1;
-                                    gameNumber++;
 
-                                    try {
-                                        primaryStage.close();
-                                        win.winStart(game);
-                                    } catch (IOException e) {
-                                        throw new RuntimeException(e);
-                                    }
 
 
 
@@ -176,6 +179,23 @@ public class PlayAlone extends Application {
 
 
     }
+
+
+    //Borrowed from the internet
+    public static void delay(long millis, Runnable continuation) {
+        Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try { Thread.sleep(millis); }
+                catch (InterruptedException e) { }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(event -> continuation.run());
+        new Thread(sleeper).start();
+    }
+
+
 
 
 
