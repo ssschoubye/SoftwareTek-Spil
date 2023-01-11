@@ -21,7 +21,8 @@ public class Board {
         this.x_axis = size;
         map = new int[size][size];
     }
-    public Board(){
+
+    public Board() {
         //Constructor der bliver benyttet i Server.
         int[][] map;
     }
@@ -161,8 +162,9 @@ public class Board {
     }
 
     public static int turnSwitch(int currentTurn) {
-        return currentTurn%2+1;
+        return currentTurn % 2 + 1;
     }
+
     public void flipCapturedPieces(int x, int y, int dx, int dy, int playerTurn) {
         // Check if there are any captured pieces in the specified direction
         boolean flipDirection = false;
@@ -188,22 +190,23 @@ public class Board {
         }
     }
 
-    public int startingPlayer(int gameNumber,int firstStartingPlayer){
+    public int startingPlayer(int gameNumber, int firstStartingPlayer) {
 
-        if(gameNumber == 1){
-            return (int)(Math.random() * 2) + 1;
-        } else if(gameNumber > 1){
-            if(gameNumber % 2 == 0){
+        if (gameNumber == 1) {
+            return (int) (Math.random() * 2) + 1;
+        } else if (gameNumber > 1) {
+            if (gameNumber % 2 == 0) {
                 return turnSwitch(firstStartingPlayer);
-            }else if(gameNumber % 2 == 1){
+            } else if (gameNumber % 2 == 1) {
                 return firstStartingPlayer;
             }
-        } return 0;
+        }
+        return 0;
     }
 
-    public int[] getDim(){
-        int[] dim ={x_axis,y_axis};
-                return dim;
+    public int[] getDim() {
+        int[] dim = {x_axis, y_axis};
+        return dim;
 
     }
 
@@ -218,7 +221,6 @@ public class Board {
     }
 
 
-
     public static int weigthedScore(Board board) {
         int score = 0;
 
@@ -230,7 +232,7 @@ public class Board {
                 // Add points for each piece on the board +1
                 if (board.map[x][y] == 1) {
                     score++;
-                }else if(board.map[x][y] == 2){
+                } else if (board.map[x][y] == 2) {
                     score--;
                 }
 
@@ -238,7 +240,7 @@ public class Board {
                 if ((x == 0 || x == board.x_axis - 1) && (y == 0 || y == board.y_axis - 1)) {
                     if (board.map[x][y] == 1) {
                         score += 1000;
-                    }else if(board.map[x][y] == 2){
+                    } else if (board.map[x][y] == 2) {
                         score -= 1000;
                     }
                 }
@@ -248,7 +250,7 @@ public class Board {
                         (x == 1 || x == board.x_axis - 2 || y == 1 || y == board.y_axis - 2)) {
                     if (board.map[x][y] == 1) {
                         score -= 10;
-                    }else if(board.map[x][y] == 2){
+                    } else if (board.map[x][y] == 2) {
                         score += 10;
                     }
                 }
@@ -259,7 +261,7 @@ public class Board {
                                 (x == 1 || x == board.x_axis - 2 || y == 1 || y == board.y_axis - 2))) {
                     if (board.map[x][y] == 1) {
                         score += 10;
-                    }else if(board.map[x][y] == 2){
+                    } else if (board.map[x][y] == 2) {
                         score -= 10;
                     }
                 }
@@ -269,12 +271,20 @@ public class Board {
     }
 
 
-
-    public int[][] getArray(){
+    public int[][] getArray() {
         return map;
     }
-}
 
+    public String boardtransfer() {
+        String boardstring = "";
+        for (int i = 0; i < y_axis; i++) {
+            for (int j = 0; j < x_axis; j++) {
+                boardstring += (map[j][i]);
+            }
+        }
+        return boardstring;
+    }
+}
 
 
 
