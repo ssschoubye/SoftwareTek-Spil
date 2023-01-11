@@ -100,8 +100,8 @@ public class WinPage {
         Stage stage = (Stage) restart.getScene().getWindow();
         stage.close();
 
-        Visualizer visualizer = new Visualizer();
-        visualizer.gameStart(dim[0], dim[1]);
+        PlayAI playAI = new PlayAI();
+        playAI.gameStart(dim[0], dim[1]);
     }
 
 }

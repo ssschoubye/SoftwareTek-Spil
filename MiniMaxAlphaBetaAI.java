@@ -62,7 +62,6 @@ public class MiniMaxAlphaBetaAI {
 
         board.placePiece(bestX, bestY, playerTurn);
         //System.out.println(exploredChildren);
-        //Board.tooString(board);
     }
 
 
@@ -85,7 +84,7 @@ public class MiniMaxAlphaBetaAI {
                 alpha = Math.max(alpha, bestScore);
                 if (alpha >= beta) {
                     //System.out.println("Beta cutoff performed");
-                    System.out.println("Alpha is = " + alpha);
+                    //System.out.println("Alpha is = " + alpha);
                     break; //beta cutoff
                 }
             }
@@ -110,7 +109,7 @@ public class MiniMaxAlphaBetaAI {
                 beta = Math.min(beta, bestScore);
                 if (alpha >= beta) {
                     //System.out.println("Alpha cutoff performed");
-                    System.out.println("Beta is = "+beta);
+                    //System.out.println("Beta is = "+beta);
                     break; //alpha cutoff
                 }
             }

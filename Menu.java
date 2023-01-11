@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -7,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 
@@ -43,7 +41,7 @@ private int [] dim;
         stage.close();
         dim = DimensionPrompt.start1();
         setDim(dim);
-        Visualizer game = new Visualizer();
+        PlayAI game = new PlayAI();
         if (dim[0] == 0 || dim[1] == 0){
             dim[0] = 8;
             dim[1] = 8;

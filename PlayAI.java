@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
-public class Visualizer extends Application {
+public class PlayAI extends Application {
 
     static int width;
     static int height;
@@ -54,7 +54,7 @@ public class Visualizer extends Application {
         game.initialize();
         turn = game.startingPlayer(gameNumber,firstStartingPlayer);
         showTurn.setText(turnColor(turn)+" is starting");
-        MiniMaxAlphaBetaAI klogAI = new MiniMaxAlphaBetaAI(game, 6);
+        MiniMaxAlphaBetaAI klogAI = new MiniMaxAlphaBetaAI(game, 5);
 
 
 

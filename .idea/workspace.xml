@@ -4,14 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Clever AI version 4">
+    <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BoardTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/BoardTestMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeepAI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MiniMaxAlphaBetaAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/MiniMaxAlphaBetaAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WinPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WinPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/BoardTestMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/BoardTestMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DeepAI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Menu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/MiniMaxAlphaBetaAI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/MiniMaxAlphaBetaAI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Visualizer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/WinPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/WinPage.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="NewEmil" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,6 +61,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
     "last_opened_file_path": "C:/Users/fsvan/OneDrive/Dokumenter/GitHub/SoftwareTek-Spil/out/production/SoftwareTek-Spil/Images",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -77,7 +85,7 @@
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Menu">
+  <component name="RunManager" selected="Application.BoardTestMain">
     <configuration name="BoardTestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="BoardTestMain" />
       <module name="SoftwareTek-Spil" />

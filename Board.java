@@ -1,6 +1,7 @@
 public class Board {
 
 
+
     public int x_axis;
     public int y_axis;
 
@@ -33,6 +34,9 @@ public class Board {
             for (int y = 0; y < y_axis; y++) {
                 if (map[x][y] == 3) {
                     map[x][y] = 0;
+                }
+                if(map[x][y]== 4){
+                    anyLegalSpots= true;
                 }
                 if (map[x][y] != 0) continue;
                 for (int dx = -1; dx <= 1; dx++) {
@@ -123,79 +127,238 @@ public class Board {
 
     public static int weigthedScore(Board board) {
         int score = 0;
+        int whiteCorners = 1;
+        int blackCorners = 1;
+        int whiteMobility = 1;
+        int blackMobility = 1;
+        int whiteStability = 1;
+        int blackStability = 1;
+        int[][] staticWeights;
+        int[] dx = {1,1,0,-1,-1,-1,0,1};
+        int[] dy = {0,1,1,1,0,-1,-1,-1};
 
+
+        if(board.x_axis==4){
+            staticWeights = new int[][]{{4, -3, -3, 4},
+                    {-3, 1, 1, -3},
+                    {-3, 1, 1, -3},
+                    {4, -3, -3, 4}};
+        }
+
+        if(board.x_axis==8){
+            staticWeights = getInts();
+        }
+        if(board.x_axis==12){
+            staticWeights = new int[][]{{4,-3,2,2,2,2,2,2,2,2,-3,4},
+                                    {-3,-4,-1,-1,-1,-1,-1,-1,-1,-1,-4,-3},
+                                    {2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},
+                                    {2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},
+                                    {2,-1,-1,-1,1,0,0,1,-1,-1,-1,2},
+                                    {2,-1,-1,-1,0,1,1,0,-1,-1,-1,2},
+                                    {2,-1,-1,-1,0,1,1,0,-1,-1,-1,2},
+                                    {2,-1,-1,-1,1,0,0,1,-1,-1,-1,2},
+                                    {2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},
+                                    {2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,2},
+                                    {-3,-4,-1,-1,-1,-1,-1,-1,-1,-1,-4,-3},
+                                    {4,-3,2,2,2,2,2,2,2,2,-3,4}};
+        }else{
+            staticWeights = getInts();
+        }
 
             //Runs through all squares on the playing board
             for (int x = 0; x < board.x_axis; x++) {
                 for (int y = 0; y < board.y_axis; y++) {
 
-                    // Add points for each piece on the board +1
-                    if (board.map[x][y] == 1) {
-                        score++;
-                    }else if(board.map[x][y] == 2){
-                        score--;
-                    }
 
-                    // Check if the current square is a corner +1000
+
+                    // Check if the current square is a corner
                     if ((x == 0 || x == board.x_axis - 1) && (y == 0 || y == board.y_axis - 1)) {
                         if (board.map[x][y] == 1) {
-                            score += 1000;
+                            whiteCorners += 30;
                         }else if(board.map[x][y] == 2){
-                            score -= 1000;
+                            blackCorners += 30;
                     }
                     }
 
-                    // Check if the current square is adjacent to a corner -10
-                    if ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
-                            (x == 1 || x == board.x_axis - 2 || y == 1 || y == board.y_axis - 2)) {
-                        if (board.map[x][y] == 1) {
-                            score -= 10;
-                        }else if(board.map[x][y] == 2){
-                            score += 10;
+                    // Check if the placed piece is stable, and if it grants the opponent additional possible moves
+                    for (int i = 0; i < dx.length; i++) {
+                        int xx = x + dx[i];
+                        int yy = y + dy[i];
+                        if (xx >= 0 && xx < dx.length && yy >= 0 && yy < dy.length && board.map[xx][yy] == 0) {
+                            if (board.map[x][y] == 1) {
+                                blackMobility += 5; //blackMobility+
+                            }if (isStable(board, x, y, 1)) {
+                                whiteStability += 25;
+                            }
+
+                            else if (board.map[x][y] == 2) {
+                                whiteMobility += 5; //whiteMobility+
+                            } if (isStable(board, x, y, 2)) {
+                                blackStability += 25;
+                            }
                         }
                     }
 
-                    // Check if the current square is on the wall but not adjacent to a corner +10
-                    if ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
-                            ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
-                                    (x == 1 || x == board.x_axis - 2 || y == 1 || y == board.y_axis - 2))) {
-                        if (board.map[x][y] == 1) {
-                            score += 10;
-                        }else if(board.map[x][y] == 2){
-                            score -= 10;
-                        }
+                    // Add points for each piece on the board
+                    if (board.map[x][y] == 1) {
+                        score += 25*staticWeights[x][y]*whiteCorners*whiteMobility*whiteStability;
+                    }else if(board.map[x][y] == 2){
+                        score -= 25*staticWeights[x][y]*blackCorners*blackMobility*blackStability;
                     }
                 }
             }
             return score;
     }
 
+    private static int[][] getInts() {
+        int[][] staticWeights;
+        staticWeights = new int[][]{{4,-3,2,2,2,2,-3,4},
+                {-3,-4,-1,-1,-1,-1,-4,-3},
+                {2,-1,1,0,0,1,-1,2},
+                {2,-1,0,1,1,0,-1,2},
+                {2,-1,0,1,1,0,-1,2},
+                {2,-1,1,0,0,1,-1,2},
+                {-3,-4,-1,-1,-1,-1,-4,-3},
+                {4,-3,2,2,2,2,-3,4}};
+        return staticWeights;
+    }
+
+    private static boolean isStable(Board board, int x, int y,int piece) {
+
+        int end1 = 10;
+        int end2 = 10;
+
+        int dx = 0;
+        int dy = 0;
+
+        int l = 1;
+
+        //Direction 1
+        dx = -1;
+        dy = -1;
+        while(board.isOnBoard(x+l*dx,y+l*dy) && board.map[x+l*dx][y+l*dy] == piece){
+
+            l++;
+        } if(board.isOnBoard(x+l*dx,y+l*dy)){
+            end1=board.map[x+l*dx][y+l*dy];
+
+            dx = 1;
+            dy = 1;
+            l=1;
+            while(board.isOnBoard(x+l*dx,y+l*dy) && board.map[x+l*dx][y+l*dy] == piece){
+                l++;
+            }  if(board.isOnBoard(x+l*dx,y+l*dy)) {
+                end2 = board.map[x + l * dx][y + l * dy];
+            } if (end2 != 10 && end1 != end2){
+                return false;
+            }
+        }
+
+
+        //Direction 2
+        l=1;
+        end1=10;
+        end2=10;
+        dx = 0;
+        dy = -1;
+        while(board.isOnBoard(x+l*dx,y+l*dy) && board.map[x+l*dx][y+l*dy] == piece){
+
+            l++;
+        } if(board.isOnBoard(x+l*dx,y+l*dy)){
+            end1=board.map[x+l*dx][y+l*dy];
+
+            dx = 0;
+            dy = 1;
+            l=1;
+            while(board.isOnBoard(x+l*dx,y+l*dy) && board.map[x+l*dx][y+l*dy] == piece){
+                l++;
+            }  if(board.isOnBoard(x+l*dx,y+l*dy)) {
+                end2 = board.map[x + l * dx][y + l * dy];
+            } if (end2 != 10 && end1 != end2){
+                return false;
+            }
+        }
+        //Direction 3
+        l=1;
+        end1=10;
+        end2=10;
+        dx = 1;
+        dy = -1;
+        while(board.isOnBoard(x+l*dx,y+l*dy) && board.map[x+l*dx][y+l*dy] == piece){
+
+            l++;
+        } if(board.isOnBoard(x+l*dx,y+l*dy)){
+            end1=board.map[x+l*dx][y+l*dy];
+
+            dx = -1;
+            dy = 1;
+            l=1;
+            while(board.isOnBoard(x+l*dx,y+l*dy) && board.map[x+l*dx][y+l*dy] == piece){
+                l++;
+            }  if(board.isOnBoard(x+l*dx,y+l*dy)) {
+                end2 = board.map[x + l * dx][y + l * dy];
+            } if (end2 != 10 && end1 != end2){
+                return false;
+            }
+        }
+        //Direction 4
+        l=1;
+        end1=10;
+        end2=10;
+        dx = 1;
+        dy = 0;
+        while(board.isOnBoard(x+l*dx,y+l*dy) && board.map[x+l*dx][y+l*dy] == piece){
+
+            l++;
+        } if(board.isOnBoard(x+l*dx,y+l*dy)){
+            end1=board.map[x+l*dx][y+l*dy];
+
+            dx = -1;
+            dy = 0;
+            l=1;
+            while(board.isOnBoard(x+l*dx,y+l*dy) && board.map[x+l*dx][y+l*dy] == piece){
+                l++;
+            }  if(board.isOnBoard(x+l*dx,y+l*dy)) {
+                end2 = board.map[x + l * dx][y + l * dy];
+            } if (end2 != 10 && end1 != end2){
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
 
 //print the whole board using toString (ONLY FOR TESTING)
 
-    public static void tooString(Board board) {
+    @Override
+    public String toString() {
         System.out.print("    ");
-        for (int x = 0; x < board.x_axis; x++) {
+        for (int x = 0; x < x_axis; x++) {
             System.out.print(x + "  ");
         }
         System.out.print("\n   _");
-        for (int x = 0; x < board.x_axis; x++) {
-            System.out.print("___");
+        for (int x = 0; x < x_axis; x++) {
+            System.out.print("_");
         }
         System.out.println();
-        for (int i = 0; i < board.y_axis; i++) {
+        for (int i = 0; i < y_axis; i++) {
             System.out.print(i + " | ");
-            for (int j = 0; j < board.x_axis; j++) {
-                if (board.map[j][i] == 0) {
+            for (int j = 0; j < x_axis; j++) {
+                if (map[j][i] == 0) {
                     System.out.print("-  ");
-                } else if (board.map[j][i] == 3) {
+                } else if (map[j][i] == 3) {
                     System.out.print("*  ");
                 } else {
-                    System.out.print(board.map[j][i] + "  ");
+                    System.out.print(map[j][i] + "  ");
                 }
             }
             System.out.println();
         }
+
+
+        return null;
     }
 
     public static int turnSwitch(int currentTurn) {
