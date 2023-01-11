@@ -44,8 +44,9 @@ public class Server {
                             if (hostip == null) {
                                 break;
                             }else{
-                                //int[][] initialmap = board.getArray();
-                                int[][] initialmap = {{1, 2, 3, 4},{1, 2, 3, 4}};
+                                Board board = new Board();
+                                int[][] initialmap = board.getArray();
+                                //int[][] initialmap = {{1, 2, 3, 4},{1, 2, 3, 4}};
                                 ArrayReturn arrayReturn = new ArrayReturn(initialmap);
                                 ObjectOutputStream objectOut = new ObjectOutputStream(socket.getOutputStream());
                                 System.out.println(Arrays.deepToString(initialmap));
