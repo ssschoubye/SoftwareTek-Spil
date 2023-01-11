@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -16,6 +17,9 @@ import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -303,16 +307,101 @@ public class PlayAlone extends Application {
     @FXML
     Button minimize;
 
-    @FXML
-    private void TestonAction () {
-        System.out.println("pik og patter jeg kommer efter din datter");
 
-    }
     public void OnMinimizeButtonClick() {
         Stage stage = (Stage) minimize.getScene().getWindow();
         stage.setIconified(true);
     }
+    public void gameLoader () {
+        try (BufferedReader lineReader = new BufferedReader(new FileReader("Boardsave.txt"))) {
+            String line = "";
+
+            String player = "";
+            String dimension = "";
+            String white = "";
+            String black = "";
+            String board1 = "";
+            String board2 = "";
+            String gridString = "";
+            int [][] grid = new int[width][width];
 
 
+            int lineCount = 0;
+            while ((line = lineReader.readLine()) != null && lineCount < 7) {
+                if (lineCount == 0) {
+                    player = line;
+                } else if (lineCount == 1) {
+                    dimension = line;
+                } else if (lineCount == 2) {
+                    white = line;
+                } else if (lineCount == 3) {
+                    black = line;
+                } else if (lineCount == 4) {
+                    board1 = line;
+                } else if (lineCount == 5) {
+                    board2 = line;
+
+                } else if (lineCount == 6) {
+
+                    gridString = line;
+
+                } lineCount++;
+            }
+            System.out.println(player);
+            System.out.println(dimension);
+            System.out.println(white);
+            System.out.println(black);
+            System.out.println(board1);
+            System.out.println(board2);
+            for (int i = 0; i < width; i++) {
+                for (int j=0; j<width; j++) {
+                    System.out.print(grid[j][i] + " ");
+                }
+                System.out.println();
+            }
+
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+    }
+    @FXML
+    public void fileSaver (,Board board) {
+        String saveFile = "Boardsave.txt";
+        try {
+
+            FileWriter writer = new FileWriter(saveFile);
+
+            writer.write("" + turn);
+            writer.write("\n");
+            writer.write("" + height);
+            writer.write("\n");
+            writer.write(whiteImage);
+            writer.write("\n");
+            writer.write(blackImage);
+            writer.write("\n");
+            writer.write(backImage1);
+            writer.write("\n");
+            writer.write(backImage2);
+            writer.write("\n");
+            writer.write(board.boardtransfer());
+            writer.close();
+            System.out.println("Game saved");
+
+            gameLoader();
+
+
+        } catch (Exception e) {
+            System.out.println("Error occured");
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void gameSaver(ActionEvent actionEvent) {
+        fileSaver();
+    }
 }
+
 
