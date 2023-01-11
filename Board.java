@@ -21,6 +21,10 @@ public class Board {
         this.x_axis = size;
         map = new int[size][size];
     }
+    public Board(){
+        //Constructor der bliver benyttet i Server.
+        int[][] map;
+    }
 
     public void initialize() {
         map[x_axis / 2 - 1][y_axis / 2 - 1] = 4;
@@ -208,6 +212,10 @@ public class Board {
         int[] dim ={x_axis,y_axis};
                 return dim;
 
+    }
+
+    public int[][] getArray(){
+        return map;
     }
 }
 
