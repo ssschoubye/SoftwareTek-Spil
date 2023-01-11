@@ -10,4 +10,8 @@ public class ArrayReturn implements Serializable {
     public int[][] getArray(){
         return arrayReturn;
     }
+
+    public void setArray(int[][] arrayReturn){
+        this.arrayReturn = arrayReturn;
+    }
 }

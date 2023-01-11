@@ -58,8 +58,8 @@ public class ServerClient {
             out.println(client);
             while(true){
                 ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
-                //Board board = new Board();
-                Board boardRec = (Board) inObject.readObject();
+
+                ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
                 int[][] inputMap = boardRec.getArray();
                 System.out.println(inputMap);
 
