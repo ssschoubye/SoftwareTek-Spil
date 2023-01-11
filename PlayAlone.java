@@ -304,6 +304,10 @@ public class PlayAlone extends Application {
     Button minimize;
 
     @FXML
+    private void TestonAction () {
+        System.out.println("pik og patter jeg kommer efter din datter");
+
+    }
     public void OnMinimizeButtonClick() {
         Stage stage = (Stage) minimize.getScene().getWindow();
         stage.setIconified(true);
