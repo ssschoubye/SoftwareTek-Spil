@@ -110,17 +110,29 @@ public class PlayAI extends Application {
                         turnCounter++;
 
                         if (turnCounter == 3) {
-
-
+                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                            turn = Board.turnSwitch(turn);
                             showTurn.setText(turnColor(turn) + "'s turn");
-                            turn = Board.turnSwitch(turn);
 
-                            MiniMaxAlphaBetaAI.AIMakeMove(turn);
-                            turnCounter++;
+                            new Thread(()->{
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                MiniMaxAlphaBetaAI.AIMakeMove(turn);
+                                turnCounter++;
 
-                            MiniMaxAlphaBetaAI.AIMakeMove(turn);
-                            turn = Board.turnSwitch(turn);
-                            game.legalSpots(turn);
+                                MiniMaxAlphaBetaAI.AIMakeMove(turn);
+                                turn = Board.turnSwitch(turn);
+                                game.legalSpots(turn);
+                                Platform.runLater(()->updateGridpane(game, board, whiteImage, blackImage, markerImage));
+
+                            }).start();
+
+
+
+
                         }
                         if (turnCounter > 4) {
                             turn = Board.turnSwitch(turn);
