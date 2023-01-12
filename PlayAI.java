@@ -39,6 +39,7 @@ public class PlayAI extends Application {
     String placeSoundFile = "Sounds/placeSound1.mp3";
     String appIcon = "Images/reversiIcon.png";
 
+    Boolean clickLegal=true;
     static Scene scene;
 
     static {
@@ -105,114 +106,158 @@ public class PlayAI extends Application {
 
 
                 cells[i][j].setOnAction(event -> {
-                    if (game.placePiece(ii, jj, turn)) {
-                        placeSound.play();
-                        turnCounter++;
+                    if(clickLegal){
+                        if (game.placePiece(ii, jj, turn)) {
 
-                        if (turnCounter == 3) {
-                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
-                            turn = Board.turnSwitch(turn);
-                            showTurn.setText(turnColor(turn) + "'s turn");
+                            placeSound.play();
+                            turnCounter++;
 
-                            new Thread(()->{
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    throw new RuntimeException(e);
-                                }
-                                MiniMaxAlphaBetaAI.AIMakeMove(turn);
-                                turnCounter++;
-
-                                MiniMaxAlphaBetaAI.AIMakeMove(turn);
+                            if (turnCounter == 3) {
+                                clickLegal=false;
+                                game.clearLegalSpots();
+                                updateGridpane(game, board, whiteImage, blackImage, markerImage);
                                 turn = Board.turnSwitch(turn);
-                                game.legalSpots(turn);
-                                Platform.runLater(()->updateGridpane(game, board, whiteImage, blackImage, markerImage));
+                                showTurn.setText(turnColor(turn) + "'s turn");
 
-                            }).start();
+                                new Thread(()->{
+                                    try {
+                                        Thread.sleep(1000);
+                                    } catch (InterruptedException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                    MiniMaxAlphaBetaAI.AIMakeMove(turn);
+                                    turnCounter++;
+                                    placeSound.play();
+                                    Platform.runLater(()->updateGridpane(game, board, whiteImage, blackImage, markerImage));
 
-
-
-
-                        }
-                        if (turnCounter > 4) {
-                            turn = Board.turnSwitch(turn);
-
-
-                            if (!game.legalSpots(turn)) {
-                                if (!game.legalSpots(Board.turnSwitch(turn))) {
-                                    System.out.println("No more possible moves \n    game over");
-
-                                    updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
-                                    delay(500,() ->{
-                                        WinPage win = new WinPage();
-                                        turnCounter = 1;
-                                        gameNumber++;
-
+                                    new Thread(()->{
                                         try {
-                                            primaryStage.close();
-                                            win.winStart(game);
-                                        } catch (IOException e) {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
                                             throw new RuntimeException(e);
                                         }
-                                    });
 
-                                } else {
-                                    System.out.println("\n" + turn + " has no possible moves");
-                                    turn = Board.turnSwitch(turn);
-                                    showTurn.setText(turnColor(turn) + "'s turn");
-                                    game.legalSpots(turn);
+                                        MiniMaxAlphaBetaAI.AIMakeMove(turn);
 
-
-                                }
-
-                            } else {
-
-                                while (true) {
-                                    //updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
-                                    MiniMaxAlphaBetaAI.AIMakeMove(turn);
-                                    //updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
-
-
-                                    if (!game.legalSpots(Board.turnSwitch(turn))) {
-                                        if (!game.legalSpots(turn)) {
-                                            System.out.println("No more possible moves \n    game over");
-
+                                        placeSound.play();
+                                        Platform.runLater(()->{
+                                            turn = Board.turnSwitch(turn);
+                                            game.legalSpots(turn);
+                                            showTurn.setText(turnColor(turn) + "'s turn");
                                             updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                                            clickLegal=true;
+                                        });
 
-                                            delay(500,() ->{
-                                                WinPage win = new WinPage();
-                                                turnCounter = 1;
-                                                gameNumber++;
+                                    }).start();
 
-                                                try {
-                                                    primaryStage.close();
-                                                    win.winStart(game);
-                                                } catch (IOException e) {
-                                                    throw new RuntimeException(e);
-                                                }
-                                            });
-                                        } else continue;
-                                    }
-                                    turn = Board.turnSwitch(turn);
+                                }).start();
 
-                                    break;
 
-                                }
 
 
                             }
+                            if (turnCounter > 4) {
+                                clickLegal=false;
+                                turn = Board.turnSwitch(turn);
+
+
+                                if (!game.legalSpots(turn)) {
+                                    if (!game.legalSpots(Board.turnSwitch(turn))) {
+                                        System.out.println("No more possible moves \n    game over");
+
+                                        updateGridpane(game, board, whiteImage, blackImage, markerImage);
+
+                                        delay(500,() ->{
+                                            WinPage win = new WinPage();
+                                            turnCounter = 1;
+                                            gameNumber++;
+
+                                            try {
+                                                primaryStage.close();
+                                                win.winStart(game);
+                                            } catch (IOException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        });
+
+                                    } else {
+                                        System.out.println("\n" + turn + " has no possible moves");
+                                        turn = Board.turnSwitch(turn);
+                                        showTurn.setText(turnColor(turn) + "'s turn");
+                                        game.legalSpots(turn);
+                                        clickLegal=true;
+
+
+                                    }
+
+                                } else {
+
+                                    while (true) {
+                                        updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                                        new Thread(()->{
+                                            try {
+                                                Thread.sleep(1000);
+                                            } catch (InterruptedException e) {
+                                                throw new RuntimeException(e);
+                                            }
+
+                                            MiniMaxAlphaBetaAI.AIMakeMove(turn);
+                                            placeSound.play();
+                                            Platform.runLater(()->{
+                                                updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                                                turn = Board.turnSwitch(turn);
+                                                showTurn.setText(turnColor(turn) + "'s turn");
+                                                clickLegal=true;
+
+                                            });
+
+                                        }).start();
+                                        //updateGridpane(game, board, whiteImage, blackImage, markerImage);
+
+                                        //MiniMaxAlphaBetaAI.AIMakeMove(turn);
+                                        //updateGridpane(game, board, whiteImage, blackImage, markerImage);
+
+
+
+                                        if (!game.legalSpots(Board.turnSwitch(turn))) {
+                                            if (!game.legalSpots(turn)) {
+                                                System.out.println("No more possible moves \n    game over");
+
+                                                updateGridpane(game, board, whiteImage, blackImage, markerImage);
+
+                                                delay(500,() ->{
+                                                    WinPage win = new WinPage();
+                                                    turnCounter = 1;
+                                                    gameNumber++;
+
+                                                    try {
+                                                        primaryStage.close();
+                                                        win.winStart(game);
+                                                    } catch (IOException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
+                                                });
+                                            } else continue;
+                                        }
+                                        //turn = Board.turnSwitch(turn);
+
+                                        break;
+
+                                    }
+
+
+                                }
+
+                            }
+                            showTurn.setText(turnColor(turn) + "'s turn");
+                            whiteScore.setText("x"+game.getScore()[0]);
+                            blackScore.setText("x"+game.getScore()[1]);
+                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
+
 
                         }
-                        showTurn.setText(turnColor(turn) + "'s turn");
-                        whiteScore.setText("x"+game.getScore()[0]);
-                        blackScore.setText("x"+game.getScore()[1]);
-                        updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
-
                     }
+
 
                 });
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
