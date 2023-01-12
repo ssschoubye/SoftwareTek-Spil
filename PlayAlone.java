@@ -37,7 +37,7 @@ public class PlayAlone extends Application {
     static int gameNumber = 1;
 
     static int turnCounter = 1;
-    public Button backButton;
+    
     String whiteImage = "Images/WhitePieces/whitePiece1.png";
     String blackImage = "Images/BlackPieces/blackPiece1.png";
     String markerImage = "Images/markerDark.png";
@@ -401,7 +401,11 @@ public class PlayAlone extends Application {
     }
     @FXML
     public void printFile (ActionEvent actionEvent) {
-        System.out.println("pressed");
+        Board board = new Board();
+        filesaver(board);
+
+
+
     }
 }
 
