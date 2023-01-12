@@ -84,7 +84,7 @@ public class PlayAlone extends Application {
         Label blackScore = (Label)scene.lookup("#blackScore");
         blackScore.setText("x"+game.getScore()[1]);
 
-
+        turnCounter=1;
         GridPane board = new GridPane();
 
 
@@ -102,6 +102,7 @@ public class PlayAlone extends Application {
 
 
                 cells[i][j].setOnAction(event -> {
+                    game.toString();
                     if (game.placePiece(ii, jj, turn)) {
                         placeSound.play();
 
