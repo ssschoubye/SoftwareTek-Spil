@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 
 public class PlayAI extends Application {
@@ -66,6 +67,8 @@ public class PlayAI extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        Pane gamePane = (Pane) scene.lookup("#gamePane");
+        gamePane.getChildren().removeIf(node -> node instanceof GridPane);
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label)scene.lookup("#showTurn");
         Board game = new Board(width, height);
@@ -107,11 +110,21 @@ public class PlayAI extends Application {
                         turnCounter++;
 
                         if (turnCounter == 3) {
-                            System.out.println(turnCounter);
+
 
                             showTurn.setText(turnColor(turn) + "'s turn");
                             turn = Board.turnSwitch(turn);
+                            /*
+                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                            System.out.println("wait");
+                            try {
+                                TimeUnit.SECONDS.sleep(3);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                            System.out.println("done");
 
+                             */
                             MiniMaxAlphaBetaAI.AIMakeMove(turn);
                             turnCounter++;
 
@@ -200,7 +213,6 @@ public class PlayAI extends Application {
                     }
 
                 });
-                Pane gamePane = (Pane) scene.lookup("#gamePane");
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
                 cells[i][j].prefWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
 

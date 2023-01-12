@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlayAlone.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayAlone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone.class" afterDir="false" />
     </list>
@@ -133,6 +136,7 @@
       <workItem from="1673458819847" duration="3485000" />
       <workItem from="1673468853860" duration="3302000" />
       <workItem from="1673523823876" duration="675000" />
+      <workItem from="1673528444066" duration="800000" />
     </task>
     <servers />
   </component>
