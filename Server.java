@@ -25,21 +25,54 @@ public class Server {
         public ClientHandler(Socket socket) {
             this.socket = socket;
         }
+        public ClientHandler(){String hostip;}
 
         @Override
         public void run() {
+            //first time initialising
+           if(PlayOnline.turnCounter < 4){
+               try { //At first connection is made and the IP address of the client is saved. This will be used later on.
+                   InetAddress localHost = InetAddress.getLocalHost();
+                   String client = localHost.getHostAddress();
+                   BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                   PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                   hostip = in.readLine();
+                   System.out.println("Ip modtaget" + hostip);
+                   out.println(client);
+               } catch (IOException e) {
+                   throw new RuntimeException(e);
+               }
+               PlayOnline play = new PlayOnline();
+               play.gameStart(DimensionPrompt.dim.x);
+           }else if(PlayOnline.turnCounter > 4){ //When server is called when game is past first stage.
+               Board board = new Board();
+               int[][] initialmap = board.getArray();
+               ArrayReturn arrayReturn = new ArrayReturn(initialmap);
+               ObjectOutputStream objectOut;
+               try {
+                   objectOut = new ObjectOutputStream(socket.getOutputStream());
+                   System.out.println(Arrays.deepToString(initialmap));
+                   objectOut.writeObject(arrayReturn);
+               } catch (IOException e) {
+                   throw new RuntimeException(e);
+               }
+
+
+           }
+
+
+
+
             while (turnCounter < 4) {
                 if (turnCounter == 1) {
                     try {
                         // Get the input and output streams
-                        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+
 
                         // Read and process client messages
                         while (true) {
                             //Modtager bekræftelse besked.
-                            hostip = in.readLine();
-                            System.out.println("Ip modtaget" + hostip);
+
 
                             if (hostip == null) {
                                 break;
@@ -85,5 +118,11 @@ public class Server {
         }
         public static void stopServer(){
             turnCounter = 4;
+        }
+        public static String getHostIP(){
+
+            ClientHandler client = new ClientHandler();
+            String IPAddress = client.hostip;
+            return IPAddress;
         }
     }

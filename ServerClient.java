@@ -8,36 +8,43 @@ import java.util.Scanner;
 
 public class ServerClient {
         public static void runServerClient(String host, int dim) throws IOException, ClassNotFoundException {
-            InetAddress localHost = InetAddress.getLocalHost();
-            String client = localHost.getHostAddress();
-            Socket socket = new Socket(host, 8080);
-            // Get the input and output streams
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            out.println(client);
-            while(true){
-                ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
+            if(PlayOnline.turnCounter < 4){
+                //while(true){
+                    String IPAddress = ClientHandler.getHostIP();
+                    Socket socket = new Socket(IPAddress, 8080);
+                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
 
-                ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
-                int[][] inputMap = boardRec.getArray();
-                //System.out.println(inputMap);
-                System.out.println(Arrays.deepToString(inputMap));
+                    ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
+                    int[][] inputMap = boardRec.getArray();
+                    System.out.println(Arrays.deepToString(inputMap));
+                    PlayOnline play = new PlayOnline();
+                    play.gameStart(dim);
+                /*
+                    // Send a message to the server
+                    System.out.println("What is your message?");
+                    Scanner scan = new Scanner(System.in);
+                    String message = scan.nextLine();
+                    out.println(message);
 
-                // Send a message to the server
-                System.out.println("What is your message?");
-                Scanner scan = new Scanner(System.in);
-                String message = scan.nextLine();
-                out.println(message);
+                    String response = in.readLine();
+                    // Read and process the server's response
+                    if(response == "no"){
+                        break;
+                    }
+                    System.out.println("Response: " + response);  // prints "Response: ACK"
 
-                String response = in.readLine();
-                // Read and process the server's response
-                if(response == "no"){
-                    break;
-                }
-                System.out.println("Response: " + response);  // prints "Response: ACK"
+                 */
+                //}
+            }else{
+                InetAddress localHost = InetAddress.getLocalHost();
+                String client = localHost.getHostAddress();
+                Socket socket = new Socket(host, 8080);
+                // Get the input and output streams
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                out.println(client);
             }
-            // Close the socket
-            socket.close();
         }
     }
 // Connect to the server
