@@ -102,7 +102,6 @@ public class PlayAlone extends Application {
 
 
                 cells[i][j].setOnAction(event -> {
-                    game.toString();
                     if (game.placePiece(ii, jj, turn)) {
                         placeSound.play();
 
