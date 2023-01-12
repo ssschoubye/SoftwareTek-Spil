@@ -146,7 +146,20 @@ public class WinPage {
         stage.setIconified(true);
     }
 
+    //////////////////////////////////////////////////////////////
+    ///                 Back to Menu button                    ///
+    //////////////////////////////////////////////////////////////
 
+    @FXML
+    public void backToMenu() throws IOException {
+        Stage stage = (Stage) minimize.getScene().getWindow();
+        stage.close();
+
+        Stage primaryStage = new Stage();
+        Menu menu = new Menu();
+        menu.start(primaryStage);
+
+    }
 
 }
 

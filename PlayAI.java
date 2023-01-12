@@ -4,9 +4,7 @@ import javafx.beans.binding.Bindings;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -15,15 +13,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.scene.media.AudioClip;
-import javafx.scene.text.Font;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 
@@ -60,6 +53,7 @@ public class PlayAI extends Application {
 
     public void gameStart(int inwidth, int inheight) {
         DimensionPrompt dimPrompt = new DimensionPrompt();
+
         width = inwidth;
         height = inheight;
         whiteImage = dimPrompt.whiteImage;
@@ -73,10 +67,13 @@ public class PlayAI extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        Pane gamePane = (Pane) scene.lookup("#gamePane");
+        gamePane.getChildren().removeIf(node -> node instanceof GridPane);
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label)scene.lookup("#showTurn");
         Board game = new Board(width, height);
         game.initialize();
+
         turn = game.startingPlayer(gameNumber, firstStartingPlayer);
         showTurn.setText(turnColor(turn) + "'s turn");
 
@@ -88,8 +85,9 @@ public class PlayAI extends Application {
         blackScore.setText("x"+game.getScore()[1]);
 
         MiniMaxAlphaBetaAI klogAI = new MiniMaxAlphaBetaAI(game, 5);
+        MiniMaxAlphaBetaAI.has4=true;
 
-
+        turnCounter=1;
         GridPane board = new GridPane();
 
 
@@ -112,14 +110,13 @@ public class PlayAI extends Application {
                         turnCounter++;
 
                         if (turnCounter == 3) {
+
+
                             showTurn.setText(turnColor(turn) + "'s turn");
                             turn = Board.turnSwitch(turn);
 
-                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
                             MiniMaxAlphaBetaAI.AIMakeMove(turn);
                             turnCounter++;
-
-
 
                             MiniMaxAlphaBetaAI.AIMakeMove(turn);
                             turn = Board.turnSwitch(turn);
@@ -206,7 +203,6 @@ public class PlayAI extends Application {
                     }
 
                 });
-                Pane gamePane = (Pane) scene.lookup("#gamePane");
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
                 cells[i][j].prefWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
 
@@ -353,7 +349,20 @@ public class PlayAI extends Application {
         Stage stage = (Stage) minimize.getScene().getWindow();
         stage.setIconified(true);
     }
+    //////////////////////////////////////////////////////////////
+    ///                 Back to Menu button                    ///
+    //////////////////////////////////////////////////////////////
 
+    @FXML
+    public void backToMenu() throws IOException {
+        Stage stage = (Stage) minimize.getScene().getWindow();
+        stage.close();
+
+        Stage primaryStage = new Stage();
+        Menu menu = new Menu();
+        menu.start(primaryStage);
+
+    }
 
 }
 

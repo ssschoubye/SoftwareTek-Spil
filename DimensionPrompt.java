@@ -365,7 +365,6 @@ public class DimensionPrompt {
 
     @FXML
     private Button playOnline;
-
     @FXML
     private void playOnlineAction() throws IOException {
         gamemode = 3;

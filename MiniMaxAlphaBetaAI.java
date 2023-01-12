@@ -4,7 +4,7 @@ public class MiniMaxAlphaBetaAI {
     private static Board board;
     private static int maxDepth;
     //static int exploredChildren = 0;
-    private static boolean has4 = true;
+    public static boolean has4 = true;
 
     public MiniMaxAlphaBetaAI(Board board, int maxDepth) {
 

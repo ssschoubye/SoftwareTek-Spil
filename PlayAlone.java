@@ -42,6 +42,7 @@ public class PlayAlone extends Application {
     String appIcon = "Images/reversiIcon.png";
 
 
+
     static Scene scene;
 
     static {
@@ -68,6 +69,8 @@ public class PlayAlone extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        Pane gamePane = (Pane) scene.lookup("#gamePane");
+        gamePane.getChildren().removeIf(node -> node instanceof GridPane);
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label)scene.lookup("#showTurn");
 
@@ -83,7 +86,7 @@ public class PlayAlone extends Application {
         Label blackScore = (Label)scene.lookup("#blackScore");
         blackScore.setText("x"+game.getScore()[1]);
 
-
+        turnCounter=1;
         GridPane board = new GridPane();
 
 
@@ -155,7 +158,7 @@ public class PlayAlone extends Application {
                     }
 
                 });
-                Pane gamePane = (Pane) scene.lookup("#gamePane");
+
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
                 cells[i][j].prefWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
 
@@ -308,7 +311,22 @@ public class PlayAlone extends Application {
         Stage stage = (Stage) minimize.getScene().getWindow();
         stage.setIconified(true);
     }
+    //////////////////////////////////////////////////////////////
+    ///                 Back to Menu button                    ///
+    //////////////////////////////////////////////////////////////
+    @FXML
+    private Button backMenu;
 
+    @FXML
+    public void backToMenu() throws IOException {
+        Stage stage = (Stage) backMenu.getScene().getWindow();
+        stage.close();
+
+        Stage primaryStage = new Stage();
+        Menu menu = new Menu();
+        menu.start(primaryStage);
+
+    }
 
 }
 
