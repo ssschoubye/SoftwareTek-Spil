@@ -69,6 +69,8 @@
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Draw.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Draw.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/HostPrompt.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/HostPrompt.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Winpage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Winpage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/application.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/boardButtons.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/boardButtons.css" afterDir="false" />
@@ -198,7 +200,7 @@
       <workItem from="1673452464851" duration="9000" />
       <workItem from="1673452558384" duration="5147000" />
       <workItem from="1673458103186" duration="66000" />
-      <workItem from="1673464532329" duration="593000" />
+      <workItem from="1673464532329" duration="724000" />
     </task>
     <servers />
   </component>
