@@ -114,17 +114,7 @@ public class PlayAI extends Application {
 
                             showTurn.setText(turnColor(turn) + "'s turn");
                             turn = Board.turnSwitch(turn);
-                            /*
-                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
-                            System.out.println("wait");
-                            try {
-                                TimeUnit.SECONDS.sleep(3);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            System.out.println("done");
 
-                             */
                             MiniMaxAlphaBetaAI.AIMakeMove(turn);
                             turnCounter++;
 
