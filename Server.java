@@ -36,14 +36,21 @@ public class Server {
                    String client = localHost.getHostAddress();
                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                   //IP address of connecting client is saved.
                    hostip = in.readLine();
                    System.out.println("Ip modtaget" + hostip);
                    out.println(client);
+                   //Server closes so the game can start.
+                   socket.close();
                } catch (IOException e) {
                    throw new RuntimeException(e);
                }
+
+               ServerClient.firstTime = false;
+               //Play is started with dimensions from dimensionprompt.
                PlayOnline play = new PlayOnline();
                play.gameStart(DimensionPrompt.dim.x);
+
            }else if(PlayOnline.turnCounter > 4){ //When server is called when game is past first stage.
                Board board = new Board();
                int[][] initialmap = board.getArray();
@@ -56,65 +63,7 @@ public class Server {
                } catch (IOException e) {
                    throw new RuntimeException(e);
                }
-
-
            }
-
-
-
-
-            while (turnCounter < 4) {
-                if (turnCounter == 1) {
-                    try {
-                        // Get the input and output streams
-
-
-                        // Read and process client messages
-                        while (true) {
-                            //Modtager bekræftelse besked.
-
-
-                            if (hostip == null) {
-                                break;
-                            }else{
-                                Board board = new Board();
-                                int[][] initialmap = board.getArray();
-                                //int[][] initialmap = {{1, 2, 3, 4},{1, 2, 3, 4}};
-                                ArrayReturn arrayReturn = new ArrayReturn(initialmap);
-                                ObjectOutputStream objectOut = new ObjectOutputStream(socket.getOutputStream());
-                                System.out.println(Arrays.deepToString(initialmap));
-                                objectOut.writeObject(arrayReturn);
-                                //out.println(hostip);
-                                turnCounter = 3;
-                                objectOut.flush();
-                                socket.close();
-                                break;
-                            }
-                            //System.out.println(hostip);
-                            //Scanner scan = new Scanner(System.in);
-                            //String message1 = scan.nextLine();
-
-                            // Process the message
-
-                            // Send a response to the client
-                            //out.println(message1);
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } finally {
-                        try {
-                            socket.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                } else if (turnCounter == 3) {
-
-                }
-
-
-            }
         }
         public static void stopServer(){
             turnCounter = 4;

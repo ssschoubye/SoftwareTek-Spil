@@ -375,10 +375,10 @@ public class DimensionPrompt {
             int newx = 8;
             int newy = 8;
             System.out.println(newx);
-            game.runHostPrompt(newx, newy);
+            game.runHostPrompt();
         }else if(dim.x > 0 || dim.y > 0){
             System.out.println(dim.x + " " + dim.y);
-            game.runHostPrompt(dim.x, dim.y);
+            game.runHostPrompt();
         }
     }
 
