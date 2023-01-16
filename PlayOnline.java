@@ -85,6 +85,8 @@ public class PlayOnline extends Application {
 
         GridPane board = new GridPane();
 
+        System.out.println("retur til start");
+
 
         Button[][] cells = new Button[width][height];
         for (int i = 0; i < height; i++) {

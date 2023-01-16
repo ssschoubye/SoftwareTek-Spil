@@ -1,6 +1,3 @@
-import java.util.Random;
-import java.util.Scanner;
-
 public class Board {
 
 
@@ -143,8 +140,7 @@ public class Board {
     }
 
     //print the whole board using toString (ONLY FOR TESTING)
-    @Override
-    public String toString() {
+    public String printOut() {
         System.out.print("    ");
         for (int x = 0; x < x_axis; x++) {
             System.out.print(x + "  ");
@@ -285,8 +281,17 @@ public class Board {
     public int[][] getArray() {
         return map;
     }
-}
 
+    public String boardtransfer() {
+        String boardstring = "";
+        for (int i = 0; i < y_axis; i++) {
+            for (int j = 0; j < x_axis; j++) {
+                boardstring += (map[j][i]);
+            }
+        }
+        return boardstring;
+    }
+}
 
 
 

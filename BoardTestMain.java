@@ -36,7 +36,7 @@ public class BoardTestMain {
 
             }
             System.out.println();
-            game.toString();
+            game.printOut();
 
             System.out.println("\n" + turn + "'s turn to place a piece");
 
@@ -48,7 +48,7 @@ public class BoardTestMain {
         }
         System.out.println("\n____________________________________");
         int[] score = game.getScore();
-        game.toString();
+        game.printOut();
 
         if (score[0] > score[1]) {
             System.out.println("1 won the game with " + score[0] + " pieces on the board.");
