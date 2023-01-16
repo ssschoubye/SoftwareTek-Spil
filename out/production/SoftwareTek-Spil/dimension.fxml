@@ -44,19 +44,19 @@
         </ImageView>
       <Pane layoutX="5.0" layoutY="35.0" prefHeight="465.0" prefWidth="376.0" styleClass="sidePanel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="35.0">
          <children>
-            <HBox layoutY="210.0" prefHeight="130.0" prefWidth="400.0" spacing="30.0">
+            <HBox layoutY="233.0" prefHeight="117.0" prefWidth="400.0" spacing="30.0">
                <children>
                   <Button alignment="CENTER" mnemonicParsing="false" onAction="#setDimensions4" prefHeight="80.0" prefWidth="90.0" text="4x4">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#setDimensions8" prefHeight="85.0" prefWidth="96.0" text="8x8">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#setDimensions8" prefHeight="85.0" prefWidth="96.0" text="8x8">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#setDimensions12" prefHeight="96.0" prefWidth="97.0" text="12x12">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#setDimensions12" prefHeight="96.0" prefWidth="97.0" text="12x12">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
@@ -66,19 +66,19 @@
                   <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                </padding>
             </HBox>
-            <HBox layoutY="328.0" prefHeight="130.0" prefWidth="400.0" spacing="30.0">
+            <HBox layoutY="342.0" prefHeight="117.0" prefWidth="400.0" spacing="30.0">
                <children>
-                  <Button fx:id="button1" mnemonicParsing="false" onAction="#closeApp" prefHeight="116.0" prefWidth="93.0" styleClass="orangeButton" text="Play&#10;Alone" textAlignment="CENTER">
+                  <Button fx:id="playAlone" mnemonicParsing="false" onAction="#playAloneAction" prefHeight="116.0" prefWidth="93.0" styleClass="orangeButton" text="Play&#10;Alone" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="107.0" prefWidth="96.0" styleClass="orangeButton" text="Play bot&#10;(Only 8x8)" textAlignment="CENTER">
+                  <Button fx:id="playAI" mnemonicParsing="false" onAction="#playAIAction" prefHeight="107.0" prefWidth="96.0" styleClass="orangeButton" text="Play AI&#10;" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="97.0" styleClass="orangeButton" text="Play&#10;Online" textAlignment="CENTER">
+                  <Button fx:id="playOnline" mnemonicParsing="false" onAction="#playOnlineAction" prefHeight="110.0" prefWidth="97.0" styleClass="orangeButton" text="Play&#10;Online" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -88,7 +88,7 @@
                   <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="210.0" prefWidth="400.0" spacing="25.0">
+            <HBox alignment="CENTER" layoutY="35.0" prefHeight="211.0" prefWidth="400.0" spacing="25.0">
                <children>
                   <GridPane alignment="CENTER" gridLinesVisible="true" prefHeight="150.0" prefWidth="100.0" styleClass="titleBar">
                     <columnConstraints>
@@ -109,7 +109,7 @@
                         <Button mnemonicParsing="false" onAction="#glassChoice" prefHeight="124.0" prefWidth="136.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/Background/woodChoice.png" />
+                              <Image url="@Images/Background/woodChoice.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -120,7 +120,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/Background/greenChoice.png" />
+                              <Image url="@Images/Background/greenChoice.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
@@ -128,12 +128,12 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/Background/blueChoice.png" />
+                              <Image url="@Images/Background/blueChoice.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/Background/brownChoice.png" />
+                              <Image url="@Images/Background/brownChoice.png" />
                            </image>
                            <GridPane.margin>
                               <Insets left="10.0" />
@@ -141,7 +141,7 @@
                         </ImageView>
                         <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/Background/bubblegumChoice.png" />
+                              <Image url="@Images/Background/bubblegumChoice.png" />
                            </image>
                            <GridPane.margin>
                               <Insets left="10.0" />
@@ -149,7 +149,7 @@
                         </ImageView>
                         <ImageView fitHeight="30.0" fitWidth="30.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/Background/glassChoice.png" />
+                              <Image url="@Images/Background/glassChoice.png" />
                            </image>
                            <GridPane.margin>
                               <Insets left="10.0" />
@@ -174,34 +174,29 @@
                         <Button mnemonicParsing="false" onAction="#white4" prefHeight="86.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Button mnemonicParsing="false" onAction="#white5" prefHeight="86.0" prefWidth="110.0" GridPane.rowIndex="2" />
                         <Button mnemonicParsing="false" prefHeight="86.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece1.png" />
-                           </image>
-                        </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece1.png" />
+                              <Image url="@Images/WhitePieces/whitePiece1.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece2.png" />
+                              <Image url="@Images/WhitePieces/whitePiece2.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece3.png" />
+                              <Image url="@Images/WhitePieces/whitePiece3.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece4.png" />
+                              <Image url="@Images/WhitePieces/whitePiece4.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/WhitePieces/whitePiece5.png" />
+                              <Image url="@Images/WhitePieces/whitePiece5.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -225,27 +220,27 @@
                         <Button mnemonicParsing="false" prefHeight="86.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece1.png" />
+                              <Image url="@Images/BlackPieces/blackPiece1.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece2.png" />
+                              <Image url="@Images/BlackPieces/blackPiece2.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece4.png" />
+                              <Image url="@Images/BlackPieces/blackPiece4.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece3.png" />
+                              <Image url="@Images/BlackPieces/blackPiece3.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                            <image>
-                              <Image url="@out/production/SoftwareTek-Spil/Images/BlackPieces/blackPiece5.png" />
+                              <Image url="@Images/BlackPieces/blackPiece5.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -255,6 +250,18 @@
                   <Insets bottom="30.0" left="25.0" right="25.0" top="30.0" />
                </padding>
             </HBox>
+            <Button fx:id="backMenu" alignment="CENTER" contentDisplay="CENTER" depthTest="DISABLE" layoutX="25.0" layoutY="10.0" mnemonicParsing="false" onAction="#backToMenu" prefHeight="35.0" prefWidth="68.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="4.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/arrowLeft.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
       <VBox alignment="CENTER" layoutX="400.0" layoutY="35.0" prefHeight="465.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
@@ -277,5 +284,6 @@
             <Insets bottom="40.0" left="50.0" right="50.0" />
          </padding>
       </VBox>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-656.0" layoutY="-120.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 </AnchorPane>

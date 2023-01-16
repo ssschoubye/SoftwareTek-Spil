@@ -1,67 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="ReversiAdvanced:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
-      <change beforePath="$PROJECT_DIR$/.idea/SoftwareTek-Spil.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SoftwareTek-Spil.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/buffer-util.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/buffer-util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/event-target.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/event-target.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/extension.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/extension.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/limiter.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/limiter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/permessage-deflate.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/permessage-deflate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/receiver.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/receiver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/sender.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/sender.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/stream.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/stream.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/subprotocol.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/subprotocol.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/websocket-server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/websocket-server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/websocket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoardTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/BoardTestMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Boardsave.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Boardsave.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimensionPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimensionPrompt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Draw.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Draw.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServerClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Visualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WinPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WinPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Winpage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Winpage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/defaultStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/defaultStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dimension.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/dimension.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/game.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/menuvis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/menuvis.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/SoftwareTek-Spil.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/SoftwareTek-Spil.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/buffer-util.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/buffer-util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/event-target.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/event-target.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/extension.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/extension.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/limiter.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/limiter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/permessage-deflate.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/permessage-deflate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/receiver.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/receiver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/sender.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/sender.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/stream.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/stream.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/subprotocol.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/subprotocol.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/websocket-server.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/websocket-server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/libraries/ws/websocket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Boardsave.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Boardsave.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Draw.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Draw.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Winpage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Winpage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/defaultStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/defaultStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/dimension.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/dimension.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/game.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/menuvis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/menuvis.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playAlone.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/playAlone.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +56,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/marti/Desktop/SceneBuilder.lnk&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Emil Wille Andersen/OneDrive - Danmarks Tekniske Universitet/Dokumenter/GitHub/SoftwareTek-Spil/out/production/SoftwareTek-Spil/Sounds&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -117,8 +69,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images" />
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Sounds" />
+      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images" />
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images\BlackPieces" />
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images\WhitePieces" />
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
@@ -182,10 +134,27 @@
       <workItem from="1673452464851" duration="9000" />
       <workItem from="1673452558384" duration="5147000" />
       <workItem from="1673458103186" duration="66000" />
-      <workItem from="1673464532329" duration="724000" />
-      <workItem from="1673531065572" duration="3609000" />
-      <workItem from="1673534834898" duration="623000" />
-      <workItem from="1673535485908" duration="7000" />
+      <workItem from="1673458261987" duration="4000" />
+      <workItem from="1673458819847" duration="3485000" />
+      <workItem from="1673468853860" duration="3302000" />
+      <workItem from="1673523823876" duration="675000" />
+      <workItem from="1673528444066" duration="800000" />
+      <workItem from="1673529386025" duration="361000" />
+      <workItem from="1673529879050" duration="2916000" />
+      <workItem from="1673812990431" duration="555000" />
+      <workItem from="1673814257998" duration="34000" />
+      <workItem from="1673815640372" duration="589000" />
+      <workItem from="1673816522467" duration="59000" />
+      <workItem from="1673816590828" duration="374000" />
+      <workItem from="1673817118157" duration="568000" />
+      <workItem from="1673817997773" duration="15000" />
+      <workItem from="1673855947344" duration="738000" />
+      <workItem from="1673856837995" duration="56000" />
+      <workItem from="1673857161405" duration="1804000" />
+      <workItem from="1673859078579" duration="481000" />
+      <workItem from="1673859883162" duration="402000" />
+      <workItem from="1673860439547" duration="4494000" />
+      <workItem from="1673865351701" duration="110000" />
     </task>
     <servers />
   </component>

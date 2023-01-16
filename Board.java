@@ -1,14 +1,12 @@
-import java.io.File;
-import java.util.Random;
-import java.util.Scanner;
-
 public class Board {
 
 
     public int x_axis;
     public int y_axis;
 
-    public int[][] map;
+    int[][] map;
+
+    static int gamemode;
 
 
     public Board(int x_axis, int y_axis) {
@@ -23,6 +21,10 @@ public class Board {
         map = new int[size][size];
     }
 
+    public Board() {
+        //Constructor der bliver benyttet i Server.
+        int[][] map;
+    }
 
     public void initialize() {
         map[x_axis / 2 - 1][y_axis / 2 - 1] = 4;
@@ -70,6 +72,15 @@ public class Board {
         return x >= 0 && y >= 0 && x < x_axis && y < y_axis;
     }
 
+    public void clearLegalSpots() {
+        for (int x = 0; x < x_axis; x++) {
+            for (int y = 0; y < y_axis; y++) {
+                if (map[x][y] == 3) {
+                    map[x][y] = 0;
+                }
+            }
+        }
+    }
 
     public boolean placePiece(int x, int y, int playerTurn) {
         // Place the piece on the board
@@ -129,8 +140,7 @@ public class Board {
     }
 
     //print the whole board using toString (ONLY FOR TESTING)
-    @Override
-    public String toString() {
+    public String printOut() {
         System.out.print("    ");
         for (int x = 0; x < x_axis; x++) {
             System.out.print(x + "  ");
@@ -159,14 +169,7 @@ public class Board {
     }
 
     public static int turnSwitch(int currentTurn) {
-        if (currentTurn == 1) {
-            return 2;
-        } else if (currentTurn == 2) {
-            return 1;
-        } else {
-            System.out.println("Wrong current turn");
-            return 0;
-        }
+        return currentTurn % 2 + 1;
     }
 
     public void flipCapturedPieces(int x, int y, int dx, int dy, int playerTurn) {
@@ -208,50 +211,79 @@ public class Board {
         return 0;
     }
 
-    /*
-   public void manualFlip(int playerTurn) {
-        toString();
-        // Create a scanner to read input from the command line
-        Scanner scanner = new Scanner(System.in);
-        // Continue prompting the player for coordinates until all captured pieces have been flipped
-        while (true) {
-            // Prompt the player for the coordinates of a captured piece
-
-            System.out.print("Player " + playerTurn + ", enter the first coordinate of a captured piece to flip it: ");
-            int x = scanner.nextInt();
-            System.out.print("Player " + playerTurn + ", enter the second coordinate of a captured piece to flip it: ");
-            int y = scanner.nextInt();
-            // Flip the piece if it is a captured piece
-            if (map[x][y] == 4) {
-                map[x][y] = playerTurn;
-            } else {
-                System.out.println("Not a captured piece. Try again.");
-            }
-            // Check if there are any more captured pieces on the board
-            boolean moreCapturedPieces = false;
-            for (int i = 0; i < x_axis; i++) {
-                for (int j = 0; j < y_axis; j++) {
-                    if (map[i][j] == 4) {
-                        moreCapturedPieces = true;
-                        break;
-                    }
-                }
-            }
-            if (!moreCapturedPieces) {
-                // If there are no more captured pieces, exit the loop
-                break;
-            }
-        }
-    }
-
-     */
     public int[] getDim() {
         int[] dim = {x_axis, y_axis};
         return dim;
 
     }
 
-    public String boardtransfer() {
+    public Board copy() {
+        Board copy = new Board(x_axis, y_axis);
+        for (int x = 0; x < x_axis; x++) {
+            for (int y = 0; y < y_axis; y++) {
+                copy.map[x][y] = map[x][y];
+            }
+        }
+        return copy;
+    }
+
+
+    public static int weigthedScore(Board board) {
+        int score = 0;
+
+
+        //Runs through all squares on the playing board
+        for (int x = 0; x < board.x_axis; x++) {
+            for (int y = 0; y < board.y_axis; y++) {
+
+                // Add points for each piece on the board +1
+                if (board.map[x][y] == 1) {
+                    score++;
+                } else if (board.map[x][y] == 2) {
+                    score--;
+                }
+
+                // Check if the current square is a corner +1000
+                if ((x == 0 || x == board.x_axis - 1) && (y == 0 || y == board.y_axis - 1)) {
+                    if (board.map[x][y] == 1) {
+                        score += 1000;
+                    } else if (board.map[x][y] == 2) {
+                        score -= 1000;
+                    }
+                }
+
+                // Check if the current square is adjacent to a corner -10
+                if ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
+                        (x == 1 || x == board.x_axis - 2 || y == 1 || y == board.y_axis - 2)) {
+                    if (board.map[x][y] == 1) {
+                        score -= 10;
+                    } else if (board.map[x][y] == 2) {
+                        score += 10;
+                    }
+                }
+
+                // Check if the current square is on the wall but not adjacent to a corner +10
+                if ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
+                        ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
+                                (x == 1 || x == board.x_axis - 2 || y == 1 || y == board.y_axis - 2))) {
+                    if (board.map[x][y] == 1) {
+                        score += 10;
+                    } else if (board.map[x][y] == 2) {
+                        score -= 10;
+                    }
+                }
+            }
+        }
+        return score;
+    }
+
+
+    public int[][] getArray() {
+        return map;
+    }
+
+    @Override
+    public String toString() {
         String boardstring = "";
         for (int i = 0; i < y_axis; i++) {
             for (int j = 0; j < x_axis; j++) {
@@ -261,8 +293,6 @@ public class Board {
         return boardstring;
     }
 }
-
-
 
 
 

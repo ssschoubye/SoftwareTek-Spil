@@ -24,13 +24,18 @@ import java.io.IOException;
 public class Menu extends Application {
 
 
-    public static void main (String[]args){
+
+    public static boolean loadGame = false;
+
+
+    public static void Menu(String[]args){
         launch(args);
     }
 
-    @FXML
-    public void start(Stage primaryStage) throws IOException {
+    //public static void backMenu(){launch();}
 
+
+    public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("menuvis.fxml"));
         Scene scene = new Scene(root);
         String appIcon = "Images/reversiIcon.png";
@@ -55,27 +60,30 @@ public class Menu extends Application {
 
 
     @FXML
-    Button button2;
+    Button gameLoad;
+
+    //PlayAlone game;
     @FXML
     private void loadGame(){
-        System.out.println("Load Game");
+        DimensionPrompt.gamemode = 1;
+        Stage stage = (Stage) gameLoad.getScene().getWindow();
+        stage.close();
+        PlayAlone game = new PlayAlone();
+
+        loadGame=true;
+        GameLoader dimLoad = new GameLoader();
+
+        game.gameStart(dimLoad.dimensionLoad, dimLoad.dimensionLoad);
     }
+
     @FXML
     Button button3;
+
     @FXML
     private void options(){
         System.out.println("Options");
     }
 
-    //////////////////////////////////////////////////////////////
-    ///                    Size of window                      ///
-    //////////////////////////////////////////////////////////////
-    Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-
-    @FXML
-    int windowHeight = (int)screenBounds.getHeight()/2;
-    @FXML
-    double windowWidth = (screenBounds.getHeight()/2)*3/2;
 
 
 

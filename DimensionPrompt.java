@@ -33,8 +33,9 @@ public class DimensionPrompt {
     public String black;
     public String back1;
     public String back2;
+    public static int gamemode=0;
 
-    public static int size=8;
+    private static int size=8;
     public DimensionPrompt(){
         x= 0;
         y = 0;
@@ -42,6 +43,7 @@ public class DimensionPrompt {
         black = blackImage;
         back1 = backImage1;
         back2 = backImage2;
+        //gamemode = gamemode2;
 
     }
     static DimensionPrompt dim = new DimensionPrompt();
@@ -56,10 +58,23 @@ public class DimensionPrompt {
     }
 
 
+
     public static void start1() {
         Stage stage = new Stage();
         start(stage);
 
+        dim.x = size;
+        dim.y = size;
+        dim.white = whiteImage;
+        dim.black = blackImage;
+        dim.back1 = backImage1;
+        dim.back2 = backImage2;
+
+
+    }
+
+    public static void start2(PlayAlone playAlone) {
+        playAlone.start(new Stage());
         dim.x = size;
         dim.y = size;
         dim.white = whiteImage;
@@ -315,17 +330,41 @@ public class DimensionPrompt {
 
 
     //////////////////////////////////////////////////////////////
-    ///                 Play Alone initialising                ///
+    ///                    Play initialising                   ///
     //////////////////////////////////////////////////////////////
 
     @FXML
-    private Button button1;
+    private Button playAlone;
+
+    PlayAlone game = null;
+    @FXML
+    private void playAloneAction(){
+        gamemode = 1;
+        Stage stage = (Stage) playAlone.getScene().getWindow();
+        stage.close();
+        game = new PlayAlone();
+      if (dim.x == 0 || dim.y == 0){
+            int newx = 8;
+            int newy = 8;
+            System.out.println(newx);
+            game.gameStart(newx, newy);
+        }else if(dim.x > 0 || dim.y > 0){
+            System.out.println(dim.x + " " + dim.y);
+            game.gameStart(dim.x, dim.y);
+        }
+    }
+
+
 
     @FXML
-    private void closeApp(){
-        Stage stage = (Stage) button1.getScene().getWindow();
+    private Button playAI;
+
+    @FXML
+    private void playAIAction(){
+        gamemode=2;
+        Stage stage = (Stage) playAI.getScene().getWindow();
         stage.close();
-        Visualizer game = new Visualizer();
+        PlayAI game = new PlayAI();
         if (dim.x == 0 || dim.y == 0){
             int newx = 8;
             int newy = 8;
@@ -337,12 +376,39 @@ public class DimensionPrompt {
         }
     }
 
-    public String getWhite() {
-        return whiteImage;
+    @FXML
+    private Button playOnline;
+    @FXML
+    private void playOnlineAction() throws IOException {
+        gamemode = 3;
+        Stage stage = (Stage) playOnline.getScene().getWindow();
+        stage.close();
+        HostPrompt game = new HostPrompt();
+        if (dim.x == 0 || dim.y == 0){
+            int newx = 8;
+            int newy = 8;
+            System.out.println(newx);
+            game.runHostPrompt(newx, newy);
+        }else if(dim.x > 0 || dim.y > 0){
+            System.out.println(dim.x + " " + dim.y);
+            game.runHostPrompt(dim.x, dim.y);
+        }
     }
 
-    public String getBlack() {
-        return blackImage;
-    }
+    //////////////////////////////////////////////////////////////
+    ///                 Back to Menu button                    ///
+    //////////////////////////////////////////////////////////////
+    @FXML
+    private Button backMenu;
 
+    @FXML
+    public void backToMenu() throws IOException {
+        Stage stage = (Stage) backMenu.getScene().getWindow();
+        stage.close();
+
+        Stage primaryStage = new Stage();
+        Menu menu = new Menu();
+        menu.start(primaryStage);
+
+    }
 }

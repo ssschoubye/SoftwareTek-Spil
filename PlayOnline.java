@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -11,19 +12,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.awt.print.PrinterGraphics;
-import java.io.*;
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.List;
+import java.io.IOException;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
 
 
-public class Visualizer extends Application {
+public class PlayOnline extends Application {
 
     static int width;
     static int height;
@@ -39,28 +36,20 @@ public class Visualizer extends Application {
     String markerImage = "Images/markerDark.png";
     String backImage1;
     String backImage2;
+    String placeSoundFile = "Sounds/placeSound1.mp3";
 
     String appIcon = "Images/reversiIcon.png";
-
-
-    static Button button = new Button("restart");
-
-    static HBox hbox = new HBox();
 
 
     static Scene scene;
 
     static {
         try {
-            hbox = new HBox(button, FXMLLoader.load(Objects.requireNonNull(Visualizer.class.getResource("game.fxml"))));
+            scene = new Scene(FXMLLoader.load(Objects.requireNonNull(PlayAlone.class.getResource("playAlone.fxml"))));
         } catch (IOException e) {
             System.out.println("Could not load FXML-file");
 
         }
-    }
-
-    static {
-        scene = new Scene(hbox);
     }
 
 
@@ -78,16 +67,29 @@ public class Visualizer extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
-        Label showTurn = (Label) scene.lookup("#showTurn");
-
+        AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
+        Label showTurn = (Label)scene.lookup("#showTurn");
 
         Board game = new Board(width, height);
         game.initialize();
         turn = game.startingPlayer(gameNumber, firstStartingPlayer);
         showTurn.setText(turnColor(turn) + "'s turn");
 
+
+        Label whiteScore = (Label)scene.lookup("#whiteScore");
+        whiteScore.setText("x"+game.getScore()[0]);
+
+        Label blackScore = (Label)scene.lookup("#blackScore");
+        blackScore.setText("x"+game.getScore()[1]);
+
+
         GridPane board = new GridPane();
+        
+        Button saveGame = (Button) scene.lookup("#saveGame");
+
+        saveGame.setVisible(false);
+
+        System.out.println("retur til start");
 
 
         Button[][] cells = new Button[width][height];
@@ -106,6 +108,8 @@ public class Visualizer extends Application {
                 // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii, jj, turn)) {
+                        placeSound.play();
+
                         turnCounter++;
                         //Switches player turn
                         if (turnCounter == 3) {
@@ -122,16 +126,26 @@ public class Visualizer extends Application {
                             if (!game.legalSpots(turn)) {
                                 if (!game.legalSpots(Board.turnSwitch(turn))) {
                                     System.out.println("No more possible moves \n    game over");
+
+                                    updateGridpane(game, board, whiteImage, blackImage, markerImage);
+
+                                    delay(500,() ->{
+                                        WinPage win = new WinPage();
+                                        turnCounter = 1;
+                                        gameNumber++;
+
+                                        try {
+                                            primaryStage.close();
+                                            win.winStart(game);
+                                        } catch (IOException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                    });
+
                                     //Save value for ending game
-                                    WinPage win = new WinPage();
-                                    turnCounter = 1;
-                                    gameNumber++;
-                                    try {
-                                        primaryStage.close();
-                                        win.winStart(game);
-                                    } catch (IOException e) {
-                                        throw new RuntimeException(e);
-                                    }
+
+
+
 
                                 } else {
 
@@ -144,6 +158,8 @@ public class Visualizer extends Application {
                             }
                         }
 
+                        whiteScore.setText("x"+game.getScore()[0]);
+                        blackScore.setText("x"+game.getScore()[1]);
                         updateGridpane(game, board, whiteImage, blackImage, markerImage);
 
 
@@ -165,19 +181,27 @@ public class Visualizer extends Application {
         primaryStage.getIcons().add(icon);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
-        gameSaver(game);
-
-
-        System.out.println(1);
-
-
-
-
-
-
 
 
     }
+
+
+    //Borrowed from the internet
+    public static void delay(long millis, Runnable continuation) {
+        Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try { Thread.sleep(millis); }
+                catch (InterruptedException e) { }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(event -> continuation.run());
+        new Thread(sleeper).start();
+    }
+
+
+
 
 
     private void updateGridpane(Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
@@ -191,6 +215,17 @@ public class Visualizer extends Application {
         Image backGround1 = new Image(backImage1);
         Image backGround2 = new Image(backImage2);
 
+        Pane whiteScoreSkin = (Pane) scene.lookup("#whiteScoreSkin");
+        ImageView whitePieceScoreImage = new ImageView(whitePieceImage);
+        whiteScoreSkin.getChildren().add(whitePieceScoreImage);
+        whitePieceScoreImage.setPreserveRatio(true);
+        whitePieceScoreImage.fitWidthProperty().bind(whiteScoreSkin.widthProperty());
+
+        Pane blackScoreSkin = (Pane) scene.lookup("#blackScoreSkin");
+        ImageView blackPieceScoreImage = new ImageView(blackPieceImage);
+        blackScoreSkin.getChildren().add(blackPieceScoreImage);
+        blackPieceScoreImage.setPreserveRatio(true);
+        blackPieceScoreImage.fitWidthProperty().bind(blackScoreSkin.widthProperty());
 
 
         for (int x = 0; x < width; x++) {
@@ -285,131 +320,6 @@ public class Visualizer extends Application {
         stage.setIconified(true);
     }
 
-  /*  public void printBoard() {
-         String print = "";
-        int[][] boardText = new int [0][];
 
-        for (int i = 0; i <= width + 1; i++) {
-            for (int j = 0; j <= width + 1; j++) {
-                int x = boardText[i][j];
-                print += x;
-            }
-        }
-        String finalPrint = print;
-        button.setOnAction(actionEvent -> {
-                System.out.println(finalPrint);
-            });
+}
 
-    } */
-
-   /* public void printing(int x_axis, int y_axis) {
-        Board board = new Board();
-        int[][] map = board.map;
-
-
-        for (int i = 0; i < y_axis; i++) {
-            for (int j = 0; j < x_axis; j++) {
-                if (map[j][i] == 0) {
-                    System.out.print("-  ");
-                } else if (map[j][i] == 3) {
-                    System.out.print("*  ");
-                } else {
-                    System.out.print(map[j][i] + "  ");
-                }
-            }
-            System.out.println();
-        }
-
-    } */
-
-        public void gameSaver (Board board) {
-        String saveFile = "Boardsave.txt";
-
-        button.setOnAction(actionEvent -> {
-
-            try {
-
-                FileWriter writer = new FileWriter(saveFile);
-
-                writer.write("" + turn);
-                writer.write("\n");
-                writer.write("" + height);
-                writer.write("\n");
-                writer.write(whiteImage);
-                writer.write("\n");
-                writer.write(blackImage);
-                writer.write("\n");
-                writer.write(backImage1);
-                writer.write("\n");
-                writer.write(backImage2);
-                writer.write("\n");
-                writer.write(board.boardtransfer());
-                writer.close();
-                System.out.println("Game saved");
-
-                gameLoader();
-
-
-            } catch (Exception e) {
-                System.out.println("Error occured");
-                throw new RuntimeException(e);
-            }
-        });
-        }
-        public void gameLoader () {
-            try (BufferedReader lineReader = new BufferedReader(new FileReader("Boardsave.txt"))) {
-                String line = "";
-
-                String player = "";
-                String dimension = "";
-                String white = "";
-                String black = "";
-                String board1 = "";
-                String board2 = "";
-                String gridString = "";
-                int [][] grid = new int[width][width];
-
-
-                int lineCount = 0;
-                while ((line = lineReader.readLine()) != null && lineCount < 7) {
-                    if (lineCount == 0) {
-                        player = line;
-                    } else if (lineCount == 1) {
-                        dimension = line;
-                    } else if (lineCount == 2) {
-                        white = line;
-                    } else if (lineCount == 3) {
-                        black = line;
-                    } else if (lineCount == 4) {
-                        board1 = line;
-                    } else if (lineCount == 5) {
-                        board2 = line;
-
-                    } else if (lineCount == 6) {
-
-                        gridString = line;
-
-                    } lineCount++;
-                }
-                System.out.println(player);
-                System.out.println(dimension);
-                System.out.println(white);
-                System.out.println(black);
-                System.out.println(board1);
-                System.out.println(board2);
-                    for (int i = 0; i < width; i++) {
-                        for (int j=0; j<width; j++) {
-                            System.out.print(grid[j][i] + " ");
-                           }
-                        System.out.println();
-                    }
-
-
-            } catch (IOException e){
-                e.printStackTrace();
-            }
-
-
-        }
-
-    }
