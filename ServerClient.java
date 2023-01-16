@@ -6,40 +6,59 @@ import java.util.Scanner;
 
 
 
-public class ServerClient{
+public class ServerClient extends Thread{
     public static boolean firstTime = true;
-        public static void run() throws IOException, ClassNotFoundException {
+        public void run(){
             //First time running this code it needs to be determined whether it is first time making a connection,
             // if the game is in its upstart fase or if regular play have started.
             System.out.println("Connecting");
             if(firstTime == true){
+                try{
+                    InetAddress localHost = InetAddress.getLocalHost();
+                    String client = localHost.getHostAddress();
+                    //Grabs the IP address input from HostPrompt to create a connection the the host.
+                    System.out.println(HostPrompt.IPinput);
+                    Socket socket = new Socket(HostPrompt.IPinput, 8080);
+                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                    out.println(client);
+                    firstTime = false;
+                    //When IP address have been sent we wait for a response from the host.
+                    PlayOnline.turnCounter = 3;
+                    //Respone will be recieved with the server.
+                    ClientHandler.waiting = true;
+                }catch (RuntimeException e){
+                    throw new RuntimeException(e);
+                } catch (UnknownHostException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 //First time running the code the IP address for the connecting device will be sent to the host server.
-                InetAddress localHost = InetAddress.getLocalHost();
-                String client = localHost.getHostAddress();
-                //Grabs the IP address input from HostPrompt to create a connection the the host.
-                System.out.println(HostPrompt.IPinput);
-                Socket socket = new Socket(HostPrompt.IPinput, 8080);
-                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                out.println(client);
-                firstTime = false;
-                //When IP address have been sent we wait for a response from the host.
-                PlayOnline.turnCounter = 3;
-                //Respone will be recieved with the server.
-                ClientHandler.waiting = true;
+
 
             }else{
                 if(PlayOnline.turnCounter == 3){ //If it isnt the first time then we move to upstart fase.
                     //while(true){
-                    String IPAddress = ClientHandler.getHostIP();
-                    Socket socket = new Socket(IPAddress, 8080);
-                    //BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
-                    ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
-                    int[][] inputMap = boardRec.getArray();
-                    System.out.println(Arrays.deepToString(inputMap));
-                    PlayOnline.setMap(inputMap);
-                    PlayOnline play = new PlayOnline();
-                    play.gameStart();
+                    try {
+                        String IPAddress = ClientHandler.getHostIP();
+                        Socket socket = new Socket(IPAddress, 8080);
+                        //BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                        ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
+                        ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
+                        int[][] inputMap = boardRec.getArray();
+                        System.out.println(Arrays.deepToString(inputMap));
+                        PlayOnline.setMap(inputMap);
+                        PlayOnline play = new PlayOnline();
+                        play.gameStart();
+                    }catch (RuntimeException e){
+                        throw new RuntimeException(e);
+                    } catch (UnknownHostException e) {
+                        throw new RuntimeException(e);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    } catch (ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
                 /*
                     // Send a message to the server
                     System.out.println("What is your message?");
