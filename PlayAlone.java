@@ -87,6 +87,19 @@ public class PlayAlone extends Application {
         blackScore.setText("x"+game.getScore()[1]);
 
         turnCounter=1;
+
+        if(Menu.loadGame=true){
+            //load in game
+
+
+
+
+
+            Menu.loadGame = false;
+        }
+
+
+
         GridPane board = new GridPane();
 
 
