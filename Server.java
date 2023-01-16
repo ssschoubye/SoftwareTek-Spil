@@ -15,22 +15,18 @@ public class Server{
                 ServerSocket serverSocket = null;
                 try {
                     serverSocket = new ServerSocket(8080);
+                    while(true){
+                        // Wait for a client to connect
+                        Socket socket = serverSocket.accept();
+                        System.out.println("Client connected");
+                        // Create a thread to handle the client
+                        new Thread(new ClientHandler(socket)).start();
+                    }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
 
                 }
-                while (true) {
-            // Accept an incoming client connection
-                    Socket clientSocket = null;
-                    try {
-                        clientSocket = serverSocket.accept();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
 
-                    // Create a new thread to handle the client
-            new ClientHandler(clientSocket).start();
-        }
     }
     }).start();
     }

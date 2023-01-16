@@ -11,11 +11,13 @@ public class ServerClient {
         public static void runServerClient(int dim) throws IOException, ClassNotFoundException {
             //First time running this code it needs to be determined whether it is first time making a connection,
             // if the game is in its upstart fase or if regular play have started.
+            System.out.println("Connecting");
             if(firstTime == true){
                 //First time running the code the IP address for the connecting device will be sent to the host server.
                 InetAddress localHost = InetAddress.getLocalHost();
                 String client = localHost.getHostAddress();
                 //Grabs the IP address input from HostPrompt to create a connection the the host.
+                System.out.println(HostPrompt.IPinput);
                 Socket socket = new Socket(HostPrompt.IPinput, 8080);
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 out.println(client);
