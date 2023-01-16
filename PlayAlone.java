@@ -200,13 +200,12 @@ public class PlayAlone extends Application {
 
         Image icon = new Image(appIcon);
         boardFile = game;
-        test = "123";
         primaryStage.setTitle("Reversi");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(icon);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
-        System.out.println("retur til start");
+
 
 
     }
@@ -275,7 +274,6 @@ public class PlayAlone extends Application {
 
                 if (game.map[x][y] == 1) {
                     ImageView whitePiece = new ImageView(whitePieceImage);
-
                     board.add(whitePiece, x, y);
                     whitePiece.setPreserveRatio(true);
                     whitePiece.setMouseTransparent(true);

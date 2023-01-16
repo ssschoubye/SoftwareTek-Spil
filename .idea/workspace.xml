@@ -10,6 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
+      <change afterPath="$PROJECT_DIR$/Coinflip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/SoftwareTek-Spil.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SoftwareTek-Spil.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/ReversiAdvanced_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ReversiAdvanced_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx_sdk_19.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/javafx_sdk_19.xml" afterDir="false" />
@@ -229,6 +230,7 @@
       <workItem from="1673859883162" duration="402000" />
       <workItem from="1673872183109" duration="45000" />
       <workItem from="1673872245707" duration="9000" />
+      <workItem from="1673872325781" duration="750000" />
     </task>
     <servers />
   </component>
