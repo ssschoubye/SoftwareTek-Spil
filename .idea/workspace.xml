@@ -40,6 +40,7 @@
       <change beforePath="$PROJECT_DIR$/GameLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/GameLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HostPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/HostPrompt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HowToPlay.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/HowToPlay.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/ImageAnimation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MiniMaxAlphaBetaAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/MiniMaxAlphaBetaAI.java" afterDir="false" />
@@ -231,6 +232,7 @@
       <workItem from="1673860439547" duration="4494000" />
       <workItem from="1673865351701" duration="110000" />
       <workItem from="1673875587059" duration="2000" />
+      <workItem from="1673875605432" duration="195000" />
     </task>
     <servers />
   </component>
