@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 
-public class PlayOnline extends Application {
+public class PlayOnline extends Application{
 
     static int width;
     static int height;
@@ -54,6 +54,7 @@ public class PlayOnline extends Application {
 
 
     public void gameStart() {
+
         DimensionPrompt dimPrompt = new DimensionPrompt();
         width = dimPrompt.dim.x;
         height = dimPrompt.dim.x;

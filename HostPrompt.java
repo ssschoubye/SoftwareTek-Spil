@@ -37,7 +37,7 @@ public class HostPrompt {
     private TextField IPjoin;
     public static String IPinput;
 
-    public void joinGame() throws IOException, ClassNotFoundException {
+    public void joinGame() throws IOException, ClassNotFoundException, InterruptedException {
         IPinput = IPjoin.getText(); //Gets the IP address input.
         Stage stage = (Stage) button.getScene().getWindow();//Close the stage and the start the controller.
         stage.close();
@@ -53,7 +53,7 @@ public class HostPrompt {
     private void setIP(String hostip){IPhost.setText(hostip);}
 
     @FXML
-    private void startHost() throws IOException, ClassNotFoundException {
+    private void startHost() throws IOException, ClassNotFoundException, InterruptedException {
         boolean isHost = true;
         OnlineController onlineController = new OnlineController();
         onlineController.onlineGame(isHost);

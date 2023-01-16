@@ -2,19 +2,22 @@ import javafx.fxml.Initializable;
 
 import java.io.*;
 import java.net.*;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Server extends Thread{
 
-
-    public static void serverStart() throws IOException {
+    @Override
+    public void run(){
         //new Thread(new Runnable(){
             //public void run(){
         // Create a server socket that listens on port 8080
                 ServerSocket serverSocket = null;
                 try {
+                    System.out.println("Connecting");
                     serverSocket = new ServerSocket(8080);
+                    System.out.println("We got this far");
                     while(true){
                         // Wait for a client to connect
                         Socket socket = serverSocket.accept();

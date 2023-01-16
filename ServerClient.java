@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 
 
-public class ServerClient {
+public class ServerClient{
     public static boolean firstTime = true;
-        public static void runServerClient() throws IOException, ClassNotFoundException {
+        public static void run() throws IOException, ClassNotFoundException {
             //First time running this code it needs to be determined whether it is first time making a connection,
             // if the game is in its upstart fase or if regular play have started.
             System.out.println("Connecting");
@@ -26,7 +26,7 @@ public class ServerClient {
                 PlayOnline.turnCounter = 3;
                 //Respone will be recieved with the server.
                 ClientHandler.waiting = true;
-                Server.serverStart();
+
             }else{
                 if(PlayOnline.turnCounter == 3){ //If it isnt the first time then we move to upstart fase.
                     //while(true){
