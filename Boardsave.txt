@@ -1,8 +1,8 @@
-2
+1
 4
-Images/WhitePieces/whitePiece2.png
-Images/BlackPieces/blackPiece2.png
-Images/Background/glass1.png
-Images/Background/glass2.png
-0030021331200300
-5
+Images/WhitePieces/whitePiece1.png
+Images/BlackPieces/blackPiece1.png
+Images/Background/bubblegum1.png
+Images/Background/bubblegum2.png
+3030022032102000
+6
