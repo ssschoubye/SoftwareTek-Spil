@@ -44,7 +44,6 @@ public class PlayAlone extends Application {
     String backImage2 = "Images/Background/green2.png";
     String placeSoundFile = "Sounds/placeSound1.mp3";
 
-    String test = "";
 
     String appIcon = "Images/reversiIcon.png";
 
@@ -90,10 +89,19 @@ public class PlayAlone extends Application {
             GameLoader gameloader = new GameLoader();
             turn = gameloader.playerLoad;
             whiteImage = gameloader.whiteLoad;
+            DimensionPrompt.whiteImage=whiteImage;
+
             blackImage = gameloader.blackLoad;
+            DimensionPrompt.blackImage=blackImage;
+
             backImage1 = gameloader.board1Load;
+            DimensionPrompt.backImage1=backImage1;
+
             backImage2 = gameloader.board2Load;
+            DimensionPrompt.backImage2=backImage2;
+
             game.map = gameloader.gameMapLoad;
+
             turnCounter=gameloader.turnCount;
 
             Menu.loadGame = false;
@@ -188,7 +196,6 @@ public class PlayAlone extends Application {
 
         Image icon = new Image(appIcon);
         boardFile = game;
-        test = "123";
         primaryStage.setTitle("Reversi");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(icon);
@@ -357,8 +364,7 @@ public class PlayAlone extends Application {
     Button saveGame;
 
     @FXML
-    public void filesaver(ActionEvent event) {
-        System.out.println(((Node) event.getSource()).getScene().getWindow());
+    public void filesaver(ActionEvent event) throws IOException {
         String saveFile = "Boardsave.txt";
         DimensionPrompt dimPrompt = new DimensionPrompt();
 
@@ -387,7 +393,12 @@ public class PlayAlone extends Application {
             throw new RuntimeException(e);
         }
 
-        Platform.exit();
+        Stage stage = (Stage) minimize.getScene().getWindow();
+        stage.close();
+
+        Stage primaryStage = new Stage();
+        Menu menu = new Menu();
+        menu.start(primaryStage);
 
 
     }

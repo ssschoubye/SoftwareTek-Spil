@@ -1,8 +1,8 @@
-1
+2
 4
 Images/WhitePieces/whitePiece1.png
 Images/BlackPieces/blackPiece1.png
-Images/Background/bubblegum1.png
-Images/Background/bubblegum2.png
-3030022032102000
-6
+Images/Background/brown1.png
+Images/Background/brown2.png
+2312111112211001
+14
