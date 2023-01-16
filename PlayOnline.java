@@ -53,10 +53,10 @@ public class PlayOnline extends Application {
     }
 
 
-    public void gameStart(int dim) {
+    public void gameStart() {
         DimensionPrompt dimPrompt = new DimensionPrompt();
-        width = dim;
-        height = dim;
+        width = dimPrompt.dim.x;
+        height = dimPrompt.dim.x;
         whiteImage = dimPrompt.whiteImage;
         blackImage = dimPrompt.blackImage;
         backImage1 = dimPrompt.back1;

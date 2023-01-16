@@ -372,9 +372,9 @@ public class DimensionPrompt {
         stage.close();
         HostPrompt game = new HostPrompt();
         if (dim.x == 0 || dim.y == 0){
-            int newx = 8;
-            int newy = 8;
-            System.out.println(newx);
+            dim.x = 8;
+            dim.y = 8;
+            System.out.println(dim.x);
             game.runHostPrompt();
         }else if(dim.x > 0 || dim.y > 0){
             System.out.println(dim.x + " " + dim.y);

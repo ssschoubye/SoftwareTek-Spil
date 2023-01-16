@@ -21,7 +21,6 @@ public class HostPrompt {
     public void runHostPrompt() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("OnlineDesign.fxml"));
         Scene scene = new Scene(root);
-        dim = DimensionPrompt.dim.x;
         IPhost = (Label) scene.lookup("#IPhost");
         InetAddress localHost = InetAddress.getLocalHost();
         String hostip = localHost.getHostAddress();
@@ -38,12 +37,13 @@ public class HostPrompt {
     private TextField IPjoin;
     public static String IPinput;
 
-    public void startGame() throws IOException, ClassNotFoundException {
-        IPinput = IPjoin.getText();
-        Stage stage = (Stage) button.getScene().getWindow();
+    public void joinGame() throws IOException, ClassNotFoundException {
+        IPinput = IPjoin.getText(); //Gets the IP address input.
+        Stage stage = (Stage) button.getScene().getWindow();//Close the stage and the start the controller.
         stage.close();
-        ClientHandler.stopServer();
-        ServerClient.runServerClient(dim);
+        boolean isHost = false;
+        OnlineController onlineController = new OnlineController();
+        onlineController.onlineGame(isHost);
     }
 
     @FXML
@@ -53,7 +53,11 @@ public class HostPrompt {
     private void setIP(String hostip){IPhost.setText(hostip);}
 
     @FXML
-    private void startHost() throws IOException {Server.serverStart();}
+    private void startHost() throws IOException, ClassNotFoundException {
+        boolean isHost = true;
+        OnlineController onlineController = new OnlineController();
+        onlineController.onlineGame(isHost);
+    }
     
 
 }

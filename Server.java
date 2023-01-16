@@ -62,10 +62,6 @@ public class Server extends Thread{
                }
                waiting = false;
                ServerClient.firstTime = false;
-               //Play is started with dimensions from dimensionprompt.
-               PlayOnline play = new PlayOnline();
-               //play.gameStart(DimensionPrompt.dim.x);
-               play.start();
 
            }else if(PlayOnline.turnCounter > 4){ //First stage of the game
                Board board = new Board();

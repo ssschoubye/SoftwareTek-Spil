@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class ServerClient {
     public static boolean firstTime = true;
-        public static void runServerClient(int dim) throws IOException, ClassNotFoundException {
+        public static void runServerClient() throws IOException, ClassNotFoundException {
             //First time running this code it needs to be determined whether it is first time making a connection,
             // if the game is in its upstart fase or if regular play have started.
             System.out.println("Connecting");
@@ -39,7 +39,7 @@ public class ServerClient {
                     System.out.println(Arrays.deepToString(inputMap));
                     PlayOnline.setMap(inputMap);
                     PlayOnline play = new PlayOnline();
-                    play.gameStart(dim);
+                    play.gameStart();
                 /*
                     // Send a message to the server
                     System.out.println("What is your message?");
