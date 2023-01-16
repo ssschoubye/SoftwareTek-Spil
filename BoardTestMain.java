@@ -12,7 +12,8 @@ public class BoardTestMain {
         }
     }
 
-    public static void main(String[] args) {
+    public static void gameRun() {
+
 
         int xSize = 8;
         int ySize = 8;
