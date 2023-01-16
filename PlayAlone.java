@@ -27,6 +27,8 @@ import java.util.Objects;
 
 public class PlayAlone extends Application {
 
+    static Boolean gameLoad;
+
     static int width;
     static int height;
     static int turn = (int) (Math.random() * 2) + 1;

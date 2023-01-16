@@ -1,4 +1,4 @@
-2
+1
 8
 Images/WhitePieces/whitePiece1.png
 Images/BlackPieces/blackPiece1.png

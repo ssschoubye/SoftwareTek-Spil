@@ -66,7 +66,7 @@ public class Menu extends Application {
     @FXML
     private void loadGame() {
         System.out.println("Load Game");
-        Stage stage =(Stage) button2.getScene().getWindow();
+        Stage stage = (Stage) button2.getScene().getWindow();
         stage.close();
     }
 
