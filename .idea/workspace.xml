@@ -11,23 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Boardsave.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Boardsave.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlayAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayAlone.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayAlone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayOnline.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayOnline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/BoardTestMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/BoardTestMain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Boardsave.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Boardsave.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Menu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAI$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/playAlone.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/playAlone.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/playAlone.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/playAlone.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,6 +152,8 @@
       <workItem from="1673855947344" duration="738000" />
       <workItem from="1673856837995" duration="56000" />
       <workItem from="1673857161405" duration="1804000" />
+      <workItem from="1673859078579" duration="481000" />
+      <workItem from="1673859883162" duration="402000" />
     </task>
     <servers />
   </component>

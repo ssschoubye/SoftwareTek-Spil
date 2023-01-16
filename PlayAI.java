@@ -110,58 +110,28 @@ public class PlayAI extends Application {
 
 
                 cells[i][j].setOnAction(event -> {
-                    if(clickLegal){
                         if (game.placePiece(ii, jj, turn)) {
 
                             placeSound.play();
                             turnCounter++;
 
-                            if (turnCounter == 3) {
-                                clickLegal=false;
-                                game.clearLegalSpots();
-                                updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                            if(turnCounter==3){
+                                showTurn.setText(turnColor(turn)+"'s turn");
                                 turn = Board.turnSwitch(turn);
-                                showTurn.setText(turnColor(turn) + "'s turn");
 
-                                new Thread(()->{
-                                    try {
-                                        Thread.sleep(1000);
-                                    } catch (InterruptedException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                    MiniMaxAlphaBetaAI.AIMakeMove(turn);
-                                    turnCounter++;
-                                    placeSound.play();
-                                    Platform.runLater(()->updateGridpane(game, board, whiteImage, blackImage, markerImage));
+                                updateGridpane(game, board,whiteImage, blackImage, markerImage);
 
-                                    new Thread(()->{
-                                        try {
-                                            Thread.sleep(1000);
-                                        } catch (InterruptedException e) {
-                                            throw new RuntimeException(e);
-                                        }
+                                MiniMaxAlphaBetaAI.AIMakeMove(turn);
+                                turnCounter++;
 
-                                        MiniMaxAlphaBetaAI.AIMakeMove(turn);
-
-                                        placeSound.play();
-                                        Platform.runLater(()->{
-                                            turn = Board.turnSwitch(turn);
-                                            game.legalSpots(turn);
-                                            showTurn.setText(turnColor(turn) + "'s turn");
-                                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
-                                            clickLegal=true;
-                                        });
-
-                                    }).start();
-
-                                }).start();
-
-
-
-
+                                MiniMaxAlphaBetaAI.AIMakeMove(turn);
+                                turn = Board.turnSwitch(turn);
+                                game.legalSpots(turn);
                             }
+
+
+
                             if (turnCounter > 4) {
-                                clickLegal=false;
                                 turn = Board.turnSwitch(turn);
 
 
@@ -196,54 +166,25 @@ public class PlayAI extends Application {
 
                                 } else {
 
-                                    while (true) {
-                                        updateGridpane(game, board, whiteImage, blackImage, markerImage);
-                                        new Thread(()->{
-                                            try {
-                                                Thread.sleep(1000);
-                                            } catch (InterruptedException e) {
-                                                throw new RuntimeException(e);
-                                            }
-
-                                            MiniMaxAlphaBetaAI.AIMakeMove(turn);
-                                            placeSound.play();
-                                            Platform.runLater(()->{
-                                                updateGridpane(game, board, whiteImage, blackImage, markerImage);
-                                                turn = Board.turnSwitch(turn);
-                                                showTurn.setText(turnColor(turn) + "'s turn");
-                                                clickLegal=true;
-
-                                            });
-
-                                        }).start();
-                                        //updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
-                                        //MiniMaxAlphaBetaAI.AIMakeMove(turn);
-                                        //updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                                    while (true){
 
 
-
-                                        if (!game.legalSpots(Board.turnSwitch(turn))) {
-                                            if (!game.legalSpots(turn)) {
+                                        MiniMaxAlphaBetaAI.AIMakeMove(turn);
+                                        if(!game.legalSpots(Board.turnSwitch(turn))){
+                                            if(!game.legalSpots(turn)){
                                                 System.out.println("No more possible moves \n    game over");
-
-                                                updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
-                                                delay(500,() ->{
-                                                    WinPage win = new WinPage();
-                                                    turnCounter = 1;
-                                                    gameNumber++;
-
-                                                    try {
-                                                        primaryStage.close();
-                                                        win.winStart(game);
-                                                    } catch (IOException e) {
-                                                        throw new RuntimeException(e);
-                                                    }
-                                                });
+                                                WinPage win = new WinPage();
+                                                turnCounter = 1;
+                                                gameNumber++;
+                                                try{
+                                                    primaryStage.close();
+                                                    win.winStart(game);
+                                                } catch (IOException e) {
+                                                    throw new RuntimeException(e);
+                                                }
                                             } else continue;
                                         }
-                                        //turn = Board.turnSwitch(turn);
+                                        turn = Board.turnSwitch(turn);
 
                                         break;
 
@@ -260,7 +201,6 @@ public class PlayAI extends Application {
 
 
                         }
-                    }
 
 
                 });
