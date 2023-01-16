@@ -89,20 +89,20 @@ public class PlayAlone extends Application {
             GameLoader gameloader = new GameLoader();
             turn = gameloader.playerLoad;
             whiteImage = gameloader.whiteLoad;
-            DimensionPrompt.whiteImage=whiteImage;
+            DimensionPrompt.whiteImage = whiteImage;
 
             blackImage = gameloader.blackLoad;
-            DimensionPrompt.blackImage=blackImage;
+            DimensionPrompt.blackImage = blackImage;
 
             backImage1 = gameloader.board1Load;
-            DimensionPrompt.backImage1=backImage1;
+            DimensionPrompt.backImage1 = backImage1;
 
             backImage2 = gameloader.board2Load;
-            DimensionPrompt.backImage2=backImage2;
+            DimensionPrompt.backImage2 = backImage2;
 
             game.map = gameloader.gameMapLoad;
 
-            turnCounter=gameloader.turnCount;
+            turnCounter = gameloader.turnCount;
 
             Menu.loadGame = false;
         }
@@ -128,7 +128,7 @@ public class PlayAlone extends Application {
                 final int ii = i;
                 final int jj = j;
 
-                updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                updateGridpane(game, board);
 
 
                 cells[i][j].setOnAction(event -> {
@@ -149,23 +149,29 @@ public class PlayAlone extends Application {
 
                             if (!game.legalSpots(turn)) {
                                 if (!game.legalSpots(Board.turnSwitch(turn))) {
-                                    System.out.println("No more possible moves \n    game over");
 
-                                    updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
-                                    delay(500, () -> {
+                                    updateGridpane(game, board);
+                                    new Thread(() -> {
+                                        try {
+                                            Thread.sleep(800);
+                                        } catch (InterruptedException e) {
+                                            throw new RuntimeException(e);
+                                        }
                                         WinPage win = new WinPage();
                                         turnCounter = 1;
                                         gameNumber++;
 
-                                        try {
+                                        Platform.runLater(() -> {
                                             primaryStage.close();
-                                            win.winStart(game);
-                                        } catch (IOException e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                    });
+                                            try {
+                                                win.winStart(game);
+                                            } catch (IOException e) {
+                                                throw new RuntimeException(e);
+                                            }
 
+                                        });
+
+                                    }).start();
 
                                 } else {
 
@@ -180,14 +186,14 @@ public class PlayAlone extends Application {
 
                         whiteScore.setText("x" + game.getScore()[0]);
                         blackScore.setText("x" + game.getScore()[1]);
-                        updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                        updateGridpane(game, board);
 
 
                     }
                 });
                 Pane gamePane = (Pane) scene.lookup("#gamePane");
-                cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
-                cells[i][j].prefWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
+                cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), height));
+                cells[i][j].prefWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), height));
 
             }
             board.setAlignment(Pos.CENTER);
@@ -207,24 +213,7 @@ public class PlayAlone extends Application {
     }
 
 
-    //Borrowed from the internet
-    public static void delay(long millis, Runnable continuation) {
-        Task<Void> sleeper = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                try {
-                    Thread.sleep(millis);
-                } catch (InterruptedException e) {
-                }
-                return null;
-            }
-        };
-        sleeper.setOnSucceeded(event -> continuation.run());
-        new Thread(sleeper).start();
-    }
-
-
-    private void updateGridpane(Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
+    private void updateGridpane(Board game, GridPane board) {
         Pane gamePane = (Pane) scene.lookup("#gamePane");
         board.getChildren().removeIf(node -> node instanceof ImageView);
         gamePane.getChildren().remove(board);
@@ -265,7 +254,7 @@ public class PlayAlone extends Application {
                 back.setMouseTransparent(true);
                 back.setPreserveRatio(true);
                 back.fitWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
-                back.fitHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
+                back.fitHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), height));
 
 
                 if (game.map[x][y] == 1) {
@@ -274,21 +263,21 @@ public class PlayAlone extends Application {
                     whitePiece.setPreserveRatio(true);
                     whitePiece.setMouseTransparent(true);
                     whitePiece.fitWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
-                    whitePiece.fitHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
+                    whitePiece.fitHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), height));
                 } else if (game.map[x][y] == 2) {
                     ImageView blackPiece = new ImageView(blackPieceImage);
                     board.add(blackPiece, x, y);
                     blackPiece.setPreserveRatio(true);
                     blackPiece.setMouseTransparent(true);
                     blackPiece.fitWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
-                    blackPiece.fitHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
+                    blackPiece.fitHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), height));
                 } else if (game.map[x][y] == 3 || game.map[x][y] == 4) {
                     ImageView marker = new ImageView(markingImage);
                     board.add(marker, x, y);
                     marker.setPreserveRatio(true);
                     marker.setMouseTransparent(true);
                     marker.fitWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
-                    marker.fitHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
+                    marker.fitHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), height));
                 }
             }
         }
