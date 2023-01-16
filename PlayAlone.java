@@ -275,6 +275,7 @@ public class PlayAlone extends Application {
 
                 if (game.map[x][y] == 1) {
                     ImageView whitePiece = new ImageView(whitePieceImage);
+
                     board.add(whitePiece, x, y);
                     whitePiece.setPreserveRatio(true);
                     whitePiece.setMouseTransparent(true);

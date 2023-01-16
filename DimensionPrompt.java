@@ -71,7 +71,6 @@ public class DimensionPrompt {
         dim.back1 = backImage1;
         dim.back2 = backImage2;
 
-
     }
 
     public static void start2(PlayAlone playAlone) {
