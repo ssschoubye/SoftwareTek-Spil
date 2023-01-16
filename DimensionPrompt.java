@@ -34,7 +34,6 @@ public class DimensionPrompt {
     public String back1;
     public String back2;
     public static int gamemode=0;
-    //public int gamemode2;
 
     private static int size=8;
     public DimensionPrompt(){
