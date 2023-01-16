@@ -20,20 +20,22 @@ public class ServerClient {
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 out.println(client);
                 firstTime = false;
-                //Then game starts.
+                //When IP address have been sent we wait for a response from the host.
                 PlayOnline.turnCounter = 3;
+                //Respone will be recieved with the server.
+                ClientHandler.waiting = true;
                 Server.serverStart();
             }else{
-                if(PlayOnline.turnCounter == 2){ //If it isnt the first time then we move to upstart fase.
+                if(PlayOnline.turnCounter == 3){ //If it isnt the first time then we move to upstart fase.
                     //while(true){
                     String IPAddress = ClientHandler.getHostIP();
                     Socket socket = new Socket(IPAddress, 8080);
-                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    //BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
-
                     ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
                     int[][] inputMap = boardRec.getArray();
                     System.out.println(Arrays.deepToString(inputMap));
+                    PlayOnline.setMap(inputMap);
                     PlayOnline play = new PlayOnline();
                     play.gameStart(dim);
                 /*
@@ -52,7 +54,8 @@ public class ServerClient {
 
                  */
                     //}
-                }else{
+                }else if(PlayOnline.turnCounter > 4){
+
 
                 }
             }

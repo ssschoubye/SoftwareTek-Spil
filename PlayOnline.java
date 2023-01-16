@@ -64,15 +64,16 @@ public class PlayOnline extends Application {
         Stage stage = new Stage();
         start(stage);
     }
-
+    static Board game = new Board(width, height);
     @Override
     public void start(Stage primaryStage) {
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label)scene.lookup("#showTurn");
 
-        Board game = new Board(width, height);
+
         game.initialize();
-        turn = game.startingPlayer(gameNumber, firstStartingPlayer);
+        //turn = game.startingPlayer(gameNumber, firstStartingPlayer);
+        //turn = something
         showTurn.setText(turnColor(turn) + "'s turn");
 
 
@@ -135,14 +136,7 @@ public class PlayOnline extends Application {
                                             throw new RuntimeException(e);
                                         }
                                     });
-
-                                    //Save value for ending game
-
-
-
-
                                 } else {
-
                                     System.out.println("\n" + turn + " has no possible moves");
                                     turn = Board.turnSwitch(turn);
                                     showTurn.setText(turnColor(turn) + "'s turn");
@@ -314,6 +308,10 @@ public class PlayOnline extends Application {
         stage.setIconified(true);
     }
 
+    public static void setMap(int[][] map) {
+        Board newBoard = new Board(map);
+        game = newBoard;
+    }
 
 }
 

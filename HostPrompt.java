@@ -18,7 +18,6 @@ public class HostPrompt {
 
     int dim;
 
-
     public void runHostPrompt() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("OnlineDesign.fxml"));
         Scene scene = new Scene(root);

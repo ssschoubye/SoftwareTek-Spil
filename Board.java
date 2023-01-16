@@ -18,10 +18,8 @@ public class Board {
         this.map = new int[x_axis][y_axis];
     }
 
-    public Board(int size) {
-        this.y_axis = size;
-        this.x_axis = size;
-        map = new int[size][size];
+    public Board(int[][] size) {
+        this.map = size;
     }
     public Board(){
         //Constructor der bliver benyttet i Server.
