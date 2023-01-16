@@ -27,7 +27,7 @@ public class OnlineController {
 
         }else{
             ServerClient client = new ServerClient();
-            client.runServerClient();
+            client.start();
             PlayOnline playOnline = new PlayOnline();
             playOnline.gameStart();
         }
