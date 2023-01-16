@@ -36,8 +36,8 @@ public class PlayAlone extends Application {
     static int gameNumber = 1;
 
     static int turnCounter = 1;
-    
-    String whiteImage ="";
+
+    String whiteImage = "";
     String blackImage = "";
     String markerImage = "Images/markerDark.png";
     String backImage1 = "Images/Background/green1.png";
@@ -48,24 +48,24 @@ public class PlayAlone extends Application {
 
     String appIcon = "Images/reversiIcon.png";
 
-   static Board boardFile = new Board();
+    static Board boardFile = new Board();
 
 
     Scene scene;
 
 
-    public PlayAlone () {
+    public PlayAlone() {
         System.out.println("Test ___");
     }
 
     public void gameStart(int inwidth, int inheight) {
 
-            try {
-                scene = new Scene(FXMLLoader.load(Objects.requireNonNull(PlayAlone.class.getResource("playAlone.fxml"))));
-            } catch (IOException e) {
-                System.out.println("Could not load FXML-file");
+        try {
+            scene = new Scene(FXMLLoader.load(Objects.requireNonNull(PlayAlone.class.getResource("playAlone.fxml"))));
+        } catch (IOException e) {
+            System.out.println("Could not load FXML-file");
 
-            }
+        }
 
         DimensionPrompt dimPrompt = new DimensionPrompt();
         width = inwidth;
@@ -80,14 +80,32 @@ public class PlayAlone extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        System.out.println("new instance + "+ primaryStage);
+        System.out.println("new instance + " + primaryStage);
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label) scene.lookup("#showTurn");
 
-        Board game = new Board(width, height);
-        game.initialize();
-        turn = game.startingPlayer(gameNumber, firstStartingPlayer);
-        showTurn.setText(turnColor(turn) + "'s turn");
+        Board game;
+
+        if (Menu.loadGame){
+
+            //From file
+
+
+
+            game = new Board(width, height);
+
+
+
+            Menu.loadGame=false;
+        }else{
+            game = new Board(width, height);
+            game.initialize();
+            turn = game.startingPlayer(gameNumber, firstStartingPlayer);
+            showTurn.setText(turnColor(turn) + "'s turn");
+        }
+
+
+
 
 
         Label whiteScore = (Label) scene.lookup("#whiteScore");
@@ -95,6 +113,8 @@ public class PlayAlone extends Application {
 
         Label blackScore = (Label) scene.lookup("#blackScore");
         blackScore.setText("x" + game.getScore()[1]);
+
+
 
 
         GridPane board = new GridPane();
@@ -185,7 +205,6 @@ public class PlayAlone extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
         System.out.println("retur til start");
-
 
 
     }
@@ -325,34 +344,56 @@ public class PlayAlone extends Application {
         Stage stage = (Stage) minimize.getScene().getWindow();
         stage.setIconified(true);
     }
-@FXML
-    public void filesaver(ActionEvent event) {
-    System.out.println(((Node) event.getSource()).getScene().getWindow());
-            String saveFile = "Boardsave.txt";
-            DimensionPrompt dimPrompt = new DimensionPrompt();
+    //////////////////////////////////////////////////////////////
+    ///                 Back to Menu button                    ///
+    //////////////////////////////////////////////////////////////
 
-            try {
-                FileWriter writer = new FileWriter(saveFile);
-                writer.write("" + turn);
-                writer.write("\n");
-                writer.write("" + height);
-                writer.write("\n");
-                writer.write(dimPrompt.white);
-                writer.write("\n");
-                writer.write(dimPrompt.black);
-                writer.write("\n");
-                writer.write(dimPrompt.back1);
-                writer.write("\n");
-                writer.write(dimPrompt.back2);
-                writer.write("\n");
-                writer.write(boardFile.boardtransfer());
-                writer.close();
-                System.out.println("Game saved");
-                gameLoader();
-            } catch (Exception e) {
-                System.out.println("Error occured");
-                throw new RuntimeException(e);
-            }
+    @FXML
+    public void backToMenu() throws IOException {
+        Stage stage = (Stage) minimize.getScene().getWindow();
+        stage.close();
+
+        Stage primaryStage = new Stage();
+        Menu menu = new Menu();
+        menu.start(primaryStage);
+
+    }
+
+    //////////////////////////////////////////////////////////////
+    ///                       Save game                        ///
+    //////////////////////////////////////////////////////////////
+
+    @FXML
+    Button saveGame;
+
+    @FXML
+    public void filesaver(ActionEvent event) {
+        System.out.println(((Node) event.getSource()).getScene().getWindow());
+        String saveFile = "Boardsave.txt";
+        DimensionPrompt dimPrompt = new DimensionPrompt();
+
+        try {
+            FileWriter writer = new FileWriter(saveFile);
+            writer.write("" + turn);
+            writer.write("\n");
+            writer.write("" + height);
+            writer.write("\n");
+            writer.write(dimPrompt.white);
+            writer.write("\n");
+            writer.write(dimPrompt.black);
+            writer.write("\n");
+            writer.write(dimPrompt.back1);
+            writer.write("\n");
+            writer.write(dimPrompt.back2);
+            writer.write("\n");
+            writer.write(boardFile.boardtransfer());
+            writer.close();
+            System.out.println("Game saved");
+            gameLoader();
+        } catch (Exception e) {
+            System.out.println("Error occured");
+            throw new RuntimeException(e);
+        }
     }
 
     public void gameLoader() {
@@ -366,7 +407,6 @@ public class PlayAlone extends Application {
             String board1 = "";
             String board2 = "";
             String gridString = "";
-
 
 
             int lineCount = 0;
@@ -400,17 +440,16 @@ public class PlayAlone extends Application {
 
             for (int i = 0; i < dimension; i++) {
                 for (int j = 0; j < dimension; j++) {
-                    int pos = dimension*i+j;
-                    grid[i][j] = gridString.charAt(pos)-'0';
+                    int pos = dimension * i + j;
+                    grid[i][j] = gridString.charAt(pos) - '0';
                 }
             }
-            for (int i = 0; i<dimension; i++) {
+            for (int i = 0; i < dimension; i++) {
                 System.out.println();
-                for (int j = 0; j<dimension; j++) {
+                for (int j = 0; j < dimension; j++) {
                     System.out.print(grid[i][j]);
                 }
             }
-
 
 
         } catch (IOException e) {

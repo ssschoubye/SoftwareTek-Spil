@@ -91,6 +91,10 @@ public class PlayAI extends Application {
         turnCounter=1;
         GridPane board = new GridPane();
 
+        Button saveGame = (Button) scene.lookup("#saveGame");
+
+        saveGame.setVisible(false);
+
 
         Button[][] cells = new Button[width][height];
         for (int i = 0; i < height; i++) {
@@ -406,6 +410,8 @@ public class PlayAI extends Application {
         Stage stage = (Stage) minimize.getScene().getWindow();
         stage.setIconified(true);
     }
+
+
     //////////////////////////////////////////////////////////////
     ///                 Back to Menu button                    ///
     //////////////////////////////////////////////////////////////
@@ -420,6 +426,12 @@ public class PlayAI extends Application {
         menu.start(primaryStage);
 
     }
+
+
+    @FXML
+    Button saveGame;
+
+
 
 }
 

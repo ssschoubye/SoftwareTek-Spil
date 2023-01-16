@@ -84,6 +84,10 @@ public class PlayOnline extends Application {
 
 
         GridPane board = new GridPane();
+        
+        Button saveGame = (Button) scene.lookup("#saveGame");
+
+        saveGame.setVisible(false);
 
         System.out.println("retur til start");
 
