@@ -105,7 +105,7 @@ public class PlayAI extends Application {
                 final int ii = i;
                 final int jj = j;
 
-                updateGridpane( game, board);
+                updateGridPane( game, board);
 
 
                 cells[i][j].setOnAction(event -> {
@@ -118,7 +118,7 @@ public class PlayAI extends Application {
                                 showTurn.setText(turnColor(turn)+"'s turn");
                                 turn = Board.turnSwitch(turn);
 
-                                updateGridpane(game, board);
+                                updateGridPane(game, board);
 
                                 MiniMaxAlphaBetaAI.AIMakeMove(turn);
                                 turnCounter++;
@@ -138,7 +138,7 @@ public class PlayAI extends Application {
                                     if (!game.legalSpots(Board.turnSwitch(turn))) {
                                         System.out.println("No more possible moves \n    game over");
 
-                                        updateGridpane(game, board);
+                                        updateGridPane(game, board);
 
                                         delay(500,() ->{
                                             WinPage win = new WinPage();
@@ -172,7 +172,7 @@ public class PlayAI extends Application {
                                         if(!game.legalSpots(Board.turnSwitch(turn))){
                                             if(!game.legalSpots(turn)){
 
-                                                updateGridpane(game, board);
+                                                updateGridPane(game, board);
                                                 new Thread(() -> {
                                                     try {
                                                         Thread.sleep(800);
@@ -209,7 +209,7 @@ public class PlayAI extends Application {
                             showTurn.setText(turnColor(turn) + "'s turn");
                             whiteScore.setText("x"+game.getScore()[0]);
                             blackScore.setText("x"+game.getScore()[1]);
-                            updateGridpane(game, board);
+                            updateGridPane(game, board);
 
 
                         }
@@ -249,7 +249,7 @@ public class PlayAI extends Application {
     }
 
 
-    private void updateGridpane(Board game, GridPane board) {
+    private void updateGridPane(Board game, GridPane board) {
         Pane gamePane = (Pane) scene.lookup("#gamePane");
         board.getChildren().removeIf(node -> node instanceof ImageView);
         gamePane.getChildren().remove(board);

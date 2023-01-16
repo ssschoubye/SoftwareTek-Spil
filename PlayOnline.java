@@ -102,7 +102,7 @@ public class PlayOnline extends Application {
                 final int ii = i;
                 final int jj = j;
 
-                updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                updateGridPane(game, board);
 
 
                 // Create an event handler for "on action"
@@ -127,7 +127,7 @@ public class PlayOnline extends Application {
                                 if (!game.legalSpots(Board.turnSwitch(turn))) {
                                     System.out.println("No more possible moves \n    game over");
 
-                                    updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                                    updateGridPane(game, board);
 
                                     delay(500,() ->{
                                         WinPage win = new WinPage();
@@ -160,7 +160,7 @@ public class PlayOnline extends Application {
 
                         whiteScore.setText("x"+game.getScore()[0]);
                         blackScore.setText("x"+game.getScore()[1]);
-                        updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                        updateGridPane(game, board);
 
 
                     }
@@ -204,7 +204,7 @@ public class PlayOnline extends Application {
 
 
 
-    private void updateGridpane(Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
+    private void updateGridPane(Board game, GridPane board) {
         Pane gamePane = (Pane) scene.lookup("#gamePane");
         board.getChildren().removeIf(node -> node instanceof ImageView);
         gamePane.getChildren().remove(board);

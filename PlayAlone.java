@@ -1,12 +1,10 @@
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -18,8 +16,6 @@ import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
@@ -128,7 +124,7 @@ public class PlayAlone extends Application {
                 final int ii = i;
                 final int jj = j;
 
-                updateGridpane(game, board);
+                updateGridPane(game, board);
 
 
                 cells[i][j].setOnAction(event -> {
@@ -150,7 +146,7 @@ public class PlayAlone extends Application {
                             if (!game.legalSpots(turn)) {
                                 if (!game.legalSpots(Board.turnSwitch(turn))) {
 
-                                    updateGridpane(game, board);
+                                    updateGridPane(game, board);
                                     new Thread(() -> {
                                         try {
                                             Thread.sleep(800);
@@ -186,7 +182,7 @@ public class PlayAlone extends Application {
 
                         whiteScore.setText("x" + game.getScore()[0]);
                         blackScore.setText("x" + game.getScore()[1]);
-                        updateGridpane(game, board);
+                        updateGridPane(game, board);
 
 
                     }
@@ -213,7 +209,7 @@ public class PlayAlone extends Application {
     }
 
 
-    private void updateGridpane(Board game, GridPane board) {
+    private void updateGridPane(Board game, GridPane board) {
         Pane gamePane = (Pane) scene.lookup("#gamePane");
         board.getChildren().removeIf(node -> node instanceof ImageView);
         gamePane.getChildren().remove(board);
