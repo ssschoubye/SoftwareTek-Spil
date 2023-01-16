@@ -64,13 +64,13 @@ public class PlayOnline extends Application {
         Stage stage = new Stage();
         start(stage);
     }
-    static Board game = new Board(width, height);
+    static Board game;
     @Override
     public void start(Stage primaryStage) {
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label)scene.lookup("#showTurn");
-
-
+        System.out.println(width);
+        game = new Board(width, height);
         game.initialize();
         //turn = game.startingPlayer(gameNumber, firstStartingPlayer);
         //turn = something

@@ -7,8 +7,15 @@ public class OnlineController {
         if(hostMode == true){
             Server server = new Server();
             server.start();
-            PlayOnline playOnline = new PlayOnline();
-            playOnline.gameStart();
+            while(true){
+                if(ClientHandler.waiting == false){
+                    PlayOnline playOnline = new PlayOnline();
+                    playOnline.gameStart();
+                    break;
+                }
+            }
+
+
         }else{
             ServerClient client = new ServerClient();
             client.runServerClient();
