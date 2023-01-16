@@ -56,10 +56,23 @@ public class DimensionPrompt {
     }
 
 
+
     public static void start1() {
         Stage stage = new Stage();
         start(stage);
 
+        dim.x = size;
+        dim.y = size;
+        dim.white = whiteImage;
+        dim.black = blackImage;
+        dim.back1 = backImage1;
+        dim.back2 = backImage2;
+        System.out.println(dim);
+
+    }
+
+    public static void start2(PlayAlone playAlone) {
+        playAlone.start(new Stage());
         dim.x = size;
         dim.y = size;
         dim.white = whiteImage;
@@ -321,12 +334,13 @@ public class DimensionPrompt {
     @FXML
     private Button playAlone;
 
+    PlayAlone game = null;
     @FXML
     private void playAloneAction(){
         Stage stage = (Stage) playAlone.getScene().getWindow();
         stage.close();
-        PlayAlone game = new PlayAlone();
-        if (dim.x == 0 || dim.y == 0){
+        game = new PlayAlone();
+      if (dim.x == 0 || dim.y == 0){
             int newx = 8;
             int newy = 8;
             System.out.println(newx);

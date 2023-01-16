@@ -29,6 +29,7 @@
       <change beforePath="$PROJECT_DIR$/ArrayReturn.java" beforeDir="false" afterPath="$PROJECT_DIR$/ArrayReturn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BoardTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/BoardTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Boardsave.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Boardsave.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DimensionPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimensionPrompt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Draw.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Draw.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HostPrompt.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/HostPrompt.fxml" afterDir="false" />
@@ -67,9 +68,10 @@
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Boardsave.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Boardsave.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Draw.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Draw.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/HostPrompt.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/HostPrompt.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayAlone.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Winpage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Winpage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/application.css" afterDir="false" />
@@ -203,6 +205,7 @@
       <workItem from="1673464532329" duration="724000" />
       <workItem from="1673531065572" duration="3609000" />
       <workItem from="1673534835237" duration="502000" />
+      <workItem from="1673535517018" duration="14483000" />
     </task>
     <servers />
   </component>
@@ -219,6 +222,14 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints-defaults>
+        <breakpoint suspend="THREAD" type="java-line" />
+        <breakpoint suspend="THREAD" type="java-field" />
+      </breakpoints-defaults>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

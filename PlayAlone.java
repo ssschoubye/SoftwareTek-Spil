@@ -3,10 +3,10 @@ import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -23,7 +23,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 
 public class PlayAlone extends Application {
@@ -38,36 +37,41 @@ public class PlayAlone extends Application {
 
     static int turnCounter = 1;
     
-    String whiteImage = "Images/WhitePieces/whitePiece1.png";
-    String blackImage = "Images/BlackPieces/blackPiece1.png";
+    String whiteImage ="";
+    String blackImage = "";
     String markerImage = "Images/markerDark.png";
     String backImage1 = "Images/Background/green1.png";
     String backImage2 = "Images/Background/green2.png";
     String placeSoundFile = "Sounds/placeSound1.mp3";
 
+    String test = "";
+
     String appIcon = "Images/reversiIcon.png";
 
+   static Board boardFile = new Board();
 
-    static Scene scene;
 
-    Board board = new Board();
+    Scene scene;
 
-    static {
-        try {
-            scene = new Scene(FXMLLoader.load(Objects.requireNonNull(PlayAlone.class.getResource("playAlone.fxml"))));
-        } catch (IOException e) {
-            System.out.println("Could not load FXML-file");
 
-        }
+    public PlayAlone () {
+        System.out.println("Test ___");
     }
 
-
     public void gameStart(int inwidth, int inheight) {
+
+            try {
+                scene = new Scene(FXMLLoader.load(Objects.requireNonNull(PlayAlone.class.getResource("playAlone.fxml"))));
+            } catch (IOException e) {
+                System.out.println("Could not load FXML-file");
+
+            }
+
         DimensionPrompt dimPrompt = new DimensionPrompt();
         width = inwidth;
         height = inheight;
-        whiteImage = dimPrompt.whiteImage;
-        blackImage = dimPrompt.blackImage;
+        whiteImage = DimensionPrompt.whiteImage;
+        blackImage = DimensionPrompt.blackImage;
         backImage1 = dimPrompt.back1;
         backImage2 = dimPrompt.back2;
         Stage stage = new Stage();
@@ -76,6 +80,7 @@ public class PlayAlone extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        System.out.println("new instance + "+ primaryStage);
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label) scene.lookup("#showTurn");
 
@@ -161,7 +166,6 @@ public class PlayAlone extends Application {
 
 
                     }
-
                 });
                 Pane gamePane = (Pane) scene.lookup("#gamePane");
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
@@ -173,11 +177,14 @@ public class PlayAlone extends Application {
         }
 
         Image icon = new Image(appIcon);
+        boardFile = game;
+        test = "123";
         primaryStage.setTitle("Reversi");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(icon);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
+        System.out.println("retur til start");
 
 
 
@@ -208,6 +215,7 @@ public class PlayAlone extends Application {
         Image whitePieceImage = new Image(whiteImage);
         Image blackPieceImage = new Image(blackImage);
         Image markingImage = new Image(markerImage);
+
 
         Image backGround1 = new Image(backImage1);
         Image backGround2 = new Image(backImage2);
@@ -270,6 +278,7 @@ public class PlayAlone extends Application {
         }
 
         gamePane.getChildren().add(board);
+        boardFile = game;
     }
 
     public String turnColor(int turn) {
@@ -316,19 +325,48 @@ public class PlayAlone extends Application {
         Stage stage = (Stage) minimize.getScene().getWindow();
         stage.setIconified(true);
     }
+@FXML
+    public void filesaver(ActionEvent event) {
+    System.out.println(((Node) event.getSource()).getScene().getWindow());
+            String saveFile = "Boardsave.txt";
+            DimensionPrompt dimPrompt = new DimensionPrompt();
+
+            try {
+                FileWriter writer = new FileWriter(saveFile);
+                writer.write("" + turn);
+                writer.write("\n");
+                writer.write("" + height);
+                writer.write("\n");
+                writer.write(dimPrompt.white);
+                writer.write("\n");
+                writer.write(dimPrompt.black);
+                writer.write("\n");
+                writer.write(dimPrompt.back1);
+                writer.write("\n");
+                writer.write(dimPrompt.back2);
+                writer.write("\n");
+                writer.write(boardFile.boardtransfer());
+                writer.close();
+                System.out.println("Game saved");
+                gameLoader();
+            } catch (Exception e) {
+                System.out.println("Error occured");
+                throw new RuntimeException(e);
+            }
+    }
 
     public void gameLoader() {
         try (BufferedReader lineReader = new BufferedReader(new FileReader("Boardsave.txt"))) {
-            String line = "";
+            String line;
 
             String player = "";
-            String dimension = "";
+            int dimension = 0;
             String white = "";
             String black = "";
             String board1 = "";
             String board2 = "";
             String gridString = "";
-            int[][] grid = new int[width][width];
+
 
 
             int lineCount = 0;
@@ -336,7 +374,7 @@ public class PlayAlone extends Application {
                 if (lineCount == 0) {
                     player = line;
                 } else if (lineCount == 1) {
-                    dimension = line;
+                    dimension = Integer.parseInt(line);
                 } else if (lineCount == 2) {
                     white = line;
                 } else if (lineCount == 3) {
@@ -347,63 +385,37 @@ public class PlayAlone extends Application {
                     board2 = line;
 
                 } else if (lineCount == 6) {
-
                     gridString = line;
 
                 }
                 lineCount++;
             }
+            int[][] grid = new int[dimension][dimension];
             System.out.println(player);
             System.out.println(dimension);
             System.out.println(white);
             System.out.println(black);
             System.out.println(board1);
             System.out.println(board2);
-            for (int i = 0; i < width; i++) {
-                for (int j = 0; j < width; j++) {
-                    System.out.print(grid[j][i] + " ");
+
+            for (int i = 0; i < dimension; i++) {
+                for (int j = 0; j < dimension; j++) {
+                    int pos = dimension*i+j;
+                    grid[i][j] = gridString.charAt(pos)-'0';
                 }
-                System.out.println();
             }
+            for (int i = 0; i<dimension; i++) {
+                System.out.println();
+                for (int j = 0; j<dimension; j++) {
+                    System.out.print(grid[i][j]);
+                }
+            }
+
 
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-    }
-
-    public void filesaver(Board board) {
-            String saveFile = "Boardsave.txt";
-            try {
-                FileWriter writer = new FileWriter(saveFile);
-                writer.write("" + turn);
-                writer.write("\n");
-                writer.write("" + height);
-                writer.write("\n");
-                writer.write(whiteImage);
-                writer.write("\n");
-                writer.write(blackImage);
-                writer.write("\n");
-                writer.write(backImage1);
-                writer.write("\n");
-                writer.write(backImage2);
-                writer.write("\n");
-                writer.write(board.boardtransfer());
-                writer.close();
-                System.out.println("Game saved");
-                gameLoader();
-            } catch (Exception e) {
-                System.out.println("Error occured");
-                throw new RuntimeException(e);
-            }
-    }
-    @FXML
-    public void printFile (ActionEvent actionEvent) {
-        Board board = new Board();
-        filesaver(board);
-
 
 
     }

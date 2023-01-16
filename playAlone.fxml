@@ -89,7 +89,7 @@
                   <Insets right="25.0" top="25.0" />
                </VBox.margin>
                <children>
-                  <Button onAction="#printFile" mnemonicParsing="false" prefHeight="75.0" prefWidth="169.0" text="Back to&#10;main menu&#10;" textAlignment="CENTER">
+                  <Button onAction="#filesaver" mnemonicParsing="false" prefHeight="75.0" prefWidth="169.0" text="Back to&#10;main menu&#10;" textAlignment="CENTER">
                      <font>
                         <Font name="Arial Black" size="16.0" />
                      </font>

@@ -57,11 +57,16 @@ public class Menu extends Application {
     @FXML
     Button button2;
     @FXML
-    private void loadGame(){
+  /*  private void loadGame() {
         System.out.println("Load Game");
-    }
+        Stage = stage (Stage) button2.getScene().getWindow();
+        stage.cloes();
+        DimensionPrompt.start2();
+    } */
+
     @FXML
     Button button3;
+
     @FXML
     private void options(){
         System.out.println("Options");

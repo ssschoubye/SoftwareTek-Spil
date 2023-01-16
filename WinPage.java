@@ -106,7 +106,7 @@ public class WinPage {
 
     @FXML
     public void restart() throws IOException {
-        int[] dim =(int[]) restart.getUserData();
+        int[] dim = (int[]) restart.getUserData();
         Stage stage = (Stage) restart.getScene().getWindow();
         stage.close();
 
