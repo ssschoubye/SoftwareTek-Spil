@@ -54,10 +54,6 @@ public class PlayAlone extends Application {
     Scene scene;
 
 
-    public PlayAlone() {
-        System.out.println("Test ___");
-    }
-
     public void gameStart(int inwidth, int inheight) {
 
         try {
@@ -80,32 +76,28 @@ public class PlayAlone extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        System.out.println("new instance + " + primaryStage);
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label) scene.lookup("#showTurn");
 
-        Board game;
-
-        if (Menu.loadGame){
-
-            //From file
-
-
-
-            game = new Board(width, height);
+        Board game = new Board(width, height);
+        game.initialize();
+        turn = game.startingPlayer(gameNumber, firstStartingPlayer);
+        showTurn.setText(turnColor(turn) + "'s turn");
+        turnCounter = 1;
 
 
+        if (Menu.loadGame) {
+            GameLoader gameloader = new GameLoader();
+            turn = gameloader.playerLoad;
+            whiteImage = gameloader.whiteLoad;
+            blackImage = gameloader.blackLoad;
+            backImage1 = gameloader.board1Load;
+            backImage2 = gameloader.board2Load;
+            game.map = gameloader.gameMapLoad;
+            turnCounter=gameloader.turnCount;
 
-            Menu.loadGame=false;
-        }else{
-            game = new Board(width, height);
-            game.initialize();
-            turn = game.startingPlayer(gameNumber, firstStartingPlayer);
-            showTurn.setText(turnColor(turn) + "'s turn");
+            Menu.loadGame = false;
         }
-
-
-
 
 
         Label whiteScore = (Label) scene.lookup("#whiteScore");
@@ -113,8 +105,6 @@ public class PlayAlone extends Application {
 
         Label blackScore = (Label) scene.lookup("#blackScore");
         blackScore.setText("x" + game.getScore()[1]);
-
-
 
 
         GridPane board = new GridPane();
@@ -387,77 +377,22 @@ public class PlayAlone extends Application {
             writer.write(dimPrompt.back2);
             writer.write("\n");
             writer.write(boardFile.toString());
+            writer.write("\n");
+            writer.write("" + turnCounter);
             writer.close();
             System.out.println("Game saved");
-            gameLoader();
+            //gameLoader();
         } catch (Exception e) {
             System.out.println("Error occured");
             throw new RuntimeException(e);
         }
-    }
 
-    public void gameLoader() {
-        try (BufferedReader lineReader = new BufferedReader(new FileReader("Boardsave.txt"))) {
-            String line;
-
-            String player = "";
-            int dimension = 0;
-            String white = "";
-            String black = "";
-            String board1 = "";
-            String board2 = "";
-            String gridString = "";
-
-
-            int lineCount = 0;
-            while ((line = lineReader.readLine()) != null && lineCount < 7) {
-                if (lineCount == 0) {
-                    player = line;
-                } else if (lineCount == 1) {
-                    dimension = Integer.parseInt(line);
-                } else if (lineCount == 2) {
-                    white = line;
-                } else if (lineCount == 3) {
-                    black = line;
-                } else if (lineCount == 4) {
-                    board1 = line;
-                } else if (lineCount == 5) {
-                    board2 = line;
-
-                } else if (lineCount == 6) {
-                    gridString = line;
-
-                }
-                lineCount++;
-            }
-            int[][] grid = new int[dimension][dimension];
-            System.out.println(player);
-            System.out.println(dimension);
-            System.out.println(white);
-            System.out.println(black);
-            System.out.println(board1);
-            System.out.println(board2);
-
-            for (int i = 0; i < dimension; i++) {
-                for (int j = 0; j < dimension; j++) {
-                    int pos = dimension * i + j;
-                    grid[i][j] = gridString.charAt(pos) - '0';
-                }
-            }
-            for (int i = 0; i < dimension; i++) {
-                System.out.println();
-                for (int j = 0; j < dimension; j++) {
-                    System.out.print(grid[i][j]);
-                }
-            }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Platform.exit();
 
 
     }
+
+
 }
 
 

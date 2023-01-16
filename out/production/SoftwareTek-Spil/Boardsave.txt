@@ -2,6 +2,7 @@
 4
 Images/WhitePieces/whitePiece1.png
 Images/BlackPieces/blackPiece1.png
-Images/Background/green1.png
-Images/Background/green2.png
-3030022032102000
+Images/Background/blue1.png
+Images/Background/blue2.png
+0000022004400000
+3

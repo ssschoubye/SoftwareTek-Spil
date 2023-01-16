@@ -60,14 +60,20 @@ public class Menu extends Application {
 
 
     @FXML
-    Button button2;
+    Button gameLoad;
 
-
+    //PlayAlone game;
     @FXML
-    private void loadGame() {
-        System.out.println("Load Game");
-        Stage stage =(Stage) button2.getScene().getWindow();
+    private void loadGame(){
+        DimensionPrompt.gamemode = 1;
+        Stage stage = (Stage) gameLoad.getScene().getWindow();
         stage.close();
+        PlayAlone game = new PlayAlone();
+
+        loadGame=true;
+        GameLoader dimLoad = new GameLoader();
+
+        game.gameStart(dimLoad.dimensionLoad, dimLoad.dimensionLoad);
     }
 
     @FXML
@@ -78,15 +84,6 @@ public class Menu extends Application {
         System.out.println("Options");
     }
 
-    //////////////////////////////////////////////////////////////
-    ///                    Size of window                      ///
-    //////////////////////////////////////////////////////////////
-    Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-
-    @FXML
-    int windowHeight = (int)screenBounds.getHeight()/2;
-    @FXML
-    double windowWidth = (screenBounds.getHeight()/2)*3/2;
 
 
 
