@@ -24,6 +24,10 @@ import java.io.IOException;
 public class Menu extends Application {
 
 
+
+    public static boolean loadGame = false;
+
+
     public static void Menu(String[]args){
         launch(args);
     }
