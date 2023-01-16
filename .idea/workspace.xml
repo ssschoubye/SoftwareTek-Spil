@@ -7,8 +7,6 @@
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServerClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/ServerClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/ServerClient.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +136,7 @@
       <workItem from="1673529386025" duration="361000" />
       <workItem from="1673529879050" duration="2916000" />
       <workItem from="1673788334066" duration="4596000" />
-      <workItem from="1673862017652" duration="14156000" />
+      <workItem from="1673862017652" duration="18318000" />
     </task>
     <servers />
   </component>

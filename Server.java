@@ -5,12 +5,12 @@ import java.net.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Server{
+public class Server extends Thread{
 
 
     public static void serverStart() throws IOException {
-        new Thread(new Runnable(){
-            public void run(){
+        //new Thread(new Runnable(){
+            //public void run(){
         // Create a server socket that listens on port 8080
                 ServerSocket serverSocket = null;
                 try {
@@ -27,8 +27,8 @@ public class Server{
 
                 }
 
-    }
-    }).start();
+    //}
+    //}).start();
     }
 }
     class ClientHandler extends Thread {
@@ -64,7 +64,8 @@ public class Server{
                ServerClient.firstTime = false;
                //Play is started with dimensions from dimensionprompt.
                PlayOnline play = new PlayOnline();
-               play.gameStart(DimensionPrompt.dim.x);
+               //play.gameStart(DimensionPrompt.dim.x);
+               play.start();
 
            }else if(PlayOnline.turnCounter > 4){ //First stage of the game
                Board board = new Board();
