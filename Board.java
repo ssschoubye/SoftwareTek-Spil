@@ -13,12 +13,6 @@ public class Board {
         this.map = new int[x_axis][y_axis];
     }
 
-    public Board(int size) {
-        this.y_axis = size;
-        this.x_axis = size;
-        map = new int[size][size];
-    }
-
     public void initialize() {
         map[x_axis / 2 - 1][y_axis / 2 - 1] = 4;
         map[x_axis / 2][y_axis / 2 - 1] = 4;
@@ -100,15 +94,6 @@ public class Board {
         return map[x + dx][y + dy] != 3 - playerTurn;
     }
 
-    //Set a value for a given spot (ONLY FOR TESTING)
-    public void setTestValue(int x, int y, int value) {
-        if (map[x][y] != 3) {
-            System.out.println("Not possible placement");
-        } else {
-            map[x][y] = value;
-        }
-
-    }
 
     public int[] getScore() {
         int[] score = {0, 0};
@@ -124,223 +109,133 @@ public class Board {
         return score;
     }
 
-    public static int weigthedScore(Board board) {
-        int score = 0;
-        int whiteCorners = 1;
-        int blackCorners = 1;
-        int whiteMobility = 1;
-        int blackMobility = 1;
-        int whiteStability = 1;
-        int blackStability = 1;
-        int[][] staticWeights;
-        int[] dx = {1, 1, 0, -1, -1, -1, 0, 1};
-        int[] dy = {0, 1, 1, 1, 0, -1, -1, -1};
+    public static int boardHeuristic(Board board){
 
+        //Parameters
+        int whiteCoins = 0;
+        int blackCoins = 0;
+        int whiteStability = 0;
+        int blackStability = 0;
+        int whiteMobility;
+        int blackMobility;
+        int whiteCorners = 0;
+        int blackCorners = 0;
 
-        if (board.x_axis == 4) {
-            staticWeights = new int[][]{{4, -3, -3, 4},
-                    {-3, 1, 1, -3},
-                    {-3, 1, 1, -3},
-                    {4, -3, -3, 4}};
-        }
+        //Parameter weights
+        int coinsWeight = 25;
+        int cornerWeight = 500;
+        int stabilityWeight = 30;
+        int mobilityWeight = 5;
 
-        if (board.x_axis == 8) {
-            staticWeights = getInts();
-        }
-        if (board.x_axis == 12) {
-            staticWeights = new int[][]{{4, -3, 2, 2, 2, 2, 2, 2, 2, 2, -3, 4},
-                    {-3, -4, -1, -1, -1, -1, -1, -1, -1, -1, -4, -3},
-                    {2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 2},
-                    {2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 2},
-                    {2, -1, -1, -1, 1, 0, 0, 1, -1, -1, -1, 2},
-                    {2, -1, -1, -1, 0, 1, 1, 0, -1, -1, -1, 2},
-                    {2, -1, -1, -1, 0, 1, 1, 0, -1, -1, -1, 2},
-                    {2, -1, -1, -1, 1, 0, 0, 1, -1, -1, -1, 2},
-                    {2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 2},
-                    {2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 2},
-                    {-3, -4, -1, -1, -1, -1, -1, -1, -1, -1, -4, -3},
-                    {4, -3, 2, 2, 2, 2, 2, 2, 2, 2, -3, 4}};
-        } else {
-            staticWeights = getInts();
-        }
+        //Scores
+        int coinScore = 0;
+        int mobilityScore = 0;
+        int stabilityScore = 0;
+        int cornerScore = 0;
+        int score;
 
-        //Runs through all squares on the playing board
-        for (int x = 0; x < board.x_axis; x++) {
-            for (int y = 0; y < board.y_axis; y++) {
-
-
-                // Check if the current square is a corner
-                if ((x == 0 || x == board.x_axis - 1) && (y == 0 || y == board.y_axis - 1)) {
-                    if (board.map[x][y] == 1) {
-                        whiteCorners += 30;
-                        if (isStable(board, x, y, 1)) {
-                            whiteStability += 25;
-                        }
-
-                    } else if (board.map[x][y] == 2) {
-                        blackCorners += 30;
-                        if (isStable(board, x, y, 2)) {
-                            blackStability += 25;
-                        }
+        //Runs through all cells on board and counts parameters
+        for(int x=0; x<board.x_axis; x++){
+            for(int y=0; y<board.y_axis; y++){
+                if(board.map[x][y]==1){
+                    whiteCoins++;
+                    if(isStable(board, x, y, 1)){
+                        whiteStability++;
+                    }
+                    if((x == 0 || x == board.x_axis - 1) && (y == 0 || y == board.y_axis - 1)){
+                        whiteCorners++;
                     }
                 }
 
-
-                // Check if the placed piece is stable, and if it grants the opponent additional possible moves
-                for (int i = 0; i < dx.length; i++) {
-                    int xx = x + dx[i];
-                    int yy = y + dy[i];
-                    if (xx >= 0 && xx < dx.length && yy >= 0 && yy < dy.length && board.map[xx][yy] == 0) {
-                        if (board.map[x][y] == 1) {
-                            blackMobility += 5; //blackMobility+
-                        } else if (board.map[x][y] == 2) {
-                            whiteMobility += 5; //whiteMobility+
-                        }
+                if(board.map[x][y]==2){
+                    blackCoins++;
+                    if(isStable(board, x, y, 2)){
+                        blackStability++;
                     }
-                }
-
-                // Add points for each piece on the board
-                if (board.map[x][y] == 1) {
-                    score += 25 * staticWeights[x][y] + 25 * whiteCorners + /*25 * whiteMobility*/ + 25 * whiteStability;
-                } else if (board.map[x][y] == 2) {
-                    score -= 25 * staticWeights[x][y] + 25 * blackCorners + /*25 * blackMobility*/ + 25 * blackStability;
+                    if((x == 0 || x == board.x_axis - 1) && (y == 0 || y == board.y_axis - 1)){
+                        blackCorners++;
+                    }
                 }
             }
         }
+
+        whiteMobility = getMobility(board,1);
+        blackMobility = getMobility(board,2);
+
+
+        if(whiteCoins+blackCoins != 0) {
+            coinScore = 100 * (whiteCoins - blackCoins) / (whiteCoins + blackCoins);
+        }
+
+        if(whiteMobility+blackMobility != 0) {
+            mobilityScore = 100 * (whiteMobility - blackMobility) / (whiteMobility + blackMobility);
+        }
+
+        if(whiteCorners+blackCorners != 0) {
+            cornerScore = 100 * (whiteCorners - blackCorners) / (whiteCorners + blackCorners);
+        }
+
+        if(whiteStability+blackStability != 0) {
+            stabilityScore = 100 * (whiteStability - blackStability) / (whiteStability + blackStability);
+        }
+
+
+        score = coinsWeight * coinScore + mobilityWeight * mobilityScore + cornerWeight * cornerScore + stabilityWeight * stabilityScore;
+
         return score;
     }
 
-    private static int[][] getInts() {
-        int[][] staticWeights;
-        staticWeights = new int[][]{{4, -3, 2, 2, 2, 2, -3, 4},
-                {-3, -4, -1, -1, -1, -1, -4, -3},
-                {2, -1, 1, 0, 0, 1, -1, 2},
-                {2, -1, 0, 1, 1, 0, -1, 2},
-                {2, -1, 0, 1, 1, 0, -1, 2},
-                {2, -1, 1, 0, 0, 1, -1, 2},
-                {-3, -4, -1, -1, -1, -1, -4, -3},
-                {4, -3, 2, 2, 2, 2, -3, 4}};
-        return staticWeights;
+
+    //The term mobility refers to the amount of possible moves a player has. The method below returns this number for a given player
+    private static int getMobility(Board board, int playerTurn){
+        int mobility = 0;
+        Board copy = board.copy();
+        copy.legalSpots(playerTurn);
+        for(int i=0; i<copy.x_axis; i++){
+            for(int j=0; j<copy.y_axis; j++){
+                if(copy.map[i][j]==3){
+                    mobility++;
+                }
+            }
+        }
+    return mobility;
     }
 
+
+    //The method below determines whether a piece can be flipped by the opponent immediately after placement
     private static boolean isStable(Board board, int x, int y, int piece) {
 
-        int end1 = 10;
-        int end2 = 10;
-
-        int dx = 0;
-        int dy = 0;
-
-        int l = 1;
-
-        //Direction 1
-        dx = -1;
-        dy = -1;
-        while (board.isOnBoard(x + l * dx, y + l * dy) && board.map[x + l * dx][y + l * dy] == piece) {
-
-            l++;
-        }
-        if (board.isOnBoard(x + l * dx, y + l * dy)) {
-            end1 = board.map[x + l * dx][y + l * dy];
-
-            dx = 1;
-            dy = 1;
-            l = 1;
-            while (board.isOnBoard(x + l * dx, y + l * dy) && board.map[x + l * dx][y + l * dy] == piece) {
-                l++;
-            }
-            if (board.isOnBoard(x + l * dx, y + l * dy)) {
-                end2 = board.map[x + l * dx][y + l * dy];
-            }
-            if (end2 != 10 && end1 != end2) {
-                return false;
-            }
-        }
-
-
-        //Direction 2
-        l = 1;
-        end1 = 10;
-        end2 = 10;
-        dx = 0;
-        dy = -1;
-        while (board.isOnBoard(x + l * dx, y + l * dy) && board.map[x + l * dx][y + l * dy] == piece) {
-
-            l++;
-        }
-        if (board.isOnBoard(x + l * dx, y + l * dy)) {
-            end1 = board.map[x + l * dx][y + l * dy];
-
-            dx = 0;
-            dy = 1;
-            l = 1;
-            while (board.isOnBoard(x + l * dx, y + l * dy) && board.map[x + l * dx][y + l * dy] == piece) {
-                l++;
-            }
-            if (board.isOnBoard(x + l * dx, y + l * dy)) {
-                end2 = board.map[x + l * dx][y + l * dy];
-            }
-            if (end2 != 10 && end1 != end2) {
-                return false;
-            }
-        }
-        //Direction 3
-        l = 1;
-        end1 = 10;
-        end2 = 10;
-        dx = 1;
-        dy = -1;
-        while (board.isOnBoard(x + l * dx, y + l * dy) && board.map[x + l * dx][y + l * dy] == piece) {
-
-            l++;
-        }
-        if (board.isOnBoard(x + l * dx, y + l * dy)) {
-            end1 = board.map[x + l * dx][y + l * dy];
-
-            dx = -1;
-            dy = 1;
-            l = 1;
-            while (board.isOnBoard(x + l * dx, y + l * dy) && board.map[x + l * dx][y + l * dy] == piece) {
-                l++;
-            }
-            if (board.isOnBoard(x + l * dx, y + l * dy)) {
-                end2 = board.map[x + l * dx][y + l * dy];
-            }
-            if (end2 != 10 && end1 != end2) {
-                return false;
-            }
-        }
-        //Direction 4
-        l = 1;
-        end1 = 10;
-        end2 = 10;
-        dx = 1;
-        dy = 0;
-        while (board.isOnBoard(x + l * dx, y + l * dy) && board.map[x + l * dx][y + l * dy] == piece) {
-
-            l++;
-        }
-        if (board.isOnBoard(x + l * dx, y + l * dy)) {
-            end1 = board.map[x + l * dx][y + l * dy];
-
-            dx = -1;
-            dy = 0;
-            l = 1;
-            while (board.isOnBoard(x + l * dx, y + l * dy) && board.map[x + l * dx][y + l * dy] == piece) {
-                l++;
-            }
-            if (board.isOnBoard(x + l * dx, y + l * dy)) {
-                end2 = board.map[x + l * dx][y + l * dy];
-            }
-            if (end2 != 10 && end1 != end2) {
-                return false;
-            }
-        }
-
-        return true;
+        if(!stableDirection(board,x,y,-1,-1,piece)) return false;
+        if(!stableDirection(board,x,y,0,-1,piece)) return false;
+        if(!stableDirection(board,x,y,-1,0,piece)) return false;
+        return stableDirection(board, x, y, 1, -1, piece);
 
     }
 
+    public static boolean stableDirection(Board board,int x,int y, int dx, int dy, int piece){
+        int l = 1;
+        int end1;
+        int end2 = 10;
+        while (board.isOnBoard(x + l * dx, y + l * dy) && board.map[x + l * dx][y + l * dy] == piece) {
+
+            l++;
+        }
+        if (board.isOnBoard(x + l * dx, y + l * dy)) {
+            end1 = board.map[x + l * dx][y + l * dy];
+
+            dx *= -1;
+            dy *= -1;
+            l = 1;
+            while (board.isOnBoard(x + l * dx, y + l * dy) && board.map[x + l * dx][y + l * dy] == piece) {
+                l++;
+            }
+            if (board.isOnBoard(x + l * dx, y + l * dy)) {
+                end2 = board.map[x + l * dx][y + l * dy];
+            }
+            return end2 == 10 || end1 == end2;
+        }
+        return true;
+    }
 
 //print the whole board using toString (ONLY FOR TESTING)
 
@@ -409,7 +304,7 @@ public class Board {
         } else if (gameNumber > 1) {
             if (gameNumber % 2 == 0) {
                 return turnSwitch(firstStartingPlayer);
-            } else if (gameNumber % 2 == 1) {
+            } else {
                 return firstStartingPlayer;
             }
         }
@@ -417,17 +312,14 @@ public class Board {
     }
 
     public int[] getDim() {
-        int[] dim = {x_axis, y_axis};
-        return dim;
+        return new int[]{x_axis, y_axis};
 
     }
 
     public Board copy() {
         Board copy = new Board(x_axis, y_axis);
         for (int x = 0; x < x_axis; x++) {
-            for (int y = 0; y < y_axis; y++) {
-                copy.map[x][y] = map[x][y];
-            }
+            if (y_axis >= 0) System.arraycopy(map[x], 0, copy.map[x], 0, y_axis);
         }
         return copy;
     }

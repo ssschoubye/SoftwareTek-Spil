@@ -27,7 +27,7 @@ public class BoardTestMain {
             game.initialize();
 
             //Game starts with 1 (White) having the first turn
-            int turn = 2;
+            int turn = 1;
             while (true) {
                 turn = turnSwitch(turn);
 
@@ -58,6 +58,7 @@ public class BoardTestMain {
             //System.out.println("\n____________________________________");
             int[] score = game.getScore();
             //game.toString();
+            System.out.println(Board.boardHeuristic(game));
 
             if (score[0] > score[1]) {
                 //System.out.println("1 won the game with " + score[0] + " pieces on the board.");
