@@ -386,7 +386,7 @@ public class PlayAlone extends Application {
             writer.write("\n");
             writer.write(dimPrompt.back2);
             writer.write("\n");
-            writer.write(boardFile.boardtransfer());
+            writer.write(boardFile.toString());
             writer.close();
             System.out.println("Game saved");
             gameLoader();

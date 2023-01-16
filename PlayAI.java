@@ -209,17 +209,16 @@ public class PlayAI extends Application {
                                             placeSound.play();
                                             Platform.runLater(()->{
                                                 updateGridpane(game, board, whiteImage, blackImage, markerImage);
-                                                turn = Board.turnSwitch(turn);
+
                                                 showTurn.setText(turnColor(turn) + "'s turn");
                                                 clickLegal=true;
 
                                             });
 
                                         }).start();
-                                        //updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                                        MiniMaxAlphaBetaAI.AIMakeMove(turn);
 
-                                        //MiniMaxAlphaBetaAI.AIMakeMove(turn);
-                                        //updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                                        turn = Board.turnSwitch(turn);
 
 
 

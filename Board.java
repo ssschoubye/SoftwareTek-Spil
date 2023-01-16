@@ -282,7 +282,8 @@ public class Board {
         return map;
     }
 
-    public String boardtransfer() {
+    @Override
+    public String toString() {
         String boardstring = "";
         for (int i = 0; i < y_axis; i++) {
             for (int j = 0; j < x_axis; j++) {
