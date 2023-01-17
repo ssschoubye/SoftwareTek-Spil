@@ -49,7 +49,6 @@ public class Server extends Thread{
 
         @Override
         public void run() {
-
                 gameMode = interThread.getGameMode();
             System.out.println(gameMode);
                 //first time initialising
