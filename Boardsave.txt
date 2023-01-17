@@ -1,8 +1,8 @@
 2
-4
-Images/WhitePieces/whitePiece2.png
-Images/BlackPieces/blackPiece2.png
-Images/Background/glass1.png
-Images/Background/glass2.png
-0030021331200300
-5
+12
+Images/WhitePieces/whitePiece1.png
+Images/BlackPieces/blackPiece1.png
+Images/Background/green1.png
+Images/Background/green2.png
+000000000000000000000000000000000000000000000000000030310000000001100000000021200000000001000000000030300000000000000000000000000000000000000000
+8
