@@ -22,15 +22,8 @@ public class ServerClient extends Thread{
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                     out.println(client);
                     firstTime = false;
-                    //When IP address have been sent we wait for a response from the host.
-                    PlayOnline.turnCounter = 3;
                     //Respone will be recieved with the server.
-                    ClientHandler.waiting = true;
-                }catch (RuntimeException e){
-                    throw new RuntimeException(e);
-                } catch (UnknownHostException e) {
-                    throw new RuntimeException(e);
-                } catch (IOException e) {
+                } catch (RuntimeException | IOException e) {
                     throw new RuntimeException(e);
                 }
                 //First time running the code the IP address for the connecting device will be sent to the host server.
@@ -47,16 +40,8 @@ public class ServerClient extends Thread{
                         ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
                         int[][] inputMap = boardRec.getArray();
                         System.out.println(Arrays.deepToString(inputMap));
-                        PlayOnline.setMap(inputMap);
-                        PlayOnline play = new PlayOnline();
-                        play.gameStart();
-                    }catch (RuntimeException e){
-                        throw new RuntimeException(e);
-                    } catch (UnknownHostException e) {
-                        throw new RuntimeException(e);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (ClassNotFoundException e) {
+                        OnlineController.setMap(inputMap);
+                    } catch (RuntimeException | ClassNotFoundException | IOException e){
                         throw new RuntimeException(e);
                     }
                 /*

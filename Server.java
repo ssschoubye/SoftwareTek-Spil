@@ -10,8 +10,6 @@ public class Server extends Thread{
 
     @Override
     public void run(){
-        //new Thread(new Runnable(){
-            //public void run(){
         // Create a server socket that listens on port 8080
                 ServerSocket serverSocket = null;
                 try {
@@ -29,26 +27,23 @@ public class Server extends Thread{
                     throw new RuntimeException(e);
 
                 }
-
-    //}
-    //}).start();
     }
 }
     class ClientHandler extends Thread {
         private Socket socket;
         public String hostip;
-        public static int turnCounter = 1;
+        public int gameMode;//Int to keep track of which phase the game is in.
 
         public ClientHandler(Socket socket) {
             this.socket = socket;
         }
         public ClientHandler(){String hostip;}
-        public static boolean waiting = true;
 
         @Override
         public void run() {
+            gameMode = OnlineController.getGameMode();
             //first time initialising
-           if(PlayOnline.turnCounter <= 2){
+           if(gameMode == 1){
                try { //At first connection is made and the IP address of the client is saved. This will be used later on.
                    InetAddress localHost = InetAddress.getLocalHost();
                    String client = localHost.getHostAddress();
@@ -63,10 +58,7 @@ public class Server extends Thread{
                } catch (IOException e) {
                    throw new RuntimeException(e);
                }
-               waiting = false;
-               ServerClient.firstTime = false;
-
-           }else if(PlayOnline.turnCounter > 4){ //First stage of the game
+           }else if(gameMode == 2){ //First stage of the game. Upstart move is sent to client.
                Board board = new Board();
                int[][] initialmap = board.getArray();
                ArrayReturn arrayReturn = new ArrayReturn(initialmap);
@@ -77,9 +69,20 @@ public class Server extends Thread{
                } catch (IOException e) {
                    throw new RuntimeException(e);
                }
-               PlayOnline.setMap(initialmap);
-               waiting = false;
-           }/*else if(PlayOnline.turnCounter > 4){//When server is called when game is past first stage.
+               //The new map is set in the controller class since Play and Server runs in two different threads.
+               OnlineController.setMap(initialmap);
+           }else if(gameMode == 3){//When upstart move have been done then await response.
+               try{
+               ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
+               ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
+               int[][] inputMap = boardRec.getArray();
+               System.out.println(Arrays.deepToString(inputMap));
+               OnlineController.setMap(inputMap);
+           } catch (RuntimeException | ClassNotFoundException | IOException e){
+                throw new RuntimeException(e);
+            }
+
+           } else if (gameMode == 4) {//Game have started. This is Output Stream.
                Board board = new Board();
                int[][] initialmap = board.getArray();
                ArrayReturn arrayReturn = new ArrayReturn(initialmap);
@@ -91,10 +94,17 @@ public class Server extends Thread{
                } catch (IOException e) {
                    throw new RuntimeException(e);
                }
-            } */
-        }
-        public static void stopServer(){
-            turnCounter = 4;
+           }else if(gameMode == 5){// This is input stream.
+               try{
+                   ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
+                   ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
+                   int[][] inputMap = boardRec.getArray();
+                   System.out.println(Arrays.deepToString(inputMap));
+                   OnlineController.setMap(inputMap);
+               } catch (RuntimeException | ClassNotFoundException | IOException e){
+                   throw new RuntimeException(e);
+               }
+           }
         }
         public static String getHostIP(){
 

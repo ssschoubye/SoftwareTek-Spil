@@ -31,11 +31,11 @@ public class PlayOnline extends Application{
     static int gameNumber = 1;
 
     static int turnCounter = 1;
-    String whiteImage;
-    String blackImage;
-    String markerImage = "Images/markerDark.png";
-    String backImage1;
-    String backImage2;
+    static String whiteImage;
+    static String blackImage;
+    static String markerImage = "Images/markerDark.png";
+    static String backImage1;
+    static String backImage2;
     String placeSoundFile = "Sounds/placeSound1.mp3";
 
     String appIcon = "Images/reversiIcon.png";
@@ -54,7 +54,6 @@ public class PlayOnline extends Application{
 
 
     public void gameStart() {
-
         DimensionPrompt dimPrompt = new DimensionPrompt();
         width = dimPrompt.dim.x;
         height = dimPrompt.dim.x;
@@ -193,7 +192,7 @@ public class PlayOnline extends Application{
 
 
 
-    private void updateGridpane(Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
+    private static void updateGridpane(Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
         Pane gamePane = (Pane) scene.lookup("#gamePane");
         board.getChildren().removeIf(node -> node instanceof ImageView);
         gamePane.getChildren().remove(board);
@@ -309,10 +308,17 @@ public class PlayOnline extends Application{
         stage.setIconified(true);
     }
 
-    public static void setMap(int[][] map) {
+    public static synchronized void setMap(int[][] getMap) {
+        int[][] map =  getMap;
+        GridPane board = new GridPane();
         Board newBoard = new Board(map);
         game = newBoard;
-    }
+        Label whiteScore = (Label)scene.lookup("#whiteScore");
+        Label blackScore = (Label)scene.lookup("#whiteScore");
+        whiteScore.setText("x"+game.getScore()[0]);
+        blackScore.setText("x"+game.getScore()[1]);
 
+        updateGridpane(game, board, whiteImage, blackImage, markerImage);
+    }
 }
 
