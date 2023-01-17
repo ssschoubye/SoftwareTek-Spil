@@ -1,11 +1,11 @@
-import javafx.application.Application;
-
 import java.io.IOException;
 
 public class OnlineController {
 
+    static String IPinput;
 
-    public void onlineGame(boolean hostMode) throws IOException, ClassNotFoundException, InterruptedException {
+    public void onlineGame(boolean hostMode, boolean firstTime) throws IOException, ClassNotFoundException, InterruptedException {
+        IPinput = HostPrompt.getIPinput();
         System.out.println(hostMode);
         if(hostMode == true){
             Server server = new Server();
@@ -20,13 +20,19 @@ public class OnlineController {
 
                 System.out.println("You have " + (10 - i) + " seconds to join");
             }
-            PlayOnline playOnline = new PlayOnline();
-            playOnline.gameStart();
+            //if(firstTime == true){
+                PlayOnlineHost playOnlineHost = new PlayOnlineHost();
+                playOnlineHost.gameStart();
+            //}
+
         }else{
             ServerClient client = new ServerClient();
             client.start();
-            PlayOnline playOnline = new PlayOnline();
-            playOnline.gameStart();
+            if(firstTime == true){
+                PlayOnlineClient playOnlineClient = new PlayOnlineClient();
+                playOnlineClient.gameStart();
+            }
+
         }
 
     }
@@ -34,7 +40,7 @@ public class OnlineController {
     static int gameMode = 1;
     public synchronized static void setMap(int[][] inputMap){
     map = inputMap;
-    PlayOnline.setMap(map); //Might have to revise code later.
+    PlayOnlineHost.setMap(map); //Might have to revise code later.
     }
 
     public synchronized static int[][] getMap() {
@@ -45,5 +51,8 @@ public class OnlineController {
     }
     public synchronized static int getGameMode() {
         return gameMode;
+    }
+    public static String getIPinput(){
+        return(IPinput);
     }
 }

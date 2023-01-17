@@ -7,12 +7,12 @@ import java.util.Scanner;
 
 
 public class ServerClient extends Thread{
-    public static boolean firstTime = true;
         public void run(){
+            int gameMode = OnlineController.getGameMode();
             //First time running this code it needs to be determined whether it is first time making a connection,
             // if the game is in its upstart fase or if regular play have started.
             System.out.println("Connecting");
-            if(firstTime == true){
+            if(gameMode == 1){
                 try{
                     InetAddress localHost = InetAddress.getLocalHost();
                     String client = localHost.getHostAddress();
@@ -21,7 +21,6 @@ public class ServerClient extends Thread{
                     Socket socket = new Socket(HostPrompt.IPinput, 8080);
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                     out.println(client);
-                    firstTime = false;
                     //Respone will be recieved with the server.
                 } catch (RuntimeException | IOException e) {
                     throw new RuntimeException(e);
@@ -29,11 +28,10 @@ public class ServerClient extends Thread{
                 //First time running the code the IP address for the connecting device will be sent to the host server.
 
 
-            }else{
-                if(PlayOnline.turnCounter == 3){ //If it isnt the first time then we move to upstart fase.
-                    //while(true){
+            }else if(gameMode == 2){
+                 //If it isnt the first time then we move to upstart fase.
                     try {
-                        String IPAddress = ClientHandler.getHostIP();
+                        String IPAddress = OnlineController.getIPinput();
                         Socket socket = new Socket(IPAddress, 8080);
                         //BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
@@ -44,7 +42,27 @@ public class ServerClient extends Thread{
                     } catch (RuntimeException | ClassNotFoundException | IOException e){
                         throw new RuntimeException(e);
                     }
-                /*
+            }else if(gameMode == 3){
+                String IPAddress = OnlineController.getIPinput();
+                Board board = new Board();
+                int[][] initialmap = board.getArray();
+                ArrayReturn arrayReturn = new ArrayReturn(initialmap);
+                try {
+                    Socket socket = new Socket(IPAddress, 8080);
+                    ObjectOutputStream objectOut = new ObjectOutputStream(socket.getOutputStream());
+                    System.out.println(Arrays.deepToString(initialmap));
+                    objectOut.writeObject(arrayReturn);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                //The new map is set in the controller class since Play and Server runs in two different threads.
+                OnlineController.setMap(initialmap);
+            }
+
+        }
+    }
+//while(true){
+     /*
                     // Send a message to the server
                     System.out.println("What is your message?");
                     Scanner scan = new Scanner(System.in);
@@ -59,15 +77,8 @@ public class ServerClient extends Thread{
                     System.out.println("Response: " + response);  // prints "Response: ACK"
 
                  */
-                    //}
-                }else if(PlayOnline.turnCounter > 4){
+//}
 
-
-                }
-            }
-
-        }
-    }
 
 
 // Connect to the server

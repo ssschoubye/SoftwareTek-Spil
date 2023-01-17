@@ -59,8 +59,7 @@ public class Server extends Thread{
                    throw new RuntimeException(e);
                }
            }else if(gameMode == 2){ //First stage of the game. Upstart move is sent to client.
-               Board board = new Board();
-               int[][] initialmap = board.getArray();
+               int[][] initialmap = OnlineController.getMap();
                ArrayReturn arrayReturn = new ArrayReturn(initialmap);
                try {
                    ObjectOutputStream objectOut = new ObjectOutputStream(socket.getOutputStream());
@@ -105,11 +104,5 @@ public class Server extends Thread{
                    throw new RuntimeException(e);
                }
            }
-        }
-        public static String getHostIP(){
-
-            ClientHandler client = new ClientHandler();
-            String IPAddress = client.hostip;
-            return IPAddress;
         }
     }

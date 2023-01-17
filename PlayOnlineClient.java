@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 
-public class PlayOnline extends Application{
+public class PlayOnlineClient extends Application{
 
     static int width;
     static int height;
@@ -98,13 +98,24 @@ public class PlayOnline extends Application{
                 final int jj = j;
 
                 updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
+                boolean isHost = false;
+                boolean firstTime = false;
 
                 // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii, jj, turn)) {
+                        OnlineController.setGameMode(2);
+                        OnlineController onlineController = new OnlineController();
+                        try {
+                            onlineController.onlineGame(isHost, firstTime);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        } catch (ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                         placeSound.play();
-
                         turnCounter++;
                         //Switches player turn
                         if (turnCounter == 3) {
@@ -308,7 +319,7 @@ public class PlayOnline extends Application{
         stage.setIconified(true);
     }
 
-    public static synchronized void setMap(int[][] getMap) {
+    public static void setMap(int[][] getMap) {
         int[][] map =  getMap;
         GridPane board = new GridPane();
         Board newBoard = new Board(map);
