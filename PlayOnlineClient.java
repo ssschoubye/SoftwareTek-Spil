@@ -104,7 +104,7 @@ public class PlayOnlineClient extends Application{
                 // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii, jj, turn)) {
-                        OnlineController.setGameMode(2);
+                        InterThread.setGameMode(2);
                         OnlineController onlineController = new OnlineController();
                         try {
                             onlineController.onlineGame(isHost, firstTime);

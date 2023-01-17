@@ -27,8 +27,7 @@ public class Server extends Thread{
                         Socket socket = serverSocket.accept();
                         System.out.println("Client connected");
                         // Create a thread to handle the client
-                        ClientHandler clientHandler = new ClientHandler(socket, interThread1);
-                        clientHandler.start();
+                        new Thread(new ClientHandler(socket,interThread1)).start();
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -41,9 +40,6 @@ public class Server extends Thread{
         private Socket socket;
         public String hostip;
         public int gameMode;//Int to keep track of which phase the game is in.
-        public ClientHandler(InterThread interThread){
-            this.interThread = interThread;
-        }
 
         public ClientHandler(Socket socket, InterThread interThread) {
             this.socket = socket;
@@ -54,7 +50,7 @@ public class Server extends Thread{
         @Override
         public void run() {
 
-                gameMode = OnlineController.getGameMode();
+                gameMode = interThread.getGameMode();
             System.out.println(gameMode);
                 //first time initialising
                 if (gameMode == 1) {
@@ -66,7 +62,7 @@ public class Server extends Thread{
                         //IP address of connecting client is saved.
                         hostip = in.readLine();
                         System.out.println("Ip modtaget" + hostip);
-                        out.println(client);
+                        //out.println(client);
                         //Server closes so the game can start.
                         socket.close();
                     } catch (IOException e) {
@@ -74,7 +70,7 @@ public class Server extends Thread{
                     }
                     System.out.println(gameMode);
                 } else if (gameMode == 2) { //First stage of the game. Upstart move is sent to client.
-                    int[][] initialmap = OnlineController.getMap();
+                    int[][] initialmap = interThread.getMap();
                     ArrayReturn arrayReturn = new ArrayReturn(initialmap);
                     try {
                         ObjectOutputStream objectOut = new ObjectOutputStream(socket.getOutputStream());
@@ -84,7 +80,7 @@ public class Server extends Thread{
                         throw new RuntimeException(e);
                     }
                     //The new map is set in the controller class since Play and Server runs in two different threads.
-                    OnlineController.setMap(initialmap);
+                    interThread.setMap(initialmap);
                     System.out.println(gameMode);
                 } else if (gameMode == 3) {//When upstart move have been done then await response.
                     try {

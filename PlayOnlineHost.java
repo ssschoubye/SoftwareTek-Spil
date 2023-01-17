@@ -65,6 +65,7 @@ public class PlayOnlineHost extends Application{
         start(stage);
     }
     static Board game;
+
     @Override
     public void start(Stage primaryStage) {
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
@@ -100,16 +101,16 @@ public class PlayOnlineHost extends Application{
                 updateGridpane(game, board, whiteImage, blackImage, markerImage);
                 boolean firstTime = false;
                 boolean isHost = true;
-                OnlineController.setMap(game.map);
+                InterThread.setMap(game.map);
 
                 // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii, jj, turn)) {
                         placeSound.play();
                         if(turnCounter == 2){
-                            OnlineController.setGameMode(2);
+                            InterThread.setGameMode(2);
                             int[][] map = game.map;
-                            OnlineController.setMap(map);
+                            InterThread.setMap(map);
                             OnlineController onlineController = new OnlineController();
                             try {
                                 onlineController.onlineGame(isHost, firstTime);
@@ -125,7 +126,7 @@ public class PlayOnlineHost extends Application{
 
                         //Switches player turn
                         if (turnCounter == 3) {
-                            OnlineController.setGameMode(3);
+                            InterThread.setGameMode(3);
 
                             turn = Board.turnSwitch(turn);
                             showTurn.setText(turnColor(turn) + "'s turn");

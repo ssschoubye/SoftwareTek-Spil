@@ -13,7 +13,7 @@ public class ServerClient extends Thread{
         this.interThread = interThread;
     }
         public void run(){
-            int gameMode = OnlineController.getGameMode();
+            int gameMode = interThread.getGameMode();
             //First time running this code it needs to be determined whether it is first time making a connection,
             // if the game is in its upstart fase or if regular play have started.
             System.out.println("Connecting");
