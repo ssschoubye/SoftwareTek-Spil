@@ -11,7 +11,7 @@ public class OnlineController {
             Server server = new Server();
             server.start();
             System.out.println("hey");
-            for(int i = 0; i < 20; i++){
+            for(int i = 0; i < 10; i++){
                 try{
                     Thread.sleep(1000);
                 }catch(InterruptedException e){
@@ -20,6 +20,7 @@ public class OnlineController {
 
                 System.out.println("You have " + (10 - i) + " seconds to join");
             }
+            HostPrompt.stageClose();
             //if(firstTime == true){
                 PlayOnlineHost playOnlineHost = new PlayOnlineHost();
                 playOnlineHost.gameStart();

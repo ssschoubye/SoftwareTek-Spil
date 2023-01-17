@@ -364,11 +364,11 @@ public class DimensionPrompt {
     }
 
     @FXML
-    private Button playOnline;
+    private Button playOnlineHost;
     @FXML
     private void playOnlineAction() throws IOException {
         gamemode = 3;
-        Stage stage = (Stage) playOnline.getScene().getWindow();
+        Stage stage = (Stage) playOnlineHost.getScene().getWindow();
         stage.close();
         HostPrompt game = new HostPrompt();
         if (dim.x == 0 || dim.y == 0){

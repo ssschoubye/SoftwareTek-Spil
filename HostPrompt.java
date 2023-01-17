@@ -15,6 +15,7 @@ public class HostPrompt {
     //Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(HostPrompt.class.getResource("OnlineDesign.fxml"))));
     int dim;
 
+    static Stage stage = new Stage();
     public void runHostPrompt() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("OnlineDesign.fxml"));
         Scene scene = new Scene(root);
@@ -22,7 +23,7 @@ public class HostPrompt {
         InetAddress localHost = InetAddress.getLocalHost();
         String hostip = localHost.getHostAddress();
         setIP(hostip);
-        Stage stage = new Stage();
+
         stage.setScene(scene);
         stage.show();
     }
@@ -59,6 +60,9 @@ public class HostPrompt {
 
     public static String getIPinput(){
         return(IPinput);
+    }
+    public static void stageClose(){
+        stage.close();
     }
 
 }
