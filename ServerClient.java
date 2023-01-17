@@ -32,7 +32,7 @@ public class ServerClient extends Thread{
                 }
                 //First time running the code the IP address for the connecting device will be sent to the host server.
 
-
+                interThread.setGameMode(2);
             }else if(gameMode == 2){
                  //If it isnt the first time then we move to upstart fase.
                     try {

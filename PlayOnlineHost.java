@@ -101,26 +101,14 @@ public class PlayOnlineHost extends Application{
                 updateGridpane(game, board, whiteImage, blackImage, markerImage);
                 boolean firstTime = false;
                 boolean isHost = true;
-                InterThread.setMap(game.map);
+
 
                 // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii, jj, turn)) {
                         placeSound.play();
-                        if(turnCounter == 2){
-                            InterThread.setGameMode(2);
-                            int[][] map = game.map;
-                            InterThread.setMap(map);
-                            OnlineController onlineController = new OnlineController();
-                            try {
-                                onlineController.onlineGame(isHost, firstTime);
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            } catch (ClassNotFoundException e) {
-                                throw new RuntimeException(e);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
+                        if(turnCounter <= 2){
+                            InterThread.setMap(game.map);
                         }
                         turnCounter++;
 

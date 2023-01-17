@@ -104,16 +104,22 @@ public class PlayOnlineClient extends Application{
                 // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii, jj, turn)) {
-                        InterThread.setGameMode(2);
-                        OnlineController onlineController = new OnlineController();
-                        try {
-                            onlineController.onlineGame(isHost, firstTime);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        } catch (ClassNotFoundException e) {
-                            throw new RuntimeException(e);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
+                        while(InterThread.getGameMode() <= 2){
+                            OnlineController onlineController = new OnlineController();
+                            try {
+                                onlineController.onlineGame(isHost, firstTime);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            } catch (ClassNotFoundException e) {
+                                throw new RuntimeException(e);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                            game.map = InterThread.getMap();
+                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                            if(InterThread.getGameMode() == 3){
+                                break;
+                            }
                         }
                         placeSound.play();
                         turnCounter++;

@@ -4,7 +4,7 @@ public class InterThread {
     static int gameMode = 1;
     public synchronized static void setMap(int[][] inputMap){
         map = inputMap;
-        PlayOnlineHost.setMap(map); //Might have to revise code later.
+        //PlayOnlineHost.setMap(map); Might have to revise code later.
     }
 
     public synchronized static int[][] getMap() {

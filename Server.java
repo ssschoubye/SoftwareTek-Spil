@@ -68,6 +68,7 @@ public class Server extends Thread{
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+                    interThread.setGameMode(2);
                     System.out.println(gameMode);
                 } else if (gameMode == 2) { //First stage of the game. Upstart move is sent to client.
                     int[][] initialmap = interThread.getMap();
