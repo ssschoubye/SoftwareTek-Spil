@@ -101,7 +101,7 @@ public class PlayOnlineClient extends Application{
                 boolean isHost = false;
                 boolean firstTime = false;
 
-                while(InterThread.getGameMode() <= 2){
+/*
                     OnlineController onlineController = new OnlineController();
                     try {
                         onlineController.onlineGame(isHost, firstTime);
@@ -117,14 +117,19 @@ public class PlayOnlineClient extends Application{
                     if(InterThread.getGameMode() == 3){
                         break;
                     }
-                }
+*/
 
                 // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii, jj, turn)) {
+                        if(InterThread.getGameMode() == 3){
+                            game.map = InterThread.getMap();
+                            turnCounter = 3;
+                        }else{
 
+                        }
                         placeSound.play();
-                        turnCounter++;
+                        //turnCounter++;
                         //Switches player turn
                         if (turnCounter == 3) {
                             turn = Board.turnSwitch(turn);

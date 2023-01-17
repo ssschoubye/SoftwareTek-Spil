@@ -13,6 +13,7 @@ public class ServerClient extends Thread{
         this.interThread = interThread;
     }
         public void run(){
+        //while(interThread.getGameMode() < 5){
             int gameMode = interThread.getGameMode();
             //First time running this code it needs to be determined whether it is first time making a connection,
             // if the game is in its upstart fase or if regular play have started.
@@ -34,20 +35,20 @@ public class ServerClient extends Thread{
 
                 interThread.setGameMode(2);
             }else if(gameMode == 2){
-                 //If it isnt the first time then we move to upstart fase.
-                    try {
-                        String IPAddress = OnlineController.getIPinput();
-                        Socket socket = new Socket(IPAddress, 8080);
-                        //BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                        ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
-                        ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
-                        int[][] inputMap = boardRec.getArray();
-                        System.out.println(Arrays.deepToString(inputMap));
-                        interThread.setMap(inputMap);
-                    } catch (RuntimeException | ClassNotFoundException | IOException e){
-                        throw new RuntimeException(e);
-                    }
-                    interThread.setGameMode(3);
+                //If it isnt the first time then we move to upstart fase.
+                try {
+                    String IPAddress = OnlineController.getIPinput();
+                    Socket socket = new Socket(IPAddress, 8080);
+                    //BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
+                    ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
+                    int[][] inputMap = boardRec.getArray();
+                    System.out.println(Arrays.deepToString(inputMap));
+                    interThread.setMap(inputMap);
+                } catch (RuntimeException | ClassNotFoundException | IOException e){
+                    throw new RuntimeException(e);
+                }
+                interThread.setGameMode(3);
                 System.out.println("Gamemode is " + 3);
             }else if(gameMode == 3){
                 String IPAddress = OnlineController.getIPinput();
@@ -67,6 +68,8 @@ public class ServerClient extends Thread{
             }
 
         }
+
+        //}
     }
 //while(true){
      /*

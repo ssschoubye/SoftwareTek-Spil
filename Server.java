@@ -70,15 +70,21 @@ public class Server extends Thread{
                     interThread.setGameMode(2);
                     System.out.println(gameMode);
                 } else if (gameMode == 2) { //First stage of the game. Upstart move is sent to client.
+
                     int[][] initialmap = interThread.getMap();
                     ArrayReturn arrayReturn = new ArrayReturn(initialmap);
-                    try {
-                        ObjectOutputStream objectOut = new ObjectOutputStream(socket.getOutputStream());
-                        System.out.println(Arrays.deepToString(initialmap));
-                        objectOut.writeObject(arrayReturn);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                    if(interThread.getGameMode() == 3){
+                        try {
+                            //PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                            //out.println(interThread.getGameMode());
+                            ObjectOutputStream objectOut = new ObjectOutputStream(socket.getOutputStream());
+                            System.out.println(Arrays.deepToString(initialmap));
+                            objectOut.writeObject(arrayReturn);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
+
                     //The new map is set in the controller class since Play and Server runs in two different threads.
                     interThread.setMap(initialmap);
                     System.out.println(gameMode);
