@@ -47,6 +47,7 @@ public class ServerClient extends Thread{
                     } catch (RuntimeException | ClassNotFoundException | IOException e){
                         throw new RuntimeException(e);
                     }
+                    interThread.setGameMode(3);
             }else if(gameMode == 3){
                 String IPAddress = OnlineController.getIPinput();
                 Board board = new Board();

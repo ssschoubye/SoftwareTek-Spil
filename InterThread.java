@@ -10,8 +10,7 @@ public class InterThread {
     public synchronized static int[][] getMap() {
         return map;
     }
-    public synchronized static void setGameMode(int Mode){
-        gameMode = Mode;
+    public synchronized static void setGameMode(int Mode){gameMode = Mode;
     }
     public synchronized static int getGameMode() {
         return gameMode;
