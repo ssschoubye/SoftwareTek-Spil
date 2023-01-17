@@ -7,11 +7,17 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Server extends Thread{
+    private InterThread interThread;
 
+    public Server(InterThread interThread){
+        this.interThread = interThread;
+    }
     @Override
     public void run(){
         // Create a server socket that listens on port 8080
                 ServerSocket serverSocket = null;
+                InterThread interThread1 = new InterThread();
+
                 try {
                     System.out.println("Connecting");
                     serverSocket = new ServerSocket(8080);
@@ -21,7 +27,8 @@ public class Server extends Thread{
                         Socket socket = serverSocket.accept();
                         System.out.println("Client connected");
                         // Create a thread to handle the client
-                        new Thread(new ClientHandler(socket)).start();
+                        ClientHandler clientHandler = new ClientHandler(socket, interThread1);
+                        clientHandler.start();
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -30,12 +37,17 @@ public class Server extends Thread{
     }
 }
     class ClientHandler extends Thread {
+        private InterThread interThread;
         private Socket socket;
         public String hostip;
         public int gameMode;//Int to keep track of which phase the game is in.
+        public ClientHandler(InterThread interThread){
+            this.interThread = interThread;
+        }
 
-        public ClientHandler(Socket socket) {
+        public ClientHandler(Socket socket, InterThread interThread) {
             this.socket = socket;
+            this.interThread = interThread;
         }
         public ClientHandler(){String hostip;}
 

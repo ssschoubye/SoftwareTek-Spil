@@ -7,6 +7,11 @@ import java.util.Scanner;
 
 
 public class ServerClient extends Thread{
+    private InterThread interThread;
+
+    public ServerClient(InterThread interThread){
+        this.interThread = interThread;
+    }
         public void run(){
             int gameMode = OnlineController.getGameMode();
             //First time running this code it needs to be determined whether it is first time making a connection,

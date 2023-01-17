@@ -5,10 +5,11 @@ public class OnlineController {
     static String IPinput;
 
     public void onlineGame(boolean hostMode, boolean firstTime) throws IOException, ClassNotFoundException, InterruptedException {
+        InterThread interThread = new InterThread();
         IPinput = HostPrompt.getIPinput();
         System.out.println(hostMode);
         if(hostMode == true){
-            Server server = new Server();
+            Server server = new Server(interThread);
             server.start();
             System.out.println("hey");
             for(int i = 0; i < 10; i++){
@@ -27,7 +28,7 @@ public class OnlineController {
             //}
 
         }else{
-            ServerClient client = new ServerClient();
+            ServerClient client = new ServerClient(interThread);
             client.start();
             if(firstTime == true){
                 PlayOnlineClient playOnlineClient = new PlayOnlineClient();
