@@ -84,11 +84,7 @@ public class Board {
 
     public boolean placePiece(int x, int y, int playerTurn) {
         // Place the piece on the board
-        if (playerTurn != 1 && playerTurn != 2) {
-            System.out.println("Value has to be 1 or 2");
-            return false;
-        }
-        if (x < 0 || x >= x_axis || y < 0 || y >= y_axis || (map[x][y] != 3 && map[x][y] != 4)) {
+        if (!isOnBoard(x,y) || (map[x][y] != 3 && map[x][y] != 4)) {
             System.out.println("Not possible placement");
             return false;
         }
@@ -198,15 +194,10 @@ public class Board {
     }
 
     public int startingPlayer(int gameNumber, int firstStartingPlayer) {
-
-        if (gameNumber == 1) {
-            return (int) (Math.random() * 2) + 1;
-        } else if (gameNumber > 1) {
-            if (gameNumber % 2 == 0) {
-                return turnSwitch(firstStartingPlayer);
-            } else if (gameNumber % 2 == 1) {
-                return firstStartingPlayer;
-            }
+        if (gameNumber % 2 == 0) {
+            return turnSwitch(firstStartingPlayer);
+        } else if (gameNumber % 2 == 1) {
+            return firstStartingPlayer;
         }
         return 0;
     }

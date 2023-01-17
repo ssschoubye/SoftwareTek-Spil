@@ -343,6 +343,8 @@ public class DimensionPrompt {
         Stage stage = (Stage) playAlone.getScene().getWindow();
         stage.close();
         game = new PlayAlone();
+        PlayAlone.gameNumber =1;
+        PlayAlone.firstStartingPlayer = (int) (Math.random() * 2) + 1;
       if (dim.x == 0 || dim.y == 0){
             int newx = 8;
             int newy = 8;

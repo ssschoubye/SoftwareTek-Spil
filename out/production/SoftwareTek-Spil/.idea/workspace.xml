@@ -10,114 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
-      <change afterPath="$PROJECT_DIR$/../../../.idea/artifacts/ReversiAdvanced_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../.idea/libraries/javafx_sdk_19.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../.idea/libraries/lib1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ArrayReturn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../GameLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../HostPrompt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../HowToPlay.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../MiniMaxAlphaBetaAI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../OnlineDesign.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PlayAI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../application.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../artifacts/ReversiAdvanced_jar/ReversiAdvanced.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ReversiAdvanced_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javafx_sdk_19.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ArrayReturn.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ClientHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GameLoader.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HostPrompt.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HowToPlay.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/arrowLeft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MiniMaxAlphaBetaAI.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OnlineDesign.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlayAI$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlayAI.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlayAlone$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlayAlone.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlayOnline$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PlayOnline.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/placeSound1.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/sound1.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/playAlone.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../playAlone.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/SoftwareTek-Spil.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/SoftwareTek-Spil.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/ws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/ws.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/ws/buffer-util.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/ws/buffer-util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/ws/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/ws/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/ws/event-target.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/ws/event-target.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/ws/extension.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/ws/extension.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/ws/limiter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/ws/limiter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/ws/permessage-deflate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/ws/permessage-deflate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/ws/receiver.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/ws/receiver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/ws/sender.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/ws/sender.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/ws/stream.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/ws/stream.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/ws/subprotocol.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/ws/subprotocol.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/ws/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/ws/validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/ws/websocket-server.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/ws/websocket-server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/libraries/ws/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/libraries/ws/websocket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../BoardTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../BoardTestMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Boardsave.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Boardsave.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DimensionPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DimensionPrompt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Draw.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PlayOnline.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PlayOnline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ServerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ServerClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PlayAlone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../WinPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../WinPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Winpage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Winpage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../defaultStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../defaultStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dimension.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dimension.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../game.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../menuvis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../menuvis.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SoftwareTek-Spil.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SoftwareTek-Spil.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/buffer-util.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/buffer-util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/event-target.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/event-target.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/extension.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/extension.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/limiter.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/limiter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/permessage-deflate.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/permessage-deflate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/receiver.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/receiver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/sender.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/sender.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/stream.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/stream.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/subprotocol.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/subprotocol.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/websocket-server.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/websocket-server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ws/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ws/websocket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoardTestMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/BoardTestMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Boardsave.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Boardsave.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DimensionPrompt.class" beforeDir="false" afterPath="$PROJECT_DIR$/DimensionPrompt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Draw.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server$ClientHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server$ServerController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/ServerClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visualizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/Visualizer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WinPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WinPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Winpage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Winpage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/boardButtons.css" beforeDir="false" afterPath="$PROJECT_DIR$/boardButtons.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/defaultStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/defaultStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dimension.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/dimension.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/game.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/menuvis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/menuvis.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayAI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +35,7 @@
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -150,7 +44,6 @@
     <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2JlbEWibvMvS1tt0sUxnkAJQ1ZO" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -259,7 +152,11 @@
       <workItem from="1673859078579" duration="481000" />
       <workItem from="1673859883162" duration="402000" />
       <workItem from="1673860439547" duration="4494000" />
-      <workItem from="1673875560325" duration="8000" />
+      <workItem from="1673865351701" duration="110000" />
+      <workItem from="1673865482298" duration="5702000" />
+      <workItem from="1673881351122" duration="6325000" />
+      <workItem from="1673900123514" duration="2108000" />
+      <workItem from="1673903499386" duration="617000" />
     </task>
     <servers />
   </component>

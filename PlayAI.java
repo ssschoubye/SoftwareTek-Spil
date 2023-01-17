@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 
 public class PlayAI extends Application {
@@ -106,7 +105,7 @@ public class PlayAI extends Application {
                 final int ii = i;
                 final int jj = j;
 
-                updateGridpane( game, board, whiteImage, blackImage, markerImage);
+                updateGridPane( game, board);
 
 
                 cells[i][j].setOnAction(event -> {
@@ -119,7 +118,7 @@ public class PlayAI extends Application {
                                 showTurn.setText(turnColor(turn)+"'s turn");
                                 turn = Board.turnSwitch(turn);
 
-                                updateGridpane(game, board,whiteImage, blackImage, markerImage);
+                                updateGridPane(game, board);
 
                                 MiniMaxAlphaBetaAI.AIMakeMove(turn);
                                 turnCounter++;
@@ -139,7 +138,7 @@ public class PlayAI extends Application {
                                     if (!game.legalSpots(Board.turnSwitch(turn))) {
                                         System.out.println("No more possible moves \n    game over");
 
-                                        updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                                        updateGridPane(game, board);
 
                                         delay(500,() ->{
                                             WinPage win = new WinPage();
@@ -172,16 +171,29 @@ public class PlayAI extends Application {
                                         MiniMaxAlphaBetaAI.AIMakeMove(turn);
                                         if(!game.legalSpots(Board.turnSwitch(turn))){
                                             if(!game.legalSpots(turn)){
-                                                System.out.println("No more possible moves \n    game over");
-                                                WinPage win = new WinPage();
-                                                turnCounter = 1;
-                                                gameNumber++;
-                                                try{
-                                                    primaryStage.close();
-                                                    win.winStart(game);
-                                                } catch (IOException e) {
-                                                    throw new RuntimeException(e);
-                                                }
+
+                                                updateGridPane(game, board);
+                                                new Thread(() -> {
+                                                    try {
+                                                        Thread.sleep(800);
+                                                    } catch (InterruptedException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
+                                                    WinPage win = new WinPage();
+                                                    turnCounter = 1;
+                                                    gameNumber++;
+
+                                                    Platform.runLater(() -> {
+                                                        primaryStage.close();
+                                                        try {
+                                                            win.winStart(game);
+                                                        } catch (IOException e) {
+                                                            throw new RuntimeException(e);
+                                                        }
+
+                                                    });
+
+                                                }).start();
                                             } else continue;
                                         }
                                         turn = Board.turnSwitch(turn);
@@ -197,7 +209,7 @@ public class PlayAI extends Application {
                             showTurn.setText(turnColor(turn) + "'s turn");
                             whiteScore.setText("x"+game.getScore()[0]);
                             blackScore.setText("x"+game.getScore()[1]);
-                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                            updateGridPane(game, board);
 
 
                         }
@@ -237,7 +249,7 @@ public class PlayAI extends Application {
     }
 
 
-    private void updateGridpane(Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
+    private void updateGridPane(Board game, GridPane board) {
         Pane gamePane = (Pane) scene.lookup("#gamePane");
         board.getChildren().removeIf(node -> node instanceof ImageView);
         gamePane.getChildren().remove(board);
