@@ -43,11 +43,12 @@ public class ServerClient extends Thread{
                         ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
                         int[][] inputMap = boardRec.getArray();
                         System.out.println(Arrays.deepToString(inputMap));
-                        OnlineController.setMap(inputMap);
+                        interThread.setMap(inputMap);
                     } catch (RuntimeException | ClassNotFoundException | IOException e){
                         throw new RuntimeException(e);
                     }
                     interThread.setGameMode(3);
+                System.out.println("Gamemode is " + 3);
             }else if(gameMode == 3){
                 String IPAddress = OnlineController.getIPinput();
                 Board board = new Board();
