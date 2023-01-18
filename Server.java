@@ -62,70 +62,29 @@ public class Server extends Thread{
                         hostip = in.readLine();
                         System.out.println("Ip modtaget" + hostip);
                         //out.println(client);
-                        //Server closes so the game can start.
-                        socket.close();
+
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                     interThread.setGameMode(2);
                     gameMode = 2;
                     System.out.println(gameMode);
-                } else if (gameMode == 2) { //First stage of the game. Upstart move is sent to client.
-                    while(gameMode == 2){
-                        int[][] initialmap = interThread.getMap();
-                        ArrayReturn arrayReturn = new ArrayReturn(initialmap);
-                        if(interThread.getGameMode() == 3){
-                            try {
-                                //PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                                //out.println(interThread.getGameMode());
-                                ObjectOutputStream objectOut = new ObjectOutputStream(socket.getOutputStream());
-                                System.out.println(Arrays.deepToString(initialmap));
-                                objectOut.writeObject(arrayReturn);
-                                interThread.setMap(initialmap);
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                    }
-
-
-                    //The new map is set in the controller class since Play and Server runs in two different threads.
-
-                    System.out.println(gameMode);
-                } else if (gameMode == 3) {//When upstart move have been done then await response.
+                } else if (gameMode == 2) {
                     try {
                         ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
                         ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
                         int[][] inputMap = boardRec.getArray();
                         System.out.println(Arrays.deepToString(inputMap));
-                        OnlineController.setMap(inputMap);
+                        interThread.setMap(inputMap);
+                        socket.close();
                     } catch (RuntimeException | ClassNotFoundException | IOException e) {
                         throw new RuntimeException(e);
                     }
+                    interThread.setGameMode(3);
+                    gameMode = interThread.getGameMode();
                     System.out.println(gameMode);
 
-                } else if (gameMode == 4) {//Game have started. This is Output Stream.
-                    Board board = new Board();
-                    int[][] initialmap = board.getArray();
-                    ArrayReturn arrayReturn = new ArrayReturn(initialmap);
-                    ObjectOutputStream objectOut;
-                    try {
-                        objectOut = new ObjectOutputStream(socket.getOutputStream());
-                        System.out.println(Arrays.deepToString(initialmap));
-                        objectOut.writeObject(arrayReturn);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                } else if (gameMode == 5) {// This is input stream.
-                    try {
-                        ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
-                        ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
-                        int[][] inputMap = boardRec.getArray();
-                        System.out.println(Arrays.deepToString(inputMap));
-                        OnlineController.setMap(inputMap);
-                    } catch (RuntimeException | ClassNotFoundException | IOException e) {
-                        throw new RuntimeException(e);
-                    }
+
                 }
             }
         }

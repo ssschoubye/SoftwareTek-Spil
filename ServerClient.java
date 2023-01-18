@@ -34,22 +34,6 @@ public class ServerClient extends Thread{
                 //First time running the code the IP address for the connecting device will be sent to the host server.
 
                 interThread.setGameMode(2);
-            }else if(gameMode == 2){
-                //If it isnt the first time then we move to upstart fase.
-                try {
-                    String IPAddress = OnlineController.getIPinput();
-                    Socket socket = new Socket(IPAddress, 8080);
-                    //BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
-                    ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
-                    int[][] inputMap = boardRec.getArray();
-                    System.out.println(Arrays.deepToString(inputMap));
-                    interThread.setMap(inputMap);
-                } catch (RuntimeException | ClassNotFoundException | IOException e){
-                    throw new RuntimeException(e);
-                }
-                interThread.setGameMode(3);
-                System.out.println("Gamemode is " + 3);
             }else if(gameMode == 3){
                 String IPAddress = OnlineController.getIPinput();
                 Board board = new Board();
@@ -60,13 +44,14 @@ public class ServerClient extends Thread{
                     ObjectOutputStream objectOut = new ObjectOutputStream(socket.getOutputStream());
                     System.out.println(Arrays.deepToString(initialmap));
                     objectOut.writeObject(arrayReturn);
+                    objectOut.flush();
+                    objectOut.close();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
                 //The new map is set in the controller class since Play and Server runs in two different threads.
-                OnlineController.setMap(initialmap);
+                interThread.setMap(initialmap);
             }
-
         }
 
         //}

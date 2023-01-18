@@ -101,79 +101,61 @@ public class PlayOnlineClient extends Application{
                 boolean isHost = false;
                 boolean firstTime = false;
 
-/*
-                    OnlineController onlineController = new OnlineController();
-                    try {
-                        onlineController.onlineGame(isHost, firstTime);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (ClassNotFoundException e) {
-                        throw new RuntimeException(e);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                    game.map = InterThread.getMap();
-                    updateGridpane(game, board, whiteImage, blackImage, markerImage);
-                    if(InterThread.getGameMode() == 3){
-                        break;
-                    }
-*/
-
                 // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
-                    if (game.placePiece(ii, jj, turn)) {
-                        if(InterThread.getGameMode() == 3){
-                            game.map = InterThread.getMap();
-                            turnCounter = 3;
-                        }else{
+                    if(InterThread.getGameMode() == 3){
+                        game.map = InterThread.getMap();
+                        updateGridpane(game,board,whiteImage,blackImage,markerImage);
+                        if (game.placePiece(ii, jj, turn)) {
+                            placeSound.play();
+                            turnCounter++;
+                            //Switches player turn
+                            /*
+                            if (turnCounter == 3) {
+                                turn = Board.turnSwitch(turn);
+                                showTurn.setText(turnColor(turn) + "'s turn");
+                            } */
 
-                        }
-                        placeSound.play();
-                        //turnCounter++;
-                        //Switches player turn
-                        if (turnCounter == 3) {
-                            turn = Board.turnSwitch(turn);
-                            showTurn.setText(turnColor(turn) + "'s turn");
-                        }
-
-                        if (turnCounter > 4) {
-                            turn = Board.turnSwitch(turn);
-                            showTurn.setText(turnColor(turn) + "'s turn");
+                            if (turnCounter > 4) {
+                                turn = Board.turnSwitch(turn);
+                                showTurn.setText(turnColor(turn) + "'s turn");
 
 
-                            //Checks for legal spots
-                            if (!game.legalSpots(turn)) {
-                                if (!game.legalSpots(Board.turnSwitch(turn))) {
-                                    System.out.println("No more possible moves \n    game over");
+                                //Checks for legal spots
+                                if (!game.legalSpots(turn)) {
+                                    if (!game.legalSpots(Board.turnSwitch(turn))) {
+                                        System.out.println("No more possible moves \n    game over");
 
-                                    updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                                        updateGridpane(game, board, whiteImage, blackImage, markerImage);
 
-                                    delay(500,() ->{
-                                        WinPage win = new WinPage();
-                                        turnCounter = 1;
-                                        gameNumber++;
+                                        delay(500,() ->{
+                                            WinPage win = new WinPage();
+                                            turnCounter = 1;
+                                            gameNumber++;
 
-                                        try {
-                                            primaryStage.close();
-                                            win.winStart(game);
-                                        } catch (IOException e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                    });
-                                } else {
-                                    System.out.println("\n" + turn + " has no possible moves");
-                                    turn = Board.turnSwitch(turn);
-                                    showTurn.setText(turnColor(turn) + "'s turn");
-                                    //no move possible for current player
+                                            try {
+                                                primaryStage.close();
+                                                win.winStart(game);
+                                            } catch (IOException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        });
+                                    } else {
+                                        System.out.println("\n" + turn + " has no possible moves");
+                                        turn = Board.turnSwitch(turn);
+                                        showTurn.setText(turnColor(turn) + "'s turn");
+                                        //no move possible for current player
+                                    }
+
                                 }
-
                             }
+
+                            whiteScore.setText("x"+game.getScore()[0]);
+                            blackScore.setText("x"+game.getScore()[1]);
+                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
+
+
                         }
-
-                        whiteScore.setText("x"+game.getScore()[0]);
-                        blackScore.setText("x"+game.getScore()[1]);
-                        updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
 
                     }
 
