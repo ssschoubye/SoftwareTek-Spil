@@ -162,12 +162,12 @@ public class PlayOnlineClient extends Application {
 
 
                     }
-
+                    client.sendArray(game.map);
                 });
                 Pane gamePane = (Pane) scene.lookup("#gamePane");
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
                 cells[i][j].prefWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
-                client.sendArray(game.map);
+
             }
             board.setAlignment(Pos.CENTER);
 

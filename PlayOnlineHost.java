@@ -160,7 +160,7 @@ public class PlayOnlineHost extends Application {
                         whiteScore.setText("x"+game.getScore()[0]);
                         blackScore.setText("x"+game.getScore()[1]);
                         updateGridPane(game, board);
-
+                        server.sendArray(game.map);
 
                     }
 
@@ -168,7 +168,7 @@ public class PlayOnlineHost extends Application {
                 Pane gamePane = (Pane) scene.lookup("#gamePane");
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
                 cells[i][j].prefWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
-                server.sendArray(game.map);
+
             }
             board.setAlignment(Pos.CENTER);
 
