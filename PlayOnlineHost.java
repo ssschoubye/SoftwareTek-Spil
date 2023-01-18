@@ -33,8 +33,8 @@ public class PlayOnlineHost extends Application {
     static int gameNumber = 1;
 
     static int turnCounter = 1;
-    String whiteImage;
-    String blackImage;
+    String whiteImage = "Images/WhitePieces/whitePiece1.png";
+    String blackImage = "Images/BlackPieces/blackPiece1.png";
     String markerImage = "Images/markerDark.png";
     String backImage1;
     String backImage2;
