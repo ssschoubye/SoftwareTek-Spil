@@ -42,8 +42,8 @@ public class HostPrompt {
         Stage stage = (Stage) button.getScene().getWindow();//Close the stage and the start the controller.
         stage.close();
         boolean isHost = false;
-        PlayOnlineHost playOnlineHost = new PlayOnlineHost();
-        playOnlineHost.gameStart(dim,dim);
+        PlayOnlineClient playOnlineClient = new PlayOnlineClient();
+        playOnlineClient.gameStart(dim,dim);
 
     }
 
@@ -54,8 +54,12 @@ public class HostPrompt {
     private void setIP(String hostip){IPhost.setText(hostip);}
 
     @FXML
+    private Button hostgame;
+    @FXML
     private void startHost() throws IOException, ClassNotFoundException, InterruptedException {
         boolean isHost = true;
+        Stage stage = (Stage) hostgame.getScene().getWindow();//Close the stage and the start the controller.
+        stage.close();
         PlayOnlineHost playOnlineHost = new PlayOnlineHost();
         playOnlineHost.gameStart(dim,dim);
     }

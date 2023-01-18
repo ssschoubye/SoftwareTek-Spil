@@ -56,15 +56,6 @@ public class PlayOnlineClient extends Application {
     ServerClient client;
 
     public void gameStart(int inwidth, int inheight) {
-        try{
-            client = new ServerClient(new Socket(HostPrompt.IPinput,8080));
-            System.out.println("Connected to server");
-        }catch(IOException e){
-            e.printStackTrace();
-            System.out.println("Failed to connect to server");
-        }
-
-
         DimensionPrompt dimPrompt = new DimensionPrompt();
         width = inwidth;
         height = inheight;
@@ -81,7 +72,13 @@ public class PlayOnlineClient extends Application {
     public void start(Stage primaryStage) {
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label)scene.lookup("#showTurn");
-
+        try{
+            client = new ServerClient(new Socket(HostPrompt.IPinput,8080));
+            System.out.println("Connected to server");
+        }catch(IOException e){
+            e.printStackTrace();
+            System.out.println("Failed to connect to server");
+        }
         game = new Board(width, height);
         game.initialize();
         turn = game.startingPlayer(gameNumber, firstStartingPlayer);

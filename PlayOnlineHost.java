@@ -55,11 +55,6 @@ public class PlayOnlineHost extends Application {
     Server server;
 
     public void gameStart(int inwidth, int inheight) {
-        try{
-            server = new Server(new ServerSocket(8080));
-        }catch(IOException e){
-            e.printStackTrace();
-        }
 
 
         DimensionPrompt dimPrompt = new DimensionPrompt();
@@ -78,7 +73,13 @@ public class PlayOnlineHost extends Application {
     public void start(Stage primaryStage) {
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label)scene.lookup("#showTurn");
-
+        System.out.println("Starting game");
+        try{
+            server = new Server(new ServerSocket(8080));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        System.out.println("Server started");
         game = new Board(width, height);
         game.initialize();
         turn = game.startingPlayer(gameNumber, firstStartingPlayer);
