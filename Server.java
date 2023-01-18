@@ -83,7 +83,8 @@ public class Server extends Thread{
                         int[][] initialmap = interThread.getMap();
                         ArrayReturn arrayReturn = new ArrayReturn(initialmap);
                             try {
-                                //PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                                out.println("new");
                                 //out.println(interThread.getGameMode());
                                 ObjectOutputStream objectOut = new ObjectOutputStream(socket.getOutputStream());
                                 System.out.println(Arrays.deepToString(initialmap));

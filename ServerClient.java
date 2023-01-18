@@ -40,10 +40,11 @@ public class ServerClient extends Thread{
                     Socket socket = new Socket(HostPrompt.IPinput, 8080);
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     message = in.readLine();
+                    System.out.println(message);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                if(message.equals("Waiting")){
+                if(message.equals("new")){
                     try {
                         String IPAddress = OnlineController.getIPinput();
                         Socket socket = new Socket(IPAddress, 8080);
@@ -58,7 +59,7 @@ public class ServerClient extends Thread{
                     }
                     interThread.setGameMode(3);
                     System.out.println("Gamemode is " + 3);
-                }else{
+                }else if(message.equals("Waiting")){
                     System.out.println("nothing yet.");
                 }
             } else if(gameMode == 3){

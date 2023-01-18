@@ -103,17 +103,7 @@ public class PlayOnlineClient extends Application{
                 boolean firstTime = false;
                 interThread.setMap(game.map);
 //In gamemode 2 we are awaiting response from server side. Therefore a loop keeps checking to se if a move have been made.
-                while(interThread.getGameMode() == 2){
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                    ServerClient client = new ServerClient(interThread);
-                    client.start();
-                    game.map = interThread.getMap();
-                    updateGridpane(game,board,whiteImage,blackImage,markerImage);
-                }
+
 
                 // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
@@ -121,12 +111,12 @@ public class PlayOnlineClient extends Application{
                         placeSound.play();
                         turnCounter++;
                         //Switches player turn
-                        if (turnCounter == 3) {
+                        if (turnCounter == 2) {
                             turn = Board.turnSwitch(turn);
                             showTurn.setText(turnColor(turn) + "'s turn");
                         }
 
-                        if (turnCounter > 4) {
+                        if (turnCounter > 3) {
                             turn = Board.turnSwitch(turn);
                             showTurn.setText(turnColor(turn) + "'s turn");
 
@@ -158,6 +148,7 @@ public class PlayOnlineClient extends Application{
                                 }
 
                             }
+                            interThread.setGameMode(2);
                         }
 
                         whiteScore.setText("x"+game.getScore()[0]);
@@ -166,7 +157,17 @@ public class PlayOnlineClient extends Application{
 
 
                     }
-                    interThread.setGameMode(2);
+                    while(interThread.getGameMode() == 2){
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        ServerClient client = new ServerClient(interThread);
+                        client.start();
+                        game.map = interThread.getMap();
+                        updateGridpane(game,board,whiteImage,blackImage,markerImage);
+                    }
                 });
                 Pane gamePane = (Pane) scene.lookup("#gamePane");
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
