@@ -78,7 +78,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="playOnline" mnemonicParsing="false" onAction="#playOnlineAction" prefHeight="110.0" prefWidth="97.0" styleClass="orangeButton" text="Play&#10;Online" textAlignment="CENTER">
+                  <Button fx:id="playOnlineHost" mnemonicParsing="false" onAction="#playOnlineAction" prefHeight="110.0" prefWidth="97.0" styleClass="orangeButton" text="Play&#10;Online" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

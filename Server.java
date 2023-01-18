@@ -1,89 +1,80 @@
+import javafx.fxml.Initializable;
+
 import java.io.*;
 import java.net.*;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Server {
-    public static void serverStart() throws IOException {
-        // Create a server socket that listens on port 8080
-        ServerSocket serverSocket = new ServerSocket(8080);
+public class Server extends Thread{
+    private ServerSocket serverSocket;
+    private Socket socket;
+    private BufferedReader bufferedReader;
+    private PrintWriter printWriter;
+    private ObjectOutputStream objectOut;
+    private ObjectInputStream objectIn;
 
-        while (true) {
-            // Accept an incoming client connection
-            Socket clientSocket = serverSocket.accept();
+    public Server(ServerSocket serverSocket){
+        try{
+            this.serverSocket = serverSocket;
+            this.socket = serverSocket.accept();
+            this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            this.printWriter = new PrintWriter(socket.getOutputStream(), true);
+            this.objectOut = new ObjectOutputStream(socket.getOutputStream());
+            this.objectIn = new ObjectInputStream(socket.getInputStream());
+        }catch (IOException e){
+            System.out.println("Error in Server constructor");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
 
-            // Create a new thread to handle the client
-            new ClientHandler(clientSocket).start();
+    }
+
+    public void sendArray(int[][] array){
+        try{
+            ArrayReturn arrayReturn = new ArrayReturn(array);
+            objectOut.writeObject(arrayReturn);
+            objectOut.flush();
+
+        }catch (IOException e){
+            System.out.println("Error in sendArray");
+            e.printStackTrace();
+            closeEveryThing(socket, objectOut, objectIn);
+
         }
     }
-}
-    class ClientHandler extends Thread {
-        private Socket socket;
-        public String hostip;
-        public static int turnCounter = 1;
-
-        public ClientHandler(Socket socket) {
-            this.socket = socket;
+    public void closeEveryThing(Socket socket, ObjectOutputStream objectOut, ObjectInputStream objectIn){
+        try{
+            socket.close();
+            objectOut.close();
+            objectIn.close();
+        }catch (IOException e){
+            System.out.println("Error in closeEverything");
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+    }
 
-        @Override
-        public void run() {
-            while (turnCounter < 4) {
-                if (turnCounter == 1) {
-                    try {
-                        // Get the input and output streams
-                        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-
-                        // Read and process client messages
-                        while (true) {
-                            //Modtager bekræftelse besked.
-                            hostip = in.readLine();
-                            System.out.println("Ip modtaget" + hostip);
-
-                            if (hostip == null) {
-                                break;
-                            }else{
-                                Board board = new Board();
-                                int[][] initialmap = board.getArray();
-                                //int[][] initialmap = {{1, 2, 3, 4},{1, 2, 3, 4}};
-                                ArrayReturn arrayReturn = new ArrayReturn(initialmap);
-                                ObjectOutputStream objectOut = new ObjectOutputStream(socket.getOutputStream());
-                                System.out.println(Arrays.deepToString(initialmap));
-                                objectOut.writeObject(arrayReturn);
-                                //out.println(hostip);
-                                turnCounter = 3;
-                                objectOut.flush();
-                                socket.close();
-                                break;
-                            }
-                            //System.out.println(hostip);
-                            //Scanner scan = new Scanner(System.in);
-                            //String message1 = scan.nextLine();
-
-                            // Process the message
-
-                            // Send a response to the client
-                            //out.println(message1);
-                        }
-                    } catch (IOException e) {
+    public void recieveArray(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(socket.isConnected()){
+                    try{
+                        ArrayReturn arrayReturn = (ArrayReturn) objectIn.readObject();
+                        int[][] array = arrayReturn.getArray();
+                        System.out.println(Arrays.deepToString(array));
+                        PlayOnlineHost.setMap(array);
+                    }catch (IOException | ClassNotFoundException e){
+                        System.out.println("Error in recieveArray");
                         e.printStackTrace();
-                    } finally {
-                        try {
-                            socket.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        closeEveryThing(socket, objectOut, objectIn);
+                        break;
                     }
-
-                } else if (turnCounter == 3) {
-
                 }
 
-
             }
-        }
-        public static void stopServer(){
-            turnCounter = 4;
-        }
+        }).start();
     }
+        }
+
