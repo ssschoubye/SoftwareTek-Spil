@@ -4,7 +4,7 @@ public class MiniMaxAlphaBetaAI {
     private static Board board;
     private static int maxDepth;
     //static int exploredChildren = 0;
-    public static boolean has4 = true;
+    private static boolean has4 = true;
 
     public MiniMaxAlphaBetaAI(Board board, int maxDepth) {
 
@@ -69,7 +69,7 @@ public class MiniMaxAlphaBetaAI {
         //exploredChildren++;
         if (depth == maxDepth || !board.legalSpots(playerTurn)) {
             //System.out.println("" + depth + " lag nede i træet er den højeste score for " + Visualizer.turnColor(playerTurn) +", hvis " + Visualizer.turnColor(Board.turnSwitch(playerTurn)) + " spiller perfekt, =" +Board.evaluateScore(board,playerTurn));
-            return Board.weigthedScore(board);
+            return Board.boardHeuristic(board);
 
         }
         int bestScore = Integer.MIN_VALUE;
@@ -95,7 +95,7 @@ public class MiniMaxAlphaBetaAI {
     private static int minValue(Board board, int playerTurn, int depth, int alpha, int beta) {
         if (depth == maxDepth || !board.legalSpots(playerTurn)) {
             //System.out.println("" + depth + " lag nede i træet er den laveste score for " + Visualizer.turnColor(playerTurn) +", hvis " + Visualizer.turnColor(Board.turnSwitch(playerTurn)) + " spiller perfekt, =" +Board.evaluateScore(board,playerTurn));
-            return Board.weigthedScore(board);
+            return Board.boardHeuristic(board);
         }
         int bestScore = Integer.MAX_VALUE;
         Board copy = board.copy();

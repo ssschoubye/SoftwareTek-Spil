@@ -214,63 +214,136 @@ public class Board {
     public Board copy() {
         Board copy = new Board(x_axis, y_axis);
         for (int x = 0; x < x_axis; x++) {
-            for (int y = 0; y < y_axis; y++) {
-                copy.map[x][y] = map[x][y];
-            }
+            if (y_axis >= 0) System.arraycopy(map[x], 0, copy.map[x], 0, y_axis);
         }
         return copy;
     }
 
+    public static int boardHeuristic(Board board){
 
-    public static int weigthedScore(Board board) {
-        int score = 0;
+        //Parameters
+        int whiteCoins = 0;
+        int blackCoins = 0;
+        int whiteStability = 0;
+        int blackStability = 0;
+        int whiteMobility;
+        int blackMobility;
+        int whiteCorners = 0;
+        int blackCorners = 0;
 
+        //Parameter weights
+        int coinsWeight = 25;
+        int cornerWeight = 500;
+        int stabilityWeight = 30;
+        int mobilityWeight = 5;
 
-        //Runs through all squares on the playing board
-        for (int x = 0; x < board.x_axis; x++) {
-            for (int y = 0; y < board.y_axis; y++) {
+        //Scores
+        int coinScore = 0;
+        int mobilityScore = 0;
+        int stabilityScore = 0;
+        int cornerScore = 0;
+        int score;
 
-                // Add points for each piece on the board +1
-                if (board.map[x][y] == 1) {
-                    score++;
-                } else if (board.map[x][y] == 2) {
-                    score--;
-                }
-
-                // Check if the current square is a corner +1000
-                if ((x == 0 || x == board.x_axis - 1) && (y == 0 || y == board.y_axis - 1)) {
-                    if (board.map[x][y] == 1) {
-                        score += 1000;
-                    } else if (board.map[x][y] == 2) {
-                        score -= 1000;
+        //Runs through all cells on board and counts parameters
+        for(int x=0; x<board.x_axis; x++){
+            for(int y=0; y<board.y_axis; y++){
+                if(board.map[x][y]==1){
+                    whiteCoins++;
+                    if(isStable(board, x, y, 1)){
+                        whiteStability++;
+                    }
+                    if((x == 0 || x == board.x_axis - 1) && (y == 0 || y == board.y_axis - 1)){
+                        whiteCorners++;
                     }
                 }
 
-                // Check if the current square is adjacent to a corner -10
-                if ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
-                        (x == 1 || x == board.x_axis - 2 || y == 1 || y == board.y_axis - 2)) {
-                    if (board.map[x][y] == 1) {
-                        score -= 10;
-                    } else if (board.map[x][y] == 2) {
-                        score += 10;
+                if(board.map[x][y]==2){
+                    blackCoins++;
+                    if(isStable(board, x, y, 2)){
+                        blackStability++;
                     }
-                }
-
-                // Check if the current square is on the wall but not adjacent to a corner +10
-                if ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
-                        ((x == 0 || x == board.x_axis - 1 || y == 0 || y == board.y_axis - 1) &&
-                                (x == 1 || x == board.x_axis - 2 || y == 1 || y == board.y_axis - 2))) {
-                    if (board.map[x][y] == 1) {
-                        score += 10;
-                    } else if (board.map[x][y] == 2) {
-                        score -= 10;
+                    if((x == 0 || x == board.x_axis - 1) && (y == 0 || y == board.y_axis - 1)){
+                        blackCorners++;
                     }
                 }
             }
         }
+
+        whiteMobility = getMobility(board,1);
+        blackMobility = getMobility(board,2);
+
+
+        if(whiteCoins+blackCoins != 0) {
+            coinScore = 100 * (whiteCoins - blackCoins) / (whiteCoins + blackCoins);
+        }
+
+        if(whiteMobility+blackMobility != 0) {
+            mobilityScore = 100 * (whiteMobility - blackMobility) / (whiteMobility + blackMobility);
+        }
+
+        if(whiteCorners+blackCorners != 0) {
+            cornerScore = 100 * (whiteCorners - blackCorners) / (whiteCorners + blackCorners);
+        }
+
+        if(whiteStability+blackStability != 0) {
+            stabilityScore = 100 * (whiteStability - blackStability) / (whiteStability + blackStability);
+        }
+
+
+        score = coinsWeight * coinScore + mobilityWeight * mobilityScore + cornerWeight * cornerScore + stabilityWeight * stabilityScore;
+
         return score;
     }
 
+
+    //The term mobility refers to the amount of possible moves a player has. The method below returns this number for a given player
+    private static int getMobility(Board board, int playerTurn){
+        int mobility = 0;
+        Board copy = board.copy();
+        copy.legalSpots(playerTurn);
+        for(int i=0; i<copy.x_axis; i++){
+            for(int j=0; j<copy.y_axis; j++){
+                if(copy.map[i][j]==3){
+                    mobility++;
+                }
+            }
+        }
+        return mobility;
+    }
+
+    private static boolean isStable(Board board, int x, int y, int piece) {
+
+        if(!stableDirection(board,x,y,-1,-1,piece)) return false;
+        if(!stableDirection(board,x,y,0,-1,piece)) return false;
+        if(!stableDirection(board,x,y,-1,0,piece)) return false;
+        return stableDirection(board, x, y, 1, -1, piece);
+
+    }
+
+    public static boolean stableDirection(Board board,int x,int y, int dx, int dy, int piece){
+        int l = 1;
+        int end1;
+        int end2 = 10;
+        while (board.isOnBoard(x + l * dx, y + l * dy) && board.map[x + l * dx][y + l * dy] == piece) {
+
+            l++;
+        }
+        if (board.isOnBoard(x + l * dx, y + l * dy)) {
+            end1 = board.map[x + l * dx][y + l * dy];
+
+            dx *= -1;
+            dy *= -1;
+            l = 1;
+            while (board.isOnBoard(x + l * dx, y + l * dy) && board.map[x + l * dx][y + l * dy] == piece) {
+                l++;
+            }
+            if (board.isOnBoard(x + l * dx, y + l * dy)) {
+                end2 = board.map[x + l * dx][y + l * dy];
+            }
+            return end2 == 10 || end1 == end2;
+        }
+        return true;
+    }
 
     public int[][] getArray() {
         return map;
