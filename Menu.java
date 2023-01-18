@@ -84,7 +84,8 @@ public class Menu extends Application {
 
     //////////////////////////////////////////////////////////////
     ///                    Title bar layout                    ///
-    /// Code for creating the custom title bar layout          ///
+    ///               by Emil Wille Andersen s194501           ///
+    ///     Code for creating the custom title bar layout      ///
     //////////////////////////////////////////////////////////////
 
     //Setting the HBox in FXML to be the titlebar

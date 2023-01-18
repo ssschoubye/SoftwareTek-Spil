@@ -260,7 +260,8 @@ public class Board {
         return map;
     }
 
-
+    //A toString method for the object
+    //Used for creating the save file for a given game
     @Override
     public String toString() {
         String boardstring = "";

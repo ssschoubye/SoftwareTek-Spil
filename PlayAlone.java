@@ -373,6 +373,7 @@ public class PlayAlone extends Application {
     //////////////////////////////////////////////////////////////
     ///                    Title bar layout                    ///
     ///              Same code as for the Menu.java            ///
+    ///       Further explanations of code can be sen there    ///
     //////////////////////////////////////////////////////////////
     @FXML
     HBox titlebar;

@@ -1,8 +1,8 @@
 1
 8
-Images/WhitePieces/whitePiece4.png
-Images/BlackPieces/blackPiece5.png
+Images/WhitePieces/whitePiece1.png
+Images/BlackPieces/blackPiece1.png
 Images/Background/green1.png
 Images/Background/green2.png
-0000000000000000000000000032100000222000001212100000222000003012
-16
+0000000000000000000000000004400000044000000000000000000000000000
+1
