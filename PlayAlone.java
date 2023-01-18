@@ -98,9 +98,12 @@ public class PlayAlone extends Application {
         //Sets turn counter to 1
         turnCounter = 1;
 
-
+// If-statement that checks whether the boolean value "loadGame" in the class "Menu" is true or false.
         if (Menu.loadGame) {
+// If loadGame is true, an instance of the class GameLoader is created.
             GameLoader gameloader = new GameLoader();
+// The class is then used to read the parameters saved in the boardSave.txt file.
+// These values then override the current parameters in the game, changing the game to be in the exact state of the saved game.
             turn = gameloader.playerLoad;
             whiteImage = gameloader.whiteLoad;
             DimensionPrompt.whiteImage = whiteImage;
@@ -425,12 +428,12 @@ public class PlayAlone extends Application {
     ///                       Save game                        ///
     //////////////////////////////////////////////////////////////
 
-    @FXML
-    Button saveGame;
-
+// ActionEvent that refers to the button "Save game"
+// Writes turn, dimension of the board, player skins,board skin and the state of the board to the text file: BoardSave.txt
     @FXML
     public void filesaver(ActionEvent event) throws IOException {
         String saveFile = "Boardsave.txt";
+// An instance of the class DimensionPrompt is called to get the current state of the skins in the saved game.
         DimensionPrompt dimPrompt = new DimensionPrompt();
 
         try {
@@ -454,7 +457,7 @@ public class PlayAlone extends Application {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
+// Closes the current game stage and returns the player to the Menu stage.
         Stage stage = (Stage) minimize.getScene().getWindow();
         stage.close();
 
