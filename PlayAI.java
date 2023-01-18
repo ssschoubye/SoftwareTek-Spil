@@ -85,7 +85,7 @@ public class PlayAI extends Application {
         blackScore.setText("x"+game.getScore()[1]);
 
         //Sets the AI variable "has4" to true
-        MiniMaxAlphaBetaAI klogAI = new MiniMaxAlphaBetaAI(game, 5);
+        MiniMaxAlphaBetaAI klogAI = new MiniMaxAlphaBetaAI(game, 4);
         MiniMaxAlphaBetaAI.has4=true;
 
         turnCounter=1;
