@@ -1,7 +1,7 @@
 # Reversi Advanced
 ## Project description
 
-The aim of this project was to create an as "advanced" version of Reversi as possible withing a three week timeline. However, it was closer to a two week timeline as the group also had to write a report about the project.
+The aim of this project was to create an as "advanced" version of Reversi as possible within a three week timeline. However, it was closer to a two week timeline as the group also had to write a report about the project.
 
 The group was restricted to using Java and JavaFX for the project. So choosing what languages would be relevant for the given problem wasn't a part of it.
 
@@ -9,7 +9,10 @@ For future work with the project, getting the online feature to work is a main p
 
 ## How to install and run the project
 The project is made in Java 19. this is therefore the recommended version for using the project.
-To run the jar file for the project, opening command prompt in the same folder as the file and typing "java -jar ReversiAdvanced.jar" will do so.
+To run the jar file for the project, opening command prompt in the same folder as the file and typing "java -jar AdvancedReversi.jar" will do so.
+
+Additionally, it is worth mentioning that the program is optimized for use on a monitor with a 2k- or
+1080p resolution with applications size at 100%.
 
 ## How to use the project
 When opening the project, the user sees two buttons. One for starting a new game and one for loading an earlier saved game. When opening up the program for the first time a default save file will already exist and stay like this til overwritten.

@@ -10,7 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -165,6 +164,7 @@
       <workItem from="1674052149659" duration="383000" />
       <workItem from="1674055681896" duration="1822000" />
       <workItem from="1674060854034" duration="2608000" />
+      <workItem from="1674065172230" duration="460000" />
     </task>
     <servers />
   </component>
