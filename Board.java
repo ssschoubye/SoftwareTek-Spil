@@ -248,6 +248,7 @@ public class Board {
 
     }
 
+    //Creates a copy of the game board, by using the arraycopy method from the Java.lang.System library
     public Board copy() {
         Board copy = new Board(x_axis, y_axis);
         for (int x = 0; x < x_axis; x++) {

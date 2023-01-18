@@ -6,6 +6,8 @@ public class MiniMaxAlphaBetaAI {
 
     private static Board board;
     private static int maxDepth;
+
+    //A value that indicates w
     public static boolean has4 = true;
 
     //Constructor for initializing an AI to play against, with a given board and max search depth
@@ -91,7 +93,8 @@ public class MiniMaxAlphaBetaAI {
                 bestScore = Math.max(bestScore, minValue(copy, Board.turnSwitch(playerTurn), depth + 1, alpha, beta));
                 alpha = Math.max(alpha, bestScore);
                 if (alpha >= beta) {
-                    break; //Beta cutoff. If the score of the node is lower, than what can be achieved by making another move, the node will be pruned,
+                    break;
+                    //Beta cutoff. If the score of the node is lower, than what can be achieved by making another move, the node will be pruned,
                     //meaning that all of its children will not be explored.
                 }
             }
@@ -115,7 +118,8 @@ public class MiniMaxAlphaBetaAI {
                 bestScore = Math.min(bestScore, maxValue(copy, Board.turnSwitch(playerTurn), depth + 1, alpha, beta)); //max og max??
                 beta = Math.min(beta, bestScore);
                 if (alpha >= beta) {
-                    break; //Alpha cutoff. Same idea as the beta cutoff, but opposite.
+                    break;
+                    //Alpha cutoff. Same idea as the beta cutoff, but opposite.
                 }
             }
         }
