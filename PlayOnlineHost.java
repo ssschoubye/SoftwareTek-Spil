@@ -17,11 +17,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.util.Objects;
 
 //For playing online
 //Not yet used, as online playing isn't currently working
-public class PlayOnline extends Application {
+public class PlayOnlineHost extends Application {
 
     static int width;
     static int height;
@@ -51,9 +52,16 @@ public class PlayOnline extends Application {
 
         }
     }
-
+    Server server;
 
     public void gameStart(int inwidth, int inheight) {
+        try{
+            server = new Server(new ServerSocket(8080));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+
         DimensionPrompt dimPrompt = new DimensionPrompt();
         width = inwidth;
         height = inheight;
@@ -64,13 +72,14 @@ public class PlayOnline extends Application {
         Stage stage = new Stage();
         start(stage);
     }
-
+    static Board game;
+    static GridPane board;
     @Override
     public void start(Stage primaryStage) {
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label)scene.lookup("#showTurn");
 
-        Board game = new Board(width, height);
+        game = new Board(width, height);
         game.initialize();
         turn = game.startingPlayer(gameNumber, firstStartingPlayer);
         showTurn.setText(turnColor(turn) + "'s turn");
@@ -83,13 +92,13 @@ public class PlayOnline extends Application {
         blackScore.setText("x"+game.getScore()[1]);
 
 
-        GridPane board = new GridPane();
+        board = new GridPane();
         
         Button saveGame = (Button) scene.lookup("#saveGame");
 
         saveGame.setVisible(false);
 
-
+        server.recieveArray();
 
         Button[][] cells = new Button[width][height];
         for (int i = 0; i < height; i++) {
@@ -108,7 +117,6 @@ public class PlayOnline extends Application {
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii, jj, turn)) {
                         placeSound.play();
-
                         turnCounter++;
                         //Switches player turn
                         if (turnCounter == 3) {
@@ -139,12 +147,7 @@ public class PlayOnline extends Application {
                                             throw new RuntimeException(e);
                                         }
                                     });
-
                                     //Save value for ending game
-
-
-
-
                                 } else {
                                     turn = Board.turnSwitch(turn);
                                     showTurn.setText(turnColor(turn) + "'s turn");
@@ -164,7 +167,7 @@ public class PlayOnline extends Application {
                 Pane gamePane = (Pane) scene.lookup("#gamePane");
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
                 cells[i][j].prefWidthProperty().bind(Bindings.divide(gamePane.widthProperty(), width));
-
+                server.sendArray(game.map);
             }
             board.setAlignment(Pos.CENTER);
 
@@ -317,6 +320,17 @@ public class PlayOnline extends Application {
         stage.setIconified(true);
     }
 
+    public static void setMap(int[][] map) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                game.map = map;
+
+                PlayOnlineHost playOnlineHost = new PlayOnlineHost();
+                playOnlineHost.updateGridPane(game, board);
+            }
+        });
+    }
 
 }
 

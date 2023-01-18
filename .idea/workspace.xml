@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HostPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/HostPrompt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InterThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OnlineController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/PlayOnlineClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayOnlineClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlayOnlineHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayOnlineHost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server.java" afterDir="false" />

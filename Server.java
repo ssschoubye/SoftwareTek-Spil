@@ -7,85 +7,75 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Server extends Thread{
-    private InterThread interThread;
+    private ServerSocket serverSocket;
+    private Socket socket;
+    private BufferedReader bufferedReader;
+    private PrintWriter printWriter;
+    private ObjectOutputStream objectOut;
+    private ObjectInputStream objectIn;
 
-    public Server(InterThread interThread){
-        this.interThread = interThread;
-    }
-    @Override
-    public void run(){
-        // Create a server socket that listens on port 8080
-                ServerSocket serverSocket = null;
-                InterThread interThread1 = new InterThread();
-
-                try {
-                    System.out.println("Connecting");
-                    serverSocket = new ServerSocket(8080);
-                    System.out.println("We got this far");
-                    while(true){
-                        // Wait for a client to connect
-                        Socket socket = serverSocket.accept();
-                        System.out.println("Client connected");
-                        // Create a thread to handle the client
-                        new Thread(new ClientHandler(socket,interThread1)).start();
-                    }
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-
-                }
-    }
-}
-    class ClientHandler extends Thread {
-        private InterThread interThread;
-        private Socket socket;
-        public String hostip;
-        public int gameMode;//Int to keep track of which phase the game is in.
-
-        public ClientHandler(Socket socket, InterThread interThread) {
-            this.socket = socket;
-            this.interThread = interThread;
+    public Server(ServerSocket serverSocket){
+        try{
+            this.serverSocket = serverSocket;
+            this.socket = serverSocket.accept();
+            this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            this.printWriter = new PrintWriter(socket.getOutputStream(), true);
+            this.objectOut = new ObjectOutputStream(socket.getOutputStream());
+            this.objectIn = new ObjectInputStream(socket.getInputStream());
+        }catch (IOException e){
+            System.out.println("Error in Server constructor");
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        public ClientHandler(){String hostip;}
 
-        @Override
-        public void run() {
-                gameMode = interThread.getGameMode();
-            System.out.println(gameMode);
-                //first time initialising
-                if (gameMode == 1) {
-                    try { //At first connection is made and the IP address of the client is saved. This will be used later on.
-                        InetAddress localHost = InetAddress.getLocalHost();
-                        String client = localHost.getHostAddress();
-                        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                        //IP address of connecting client is saved.
-                        hostip = in.readLine();
-                        System.out.println("Ip modtaget" + hostip);
-                        //out.println(client);
+    }
 
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+    public void sendArray(int[][] array){
+        try{
+            ArrayReturn arrayReturn = new ArrayReturn(array);
+            objectOut.writeObject(arrayReturn);
+            objectOut.flush();
+            objectOut.close();
+        }catch (IOException e){
+            System.out.println("Error in sendArray");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+
+        }
+    }
+    public void closeEveryThing(Socket socket, BufferedReader bufferedReader, PrintWriter printWriter, ObjectOutputStream objectOut, ObjectInputStream objectIn){
+        try{
+            socket.close();
+            bufferedReader.close();
+            printWriter.close();
+            objectOut.close();
+            objectIn.close();
+        }catch (IOException e){
+            System.out.println("Error in closeEverything");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void recieveArray(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(socket.isConnected()){
+                    try{
+                        ArrayReturn arrayReturn = (ArrayReturn) objectIn.readObject();
+                        int[][] array = arrayReturn.getArray();
+                        System.out.println(Arrays.deepToString(array));
+                        PlayOnlineHost.setMap(array);
+                    }catch (IOException | ClassNotFoundException e){
+                        System.out.println("Error in recieveArray");
+                        e.printStackTrace();
+                        break;
                     }
-                    interThread.setGameMode(2);
-                    gameMode = 2;
-                    System.out.println(gameMode);
-                } else if (gameMode == 2) {
-                    try {
-                        ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
-                        ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
-                        int[][] inputMap = boardRec.getArray();
-                        System.out.println(Arrays.deepToString(inputMap));
-                        interThread.setMap(inputMap);
-                        socket.close();
-                    } catch (RuntimeException | ClassNotFoundException | IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    interThread.setGameMode(3);
-                    gameMode = interThread.getGameMode();
-                    System.out.println(gameMode);
-
-
                 }
+
             }
+        }).start();
+    }
         }
 
