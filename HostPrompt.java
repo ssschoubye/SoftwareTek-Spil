@@ -42,6 +42,8 @@ public class HostPrompt {
         Stage stage = (Stage) button.getScene().getWindow();//Close the stage and the start the controller.
         stage.close();
         boolean isHost = false;
+        PlayOnlineHost playOnlineHost = new PlayOnlineHost();
+        playOnlineHost.gameStart(dim,dim);
 
     }
 
