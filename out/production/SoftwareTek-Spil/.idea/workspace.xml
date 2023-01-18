@@ -78,6 +78,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Boardsave.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Boardsave.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/HowToPlay.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/HowToPlay.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/META-INF/MANIFEST.MF" afterDir="false" />
@@ -241,7 +242,7 @@
       <workItem from="1674047280193" duration="2526000" />
       <workItem from="1674050133831" duration="1778000" />
       <workItem from="1674052149659" duration="383000" />
-      <workItem from="1674055681896" duration="92000" />
+      <workItem from="1674055681896" duration="1822000" />
     </task>
     <servers />
   </component>
