@@ -1,6 +1,9 @@
+
+//Creating an object Board, which is used for representing a game of reversi
 public class Board {
 
 
+    //Every game will have a certain size
     public int x_axis;
     public int y_axis;
 
