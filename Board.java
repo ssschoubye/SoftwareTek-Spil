@@ -69,11 +69,13 @@ public class Board {
                                 break;
                             }
                             //If a piece of the color of the current player is found, the initial field is a possible move
-                            //In this case,
+                            //In this case, the method also states that there is in fact at least one legal move for the player
                             if (map[x + dx * l][y + dy * l] == playerTurn) {
                                 map[x][y] = 3;
                                 anyLegalSpots = true;
                                 break;
+
+                            //Otherwise if it sees something that is not the color of the opposite player, it breaks
                             } else if (map[x + dx * l][y + dy * l] != 3 - playerTurn) {
                                 break;
                             }
@@ -82,13 +84,19 @@ public class Board {
                 }
             }
         }
+
+        //At the end, the method returns whether the player has a possible move
         return anyLegalSpots;
     }
 
+    //A simple method which determines whether a coordinate set is within the game board
     public boolean isOnBoard(int x, int y) {
         return x >= 0 && y >= 0 && x < x_axis && y < y_axis;
     }
 
+    /*
+    //A function to clear possible spots (Used for when the AI or another online player has their turn)
+    //Ended up not using it for the AI, as the game doesn't show the state in between the players move and the AI's moves
     public void clearLegalSpots() {
         for (int x = 0; x < x_axis; x++) {
             for (int y = 0; y < y_axis; y++) {
@@ -97,27 +105,31 @@ public class Board {
                 }
             }
         }
-    }
+    }*/
 
+
+    //A method for trying to place a piece. Does so if possible and returns true, otherwise returns false
     public boolean placePiece(int x, int y, int playerTurn) {
-        // Place the piece on the board
+        //Checks if coordinate set is not a possible move
         if (!isOnBoard(x,y) || (map[x][y] != 3 && map[x][y] != 4)) {
-            System.out.println("Not possible placement");
             return false;
         }
+
+        //sets the piece
         map[x][y] = playerTurn;
 
-        // Check for captured pieces in each direction and allow the player to manually flip them
+        //Checks for which pieces to turn over and does so automatically
         for (int dx = -1; dx <= 1; dx++) {
             for (int dy = -1; dy <= 1; dy++) {
                 if (checkXDxYDy(x, y, playerTurn, dx, dy)) continue;
                 flipCapturedPieces(x, y, dx, dy, playerTurn);
-                //manualFlip(playerTurn);
             }
         }
+        //returns true if the piece could in fact be placed
         return true;
     }
 
+    //A method for checking whether or not to look further down a direction either when placing a piece or when checking if there are any legal spots
     private boolean checkXDxYDy(int x, int y, int playerTurn, int dx, int dy) {
         if (dx == 0 && dy == 0) {
             return true;
@@ -138,8 +150,12 @@ public class Board {
 
     }
 
+    //Method for returning an array with length 2, containing the current score for white and black
     public int[] getScore() {
+        //Initialises the array
         int[] score = {0, 0};
+
+        //Goes through the entire map and increments the two scores when finding a piece with that color.
         for (int x = 0; x < x_axis; x++) {
             for (int y = 0; y < y_axis; y++) {
                 if (map[x][y] == 1) {
@@ -152,8 +168,10 @@ public class Board {
         return score;
     }
 
-    //print the whole board using toString (ONLY FOR TESTING)
-    public String printOut() {
+    //print the whole board (ONLY FOR TESTING)
+    //Simply goes through the board and prints it out in the terminal
+    //Does so with added coordinates on the x- and y-axis
+    public void printOut() {
         System.out.print("    ");
         for (int x = 0; x < x_axis; x++) {
             System.out.print(x + "  ");
@@ -176,19 +194,20 @@ public class Board {
             }
             System.out.println();
         }
-
-
-        return null;
     }
 
+    //Takes the current turn and returns the opposite turn
     public static int turnSwitch(int currentTurn) {
         return currentTurn % 2 + 1;
     }
 
+    //Method for flipping pieces when placing one
     public void flipCapturedPieces(int x, int y, int dx, int dy, int playerTurn) {
-        // Check if there are any captured pieces in the specified direction
+
         boolean flipDirection = false;
+
         int l = 0;
+        //Goes through a direction from where the piece was placed and determines whether to flip this direction
         while (true) {
             l++;
             if (!isOnBoard(x + dx * l, y + dy * l)) {
@@ -201,8 +220,9 @@ public class Board {
                 break;
             }
         }
+        //If the direction in the previous loop was determined to be flipped, this while loop does so
         if (flipDirection) {
-            // Flip the captured pieces
+
             while (l > 0) {
                 l--;
                 map[x + dx * l][y + dy * l] = playerTurn;
@@ -210,6 +230,8 @@ public class Board {
         }
     }
 
+    //Method determines who is to start a given game by taken the number of games and who started the first game
+    //The method is not used for the first game.
     public int startingPlayer(int gameNumber, int firstStartingPlayer) {
         if (gameNumber % 2 == 0) {
             return turnSwitch(firstStartingPlayer);
@@ -218,6 +240,7 @@ public class Board {
         }
         return 0;
     }
+
 
     public int[] getDim() {
         int[] dim = {x_axis, y_axis};
@@ -236,6 +259,7 @@ public class Board {
     public int[][] getArray() {
         return map;
     }
+
 
     @Override
     public String toString() {
