@@ -11,8 +11,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DimensionPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimensionPrompt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlayAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayAlone.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayAlone.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlayOnline.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayOnline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WinPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WinPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,6 +166,7 @@
       <workItem from="1674040373131" duration="6818000" />
       <workItem from="1674047280193" duration="2526000" />
       <workItem from="1674050133831" duration="1778000" />
+      <workItem from="1674052149659" duration="383000" />
     </task>
     <servers />
   </component>

@@ -45,8 +45,7 @@ public class PlayAI extends Application {
     static {
         try {
             scene = new Scene(FXMLLoader.load(Objects.requireNonNull(PlayAlone.class.getResource("playAlone.fxml"))));
-        } catch (IOException e) {
-            System.out.println("Could not load FXML-file");
+        } catch (IOException ignored) {
 
         }
     }
@@ -163,7 +162,6 @@ public class PlayAI extends Application {
                                         }).start();
 
                                     } else {
-                                        System.out.println("\n" + turn + " has no possible moves");
                                         turn = Board.turnSwitch(turn);
                                         showTurn.setText(turnColor(turn) + "'s turn");
                                         game.legalSpots(turn);
@@ -239,7 +237,7 @@ public class PlayAI extends Application {
         }
 
         Image icon = new Image(appIcon);
-        primaryStage.setTitle("Reversi");
+        primaryStage.setTitle("Reversi Advanced");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(icon);
         primaryStage.initStyle(StageStyle.UNDECORATED);

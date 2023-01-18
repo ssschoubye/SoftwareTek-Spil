@@ -59,8 +59,7 @@ public class PlayAlone extends Application {
 
         try {
             scene = new Scene(FXMLLoader.load(Objects.requireNonNull(PlayAlone.class.getResource("playAlone.fxml"))));
-        } catch (IOException e) {
-            System.out.println("Could not load FXML-file");
+        } catch (IOException ignored) {
 
         }
 
@@ -259,7 +258,7 @@ public class PlayAlone extends Application {
         Image icon = new Image(appIcon);
         primaryStage.getIcons().add(icon);
         //Sets the title for the stage. Same as for the icon, this is only for when hovering over the game in the task bar
-        primaryStage.setTitle("Reversi");
+        primaryStage.setTitle("Reversi Advanced");
 
         //Updates the boardfile to match the game, in case the player wants to save it
         boardFile = game;
@@ -452,10 +451,7 @@ public class PlayAlone extends Application {
             writer.write("\n");
             writer.write("" + turnCounter);
             writer.close();
-            System.out.println("Game saved");
-            //gameLoader();
         } catch (Exception e) {
-            System.out.println("Error occured");
             throw new RuntimeException(e);
         }
 
