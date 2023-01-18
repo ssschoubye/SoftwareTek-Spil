@@ -159,7 +159,7 @@ public class PlayOnlineClient extends Application{
                     }
                     while(interThread.getGameMode() == 2){
                         try {
-                            Thread.sleep(2000);
+                            Thread.sleep(4000);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
