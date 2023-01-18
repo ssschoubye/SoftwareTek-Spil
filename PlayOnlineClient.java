@@ -30,7 +30,7 @@ public class PlayOnlineClient extends Application{
 
     static int gameNumber = 1;
 
-    static int turnCounter = 1;
+    static int turnCounter = 2;
     static String whiteImage;
     static String blackImage;
     static String markerImage = "Images/markerDark.png";
@@ -85,6 +85,7 @@ public class PlayOnlineClient extends Application{
 
 
         GridPane board = new GridPane();
+        InterThread interThread = new InterThread();
 
 
         Button[][] cells = new Button[width][height];
@@ -100,36 +101,25 @@ public class PlayOnlineClient extends Application{
                 updateGridpane(game, board, whiteImage, blackImage, markerImage);
                 boolean isHost = false;
                 boolean firstTime = false;
-
-/*
-                    OnlineController onlineController = new OnlineController();
+                interThread.setMap(game.map);
+//In gamemode 2 we are awaiting response from server side. Therefore a loop keeps checking to se if a move have been made.
+                while(interThread.getGameMode() == 2){
                     try {
-                        onlineController.onlineGame(isHost, firstTime);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (ClassNotFoundException e) {
-                        throw new RuntimeException(e);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-                    game.map = InterThread.getMap();
-                    updateGridpane(game, board, whiteImage, blackImage, markerImage);
-                    if(InterThread.getGameMode() == 3){
-                        break;
-                    }
-*/
+                    ServerClient client = new ServerClient(interThread);
+                    client.start();
+                    game.map = interThread.getMap();
+                    updateGridpane(game,board,whiteImage,blackImage,markerImage);
+                }
 
                 // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii, jj, turn)) {
-                        if(InterThread.getGameMode() == 3){
-                            game.map = InterThread.getMap();
-                            turnCounter = 3;
-                        }else{
-
-                        }
                         placeSound.play();
-                        //turnCounter++;
+                        turnCounter++;
                         //Switches player turn
                         if (turnCounter == 3) {
                             turn = Board.turnSwitch(turn);
@@ -176,7 +166,7 @@ public class PlayOnlineClient extends Application{
 
 
                     }
-
+                    interThread.setGameMode(2);
                 });
                 Pane gamePane = (Pane) scene.lookup("#gamePane");
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));

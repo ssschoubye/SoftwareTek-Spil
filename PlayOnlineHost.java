@@ -86,6 +86,7 @@ public class PlayOnlineHost extends Application{
 
 
         GridPane board = new GridPane();
+        InterThread interThread = new InterThread();
 
 
         Button[][] cells = new Button[width][height];
@@ -101,7 +102,7 @@ public class PlayOnlineHost extends Application{
                 updateGridpane(game, board, whiteImage, blackImage, markerImage);
                 boolean firstTime = false;
                 boolean isHost = true;
-
+                interThread.setMap(game.map);
 
                 // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {

@@ -53,7 +53,7 @@ public class ServerClient extends Thread{
             }else if(gameMode == 3){
                 String IPAddress = OnlineController.getIPinput();
                 Board board = new Board();
-                int[][] initialmap = board.getArray();
+                int[][] initialmap = interThread.getMap();
                 ArrayReturn arrayReturn = new ArrayReturn(initialmap);
                 try {
                     Socket socket = new Socket(IPAddress, 8080);
@@ -64,7 +64,7 @@ public class ServerClient extends Thread{
                     throw new RuntimeException(e);
                 }
                 //The new map is set in the controller class since Play and Server runs in two different threads.
-                OnlineController.setMap(initialmap);
+                interThread.setMap(initialmap);
             }
 
         }

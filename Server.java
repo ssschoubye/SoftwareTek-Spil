@@ -71,7 +71,6 @@ public class Server extends Thread{
                     gameMode = 2;
                     System.out.println(gameMode);
                 } else if (gameMode == 2) { //First stage of the game. Upstart move is sent to client.
-                    while(gameMode == 2){
                         int[][] initialmap = interThread.getMap();
                         ArrayReturn arrayReturn = new ArrayReturn(initialmap);
                         if(interThread.getGameMode() == 3){
@@ -86,7 +85,7 @@ public class Server extends Thread{
                                 throw new RuntimeException(e);
                             }
                         }
-                    }
+
 
 
                     //The new map is set in the controller class since Play and Server runs in two different threads.
