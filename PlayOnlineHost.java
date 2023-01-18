@@ -33,11 +33,11 @@ public class PlayOnlineHost extends Application {
     static int gameNumber = 1;
 
     static int turnCounter = 1;
-    String whiteImage = "Images/WhitePieces/whitePiece1.png";
-    String blackImage = "Images/BlackPieces/blackPiece1.png";
+    static String whiteImage = "Images/WhitePieces/whitePiece1.png";
+    static String blackImage = "Images/BlackPieces/blackPiece1.png";
     String markerImage = "Images/markerDark.png";
-    String backImage1;
-    String backImage2;
+    static String backImage1;
+    static String backImage2;
     String placeSoundFile = "Sounds/placeSound1.mp3";
 
     String appIcon = "Images/reversiIcon.png";
@@ -326,6 +326,10 @@ public class PlayOnlineHost extends Application {
             @Override
             public void run() {
                 game.map = map;
+                whiteImage = DimensionPrompt.whiteImage;
+                blackImage = DimensionPrompt.blackImage;
+                backImage1 = DimensionPrompt.backImage1;
+                backImage2 = DimensionPrompt.backImage2;
 
                 PlayOnlineHost playOnlineHost = new PlayOnlineHost();
                 playOnlineHost.updateGridPane(game, board);
