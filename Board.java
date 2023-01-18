@@ -242,7 +242,7 @@ public class Board {
     }
 
 
-    public int[] getDim() {
+    public int[] getDim() { //Returns the dimensions of the board
         int[] dim = {x_axis, y_axis};
         return dim;
 
@@ -259,7 +259,7 @@ public class Board {
 
     public int[][] getArray() {
         return map;
-    }
+    } //Returns the map array
 
     //A toString method for the object
     //Used for creating the save file for a given game

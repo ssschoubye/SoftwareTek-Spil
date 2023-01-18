@@ -319,16 +319,18 @@ public class DimensionPrompt {
 
     //////////////////////////////////////////////////////////////
     ///                     Dimension buttons                  ///
+    ///             By Søren Sehested Schoubye s224756         ///
     //////////////////////////////////////////////////////////////
 
-    //These functions change of the board to their respective value
-    public void setDimensions4(){
+    //These functions change the dimensions of the board to their respective value
+    public void setDimensions4(){ //The method is called through the onAction method of the button in the FXML file.
 
         dim.x = 4;
         dim.y = 4;
         size = 4;
-        fillPreviewPane(size);
+        fillPreviewPane(size); //The preview pane is updated to reflect the new dimensions
     }
+    //The same goes for the other methods
     public void setDimensions8(){
 
         dim.x = 8;
@@ -349,27 +351,23 @@ public class DimensionPrompt {
 
     //////////////////////////////////////////////////////////////
     ///                    Play initialising                   ///
+    ///                 By Søren Sehested Schoubye s224756     ///
     //////////////////////////////////////////////////////////////
-
+    //Usage of buttons and onAction methods have already been explained in the menu class.
+    //These methods initialize the game in the three different gamemodes.
+    //They are similar except for the gamemode variable which is used to determine which gamemode is being played.
     @FXML
     private Button playAlone;
-
-    PlayAlone game = null;
+    PlayAlone game = null;//The game object is created here, but is not initialised until the play button is pressed.
     @FXML
     private void playAloneAction(){
-        gamemode = 1;
-        Stage stage = (Stage) playAlone.getScene().getWindow();
+        gamemode = 1; //Sets the gamemode to play alone.
+        Stage stage = (Stage) playAlone.getScene().getWindow(); //Closes the current stage as pri
         stage.close();
-        game = new PlayAlone();
-        PlayAlone.gameNumber =1;
-        PlayAlone.firstStartingPlayer = (int) (Math.random() * 2) + 1;
-      if (dim.x == 0 || dim.y == 0){
-            int newx = 8;
-            int newy = 8;
-            game.gameStart(newx, newy);
-        }else if(dim.x > 0 || dim.y > 0){
-            game.gameStart(dim.x, dim.y);
-        }
+        game = new PlayAlone(); //Initialises the game object
+        PlayAlone.gameNumber = 1; //Spcifies that this is the first game.
+        PlayAlone.firstStartingPlayer = (int) (Math.random() * 2) + 1; //Randomly chooses which color starts the game.
+            game.gameStart(dim.x, dim.y); //Starts the game.
     }
 
 
@@ -379,49 +377,41 @@ public class DimensionPrompt {
 
     @FXML
     private void playAIAction(){
-        gamemode=2;
+        gamemode=2; //Game mode 2 is the AI gamemode
         Stage stage = (Stage) playAI.getScene().getWindow();
         stage.close();
         PlayAI game = new PlayAI();
-        if (dim.x == 0 || dim.y == 0){
-            int newx = 8;
-            int newy = 8;
-            game.gameStart(newx, newy);
-        }else if(dim.x > 0 || dim.y > 0){
+        PlayAI.gameNumber = 1;
             game.gameStart(dim.x, dim.y);
-        }
+
     }
 
     @FXML
     private Button playOnline;
     @FXML
     private void playOnlineAction() throws IOException {
-        gamemode = 3;
+        gamemode = 3; //Game mode 3 is the online gamemode
         Stage stage = (Stage) playOnline.getScene().getWindow();
         stage.close();
         HostPrompt game = new HostPrompt();
-        if (dim.x == 0 || dim.y == 0){
-            int newx = 8;
-            int newy = 8;
-            game.runHostPrompt(newx, newy);
-        }else if(dim.x > 0 || dim.y > 0){
             game.runHostPrompt(dim.x, dim.y);
-        }
     }
 
     //////////////////////////////////////////////////////////////
     ///                 Back to Menu button                    ///
+    ///            By Søren Sehested Schoubye s224756          ///
     //////////////////////////////////////////////////////////////
+
+    //The following method is used to return to the menu from the DimensionPrompt screen.
     @FXML
     private Button backMenu;
 
     @FXML
-    public void backToMenu() throws IOException {
+    public void backToMenu() throws IOException { //The method is called via the onAction method accociated with the button.
         Stage stage = (Stage) backMenu.getScene().getWindow();
         stage.close();
-
         Stage primaryStage = new Stage();
-        Menu menu = new Menu();
+        Menu menu = new Menu(); //The menu class is called and the menu is displayed.
         menu.start(primaryStage);
 
     }
