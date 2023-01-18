@@ -19,8 +19,9 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.Objects;
 
-
-public class PlayOnlineHost extends Application{
+//For playing online
+//Not yet used, as online playing isn't currently working
+public class PlayOnline extends Application {
 
     static int width;
     static int height;
@@ -31,11 +32,11 @@ public class PlayOnlineHost extends Application{
     static int gameNumber = 1;
 
     static int turnCounter = 1;
-    static String whiteImage;
-    static String blackImage;
-    static String markerImage = "Images/markerDark.png";
-    static String backImage1;
-    static String backImage2;
+    String whiteImage;
+    String blackImage;
+    String markerImage = "Images/markerDark.png";
+    String backImage1;
+    String backImage2;
     String placeSoundFile = "Sounds/placeSound1.mp3";
 
     String appIcon = "Images/reversiIcon.png";
@@ -46,17 +47,16 @@ public class PlayOnlineHost extends Application{
     static {
         try {
             scene = new Scene(FXMLLoader.load(Objects.requireNonNull(PlayAlone.class.getResource("playAlone.fxml"))));
-        } catch (IOException e) {
-            System.out.println("Could not load FXML-file");
+        } catch (IOException ignored) {
 
         }
     }
 
 
-    public void gameStart() {
+    public void gameStart(int inwidth, int inheight) {
         DimensionPrompt dimPrompt = new DimensionPrompt();
-        width = dimPrompt.dim.x;
-        height = dimPrompt.dim.x;
+        width = inwidth;
+        height = inheight;
         whiteImage = dimPrompt.whiteImage;
         blackImage = dimPrompt.blackImage;
         backImage1 = dimPrompt.back1;
@@ -64,17 +64,15 @@ public class PlayOnlineHost extends Application{
         Stage stage = new Stage();
         start(stage);
     }
-    static Board game;
 
     @Override
     public void start(Stage primaryStage) {
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label)scene.lookup("#showTurn");
-        System.out.println(width);
-        game = new Board(width, height);
+
+        Board game = new Board(width, height);
         game.initialize();
-        //turn = game.startingPlayer(gameNumber, firstStartingPlayer);
-        //turn = something
+        turn = game.startingPlayer(gameNumber, firstStartingPlayer);
         showTurn.setText(turnColor(turn) + "'s turn");
 
 
@@ -86,6 +84,11 @@ public class PlayOnlineHost extends Application{
 
 
         GridPane board = new GridPane();
+        
+        Button saveGame = (Button) scene.lookup("#saveGame");
+
+        saveGame.setVisible(false);
+
 
 
         Button[][] cells = new Button[width][height];
@@ -98,68 +101,64 @@ public class PlayOnlineHost extends Application{
                 final int ii = i;
                 final int jj = j;
 
-                updateGridpane(game, board, whiteImage, blackImage, markerImage);
-                boolean firstTime = false;
-                boolean isHost = true;
+                updateGridPane(game, board);
 
 
                 // Create an event handler for "on action"
                 cells[i][j].setOnAction(event -> {
-                    if(InterThread.getGameMode() == 3){
-                        game.map = InterThread.getMap();
-                        updateGridpane(game, board, whiteImage, blackImage, markerImage);
-                        if (game.placePiece(ii, jj, turn)) {
-                            placeSound.play();
-                            turnCounter++;
+                    if (game.placePiece(ii, jj, turn)) {
+                        placeSound.play();
 
-                            //Switches player turn
-                            if (turnCounter == 3) {
-                                turn = Board.turnSwitch(turn);
-                                showTurn.setText(turnColor(turn) + "'s turn");
-                            }
-
-                            if (turnCounter > 4) {
-                                turn = Board.turnSwitch(turn);
-                                showTurn.setText(turnColor(turn) + "'s turn");
-
-
-                                //Checks for legal spots
-                                if (!game.legalSpots(turn)) {
-                                    if (!game.legalSpots(Board.turnSwitch(turn))) {
-                                        System.out.println("No more possible moves \n    game over");
-
-                                        updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
-                                        delay(500,() ->{
-                                            WinPage win = new WinPage();
-                                            turnCounter = 1;
-                                            gameNumber++;
-
-                                            try {
-                                                primaryStage.close();
-                                                win.winStart(game);
-                                            } catch (IOException e) {
-                                                throw new RuntimeException(e);
-                                            }
-                                        });
-                                    } else {
-                                        System.out.println("\n" + turn + " has no possible moves");
-                                        turn = Board.turnSwitch(turn);
-                                        showTurn.setText(turnColor(turn) + "'s turn");
-                                        //no move possible for current player
-                                    }
-
-                                }
-                            }
-
-                            whiteScore.setText("x"+game.getScore()[0]);
-                            blackScore.setText("x"+game.getScore()[1]);
-                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
-
+                        turnCounter++;
+                        //Switches player turn
+                        if (turnCounter == 3) {
+                            turn = Board.turnSwitch(turn);
+                            showTurn.setText(turnColor(turn) + "'s turn");
                         }
-                    }
 
+                        if (turnCounter > 4) {
+                            turn = Board.turnSwitch(turn);
+                            showTurn.setText(turnColor(turn) + "'s turn");
+
+
+                            //Checks for legal spots
+                            if (!game.legalSpots(turn)) {
+                                if (!game.legalSpots(Board.turnSwitch(turn))) {
+
+                                    updateGridPane(game, board);
+
+                                    delay(500,() ->{
+                                        WinPage win = new WinPage();
+                                        turnCounter = 1;
+                                        gameNumber++;
+
+                                        try {
+                                            primaryStage.close();
+                                            win.winStart(game);
+                                        } catch (IOException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                    });
+
+                                    //Save value for ending game
+
+
+
+
+                                } else {
+                                    turn = Board.turnSwitch(turn);
+                                    showTurn.setText(turnColor(turn) + "'s turn");
+                                }
+
+                            }
+                        }
+
+                        whiteScore.setText("x"+game.getScore()[0]);
+                        blackScore.setText("x"+game.getScore()[1]);
+                        updateGridPane(game, board);
+
+
+                    }
 
                 });
                 Pane gamePane = (Pane) scene.lookup("#gamePane");
@@ -172,7 +171,7 @@ public class PlayOnlineHost extends Application{
         }
 
         Image icon = new Image(appIcon);
-        primaryStage.setTitle("Reversi");
+        primaryStage.setTitle("Reversi Advanced");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(icon);
         primaryStage.initStyle(StageStyle.UNDECORATED);
@@ -200,7 +199,7 @@ public class PlayOnlineHost extends Application{
 
 
 
-    private static void updateGridpane(Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
+    private void updateGridPane(Board game, GridPane board) {
         Pane gamePane = (Pane) scene.lookup("#gamePane");
         board.getChildren().removeIf(node -> node instanceof ImageView);
         gamePane.getChildren().remove(board);
@@ -282,6 +281,8 @@ public class PlayOnlineHost extends Application{
 
     //////////////////////////////////////////////////////////////
     ///                    Title bar layout                    ///
+    ///              Same code as for the Menu.java            ///
+    ///       Further explanations of code can be sen there    ///
     //////////////////////////////////////////////////////////////
     @FXML
     HBox titlebar;
@@ -316,17 +317,6 @@ public class PlayOnlineHost extends Application{
         stage.setIconified(true);
     }
 
-    public static void setMap(int[][] getMap) {
-        int[][] map =  getMap;
-        GridPane board = new GridPane();
-        Board newBoard = new Board(map);
-        game = newBoard;
-        Label whiteScore = (Label)scene.lookup("#whiteScore");
-        Label blackScore = (Label)scene.lookup("#whiteScore");
-        whiteScore.setText("x"+game.getScore()[0]);
-        blackScore.setText("x"+game.getScore()[1]);
 
-        updateGridpane(game, board, whiteImage, blackImage, markerImage);
-    }
 }
 

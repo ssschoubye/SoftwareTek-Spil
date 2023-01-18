@@ -17,9 +17,10 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.Objects;
 
+//Class for the window where dimensions, skins and game mode is chosen
 public class DimensionPrompt {
 
-
+    //Setting paths for the different images used
     static String backImage1 = "Images/Background/green1.png";
     static String backImage2 = "Images/Background/green2.png";
 
@@ -34,7 +35,6 @@ public class DimensionPrompt {
     public String back1;
     public String back2;
     public static int gamemode=0;
-    //public int gamemode2;
 
     private static int size=8;
     public DimensionPrompt(){
@@ -59,6 +59,7 @@ public class DimensionPrompt {
     }
 
 
+
     public static void start1() {
         Stage stage = new Stage();
         start(stage);
@@ -73,65 +74,93 @@ public class DimensionPrompt {
 
     }
 
+    public static void start2(PlayAlone playAlone) {
+        playAlone.start(new Stage());
+        dim.x = size;
+        dim.y = size;
+        dim.white = whiteImage;
+        dim.black = blackImage;
+        dim.back1 = backImage1;
+        dim.back2 = backImage2;
+
+    }
+
     @FXML
     public static void start(Stage dimStage) {
 
-
+        //Setting the app icon
         String appIcon = "Images/reversiIcon.png";
         Image icon = new Image(appIcon);
-
         dimStage.getIcons().add(icon);
-        dimStage.setTitle("Reversi");
+
+        //Setting the title for the application
+        dimStage.setTitle("Reversi Advanced");
+
+        //Removing the default title bar
         dimStage.initStyle(StageStyle.UNDECORATED);
 
-
+        //Filling the preview pane
         fillPreviewPane(size);
 
-
-
+        //Setting and showing the scene and stage
         dimStage.setScene(scene);
         dimStage.showAndWait();
 
     }
 
+    //Initializing the preview pane that shows chosen skins
     @FXML
     static
     Pane previewPane=(Pane)scene.lookup("#previewPane");
+
+    //Initializing the label that shows dimension chosen
     @FXML
     static
     Label previewPaneLabel= (Label)scene.lookup("#previewPaneLabel");
+
+    //Initializing the gridpane that the game is loaded onto
+    //This gridpane is later loaded on to the preview pane
     static
     GridPane previewGrid = new GridPane();
 
+    //Method for filling the preview pane
+    //Largely the same function as the "updateGridPane" used in the "Play"-classes
+    //Therefore not going as much into detail about the statements
     private static void fillPreviewPane(int size) {
+
+        //Preview pane label is set to show the appropriate size
         previewPaneLabel.setText(size+"x"+size);
-        Image whitePieceImage = new Image(whiteImage);
-        Image blackPieceImage = new Image(blackImage);
+
+        //Removes previous images from the gridpane
         previewGrid.getChildren().removeIf(node -> node instanceof ImageView);
+
+        //Removes previous gridpane from the preview pane
         previewPane.getChildren().remove(previewGrid);
 
-
+        //Setting the images for later use
+        Image whitePieceImage = new Image(whiteImage);
+        Image blackPieceImage = new Image(blackImage);
         Image backGround1 = new Image(backImage1);
         Image backGround2 = new Image(backImage2);
 
-
+        //Iterating through the gridpane
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                ImageView back;
 
+                //Setting the two background images
+                ImageView back;
                 if ((i + j) % 2 == 1) {
                     back = new ImageView(backGround1);
                 } else {
                     back = new ImageView(backGround2);
                 }
-
                 previewGrid.add(back, i, j);
                 back.setMouseTransparent(true);
                 back.setPreserveRatio(true);
                 back.fitWidthProperty().bind(Bindings.divide(previewPane.widthProperty(), size));
                 back.fitHeightProperty().bind(Bindings.divide(previewPane.heightProperty(), size));
 
-
+                //Setting the two rightmost pieces in the middle of the board to be white
                 if ((i == size/2 && j == size/2-1)||(i == size/2 && j == size/2)){
                     ImageView whitePiece = new ImageView(whitePieceImage);
                     previewGrid.add(whitePiece,i,j);
@@ -140,7 +169,7 @@ public class DimensionPrompt {
                     whitePiece.fitWidthProperty().bind(Bindings.divide(previewPane.widthProperty(), size));
                     whitePiece.fitHeightProperty().bind(Bindings.divide(previewPane.heightProperty(), size));
 
-
+                //Setting the two leftmost pieces in the middle to be black
                 } else if ((i == size/2-1 && j == size/2-1)||(i == size/2-1 && j == size/2)){
                     ImageView blackPiece = new ImageView(blackPieceImage);
                     previewGrid.add(blackPiece,i,j);
@@ -152,7 +181,7 @@ public class DimensionPrompt {
 
             }
         }
-
+        //Adding the grid to the preview pane
         previewPane.getChildren().add(previewGrid);
 
     }
@@ -160,10 +189,10 @@ public class DimensionPrompt {
     //////////////////////////////////////////////////////////////
     ///                          Skins                         ///
     //////////////////////////////////////////////////////////////
-
-
+    // All the methods here simply change the path of the skins to their respective skins
 
     //------------------Background skins-------------------------
+
     public void woodChoice(){
         backImage1 = "Images/Background/wood1.png";
         backImage2 = "Images/Background/wood2.png";
@@ -246,11 +275,10 @@ public class DimensionPrompt {
 
 
 
-
-
-
     //////////////////////////////////////////////////////////////
     ///                    Title bar layout                    ///
+    ///              Same code as for the Menu.java            ///
+    ///       Further explanations of code can be sen there    ///
     //////////////////////////////////////////////////////////////
     @FXML
     HBox titlebar;
@@ -291,14 +319,18 @@ public class DimensionPrompt {
 
     //////////////////////////////////////////////////////////////
     ///                     Dimension buttons                  ///
+    ///             By Søren Sehested Schoubye s224756         ///
     //////////////////////////////////////////////////////////////
-    public void setDimensions4(){
+
+    //These functions change the dimensions of the board to their respective value
+    public void setDimensions4(){ //The method is called through the onAction method of the button in the FXML file.
 
         dim.x = 4;
         dim.y = 4;
         size = 4;
-        fillPreviewPane(size);
+        fillPreviewPane(size); //The preview pane is updated to reflect the new dimensions
     }
+    //The same goes for the other methods
     public void setDimensions8(){
 
         dim.x = 8;
@@ -318,27 +350,24 @@ public class DimensionPrompt {
 
 
     //////////////////////////////////////////////////////////////
-    ///                 Play Alone initialising                ///
+    ///                    Play initialising                   ///
+    ///                 By Søren Sehested Schoubye s224756     ///
     //////////////////////////////////////////////////////////////
-
+    //Usage of buttons and onAction methods have already been explained in the menu class.
+    //These methods initialize the game in the three different gamemodes.
+    //They are similar except for the gamemode variable which is used to determine which gamemode is being played.
     @FXML
     private Button playAlone;
-
+    PlayAlone game = null;//The game object is created here, but is not initialised until the play button is pressed.
     @FXML
     private void playAloneAction(){
-        gamemode = 1;
-        Stage stage = (Stage) playAlone.getScene().getWindow();
+        gamemode = 1; //Sets the gamemode to play alone.
+        Stage stage = (Stage) playAlone.getScene().getWindow(); //Closes the current stage as pri
         stage.close();
-        PlayAlone game = new PlayAlone();
-        if (dim.x == 0 || dim.y == 0){
-            int newx = 8;
-            int newy = 8;
-            System.out.println(newx);
-            game.gameStart(newx, newy);
-        }else if(dim.x > 0 || dim.y > 0){
-            System.out.println(dim.x + " " + dim.y);
-            game.gameStart(dim.x, dim.y);
-        }
+        game = new PlayAlone(); //Initialises the game object
+        PlayAlone.gameNumber = 1; //Spcifies that this is the first game.
+        PlayAlone.firstStartingPlayer = (int) (Math.random() * 2) + 1; //Randomly chooses which color starts the game.
+            game.gameStart(dim.x, dim.y); //Starts the game.
     }
 
 
@@ -348,53 +377,41 @@ public class DimensionPrompt {
 
     @FXML
     private void playAIAction(){
-        gamemode=2;
+        gamemode=2; //Game mode 2 is the AI gamemode
         Stage stage = (Stage) playAI.getScene().getWindow();
         stage.close();
         PlayAI game = new PlayAI();
-        if (dim.x == 0 || dim.y == 0){
-            int newx = 8;
-            int newy = 8;
-            System.out.println(newx);
-            game.gameStart(newx, newy);
-        }else if(dim.x > 0 || dim.y > 0){
-            System.out.println(dim.x + " " + dim.y);
+        PlayAI.gameNumber = 1;
             game.gameStart(dim.x, dim.y);
-        }
+
     }
 
     @FXML
-    private Button playOnlineHost;
+    private Button playOnline;
     @FXML
     private void playOnlineAction() throws IOException {
-        gamemode = 3;
-        Stage stage = (Stage) playOnlineHost.getScene().getWindow();
+        gamemode = 3; //Game mode 3 is the online gamemode
+        Stage stage = (Stage) playOnline.getScene().getWindow();
         stage.close();
         HostPrompt game = new HostPrompt();
-        if (dim.x == 0 || dim.y == 0){
-            dim.x = 8;
-            dim.y = 8;
-            System.out.println(dim.x);
-            game.runHostPrompt();
-        }else if(dim.x > 0 || dim.y > 0){
-            System.out.println(dim.x + " " + dim.y);
-            game.runHostPrompt();
-        }
+            game.runHostPrompt(dim.x, dim.y);
     }
 
     //////////////////////////////////////////////////////////////
     ///                 Back to Menu button                    ///
+    ///            By Søren Sehested Schoubye s224756          ///
     //////////////////////////////////////////////////////////////
+
+    //The following method is used to return to the menu from the DimensionPrompt screen.
     @FXML
     private Button backMenu;
 
     @FXML
-    public void backToMenu() throws IOException {
+    public void backToMenu() throws IOException { //The method is called via the onAction method accociated with the button.
         Stage stage = (Stage) backMenu.getScene().getWindow();
         stage.close();
-
         Stage primaryStage = new Stage();
-        Menu menu = new Menu();
+        Menu menu = new Menu(); //The menu class is called and the menu is displayed.
         menu.start(primaryStage);
 
     }

@@ -17,9 +17,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
-
+//This class is made for playing against the AI
+//The class largely replicates the PlayAlone class
+//Therefore, only method that differentiates from that class will be explained
 public class PlayAI extends Application {
 
     static int width;
@@ -44,8 +45,7 @@ public class PlayAI extends Application {
     static {
         try {
             scene = new Scene(FXMLLoader.load(Objects.requireNonNull(PlayAlone.class.getResource("playAlone.fxml"))));
-        } catch (IOException e) {
-            System.out.println("Could not load FXML-file");
+        } catch (IOException ignored) {
 
         }
     }
@@ -84,11 +84,16 @@ public class PlayAI extends Application {
         Label blackScore = (Label)scene.lookup("#blackScore");
         blackScore.setText("x"+game.getScore()[1]);
 
+        //Sets the AI variable "has4" to true
         MiniMaxAlphaBetaAI klogAI = new MiniMaxAlphaBetaAI(game, 5);
         MiniMaxAlphaBetaAI.has4=true;
 
         turnCounter=1;
         GridPane board = new GridPane();
+
+        //Finds the save game button and turns it off, as the save game feature is strictly made for playing alone
+        Button saveGame = (Button) scene.lookup("#saveGame");
+        saveGame.setVisible(false);
 
 
         Button[][] cells = new Button[width][height];
@@ -101,118 +106,127 @@ public class PlayAI extends Application {
                 final int ii = i;
                 final int jj = j;
 
-                updateGridpane( game, board, whiteImage, blackImage, markerImage);
+                updateGridPane( game, board);
 
 
                 cells[i][j].setOnAction(event -> {
-                    if (game.placePiece(ii, jj, turn)) {
-                        placeSound.play();
-                        turnCounter++;
+                        if (game.placePiece(ii, jj, turn)) {
 
-                        if (turnCounter == 3) {
-                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
-                            turn = Board.turnSwitch(turn);
-                            showTurn.setText(turnColor(turn) + "'s turn");
+                            placeSound.play();
+                            turnCounter++;
 
-                            new Thread(()->{
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    throw new RuntimeException(e);
-                                }
+                            //When the turn reaches the third move, it is now the AI's turn to place two pieces
+                            if(turnCounter==3){
+                                showTurn.setText(turnColor(turn)+"'s turn");
+                                turn = Board.turnSwitch(turn);
+
                                 MiniMaxAlphaBetaAI.AIMakeMove(turn);
                                 turnCounter++;
 
                                 MiniMaxAlphaBetaAI.AIMakeMove(turn);
                                 turn = Board.turnSwitch(turn);
                                 game.legalSpots(turn);
-                                Platform.runLater(()->updateGridpane(game, board, whiteImage, blackImage, markerImage));
-
-                            }).start();
+                            }
 
 
 
-
-                        }
-                        if (turnCounter > 4) {
-                            turn = Board.turnSwitch(turn);
+                            if (turnCounter > 4) {
+                                turn = Board.turnSwitch(turn);
 
 
-                            if (!game.legalSpots(turn)) {
-                                if (!game.legalSpots(Board.turnSwitch(turn))) {
-                                    System.out.println("No more possible moves \n    game over");
-
-                                    updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
-                                    delay(500,() ->{
-                                        WinPage win = new WinPage();
-                                        turnCounter = 1;
-                                        gameNumber++;
-
-                                        try {
-                                            primaryStage.close();
-                                            win.winStart(game);
-                                        } catch (IOException e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                    });
-
-                                } else {
-                                    System.out.println("\n" + turn + " has no possible moves");
-                                    turn = Board.turnSwitch(turn);
-                                    showTurn.setText(turnColor(turn) + "'s turn");
-                                    game.legalSpots(turn);
-
-
-                                }
-
-                            } else {
-
-                                while (true) {
-                                    //updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
-                                    MiniMaxAlphaBetaAI.AIMakeMove(turn);
-                                    //updateGridpane(game, board, whiteImage, blackImage, markerImage);
-
-
-
+                                if (!game.legalSpots(turn)) {
                                     if (!game.legalSpots(Board.turnSwitch(turn))) {
-                                        if (!game.legalSpots(turn)) {
-                                            System.out.println("No more possible moves \n    game over");
+                                        updateGridPane(game, board);
+                                        new Thread(() -> {
+                                            try {
+                                                Thread.sleep(800);
+                                            } catch (InterruptedException e) {
+                                                throw new RuntimeException(e);
+                                            }
 
-                                            updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                                            WinPage win = new WinPage();
+                                            turnCounter = 1;
 
-                                            delay(500,() ->{
-                                                WinPage win = new WinPage();
-                                                turnCounter = 1;
-                                                gameNumber++;
+                                            gameNumber++;
 
+                                            Platform.runLater(() -> {
+                                                primaryStage.close();
                                                 try {
-                                                    primaryStage.close();
                                                     win.winStart(game);
                                                 } catch (IOException e) {
                                                     throw new RuntimeException(e);
                                                 }
-                                            });
-                                        } else continue;
-                                    }
-                                    turn = Board.turnSwitch(turn);
 
-                                    break;
+                                            });
+
+                                        }).start();
+
+                                    } else {
+                                        turn = Board.turnSwitch(turn);
+                                        showTurn.setText(turnColor(turn) + "'s turn");
+                                        game.legalSpots(turn);
+
+
+                                    }
+
+                                //Enters the AI's turn
+                                } else {
+
+                                    while (true){
+
+                                        //The AI makes a move
+                                        MiniMaxAlphaBetaAI.AIMakeMove(turn);
+
+                                        //Checks whether the turn should go to the player
+                                        if(!game.legalSpots(Board.turnSwitch(turn))){
+
+                                            //Checks if the game should end
+                                            if(!game.legalSpots(turn)){
+
+                                                updateGridPane(game, board);
+                                                new Thread(() -> {
+                                                    try {
+                                                        Thread.sleep(800);
+                                                    } catch (InterruptedException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
+
+                                                    WinPage win = new WinPage();
+                                                    turnCounter = 1;
+
+                                                    gameNumber++;
+
+                                                    Platform.runLater(() -> {
+                                                        primaryStage.close();
+                                                        try {
+                                                            win.winStart(game);
+                                                        } catch (IOException e) {
+                                                            throw new RuntimeException(e);
+                                                        }
+
+                                                    });
+
+                                                }).start();
+                                            } else continue;
+                                        }
+                                        turn = Board.turnSwitch(turn);
+
+                                        break;
+
+                                    }
+
 
                                 }
 
-
                             }
+                            showTurn.setText(turnColor(turn) + "'s turn");
+                            whiteScore.setText("x"+game.getScore()[0]);
+                            blackScore.setText("x"+game.getScore()[1]);
+                            updateGridPane(game, board);
+
 
                         }
-                        showTurn.setText(turnColor(turn) + "'s turn");
-                        whiteScore.setText("x"+game.getScore()[0]);
-                        blackScore.setText("x"+game.getScore()[1]);
-                        updateGridpane(game, board, whiteImage, blackImage, markerImage);
 
-
-                    }
 
                 });
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
@@ -223,7 +237,7 @@ public class PlayAI extends Application {
         }
 
         Image icon = new Image(appIcon);
-        primaryStage.setTitle("Reversi");
+        primaryStage.setTitle("Reversi Advanced");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(icon);
         primaryStage.initStyle(StageStyle.UNDECORATED);
@@ -233,22 +247,8 @@ public class PlayAI extends Application {
     }
 
 
-    //Borrowed from the internet
-    public static void delay(long millis, Runnable continuation) {
-        Task<Void> sleeper = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                try { Thread.sleep(millis); }
-                catch (InterruptedException e) { }
-                return null;
-            }
-        };
-        sleeper.setOnSucceeded(event -> continuation.run());
-        new Thread(sleeper).start();
-    }
 
-
-    private void updateGridpane(Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
+    private void updateGridPane(Board game, GridPane board) {
         Pane gamePane = (Pane) scene.lookup("#gamePane");
         board.getChildren().removeIf(node -> node instanceof ImageView);
         gamePane.getChildren().remove(board);
@@ -326,8 +326,11 @@ public class PlayAI extends Application {
             return "Black";
         } else return null;
     }
+
     //////////////////////////////////////////////////////////////
     ///                    Title bar layout                    ///
+    ///              Same code as for the Menu.java            ///
+    ///       Further explanations of code can be sen there    ///
     //////////////////////////////////////////////////////////////
     @FXML
     HBox titlebar;
@@ -361,6 +364,8 @@ public class PlayAI extends Application {
         Stage stage = (Stage) minimize.getScene().getWindow();
         stage.setIconified(true);
     }
+
+
     //////////////////////////////////////////////////////////////
     ///                 Back to Menu button                    ///
     //////////////////////////////////////////////////////////////
@@ -375,6 +380,12 @@ public class PlayAI extends Application {
         menu.start(primaryStage);
 
     }
+
+
+    @FXML
+    Button saveGame;
+
+
 
 }
 
