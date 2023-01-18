@@ -7,7 +7,7 @@ public class MiniMaxAlphaBetaAI {
     private static Board board;
     private static int maxDepth;
 
-    //A value that indicates w
+    //A value that indicates whether the game board 2D array contains the value 4, as the four center squares are set to at the beginning of the game.
     public static boolean has4 = true;
 
     //Constructor for initializing an AI to play against, with a given board and max search depth
@@ -115,7 +115,7 @@ public class MiniMaxAlphaBetaAI {
             for (int y = 0; y < copy.y_axis; y++) {
                 if (copy.map[x][y] != 3 && copy.map[x][y] != 4) continue;
                 copy.placePiece(x, y, playerTurn);
-                bestScore = Math.min(bestScore, maxValue(copy, Board.turnSwitch(playerTurn), depth + 1, alpha, beta)); //max og max??
+                bestScore = Math.min(bestScore, maxValue(copy, Board.turnSwitch(playerTurn), depth + 1, alpha, beta));
                 beta = Math.min(beta, bestScore);
                 if (alpha >= beta) {
                     break;
