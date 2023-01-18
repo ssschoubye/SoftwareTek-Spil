@@ -6,75 +6,75 @@ import java.util.Scanner;
 
 
 
-public class ServerClient {
-        public static void runServerClient(String host, int dim) throws IOException, ClassNotFoundException {
-            InetAddress localHost = InetAddress.getLocalHost();
-            String client = localHost.getHostAddress();
-            Socket socket = new Socket(host, 8080);
-            // Get the input and output streams
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            out.println(client);
-            while(true){
-                ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
+public class ServerClient extends Thread {
+    private ServerSocket serverSocket;
+    private Socket socket;
+    private BufferedReader bufferedReader;
+    private PrintWriter printWriter;
+    private ObjectOutputStream objectOut;
+    private ObjectInputStream objectIn;
 
-                ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
-                int[][] inputMap = boardRec.getArray();
-                //System.out.println(inputMap);
-                System.out.println(Arrays.deepToString(inputMap));
+    public ServerClient(Socket socket){
+        try{
+            this.socket = socket;
+            this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            this.printWriter = new PrintWriter(socket.getOutputStream(), true);
+            this.objectOut = new ObjectOutputStream(socket.getOutputStream());
+            this.objectIn = new ObjectInputStream(socket.getInputStream());
+        }catch (IOException e){
+            System.out.println("Error in Server constructor");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
 
-                // Send a message to the server
-                System.out.println("What is your message?");
-                Scanner scan = new Scanner(System.in);
-                String message = scan.nextLine();
-                out.println(message);
+    }
 
-                String response = in.readLine();
-                // Read and process the server's response
-                if(response == "no"){
-                    break;
-                }
-                System.out.println("Response: " + response);  // prints "Response: ACK"
-            }
-            // Close the socket
-            socket.close();
+    public void sendArray(int[][] array){
+        try{
+            ArrayReturn arrayReturn = new ArrayReturn(array);
+            objectOut.writeObject(arrayReturn);
+            objectOut.flush();
+        }catch (IOException e){
+            System.out.println("Error in sendArray");
+            e.printStackTrace();
+            closeEveryThing(socket, objectOut, objectIn);
+
+
         }
     }
-// Connect to the server
-//Socket socket = new Socket("192.168.1.8", 8080);
+    public void closeEveryThing(Socket socket, ObjectOutputStream objectOut, ObjectInputStream objectIn){
+        try{
+            socket.close();
+            objectOut.close();
+            objectIn.close();
+        }catch (IOException e){
+            System.out.println("Error in closeEverything");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
 
-            /*
-            try{
-                for (int i = 0; i <= 255; i++) {
-                    host = "192.168.1.10";
-                    InetAddress inetAddress = InetAddress.getByName(host);
-                    if(inetAddress.isReachable(5000)){
-                        System.out.println("Trying out" + inetAddress);
-                        try (Socket socket = new Socket(host, 8080)) {
-                            System.out.println(host + " is reachable");
-                            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                            out.println(client);
-                            String response = in.readLine();
-                            if(response.equals("hey")){
-                                break;
-                            }else{
-                                System.out.println("It aint right.");
-                            }
-
-                        } catch(ConnectException e){
-                            System.out.println(host + " is not reachable");
-                        }
-
-                    }else{
-                        System.out.println(host + "Cannot be reached.");
+    public void recieveArray(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(socket.isConnected()){
+                    try{
+                        ArrayReturn arrayReturn = (ArrayReturn) objectIn.readObject();
+                        int[][] array = arrayReturn.getArray();
+                        System.out.println(Arrays.deepToString(array));
+                        PlayOnlineClient.setMap(array);
+                    }catch (IOException | ClassNotFoundException e){
+                        System.out.println("Error in recieveArray");
+                        e.printStackTrace();
+                        closeEveryThing(socket, objectOut, objectIn);
+                        break;
                     }
                 }
-            }catch (UnknownHostException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+
             }
-             */
+        }).start();
+    }
+}
 
 

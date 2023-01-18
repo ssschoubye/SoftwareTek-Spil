@@ -12,25 +12,21 @@ import java.net.InetAddress;
 import java.util.Objects;
 
 public class HostPrompt {
-
     //Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(HostPrompt.class.getResource("OnlineDesign.fxml"))));
-
-
     int dim;
 
-
-    public void runHostPrompt(int x, int y) throws IOException {
+    static Stage stage = new Stage();
+    public void runHostPrompt(int inwidth, int inheight) throws IOException {
+        dim = inheight;
         Parent root = FXMLLoader.load(getClass().getResource("OnlineDesign.fxml"));
         Scene scene = new Scene(root);
-        dim = x;
         IPhost = (Label) scene.lookup("#IPhost");
         InetAddress localHost = InetAddress.getLocalHost();
         String hostip = localHost.getHostAddress();
         setIP(hostip);
-        Stage stage = new Stage();
+
         stage.setScene(scene);
         stage.show();
-
     }
 
 
@@ -38,13 +34,17 @@ public class HostPrompt {
     Button button;
     @FXML
     private TextField IPjoin;
+    public static String IPinput;
 
-    public void startGame() throws IOException, ClassNotFoundException {
-        String IPinput = IPjoin.getText();
-        Stage stage = (Stage) button.getScene().getWindow();
+    public static boolean firstTime = true;
+    public void joinGame() throws IOException, ClassNotFoundException, InterruptedException {
+        IPinput = IPjoin.getText(); //Gets the IP address input.
+        Stage stage = (Stage) button.getScene().getWindow();//Close the stage and the start the controller.
         stage.close();
-        ClientHandler.stopServer();
-        ServerClient.runServerClient(IPinput,dim);
+        boolean isHost = false;
+        PlayOnlineClient playOnlineClient = new PlayOnlineClient();
+        playOnlineClient.gameStart(DimensionPrompt.dim.x);
+
     }
 
     @FXML
@@ -54,7 +54,21 @@ public class HostPrompt {
     private void setIP(String hostip){IPhost.setText(hostip);}
 
     @FXML
-    private void startHost() throws IOException {Server.serverStart();}
-    
+    private Button hostgame;
+    @FXML
+    private void startHost() throws IOException, ClassNotFoundException, InterruptedException {
+        boolean isHost = true;
+        Stage stage = (Stage) hostgame.getScene().getWindow();//Close the stage and the start the controller.
+        stage.close();
+        PlayOnlineHost playOnlineHost = new PlayOnlineHost();
+        playOnlineHost.gameStart(DimensionPrompt.dim.x);
+    }
+
+    public static String getIPinput(){
+        return(IPinput);
+    }
+    public static void stageClose(){
+        stage.close();
+    }
 
 }

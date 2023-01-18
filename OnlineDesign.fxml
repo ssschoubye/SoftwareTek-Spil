@@ -14,12 +14,12 @@
          </font>
       </Label>
 
-      <Button fx:id="button" layoutX="257.0" layoutY="312.0" mnemonicParsing="false" onAction="#startGame" text="Start Game" />
+      <Button fx:id="button" layoutX="257.0" layoutY="312.0" mnemonicParsing="false" onAction="#joinGame" text="Join Game" />
       <Label layoutX="115.0" layoutY="94.0" text="If you are hosting the game then share your IP address with friends!" />
       <TextField fx:id="IPjoin" layoutX="221.0" layoutY="256.0" />
       <Label layoutX="192.0" layoutY="133.0" text="Your IP is:" />
       <Label fx:id="IPhost" layoutX="280.0" layoutY="133.0" text="Label" />
       <Label layoutX="178.0" layoutY="220.0" text="Insert IP address below to join a host game." />
-      <Button layoutX="270.0" layoutY="175.0" mnemonicParsing="false" onAction="#startHost" text="Button" />
+      <Button fx:id="hostgame" layoutX="270.0" layoutY="175.0" mnemonicParsing="false" onAction="#startHost" text="Host Game" />
    </children>
 </AnchorPane>

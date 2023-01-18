@@ -31,6 +31,8 @@ public class Board {
         map[x_axis / 2][y_axis / 2] = 4;
         map[x_axis / 2 - 1][y_axis / 2] = 4;
 
+
+
     }
 
     //Legal spots shows where a given player can make a move and returns whether of not the player actually has an available move
