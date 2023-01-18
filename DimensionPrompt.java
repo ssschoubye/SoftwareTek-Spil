@@ -400,7 +400,7 @@ public class DimensionPrompt {
     }
 
 
-    private Button playOnlineHost;
+    public Button playOnlineHost;
     @FXML
     private void playOnlineAction() throws IOException {
         gamemode = 3; //Game mode 3 is the online gamemode
