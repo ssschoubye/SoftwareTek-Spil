@@ -107,8 +107,9 @@ public class PlayOnlineHost extends Application{
                 cells[i][j].setOnAction(event -> {
                     if (game.placePiece(ii, jj, turn)) {
                         placeSound.play();
-                        if(turnCounter <= 2){
+                        if(turnCounter == 2){
                             InterThread.setMap(game.map);
+                            InterThread.setGameMode(3);
                         }
                         turnCounter++;
 
