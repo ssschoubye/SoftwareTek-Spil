@@ -35,19 +35,17 @@ public class Server extends Thread{
             ArrayReturn arrayReturn = new ArrayReturn(array);
             objectOut.writeObject(arrayReturn);
             objectOut.flush();
-            objectOut.close();
+
         }catch (IOException e){
             System.out.println("Error in sendArray");
             e.printStackTrace();
-            throw new RuntimeException(e);
+            closeEveryThing(socket, objectOut, objectIn);
 
         }
     }
-    public void closeEveryThing(Socket socket, BufferedReader bufferedReader, PrintWriter printWriter, ObjectOutputStream objectOut, ObjectInputStream objectIn){
+    public void closeEveryThing(Socket socket, ObjectOutputStream objectOut, ObjectInputStream objectIn){
         try{
             socket.close();
-            bufferedReader.close();
-            printWriter.close();
             objectOut.close();
             objectIn.close();
         }catch (IOException e){
@@ -70,6 +68,7 @@ public class Server extends Thread{
                     }catch (IOException | ClassNotFoundException e){
                         System.out.println("Error in recieveArray");
                         e.printStackTrace();
+                        closeEveryThing(socket, objectOut, objectIn);
                         break;
                     }
                 }

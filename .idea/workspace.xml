@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
-      <change beforePath="$PROJECT_DIR$/HostPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/HostPrompt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayOnlineClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayOnlineClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayOnlineHost.java" beforeDir="false" afterPath="$PROJECT_DIR$/PlayOnlineHost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServerClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/HostPrompt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/HostPrompt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineClient$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineClient$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineClient$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineClient$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineClient.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineHost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineHost.class" afterDir="false" />
     </list>
