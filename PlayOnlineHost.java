@@ -109,14 +109,14 @@ public class PlayOnlineHost extends Application{
                     if (game.placePiece(ii, jj, turn)) {
                         placeSound.play();
                         if(turnCounter == 2){
-                            InterThread.setMap(game.map);
-                            InterThread.setGameMode(3);
+                            interThread.setMap(game.map);
+                            interThread.setGameMode(3);
                         }
                         turnCounter++;
 
                         //Switches player turn
                         if (turnCounter == 3) {
-                            InterThread.setGameMode(3);
+                            interThread.setGameMode(4);
 
                             turn = Board.turnSwitch(turn);
                             showTurn.setText(turnColor(turn) + "'s turn");

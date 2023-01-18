@@ -70,10 +70,18 @@ public class Server extends Thread{
                     interThread.setGameMode(2);
                     gameMode = 2;
                     System.out.println(gameMode);
-                } else if (gameMode == 2) { //First stage of the game. Upstart move is sent to client.
+                }else if(gameMode == 2){
+                    try {
+                        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                        out.println("Waiting");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+                else if (gameMode == 3) { //First stage of the game. Upstart move is sent to client.
                         int[][] initialmap = interThread.getMap();
                         ArrayReturn arrayReturn = new ArrayReturn(initialmap);
-                        if(interThread.getGameMode() == 3){
                             try {
                                 //PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                                 //out.println(interThread.getGameMode());
@@ -84,14 +92,11 @@ public class Server extends Thread{
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
-                        }
-
-
 
                     //The new map is set in the controller class since Play and Server runs in two different threads.
 
                     System.out.println(gameMode);
-                } else if (gameMode == 3) {//When upstart move have been done then await response.
+                } else if (gameMode == 4) {//When upstart move have been done then await response.
                     try {
                         ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
                         ArrayReturn boardRec = (ArrayReturn) inObject.readObject();
@@ -103,7 +108,7 @@ public class Server extends Thread{
                     }
                     System.out.println(gameMode);
 
-                } else if (gameMode == 4) {//Game have started. This is Output Stream.
+                } else if (gameMode == 5) {//Game have started. This is Output Stream.
                     Board board = new Board();
                     int[][] initialmap = board.getArray();
                     ArrayReturn arrayReturn = new ArrayReturn(initialmap);
@@ -115,7 +120,7 @@ public class Server extends Thread{
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                } else if (gameMode == 5) {// This is input stream.
+                } else if (gameMode == 6) {// This is input stream.
                     try {
                         ObjectInputStream inObject = new ObjectInputStream(socket.getInputStream());
                         ArrayReturn boardRec = (ArrayReturn) inObject.readObject();

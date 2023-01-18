@@ -105,7 +105,7 @@ public class PlayOnlineClient extends Application{
 //In gamemode 2 we are awaiting response from server side. Therefore a loop keeps checking to se if a move have been made.
                 while(interThread.getGameMode() == 2){
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(2000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
