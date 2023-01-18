@@ -18,7 +18,9 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.Objects;
 
-
+//This class is made for playing against the AI
+//The class largely replicates the PlayAlone class
+//Therefore, only method that differentiates from that class will be explained
 public class PlayAI extends Application {
 
     static int width;
@@ -38,7 +40,6 @@ public class PlayAI extends Application {
     String placeSoundFile = "Sounds/placeSound1.mp3";
     String appIcon = "Images/reversiIcon.png";
 
-    Boolean clickLegal=true;
     static Scene scene;
 
     static {
@@ -84,14 +85,15 @@ public class PlayAI extends Application {
         Label blackScore = (Label)scene.lookup("#blackScore");
         blackScore.setText("x"+game.getScore()[1]);
 
+        //Sets the AI variable "has4" to true
         MiniMaxAlphaBetaAI klogAI = new MiniMaxAlphaBetaAI(game, 5);
         MiniMaxAlphaBetaAI.has4=true;
 
         turnCounter=1;
         GridPane board = new GridPane();
 
+        //Finds the save game button and turns it off, as the save game feature is strictly made for playing alone
         Button saveGame = (Button) scene.lookup("#saveGame");
-
         saveGame.setVisible(false);
 
 
@@ -114,11 +116,10 @@ public class PlayAI extends Application {
                             placeSound.play();
                             turnCounter++;
 
+                            //When the turn reaches the third move, it is now the AI's turn to place two pieces
                             if(turnCounter==3){
                                 showTurn.setText(turnColor(turn)+"'s turn");
                                 turn = Board.turnSwitch(turn);
-
-                                updateGridPane(game, board);
 
                                 MiniMaxAlphaBetaAI.AIMakeMove(turn);
                                 turnCounter++;
@@ -136,40 +137,52 @@ public class PlayAI extends Application {
 
                                 if (!game.legalSpots(turn)) {
                                     if (!game.legalSpots(Board.turnSwitch(turn))) {
-                                        System.out.println("No more possible moves \n    game over");
-
                                         updateGridPane(game, board);
-
-                                        delay(500,() ->{
-                                            WinPage win = new WinPage();
-                                            turnCounter = 1;
-                                            gameNumber++;
-
+                                        new Thread(() -> {
                                             try {
-                                                primaryStage.close();
-                                                win.winStart(game);
-                                            } catch (IOException e) {
+                                                Thread.sleep(800);
+                                            } catch (InterruptedException e) {
                                                 throw new RuntimeException(e);
                                             }
-                                        });
+
+                                            WinPage win = new WinPage();
+                                            turnCounter = 1;
+
+                                            gameNumber++;
+
+                                            Platform.runLater(() -> {
+                                                primaryStage.close();
+                                                try {
+                                                    win.winStart(game);
+                                                } catch (IOException e) {
+                                                    throw new RuntimeException(e);
+                                                }
+
+                                            });
+
+                                        }).start();
 
                                     } else {
                                         System.out.println("\n" + turn + " has no possible moves");
                                         turn = Board.turnSwitch(turn);
                                         showTurn.setText(turnColor(turn) + "'s turn");
                                         game.legalSpots(turn);
-                                        clickLegal=true;
 
 
                                     }
 
+                                //Enters the AI's turn
                                 } else {
 
                                     while (true){
 
-
+                                        //The AI makes a move
                                         MiniMaxAlphaBetaAI.AIMakeMove(turn);
+
+                                        //Checks whether the turn should go to the player
                                         if(!game.legalSpots(Board.turnSwitch(turn))){
+
+                                            //Checks if the game should end
                                             if(!game.legalSpots(turn)){
 
                                                 updateGridPane(game, board);
@@ -179,8 +192,10 @@ public class PlayAI extends Application {
                                                     } catch (InterruptedException e) {
                                                         throw new RuntimeException(e);
                                                     }
+
                                                     WinPage win = new WinPage();
                                                     turnCounter = 1;
+
                                                     gameNumber++;
 
                                                     Platform.runLater(() -> {
@@ -233,20 +248,6 @@ public class PlayAI extends Application {
 
     }
 
-
-    //Borrowed from the internet
-    public static void delay(long millis, Runnable continuation) {
-        Task<Void> sleeper = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                try { Thread.sleep(millis); }
-                catch (InterruptedException e) { }
-                return null;
-            }
-        };
-        sleeper.setOnSucceeded(event -> continuation.run());
-        new Thread(sleeper).start();
-    }
 
 
     private void updateGridPane(Board game, GridPane board) {
@@ -327,6 +328,7 @@ public class PlayAI extends Application {
             return "Black";
         } else return null;
     }
+
     //////////////////////////////////////////////////////////////
     ///                    Title bar layout                    ///
     ///              Same code as for the Menu.java            ///
