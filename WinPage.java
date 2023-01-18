@@ -59,7 +59,7 @@ public class WinPage {
         String appIcon = "Images/reversiIcon.png";
         Image icon = new Image(appIcon);
         primaryStage.getIcons().add(icon);
-        primaryStage.setTitle("Reversi");
+        primaryStage.setTitle("Reversi Advanced");
 
         restart = (Button) scene.lookup("#restart");
         restart.setUserData(dim1);
@@ -112,6 +112,8 @@ public class WinPage {
 
     //////////////////////////////////////////////////////////////
     ///                    Title bar layout                    ///
+    ///              Same code as for the Menu.java            ///
+    ///       Further explanations of code can be sen there    ///
     //////////////////////////////////////////////////////////////
     @FXML
     HBox titlebar;

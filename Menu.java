@@ -2,16 +2,11 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.HBox;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import javafx.scene.input.MouseEvent;
@@ -28,11 +23,9 @@ public class Menu extends Application {
     public static boolean loadGame = false;
 
 
-    public static void Menu(String[]args){
+    public static void main(String[]args){
         launch(args);
     }
-
-    //public static void backMenu(){launch();}
 
 
     public void start(Stage primaryStage) throws IOException {
@@ -52,7 +45,6 @@ public class Menu extends Application {
     Button button1;
     @FXML
     private void startGame()  {
-        System.out.println("Start Game");
         Stage stage = (Stage) button1.getScene().getWindow();
         stage.close();
         DimensionPrompt.start1();
@@ -91,14 +83,20 @@ public class Menu extends Application {
 
     //////////////////////////////////////////////////////////////
     ///                    Title bar layout                    ///
+    ///               by Emil Wille Andersen s194501           ///
+    ///     Code for creating the custom title bar layout      ///
     //////////////////////////////////////////////////////////////
+
+    //Setting the HBox in FXML to be the titlebar
     @FXML
     HBox titlebar;
 
-
+    //Initializing an x- and y-value for dragging the window around
     private double windowX = 0;
     private double windowY = 0;
 
+    //This, as well as the next method is for dragging a window
+    //The idea for these methods comes from the internet
     @FXML
     private void titleBarDragged(MouseEvent event){
         Stage stage = (Stage) titlebar.getScene().getWindow();
@@ -113,13 +111,16 @@ public class Menu extends Application {
 
     }
 
-
+    //Method for closing the application
     @FXML
     private void onExitButtonClick(){
         Platform.exit();
     }
+
+    //setting the button for minimizing the application
     @FXML
     Button minimize;
+    //Setting the method for the button
     @FXML
     public void OnMinimizeButtonClick(){
         Stage stage = (Stage)minimize.getScene().getWindow();

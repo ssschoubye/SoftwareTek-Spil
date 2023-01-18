@@ -19,7 +19,8 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.Objects;
 
-
+//For playing online
+//Not yet used, as online playing isn't currently working
 public class PlayOnline extends Application {
 
     static int width;
@@ -46,8 +47,7 @@ public class PlayOnline extends Application {
     static {
         try {
             scene = new Scene(FXMLLoader.load(Objects.requireNonNull(PlayAlone.class.getResource("playAlone.fxml"))));
-        } catch (IOException e) {
-            System.out.println("Could not load FXML-file");
+        } catch (IOException ignored) {
 
         }
     }
@@ -89,7 +89,6 @@ public class PlayOnline extends Application {
 
         saveGame.setVisible(false);
 
-        System.out.println("retur til start");
 
 
         Button[][] cells = new Button[width][height];
@@ -102,7 +101,7 @@ public class PlayOnline extends Application {
                 final int ii = i;
                 final int jj = j;
 
-                updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                updateGridPane(game, board);
 
 
                 // Create an event handler for "on action"
@@ -125,9 +124,8 @@ public class PlayOnline extends Application {
                             //Checks for legal spots
                             if (!game.legalSpots(turn)) {
                                 if (!game.legalSpots(Board.turnSwitch(turn))) {
-                                    System.out.println("No more possible moves \n    game over");
 
-                                    updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                                    updateGridPane(game, board);
 
                                     delay(500,() ->{
                                         WinPage win = new WinPage();
@@ -148,11 +146,8 @@ public class PlayOnline extends Application {
 
 
                                 } else {
-
-                                    System.out.println("\n" + turn + " has no possible moves");
                                     turn = Board.turnSwitch(turn);
                                     showTurn.setText(turnColor(turn) + "'s turn");
-                                    //no move possible for current player
                                 }
 
                             }
@@ -160,7 +155,7 @@ public class PlayOnline extends Application {
 
                         whiteScore.setText("x"+game.getScore()[0]);
                         blackScore.setText("x"+game.getScore()[1]);
-                        updateGridpane(game, board, whiteImage, blackImage, markerImage);
+                        updateGridPane(game, board);
 
 
                     }
@@ -176,7 +171,7 @@ public class PlayOnline extends Application {
         }
 
         Image icon = new Image(appIcon);
-        primaryStage.setTitle("Reversi");
+        primaryStage.setTitle("Reversi Advanced");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(icon);
         primaryStage.initStyle(StageStyle.UNDECORATED);
@@ -204,7 +199,7 @@ public class PlayOnline extends Application {
 
 
 
-    private void updateGridpane(Board game, GridPane board, String whiteImage, String blackImage, String markerImage) {
+    private void updateGridPane(Board game, GridPane board) {
         Pane gamePane = (Pane) scene.lookup("#gamePane");
         board.getChildren().removeIf(node -> node instanceof ImageView);
         gamePane.getChildren().remove(board);
@@ -286,6 +281,8 @@ public class PlayOnline extends Application {
 
     //////////////////////////////////////////////////////////////
     ///                    Title bar layout                    ///
+    ///              Same code as for the Menu.java            ///
+    ///       Further explanations of code can be sen there    ///
     //////////////////////////////////////////////////////////////
     @FXML
     HBox titlebar;

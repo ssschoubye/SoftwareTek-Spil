@@ -17,9 +17,10 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.Objects;
 
+//Class for the window where dimensions, skins and game mode is chosen
 public class DimensionPrompt {
 
-
+    //Setting paths for the different images used
     static String backImage1 = "Images/Background/green1.png";
     static String backImage2 = "Images/Background/green2.png";
 
@@ -81,69 +82,85 @@ public class DimensionPrompt {
         dim.black = blackImage;
         dim.back1 = backImage1;
         dim.back2 = backImage2;
-        System.out.println(dim);
 
     }
 
     @FXML
     public static void start(Stage dimStage) {
 
-
+        //Setting the app icon
         String appIcon = "Images/reversiIcon.png";
         Image icon = new Image(appIcon);
-
         dimStage.getIcons().add(icon);
-        dimStage.setTitle("Reversi");
+
+        //Setting the title for the application
+        dimStage.setTitle("Reversi Advanced");
+
+        //Removing the default title bar
         dimStage.initStyle(StageStyle.UNDECORATED);
 
-
+        //Filling the preview pane
         fillPreviewPane(size);
 
-
-
+        //Setting and showing the scene and stage
         dimStage.setScene(scene);
         dimStage.showAndWait();
 
     }
 
+    //Initializing the preview pane that shows chosen skins
     @FXML
     static
     Pane previewPane=(Pane)scene.lookup("#previewPane");
+
+    //Initializing the label that shows dimension chosen
     @FXML
     static
     Label previewPaneLabel= (Label)scene.lookup("#previewPaneLabel");
+
+    //Initializing the gridpane that the game is loaded onto
+    //This gridpane is later loaded on to the preview pane
     static
     GridPane previewGrid = new GridPane();
 
+    //Method for filling the preview pane
+    //Largely the same function as the "updateGridPane" used in the "Play"-classes
+    //Therefore not going as much into detail about the statements
     private static void fillPreviewPane(int size) {
+
+        //Preview pane label is set to show the appropriate size
         previewPaneLabel.setText(size+"x"+size);
-        Image whitePieceImage = new Image(whiteImage);
-        Image blackPieceImage = new Image(blackImage);
+
+        //Removes previous images from the gridpane
         previewGrid.getChildren().removeIf(node -> node instanceof ImageView);
+
+        //Removes previous gridpane from the preview pane
         previewPane.getChildren().remove(previewGrid);
 
-
+        //Setting the images for later use
+        Image whitePieceImage = new Image(whiteImage);
+        Image blackPieceImage = new Image(blackImage);
         Image backGround1 = new Image(backImage1);
         Image backGround2 = new Image(backImage2);
 
-
+        //Iterating through the gridpane
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                ImageView back;
 
+                //Setting the two background images
+                ImageView back;
                 if ((i + j) % 2 == 1) {
                     back = new ImageView(backGround1);
                 } else {
                     back = new ImageView(backGround2);
                 }
-
                 previewGrid.add(back, i, j);
                 back.setMouseTransparent(true);
                 back.setPreserveRatio(true);
                 back.fitWidthProperty().bind(Bindings.divide(previewPane.widthProperty(), size));
                 back.fitHeightProperty().bind(Bindings.divide(previewPane.heightProperty(), size));
 
-
+                //Setting the two rightmost pieces in the middle of the board to be white
                 if ((i == size/2 && j == size/2-1)||(i == size/2 && j == size/2)){
                     ImageView whitePiece = new ImageView(whitePieceImage);
                     previewGrid.add(whitePiece,i,j);
@@ -152,7 +169,7 @@ public class DimensionPrompt {
                     whitePiece.fitWidthProperty().bind(Bindings.divide(previewPane.widthProperty(), size));
                     whitePiece.fitHeightProperty().bind(Bindings.divide(previewPane.heightProperty(), size));
 
-
+                //Setting the two leftmost pieces in the middle to be black
                 } else if ((i == size/2-1 && j == size/2-1)||(i == size/2-1 && j == size/2)){
                     ImageView blackPiece = new ImageView(blackPieceImage);
                     previewGrid.add(blackPiece,i,j);
@@ -164,7 +181,7 @@ public class DimensionPrompt {
 
             }
         }
-
+        //Adding the grid to the preview pane
         previewPane.getChildren().add(previewGrid);
 
     }
@@ -172,10 +189,10 @@ public class DimensionPrompt {
     //////////////////////////////////////////////////////////////
     ///                          Skins                         ///
     //////////////////////////////////////////////////////////////
-
-
+    // All the methods here simply change the path of the skins to their respective skins
 
     //------------------Background skins-------------------------
+
     public void woodChoice(){
         backImage1 = "Images/Background/wood1.png";
         backImage2 = "Images/Background/wood2.png";
@@ -258,11 +275,10 @@ public class DimensionPrompt {
 
 
 
-
-
-
     //////////////////////////////////////////////////////////////
     ///                    Title bar layout                    ///
+    ///              Same code as for the Menu.java            ///
+    ///       Further explanations of code can be sen there    ///
     //////////////////////////////////////////////////////////////
     @FXML
     HBox titlebar;
@@ -304,6 +320,8 @@ public class DimensionPrompt {
     //////////////////////////////////////////////////////////////
     ///                     Dimension buttons                  ///
     //////////////////////////////////////////////////////////////
+
+    //These functions change of the board to their respective value
     public void setDimensions4(){
 
         dim.x = 4;
@@ -343,13 +361,13 @@ public class DimensionPrompt {
         Stage stage = (Stage) playAlone.getScene().getWindow();
         stage.close();
         game = new PlayAlone();
+        PlayAlone.gameNumber =1;
+        PlayAlone.firstStartingPlayer = (int) (Math.random() * 2) + 1;
       if (dim.x == 0 || dim.y == 0){
             int newx = 8;
             int newy = 8;
-            System.out.println(newx);
             game.gameStart(newx, newy);
         }else if(dim.x > 0 || dim.y > 0){
-            System.out.println(dim.x + " " + dim.y);
             game.gameStart(dim.x, dim.y);
         }
     }
@@ -368,10 +386,8 @@ public class DimensionPrompt {
         if (dim.x == 0 || dim.y == 0){
             int newx = 8;
             int newy = 8;
-            System.out.println(newx);
             game.gameStart(newx, newy);
         }else if(dim.x > 0 || dim.y > 0){
-            System.out.println(dim.x + " " + dim.y);
             game.gameStart(dim.x, dim.y);
         }
     }
@@ -387,10 +403,8 @@ public class DimensionPrompt {
         if (dim.x == 0 || dim.y == 0){
             int newx = 8;
             int newy = 8;
-            System.out.println(newx);
             game.runHostPrompt(newx, newy);
         }else if(dim.x > 0 || dim.y > 0){
-            System.out.println(dim.x + " " + dim.y);
             game.runHostPrompt(dim.x, dim.y);
         }
     }
