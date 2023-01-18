@@ -82,7 +82,8 @@ public class MiniMaxAlphaBetaAI {
             return boardHeuristic(board);
 
         }
-        int bestScore = Integer.MIN_VALUE;
+        int eval;
+        int maxEval = Integer.MIN_VALUE;
         Board copy = board.copy();
         copy.legalSpots(playerTurn);
 
@@ -90,8 +91,9 @@ public class MiniMaxAlphaBetaAI {
             for (int y = 0; y < copy.y_axis; y++) {
                 if (copy.map[x][y] != 3 && copy.map[x][y] != 4) continue;
                 copy.placePiece(x, y, playerTurn);
-                bestScore = Math.max(bestScore, minValue(copy, Board.turnSwitch(playerTurn), depth + 1, alpha, beta));
-                alpha = Math.max(alpha, bestScore);
+                eval = minValue(copy, Board.turnSwitch(playerTurn), depth + 1, alpha, beta);
+                maxEval = Math.max(maxEval, eval);
+                alpha = Math.max(alpha, eval);
                 if (alpha >= beta) {
                     break;
                     //Beta cutoff. If the score of the node is lower, than what can be achieved by making another move, the node will be pruned,
@@ -99,7 +101,7 @@ public class MiniMaxAlphaBetaAI {
                 }
             }
         }
-        return bestScore;
+        return maxEval;
     }
 
 
@@ -107,7 +109,8 @@ public class MiniMaxAlphaBetaAI {
         if (depth == maxDepth || !board.legalSpots(playerTurn)) {
             return boardHeuristic(board);
         }
-        int bestScore = Integer.MAX_VALUE;
+        int eval;
+        int minEval = Integer.MAX_VALUE;
         Board copy = board.copy();
         copy.legalSpots(playerTurn);
 
@@ -115,15 +118,16 @@ public class MiniMaxAlphaBetaAI {
             for (int y = 0; y < copy.y_axis; y++) {
                 if (copy.map[x][y] != 3 && copy.map[x][y] != 4) continue;
                 copy.placePiece(x, y, playerTurn);
-                bestScore = Math.min(bestScore, maxValue(copy, Board.turnSwitch(playerTurn), depth + 1, alpha, beta));
-                beta = Math.min(beta, bestScore);
+                eval = maxValue(copy, Board.turnSwitch(playerTurn), depth + 1, alpha, beta);
+                minEval = Math.min(minEval, eval);
+                beta = Math.min(beta, eval);
                 if (alpha >= beta) {
                     break;
                     //Alpha cutoff. Same idea as the beta cutoff, but opposite.
                 }
             }
         }
-        return bestScore;
+        return minEval;
     }
 
     //The method below return the board score, which is an evaluation of what player is leading in the game.
