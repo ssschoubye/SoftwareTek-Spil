@@ -47,8 +47,7 @@ public class PlayOnline extends Application {
     static {
         try {
             scene = new Scene(FXMLLoader.load(Objects.requireNonNull(PlayAlone.class.getResource("playAlone.fxml"))));
-        } catch (IOException e) {
-            System.out.println("Could not load FXML-file");
+        } catch (IOException ignored) {
 
         }
     }
@@ -90,7 +89,6 @@ public class PlayOnline extends Application {
 
         saveGame.setVisible(false);
 
-        System.out.println("retur til start");
 
 
         Button[][] cells = new Button[width][height];
@@ -126,7 +124,6 @@ public class PlayOnline extends Application {
                             //Checks for legal spots
                             if (!game.legalSpots(turn)) {
                                 if (!game.legalSpots(Board.turnSwitch(turn))) {
-                                    System.out.println("No more possible moves \n    game over");
 
                                     updateGridPane(game, board);
 
@@ -149,11 +146,8 @@ public class PlayOnline extends Application {
 
 
                                 } else {
-
-                                    System.out.println("\n" + turn + " has no possible moves");
                                     turn = Board.turnSwitch(turn);
                                     showTurn.setText(turnColor(turn) + "'s turn");
-                                    //no move possible for current player
                                 }
 
                             }
@@ -177,7 +171,7 @@ public class PlayOnline extends Application {
         }
 
         Image icon = new Image(appIcon);
-        primaryStage.setTitle("Reversi");
+        primaryStage.setTitle("Reversi Advanced");
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(icon);
         primaryStage.initStyle(StageStyle.UNDECORATED);

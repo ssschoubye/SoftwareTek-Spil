@@ -45,7 +45,6 @@ public class Menu extends Application {
     Button button1;
     @FXML
     private void startGame()  {
-        System.out.println("Start Game");
         Stage stage = (Stage) button1.getScene().getWindow();
         stage.close();
         DimensionPrompt.start1();

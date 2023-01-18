@@ -82,7 +82,6 @@ public class DimensionPrompt {
         dim.black = blackImage;
         dim.back1 = backImage1;
         dim.back2 = backImage2;
-        System.out.println(dim);
 
     }
 
@@ -95,7 +94,7 @@ public class DimensionPrompt {
         dimStage.getIcons().add(icon);
 
         //Setting the title for the application
-        dimStage.setTitle("Reversi");
+        dimStage.setTitle("Reversi Advanced");
 
         //Removing the default title bar
         dimStage.initStyle(StageStyle.UNDECORATED);
@@ -367,10 +366,8 @@ public class DimensionPrompt {
       if (dim.x == 0 || dim.y == 0){
             int newx = 8;
             int newy = 8;
-            System.out.println(newx);
             game.gameStart(newx, newy);
         }else if(dim.x > 0 || dim.y > 0){
-            System.out.println(dim.x + " " + dim.y);
             game.gameStart(dim.x, dim.y);
         }
     }
@@ -389,10 +386,8 @@ public class DimensionPrompt {
         if (dim.x == 0 || dim.y == 0){
             int newx = 8;
             int newy = 8;
-            System.out.println(newx);
             game.gameStart(newx, newy);
         }else if(dim.x > 0 || dim.y > 0){
-            System.out.println(dim.x + " " + dim.y);
             game.gameStart(dim.x, dim.y);
         }
     }
@@ -408,10 +403,8 @@ public class DimensionPrompt {
         if (dim.x == 0 || dim.y == 0){
             int newx = 8;
             int newy = 8;
-            System.out.println(newx);
             game.runHostPrompt(newx, newy);
         }else if(dim.x > 0 || dim.y > 0){
-            System.out.println(dim.x + " " + dim.y);
             game.runHostPrompt(dim.x, dim.y);
         }
     }
