@@ -55,10 +55,10 @@ public class PlayOnlineClient extends Application {
     }
     ServerClient client;
 
-    public void gameStart(int inwidth, int inheight) {
+    public void gameStart(int dim) {
         DimensionPrompt dimPrompt = new DimensionPrompt();
-        width = inwidth;
-        height = inheight;
+        width = dim;
+        height = dim;
         whiteImage = dimPrompt.whiteImage;
         blackImage = dimPrompt.blackImage;
         backImage1 = dimPrompt.back1;

@@ -43,7 +43,7 @@ public class HostPrompt {
         stage.close();
         boolean isHost = false;
         PlayOnlineClient playOnlineClient = new PlayOnlineClient();
-        playOnlineClient.gameStart(dim,dim);
+        playOnlineClient.gameStart(DimensionPrompt.dim.x);
 
     }
 
@@ -61,7 +61,7 @@ public class HostPrompt {
         Stage stage = (Stage) hostgame.getScene().getWindow();//Close the stage and the start the controller.
         stage.close();
         PlayOnlineHost playOnlineHost = new PlayOnlineHost();
-        playOnlineHost.gameStart(dim,dim);
+        playOnlineHost.gameStart(DimensionPrompt.dim.x);
     }
 
     public static String getIPinput(){
