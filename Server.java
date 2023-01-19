@@ -30,8 +30,9 @@ public class Server implements Serializable{
 
     public void sendArray(int[][] array){ //Method for sending an array to the client.
         try{
+            ArrayReturn arrayReturn = new ArrayReturn(array); //An ArrayReturn object is created from the array that is passed to the method.
             System.out.println(Arrays.deepToString(array));
-            objectOut.writeObject(array); //The arrayReturn object is written to the objectOut.
+            objectOut.writeObject(arrayReturn); //The arrayReturn object is written to the objectOut.
             objectOut.flush(); //The objectOut is flushed.
 
         }catch (IOException e){
