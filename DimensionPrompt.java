@@ -407,7 +407,7 @@ public class DimensionPrompt {
         Stage stage = (Stage) playOnlineHost.getScene().getWindow();
         stage.close();
         HostPrompt game = new HostPrompt();
-        game.runHostPrompt(dim.x, dim.y);
+        game.runHostPrompt();
     }
 
     //////////////////////////////////////////////////////////////

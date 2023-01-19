@@ -16,8 +16,8 @@ public class HostPrompt {
     int dim;
 
     static Stage stage = new Stage();
-    public void runHostPrompt(int inwidth, int inheight) throws IOException {
-        dim = inheight;
+    public void runHostPrompt() throws IOException {
+
         Parent root = FXMLLoader.load(getClass().getResource("OnlineDesign.fxml"));
         Scene scene = new Scene(root);
         IPhost = (Label) scene.lookup("#IPhost");
@@ -43,7 +43,7 @@ public class HostPrompt {
         stage.close();
         boolean isHost = false;
         PlayOnlineClient playOnlineClient = new PlayOnlineClient();
-        playOnlineClient.gameStart(DimensionPrompt.dim.x);
+        playOnlineClient.gameStart();
 
     }
 
@@ -61,7 +61,7 @@ public class HostPrompt {
         Stage stage = (Stage) hostgame.getScene().getWindow();//Close the stage and the start the controller.
         stage.close();
         PlayOnlineHost playOnlineHost = new PlayOnlineHost();
-        playOnlineHost.gameStart(DimensionPrompt.dim.x);
+        playOnlineHost.gameStart();
     }
 
     public static String getIPinput(){

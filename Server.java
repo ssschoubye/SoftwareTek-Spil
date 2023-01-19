@@ -33,6 +33,7 @@ public class Server extends Thread{
     public void sendArray(int[][] array){
         try{
             ArrayReturn arrayReturn = new ArrayReturn(array);
+            System.out.println(Arrays.deepToString(array));
             objectOut.writeObject(arrayReturn);
             objectOut.flush();
 

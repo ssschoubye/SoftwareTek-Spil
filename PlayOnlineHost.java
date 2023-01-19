@@ -18,6 +18,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.Arrays;
 import java.util.Objects;
 
 //For playing online
@@ -54,12 +55,12 @@ public class PlayOnlineHost extends Application {
     }
     Server server;
 
-    public void gameStart(int dim) {
+    public void gameStart() {
 
 
         DimensionPrompt dimPrompt = new DimensionPrompt();
-        width = dim;
-        height = dim;
+        width = DimensionPrompt.dim.x;
+        height = DimensionPrompt.dim.x;
         whiteImage = dimPrompt.whiteImage;
         blackImage = dimPrompt.blackImage;
         backImage1 = dimPrompt.back1;
@@ -160,8 +161,8 @@ public class PlayOnlineHost extends Application {
                         whiteScore.setText("x"+game.getScore()[0]);
                         blackScore.setText("x"+game.getScore()[1]);
                         updateGridPane(game, board);
+                        System.out.println(Arrays.deepToString(game.map));
                         server.sendArray(game.map);
-
                     }
 
                 });
