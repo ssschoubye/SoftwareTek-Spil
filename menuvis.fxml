@@ -29,11 +29,6 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-              <Button fx:id="button3" mnemonicParsing="false" onAction="#options" prefHeight="40.0" prefWidth="100.0" text="Options">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
       <AnchorPane prefHeight="35.0" prefWidth="600.0" styleClass="titleBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
