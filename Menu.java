@@ -81,16 +81,6 @@ public class Menu extends Application {
         game.gameStart(dimLoad.dimensionLoad, dimLoad.dimensionLoad);
     }
 
-    //The options button have no functionality yet.
-    @FXML
-    Button button3;
-
-    @FXML
-    private void options(){
-        System.out.println("Options");
-    }
-
-
 
 
 
