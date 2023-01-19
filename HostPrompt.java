@@ -6,9 +6,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -23,8 +25,12 @@ public class HostPrompt {
         InetAddress localHost = InetAddress.getLocalHost(); //The localHost variable is assigned the local host address.
         String hostip = localHost.getHostAddress(); //The hostip variable is assigned the local host address.
         setIP(hostip); //Sets the text of the IPhost label to the local host address.
-
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
+        String appIcon = "Images/reversiIcon.png"; //The icon of the application is set here.
+        Image icon = new Image(appIcon); //Creating an image object from the icon file.
+        stage.setTitle("Reversi Advanced"); //The title of the application is set here.
+        stage.getIcons().add(icon); //Adds the icon to the window corner
         stage.show();
     }
 
