@@ -14,14 +14,12 @@ public class Server implements Serializable{
     private ObjectOutputStream objectOut;
     private ObjectInputStream objectIn;
 
-    public Server(ServerSocket serverSocket){
+    public Server(ServerSocket serverSocket){ //Constructor for the server class.
         try{
-            this.serverSocket = serverSocket;
-            this.socket = serverSocket.accept();
-            this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            this.printWriter = new PrintWriter(socket.getOutputStream(), true);
-            this.objectOut = new ObjectOutputStream(socket.getOutputStream());
-            this.objectIn = new ObjectInputStream(socket.getInputStream());
+            this.serverSocket = serverSocket; //The serverSocket is set to the serverSocket that is passed to the constructor.
+            this.socket = serverSocket.accept(); //The socket is set to the socket that is accepted by the serverSocket.
+            this.objectOut = new ObjectOutputStream(socket.getOutputStream()); //The objectOut is set to the ObjectOutputStream that is created from the socket's output stream.
+            this.objectIn = new ObjectInputStream(socket.getInputStream()); //The objectIn is set to the ObjectInputStream that is created from the socket's input stream.
         }catch (IOException e){
             System.out.println("Error in Server constructor");
             e.printStackTrace();
@@ -30,12 +28,12 @@ public class Server implements Serializable{
 
     }
 
-    public void sendArray(int[][] array){
+    public void sendArray(int[][] array){ //Method for sending an array to the client.
         try{
-            ArrayReturn arrayReturn = new ArrayReturn(array);
+            ArrayReturn arrayReturn = new ArrayReturn(array); //An ArrayReturn object is created from the array that is passed to the method.
             System.out.println(Arrays.deepToString(array));
-            objectOut.writeObject(arrayReturn);
-            objectOut.flush();
+            objectOut.writeObject(arrayReturn); //The arrayReturn object is written to the objectOut.
+            objectOut.flush(); //The objectOut is flushed.
 
         }catch (IOException e){
             System.out.println("Error in sendArray");
@@ -45,10 +43,11 @@ public class Server implements Serializable{
         }
     }
     public void closeEveryThing(Socket socket, ObjectOutputStream objectOut, ObjectInputStream objectIn){
+        //Method for closing the socket, objectOut, and objectIn objects.
         try{
-            socket.close();
-            objectOut.close();
-            objectIn.close();
+            socket.close(); //The socket is closed.
+            objectOut.close(); //The objectOut is closed.
+            objectIn.close(); //The objectIn is closed.
         }catch (IOException e){
             System.out.println("Error in closeEverything");
             e.printStackTrace();
@@ -56,16 +55,16 @@ public class Server implements Serializable{
         }
     }
 
-    public void recieveArray(){
+    public void recieveArray(){ //Method for recieving an array from the client.
         new Thread(new Runnable() {
             @Override
-            public void run() {
-                while(socket.isConnected()){
+            public void run() {//This is the thread that is used to recieve the array from the client.
+                while(socket.isConnected()){//This while loop is used to keep the thread running until the socket is closed.
                     try{
-                        ArrayReturn arrayReturn = (ArrayReturn) objectIn.readObject();
-                        int[][] array = arrayReturn.getArray();
+                        ArrayReturn arrayReturn = (ArrayReturn) objectIn.readObject(); //The unknown object recieved is stored in an ArrayReturn object.
+                        int[][] array = arrayReturn.getArray(); //The array is set to the array that is returned from the getArray method in the ArrayReturn class.
                         System.out.println(Arrays.deepToString(array));
-                        PlayOnlineHost.setMap(array);
+                        PlayOnlineHost.setMap(array); //The array is set to the map in the PlayOnlineHost class.
                     }catch (IOException | ClassNotFoundException e){
                         System.out.println("Error in recieveArray");
                         e.printStackTrace();

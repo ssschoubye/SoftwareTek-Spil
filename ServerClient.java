@@ -14,13 +14,11 @@ public class ServerClient implements Serializable {
     private ObjectOutputStream objectOut;
     private ObjectInputStream objectIn;
 
-    public ServerClient(Socket socket){
+    public ServerClient(Socket socket){ //Constructor for the ServerClient class.
         try{
-            this.socket = socket;
-            this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            this.printWriter = new PrintWriter(socket.getOutputStream(), true);
-            this.objectOut = new ObjectOutputStream(socket.getOutputStream());
-            this.objectIn = new ObjectInputStream(socket.getInputStream());
+            this.socket = socket; //The socket is set to the socket that is passed to the constructor.
+            this.objectOut = new ObjectOutputStream(socket.getOutputStream()); //The objectOut is set to the ObjectOutputStream that is created from the socket's output stream.
+            this.objectIn = new ObjectInputStream(socket.getInputStream()); //The objectIn is set to the ObjectInputStream that is created from the socket's input stream.
         }catch (IOException e){
             System.out.println("Error in Server constructor");
             e.printStackTrace();
@@ -31,8 +29,9 @@ public class ServerClient implements Serializable {
 
     public void sendArray(int[][] array){
         try{
-            ArrayReturn arrayReturn = new ArrayReturn(array);
-            objectOut.writeObject(arrayReturn);
+            ArrayReturn arrayReturn = new ArrayReturn(array); //An ArrayReturn object is created from the array that is passed to the method.
+            System.out.println(Arrays.deepToString(array));
+            objectOut.writeObject(arrayReturn); //The arrayReturn object is written to the objectOut.
             objectOut.flush();
         }catch (IOException e){
             System.out.println("Error in sendArray");

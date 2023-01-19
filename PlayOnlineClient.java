@@ -54,7 +54,7 @@ public class PlayOnlineClient extends Application implements Serializable {
 
         }
     }
-    ServerClient client;
+
 
     public void gameStart() {
         DimensionPrompt dimPrompt = new DimensionPrompt();
@@ -67,6 +67,7 @@ public class PlayOnlineClient extends Application implements Serializable {
         Stage stage = new Stage();
         start(stage);
     }
+    ServerClient client; //The client object is created here.
     static Board game;
     static GridPane board;
     @Override
@@ -74,7 +75,7 @@ public class PlayOnlineClient extends Application implements Serializable {
         AudioClip placeSound = new AudioClip(getClass().getResource(placeSoundFile).toExternalForm());
         Label showTurn = (Label)scene.lookup("#showTurn");
         try{
-            client = new ServerClient(new Socket(HostPrompt.IPinput,8080));
+            client = new ServerClient(new Socket(HostPrompt.IPinput,8080)); //The socket is set to the socket that is accepted by the serverSocket.
             System.out.println("Connected to server");
         }catch(IOException e){
             e.printStackTrace();
@@ -99,7 +100,7 @@ public class PlayOnlineClient extends Application implements Serializable {
 
         saveGame.setVisible(false);
 
-        client.recieveArray();
+        client.recieveArray(); //Calls the method that recieves the array from the server.
 
         Button[][] cells = new Button[width][height];
         for (int i = 0; i < height; i++) {
@@ -163,7 +164,7 @@ public class PlayOnlineClient extends Application implements Serializable {
 
 
                     }
-                    client.sendArray(game.map);
+                    client.sendArray(game.map); //Sends the array to the server.
                 });
                 Pane gamePane = (Pane) scene.lookup("#gamePane");
                 cells[i][j].prefHeightProperty().bind(Bindings.divide(gamePane.heightProperty(), width));
@@ -321,18 +322,19 @@ public class PlayOnlineClient extends Application implements Serializable {
         stage.setIconified(true);
     }
 
-    public static void setMap(int[][] map) {
-        Platform.runLater(new Runnable() {
+    public static void setMap(int[][] map) { //Takes the input map from the client and sets it to the map in the game.
+        Platform.runLater(new Runnable() {//This is needed to run the code on the JavaFX thread.
+            //Since this method is called from a different thread, it will not work without this.
             @Override
-            public void run() {
-                game.map = map;
-                whiteImage = DimensionPrompt.whiteImage;
+            public void run() {//This is needed to run the code on the JavaFX thread.
+                game.map = map; //Sets the map in the game to the map from the client.
+                whiteImage = DimensionPrompt.whiteImage; //Sets the images to the images from the client.
                 blackImage = DimensionPrompt.blackImage;
                 backImage1 = DimensionPrompt.backImage1;
                 backImage2 = DimensionPrompt.backImage2;
 
                 PlayOnlineClient playOnlineClient = new PlayOnlineClient();
-                playOnlineClient.updateGridPane(game, board);
+                playOnlineClient.updateGridPane(game, board); //Calls the updateGridPane method to update the board.
             }
         });
     }

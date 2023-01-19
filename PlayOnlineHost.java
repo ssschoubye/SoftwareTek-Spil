@@ -54,7 +54,7 @@ public class PlayOnlineHost extends Application implements Serializable {
 
         }
     }
-    Server server;
+
 
     public void gameStart() {
 
@@ -69,6 +69,7 @@ public class PlayOnlineHost extends Application implements Serializable {
         Stage stage = new Stage();
         start(stage);
     }
+    Server server; //The server object is created here.
     static Board game;
     static GridPane board;
     @Override
@@ -323,18 +324,18 @@ public class PlayOnlineHost extends Application implements Serializable {
         stage.setIconified(true);
     }
 
-    public static void setMap(int[][] map) {
+    public static void setMap(int[][] map) {//Takes the input map from the client and sets it to the map in the game.
         Platform.runLater(new Runnable() {
             @Override
-            public void run() {
-                game.map = map;
-                whiteImage = DimensionPrompt.whiteImage;
+            public void run() {//This is needed to run the code on the JavaFX thread.
+                game.map = map; //Sets the map in the game to the map from the client.
+                whiteImage = DimensionPrompt.whiteImage; //Sets the images to the images from the client.
                 blackImage = DimensionPrompt.blackImage;
                 backImage1 = DimensionPrompt.backImage1;
                 backImage2 = DimensionPrompt.backImage2;
 
                 PlayOnlineHost playOnlineHost = new PlayOnlineHost();
-                playOnlineHost.updateGridPane(game, board);
+                playOnlineHost.updateGridPane(game, board); //Calls the updateGridPane method to update the board.
             }
         });
     }
