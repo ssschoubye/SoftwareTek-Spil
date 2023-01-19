@@ -29,7 +29,7 @@ public class PlayOnlineClient extends Application {
     static int height;
     static int turn = (int) (Math.random() * 2) + 1;
 
-    static int firstStartingPlayer = (int) (Math.random() * 2) + 1;
+    static int firstStartingPlayer = 2;
 
     static int gameNumber = 1;
 

@@ -28,7 +28,7 @@ public class PlayOnlineHost extends Application {
     static int height;
     static int turn = (int) (Math.random() * 2) + 1;
 
-    static int firstStartingPlayer = (int) (Math.random() * 2) + 1;
+    static int firstStartingPlayer = 1;
 
     static int gameNumber = 1;
 
