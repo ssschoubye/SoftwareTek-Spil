@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
-      <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
-    </list>
+    <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -154,6 +152,8 @@
       <workItem from="1674133386224" duration="43000" />
       <workItem from="1674133451350" duration="308000" />
       <workItem from="1674134135664" duration="60000" />
+      <workItem from="1674134299091" duration="114000" />
+      <workItem from="1674135941764" duration="656000" />
     </task>
     <servers />
   </component>
