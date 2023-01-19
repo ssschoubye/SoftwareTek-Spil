@@ -15,11 +15,19 @@ Additionally, it is worth mentioning that the program is optimized for use on a 
 1080p resolution with applications size at 100%.
 
 ## How to use the project
-When opening the project, the user sees two buttons. One for starting a new game and one for loading an earlier saved game. When opening up the program for the first time a default save file will already exist and stay like this til overwritten.
-If one chooses to start a new game they will first see a choice menu, where they can choose different skins for board pieces as well as the board itself.
-Additionally board size can be chosen between three different sizes; 4x4, 8x8, 12x12. At last one can choose whether to play alone or play against an AI. (A button for playing online will also be seen on this menu, however this isn't yet functional).
+When opening the project, the user sees two buttons. One for starting a new game and
+one for loading an earlier saved game. When opening up the program for the first time, 
+the program will give an error if trying to lead a game running as a jar file. This is because the program
+is looking for the saved game in the same folder as the jar-file itself.
+If one chooses to start a new game they will first see a choice menu, where they can 
+choose different skins for board pieces as well as the board itself.
+Additionally board size can be chosen between three different sizes; 4x4, 8x8, 12x12. 
+At last one can choose whether to play alone, play against an AI or play online(on LAN). The LAN
 
-Once choosing a game mode, the user will be taken to a new page where the game is shown and possible to play. Given that the player is playing alone, a button for saving and quitting to the main menu. Regardless of what gamemode is chosen, when the game is over, the user will be taken to a win/lose/draw page were they can choose to restart.
+Once choosing a game mode, the user will be taken to a new page where the game is shown and possible to play. 
+Given that the player is playing alone, a button for saving and quitting to the main menu. 
+Regardless of what gamemode is chosen, when the game is over, the user will be taken 
+to a win/lose/draw page were they can choose to restart.
 
 All menus except the main menu have a button for returning to the main menu.
 

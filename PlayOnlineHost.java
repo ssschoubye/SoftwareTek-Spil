@@ -123,12 +123,12 @@ public class PlayOnlineHost extends Application implements Serializable {
                         placeSound.play();
                         turnCounter++;
                         //Switches player turn
-                        if (turnCounter == 3) {
+                        if (turnCounter == 4) {
                             turn = Board.turnSwitch(turn);
                             showTurn.setText(turnColor(turn) + "'s turn");
                         }
 
-                        if (turnCounter > 4) {
+                        if (turnCounter > 2) {
                             turn = Board.turnSwitch(turn);
                             showTurn.setText(turnColor(turn) + "'s turn");
 
