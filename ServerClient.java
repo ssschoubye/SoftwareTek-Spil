@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 
-public class ServerClient extends Thread {
+public class ServerClient implements Serializable {
     private ServerSocket serverSocket;
     private Socket socket;
     private BufferedReader bufferedReader;
