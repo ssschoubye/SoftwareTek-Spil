@@ -122,6 +122,12 @@ public class PlayAlone extends Application {
             turnCounter = gameloader.turnCount;
 
             Menu.loadGame = false;
+
+
+
+
+
+
         }
 
         //Finds label for white's score and sets the score
@@ -191,9 +197,14 @@ public class PlayAlone extends Application {
                                     //Updates the final view of the board
                                     updateGridPane(game, board);
 
+                                    //Disabling the save button,
+                                    Button saveGame = (Button) scene.lookup("#saveGame");
+                                    saveGame.setDisable(true);
+
                                     //Creates a new thread in order to let the FX application update its view
                                     //And then have a delay before continuing to the restart page
                                     new Thread(() -> {
+
                                         try {
                                             //Sets the delay timer to 800 milliseconds
                                             Thread.sleep(800);
