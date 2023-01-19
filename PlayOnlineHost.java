@@ -17,13 +17,14 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.ServerSocket;
 import java.util.Arrays;
 import java.util.Objects;
 
 //For playing online
 //Not yet used, as online playing isn't currently working
-public class PlayOnlineHost extends Application {
+public class PlayOnlineHost extends Application implements Serializable {
 
     static int width;
     static int height;

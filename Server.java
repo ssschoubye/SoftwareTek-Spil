@@ -6,7 +6,7 @@ import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Server extends Thread{
+public class Server implements Serializable{
     private ServerSocket serverSocket;
     private Socket socket;
     private BufferedReader bufferedReader;
