@@ -1,27 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="ReversiAdvanced:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/HostPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/HostPrompt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OnlineDesign.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/OnlineDesign.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/HostPrompt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/HostPrompt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/OnlineDesign.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/OnlineDesign.fxml" afterDir="false" />
+    <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Images/reversiIcon.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2KXfe9KidIq0SOmOxGJaRfoBlJ6" />
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2JlbEWibvMvS1tt0sUxnkAJQ1ZO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -30,23 +52,108 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/fsvan/AppData/Local/SceneBuilder/SceneBuilder.exe",
+    "last_opened_file_path": "C:/Users/Emil Wille Andersen/OneDrive - Danmarks Tekniske Universitet/Dokumenter/GitHub/SoftwareTek-Spil/out/production/SoftwareTek-Spil/Sounds",
     "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Sounds" />
+      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images" />
+      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images\BlackPieces" />
+      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images\WhitePieces" />
+      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\emilw\OneDrive\Documents\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images" />
+      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images" />
+      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
+      <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil" />
+      <recent name="C:\Users\fsvan\OneDrive\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Menu" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Menu" />
+      <module name="SoftwareTek-Spil" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="" />
-      <created>1674125944271</created>
+      <created>1672655505797</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1674125944271</updated>
-      <workItem from="1674125945974" duration="1655000" />
+      <updated>1672655505797</updated>
+      <workItem from="1672749843147" duration="10572000" />
+      <workItem from="1672928138007" duration="7935000" />
+      <workItem from="1673121175321" duration="9839000" />
+      <workItem from="1673135959474" duration="2160000" />
+      <workItem from="1673138462813" duration="260000" />
+      <workItem from="1673138755201" duration="436000" />
+      <workItem from="1673139241964" duration="282000" />
+      <workItem from="1673180864410" duration="4244000" />
+      <workItem from="1673185496813" duration="833000" />
+      <workItem from="1673186368524" duration="1528000" />
+      <workItem from="1673188426354" duration="1987000" />
+      <workItem from="1673191677946" duration="9721000" />
+      <workItem from="1673259930179" duration="2210000" />
+      <workItem from="1673262258515" duration="4622000" />
+      <workItem from="1673267218049" duration="11088000" />
+      <workItem from="1673279371157" duration="1052000" />
+      <workItem from="1673280489792" duration="88000" />
+      <workItem from="1673280598083" duration="915000" />
+      <workItem from="1673281546157" duration="1919000" />
+      <workItem from="1673287234956" duration="53000" />
+      <workItem from="1673287420019" duration="402000" />
+      <workItem from="1673289187462" duration="9137000" />
+      <workItem from="1673299298146" duration="803000" />
+      <workItem from="1673300649360" duration="3061000" />
+      <workItem from="1673303784630" duration="78000" />
+      <workItem from="1673350574973" duration="8000" />
+      <workItem from="1673350605303" duration="3966000" />
+      <workItem from="1673356634601" duration="5534000" />
+      <workItem from="1673367781558" duration="376000" />
+      <workItem from="1673387379933" duration="1491000" />
+      <workItem from="1673433456558" duration="8268000" />
+      <workItem from="1673449767694" duration="1909000" />
+      <workItem from="1673452464851" duration="9000" />
+      <workItem from="1673452558384" duration="5147000" />
+      <workItem from="1673458103186" duration="66000" />
+      <workItem from="1673458261987" duration="4000" />
+      <workItem from="1673458819847" duration="3485000" />
+      <workItem from="1673468853860" duration="3302000" />
+      <workItem from="1673523823876" duration="675000" />
+      <workItem from="1673528444066" duration="800000" />
+      <workItem from="1673529386025" duration="361000" />
+      <workItem from="1673529879050" duration="2916000" />
+      <workItem from="1673788334066" duration="4596000" />
+      <workItem from="1673862017652" duration="18318000" />
+      <workItem from="1673959309774" duration="12594000" />
+      <workItem from="1674120655406" duration="4000" />
+      <workItem from="1674120692385" duration="24000" />
+      <workItem from="1674123819794" duration="1526000" />
+      <workItem from="1674125659990" duration="29000" />
+      <workItem from="1674125849525" duration="736000" />
+      <workItem from="1674128287371" duration="142000" />
+      <workItem from="1674128596688" duration="63000" />
+      <workItem from="1674133354853" duration="3000" />
+      <workItem from="1674133386224" duration="43000" />
+      <workItem from="1674133451350" duration="289000" />
     </task>
     <servers />
   </component>
@@ -63,5 +170,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
