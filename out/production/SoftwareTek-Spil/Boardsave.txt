@@ -4,5 +4,5 @@ Images/WhitePieces/whitePiece1.png
 Images/BlackPieces/blackPiece1.png
 Images/Background/green1.png
 Images/Background/green2.png
-2222221121211121
-17
+1222122211223111
+16
