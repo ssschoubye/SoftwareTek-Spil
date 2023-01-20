@@ -22,8 +22,16 @@ import java.net.ServerSocket;
 import java.util.Arrays;
 import java.util.Objects;
 
-//For playing online
-//Not yet used, as online playing isn't currently working
+/////////////////////////////////////////////////////////////////
+///                      Online Server side                   ///
+///               by Søren Sehested Schoubye s224756          ///
+/// Controls the game regarding the server side of online play///
+/////////////////////////////////////////////////////////////////
+
+//This class is almost identical to the PlayOnlineHost class, the only difference is that this class is the client and the other is the server.
+//The comments in this class are therefore very similar to the comments in the PlayOnlineHost class.
+//THis class furthermore is based on the code from PlayAlone class.
+//Relevant changes have been commented. Otherwise information about gameplay functions be found in the PlayAlone class.
 public class PlayOnlineHost extends Application implements Serializable {
 
     static int width;

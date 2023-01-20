@@ -4,7 +4,13 @@ import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
+/////////////////////////////////////////////////////////////////
+///                      Server                               ///
+///               by Søren Sehested Schoubye s224756          ///
+///                                                           ///
+/////////////////////////////////////////////////////////////////
+//This class is very similar to the Server Class but is used to control the client side of the game.
+//Relevant change to the code is marked with a comment.
 
 public class ServerClient implements Serializable {
     private ServerSocket serverSocket;

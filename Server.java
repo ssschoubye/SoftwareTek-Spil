@@ -1,4 +1,13 @@
 import javafx.fxml.Initializable;
+/////////////////////////////////////////////////////////////////
+///                      Server                               ///
+///               by Søren Sehested Schoubye s224756          ///
+///                                                           ///
+/////////////////////////////////////////////////////////////////
+
+//This class is very similar to the ServerClient class, but it is used to control the server side of the game.
+//The class is used to send and receive messages from the client, and to update the game accordingly.
+
 
 import java.io.*;
 import java.net.*;
