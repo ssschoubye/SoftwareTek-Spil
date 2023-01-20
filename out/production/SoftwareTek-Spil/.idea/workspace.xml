@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="AdvancedReversi:jar" />
+      <artifact name="ReversiAdvanced:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil" />
+    <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
+      <change beforePath="$PROJECT_DIR$/DimensionPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimensionPrompt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnline.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,8 +60,7 @@
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;,
@@ -72,7 +76,6 @@
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\emilw\OneDrive\Documents\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images" />
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil\Images" />
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil\out\production\SoftwareTek-Spil" />
       <recent name="C:\Users\Emil Wille Andersen\OneDrive - Danmarks Tekniske Universitet\Dokumenter\GitHub\SoftwareTek-Spil" />
@@ -138,22 +141,35 @@
       <workItem from="1673528444066" duration="800000" />
       <workItem from="1673529386025" duration="361000" />
       <workItem from="1673529879050" duration="2916000" />
-      <workItem from="1673788334066" duration="4596000" />
-      <workItem from="1673862017652" duration="18318000" />
-      <workItem from="1673959309774" duration="12594000" />
-      <workItem from="1674120655406" duration="4000" />
-      <workItem from="1674120692385" duration="24000" />
-      <workItem from="1674123819794" duration="1526000" />
-      <workItem from="1674125659990" duration="29000" />
-      <workItem from="1674125849525" duration="736000" />
-      <workItem from="1674128287371" duration="142000" />
-      <workItem from="1674128596688" duration="63000" />
-      <workItem from="1674133354853" duration="3000" />
-      <workItem from="1674133386224" duration="43000" />
-      <workItem from="1674133451350" duration="308000" />
-      <workItem from="1674134135664" duration="60000" />
-      <workItem from="1674134299091" duration="114000" />
-      <workItem from="1674135941764" duration="656000" />
+      <workItem from="1673812990431" duration="555000" />
+      <workItem from="1673814257998" duration="34000" />
+      <workItem from="1673815640372" duration="589000" />
+      <workItem from="1673816522467" duration="59000" />
+      <workItem from="1673816590828" duration="374000" />
+      <workItem from="1673817118157" duration="568000" />
+      <workItem from="1673817997773" duration="15000" />
+      <workItem from="1673855947344" duration="738000" />
+      <workItem from="1673856837995" duration="56000" />
+      <workItem from="1673857161405" duration="1804000" />
+      <workItem from="1673859078579" duration="481000" />
+      <workItem from="1673859883162" duration="402000" />
+      <workItem from="1673860439547" duration="4494000" />
+      <workItem from="1673865351701" duration="110000" />
+      <workItem from="1673865482298" duration="5702000" />
+      <workItem from="1673881351122" duration="6325000" />
+      <workItem from="1673900123514" duration="2108000" />
+      <workItem from="1673903499386" duration="1910000" />
+      <workItem from="1674038118003" duration="2209000" />
+      <workItem from="1674040373131" duration="6818000" />
+      <workItem from="1674047280193" duration="2526000" />
+      <workItem from="1674050133831" duration="1778000" />
+      <workItem from="1674052149659" duration="383000" />
+      <workItem from="1674055681896" duration="1822000" />
+      <workItem from="1674060854034" duration="2608000" />
+      <workItem from="1674065172230" duration="460000" />
+      <workItem from="1674071150549" duration="57000" />
+      <workItem from="1674071378199" duration="2660000" />
+      <workItem from="1674078383808" duration="86000" />
     </task>
     <servers />
   </component>
