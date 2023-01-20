@@ -223,7 +223,7 @@ public class PlayAlone extends Application {
                                         Platform.runLater(() -> {
                                             primaryStage.close();
                                             try {
-                                                win.winStart(game);
+                                                win.winStart(game); //Starts the restart page.
                                             } catch (IOException e) {
                                                 throw new RuntimeException(e);
                                             }
