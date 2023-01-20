@@ -10,10 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c54458f5-e23d-4645-bae4-7c409f4b7acf" name="Changes" comment="Menu med delvist funktionelt spil">
-      <change beforePath="$PROJECT_DIR$/DimensionPrompt.java" beforeDir="false" afterPath="$PROJECT_DIR$/DimensionPrompt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/DimensionPrompt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnline.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineClient$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineClient$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineClient$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineClient$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineHost$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineHost$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineHost$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineHost$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineHost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/PlayOnlineHost.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Server$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Server$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/ServerClient$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/ServerClient$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/ServerClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SoftwareTek-Spil/ServerClient.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,6 +177,7 @@
       <workItem from="1674071150549" duration="57000" />
       <workItem from="1674071378199" duration="2660000" />
       <workItem from="1674078383808" duration="86000" />
+      <workItem from="1674232114955" duration="170000" />
     </task>
     <servers />
   </component>
